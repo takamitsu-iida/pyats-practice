@@ -2,9 +2,10 @@
 
 from pprint import pprint
 
-from genie.conf import Genie
+# import Genie
+from genie.testbed import load
 
-testbed = Genie.init('lab.yml')
+testbed = load('lab.yml')
 
 uut = testbed.devices['uut']
 

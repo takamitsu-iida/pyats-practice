@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 
-# Import Genie
-from genie.conf import Genie
+# import Genie
+from genie.testbed import load
 
-testbed = Genie.init('lab.yml')
+testbed = load('lab.yml')
 
 uut = testbed.devices['uut']
 
-# connect to the uut
 uut.connect(via='console')
 
 # インタフェースを学習させるには機種の情報が必要

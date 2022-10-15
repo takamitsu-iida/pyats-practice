@@ -10,15 +10,23 @@
 # 2) At least one device need to have the alias ‘uut’ in the testbed yaml file.
 #
 
+
+# to validate the testbed file
+# pyats validate testbed [file]
+
+
+
+
 testbed:
   name: iida-pyats on eve-ng
 
-  # credentials:
-  #   default:
-  #     username: ''
-  #     password: ''
-  #   enable:
-  #     password: ''
+  # common credentials
+  credentials:
+    default:
+      username: ''
+      password: ''
+    enable:
+      password: ''
 
 devices:
 
@@ -52,20 +60,15 @@ devices:
     platform: CSR1000v
     type: iosxe
 
-    # credentials:
-    #   default:
-    #     password: ''
-    #     username: ''
-    #   enable:
-    #     password: ''
-
     # スタックしている場合はchassis_typeを指定
     # chassis_type: stack
+
     connections:
       console:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
-        port: 35907
+        port: 38905
+        timeout: 10
         arguments:
           # osがiosxeの場合、接続と同時に以下のコマンドが投入される
           #  - term length 0
@@ -92,20 +95,128 @@ devices:
 
   r2:
     os: iosxe
-    platform: iosxe
-    type: CSR1000v
+    platform: CSR1000v
+    type: iosxe
     connections:
       console:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
-        port: 59901
+        port: 42503
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
+
+  r3:
+    os: iosxe
+    platform: CSR1000v
+    type: iosxe
+    connections:
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 48927
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
+
+  r4:
+    os: iosxe
+    platform: CSR1000v
+    type: iosxe
+    connections:
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 41539
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
+
+
+  sw1:
+    os: ios
+    platform: IOL
+    type: Switch
+    connections:
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 42961
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
+
+  sw2:
+    os: ios
+    platform: IOL
+    type: Switch
+    connections:
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 45895
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
+
+  sw3:
+    os: ios
+    platform: IOL
+    type: Switch
+    connections:
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 48429
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
+
+  sw4:
+    os: ios
+    platform: IOL
+    type: Switch
+    connections:
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 34521
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
+
+
 
 topology:
+
+  fumidai:
+    interfaces:
+      pnet0:
+        type: ethernet
+
   r1:
     interfaces:
       GigabitEthernet1:
         ipv4: 192.168.12.1/24
-        link: link-12
+        link: r1-r2
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.13.1/24
+        link: r1-r3
         type: ethernet
       Loopback0:
         ipv4: 192.168.255.1/32
@@ -116,9 +227,89 @@ topology:
     interfaces:
       GigabitEthernet1:
         ipv4: 192.168.12.2/24
-        link: link-12
+        link: r1-r2
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.24.2/24
+        link: r2-r4
         type: ethernet
       Loopback0:
         ipv4: 192.168.255.2/32
         link: r2_Loopback0
         type: loopback
+
+  r3:
+    interfaces:
+      GigabitEthernet1:
+        ipv4: 192.168.34.3/24
+        link: r3-r4
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.13.3/24
+        link: r1-r3
+        type: ethernet
+      Loopback0:
+        ipv4: 192.168.255.3/32
+        link: r3_Loopback0
+        type: loopback
+
+  r4:
+    interfaces:
+      GigabitEthernet1:
+        ipv4: 192.168.34.4/24
+        link: r3-r4
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.24.4/24
+        link: r2-r4
+        type: ethernet
+      Loopback0:
+        ipv4: 192.168.255.4/32
+        link: r4_Loopback0
+        type: loopback
+
+
+  sw1:
+    interfaces:
+      Ethernet0/0:
+        link: sw1-sw2
+        type: ethernet
+      Ethernet0/1:
+        link: sw1-sw3
+        type: ethernet
+      Ethernet0/2:
+        link: sw2-sw4
+        type: ethernet
+  sw2:
+    interfaces:
+      Ethernet0/0:
+        link: sw1-sw2
+        type: ethernet
+      Ethernet0/1:
+        link: sw2-sw4
+        type: ethernet
+      Ethernet0/2:
+        link: sw2-sw3
+        type: ethernet
+  sw3:
+    interfaces:
+      Ethernet0/0:
+        link: sw3-sw4
+        type: ethernet
+      Ethernet0/1:
+        link: sw1-sw3
+        type: ethernet
+      Ethernet0/2:
+        link: sw2-sw3
+        type: ethernet
+  sw4:
+    interfaces:
+      Ethernet0/0:
+        link: sw3-sw4
+        type: ethernet
+      Ethernet0/1:
+        link: sw2-sw4
+        type: ethernet
+      Ethernet0/2:
+        link: sw1-sw4
+        type: ethernet

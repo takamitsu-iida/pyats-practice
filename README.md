@@ -74,11 +74,65 @@ pip install yang.connector
 
 装置に関する情報だけでなく、どのように接続しているか、も記述する。
 
-プロンプトの処理や、接続時にデフォルトで打ち込まれるコマンドなど、独特な動きをする。
-装置への接続に関してはマニュアルに目を通した方が結果的に近道。
+接続に関連した項目はtestbedに記述できるので、マニュアルに目を通した方が結果的に近道。
 
 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
 
+記述したtestbedがおかしくないか検証できる。
+
+```bash
+pyats validate testbed [testbed yaml file]
+```
+
+実行例。
+
+```bash
+$ pyats validate testbed lab.yml
+Loading testbed file: lab.yml
+--------------------------------------------------------------------------------
+
+Testbed Name:
+    iida-pyats on eve-ng
+
+Testbed Devices:
+.
+|-- fumidai [linux/linux]
+|   `-- pnet0
+|-- r1 [iosxe/CSR1000v]
+|   |-- GigabitEthernet1 ----------> r1-r2
+|   |-- GigabitEthernet2 ----------> r1-r3
+|   `-- Loopback0 ----------> r1_Loopback0
+|-- r2 [iosxe/CSR1000v]
+|   |-- GigabitEthernet1 ----------> r1-r2
+|   |-- GigabitEthernet2 ----------> r2-r4
+|   `-- Loopback0 ----------> r2_Loopback0
+|-- r3 [iosxe/CSR1000v]
+|   |-- GigabitEthernet1 ----------> r3-r4
+|   |-- GigabitEthernet2 ----------> r1-r3
+|   `-- Loopback0 ----------> r3_Loopback0
+|-- r4 [iosxe/CSR1000v]
+|   |-- GigabitEthernet1 ----------> r3-r4
+|   |-- GigabitEthernet2 ----------> r2-r4
+|   `-- Loopback0 ----------> r4_Loopback0
+|-- sw1 [ios/IOL]
+|   |-- Ethernet0/0 ----------> sw1-sw2
+|   |-- Ethernet0/1 ----------> sw1-sw3
+|   `-- Ethernet0/2 ----------> sw2-sw4
+|-- sw2 [ios/IOL]
+|   |-- Ethernet0/0 ----------> sw1-sw2
+|   |-- Ethernet0/1 ----------> sw2-sw4
+|   `-- Ethernet0/2 ----------> sw2-sw3
+|-- sw3 [ios/IOL]
+|   |-- Ethernet0/0 ----------> sw3-sw4
+|   |-- Ethernet0/1 ----------> sw1-sw3
+|   `-- Ethernet0/2 ----------> sw2-sw3
+`-- sw4 [ios/IOL]
+    |-- Ethernet0/0 ----------> sw3-sw4
+    |-- Ethernet0/1 ----------> sw2-sw4
+    `-- Ethernet0/2 ----------> sw1-sw4
+```
+
+利用しているラボのtestbedはこの通り。
 
 ```yml
 ---
@@ -87,23 +141,34 @@ https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
 # testbed file for lab
 #
 
+#
+# NOTE
+# 1) The device name must match the hostname of the device, otherwise, the connection will hang.
+# 2) At least one device need to have the alias ‘uut’ in the testbed yaml file.
+#
+
+# to validate the testbed file
+# pyats validate testbed [file]
+
 testbed:
-  name: eve-ng
+  name: iida-pyats on eve-ng
+
+  # common credentials
   credentials:
     default:
-      username: cisco
-      password: cisco
+      username: ''
+      password: ''
     enable:
-      password: cisco
+      password: ''
 
 devices:
 
-  # 踏み台サーバ
+  # this host does NOT exist now
   fumidai:
     os: linux
     type: linux
     credentials:
-      # sshコマンドでログインするが、~/.ssh/configは読まないのでユーザ名はここで指定する
+      # ~/.ssh/configは読まないのでユーザ名はここで指定する
       default:
         username: bastion
     connections:
@@ -111,53 +176,168 @@ devices:
         protocol: ssh
         ip: 10.38.220.46
 
+
   # must be hostname, same as prompt
-  R1:
+  r1:
+    alias: 'uut'
+
+    # 機種に対応したプラグインを読み込む優先順位、osは必須でその他は任意
+    #  chassis_type > os > platform > model
+
+    # os
+    # ios, iosxe, iosxr, nxos, junos
+    # https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/supported_platforms.html#
     os: iosxe
-    type: router
-    platform: csr1000v
+
+    # 任意
+    platform: CSR1000v
+    type: iosxe
+
+    # スタックしている場合はchassis_typeを指定
+    # chassis_type: stack
+
     connections:
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 38905
+        timeout: 10
+        arguments:
+          # osがiosxeの場合、接続と同時に以下のコマンドが投入される
+          #  - term length 0
+          #  - term width 0
+          #  - show version
+          # init_exec_commandsに空っぽのリストを渡せば何も実行されなくなる
+          # init_exec_commands: []
+
+          # osがiosxeの場合、接続と同時に以下の設定変更を行う
+          # - no logging console
+          # - line console 0
+          # - exec-timeout 0
+          # - end
+          # init_config_commandsに空のリストを渡せば設定変更を抑止できる
+          init_config_commands: []
+
+      # SSHで踏み台を経由する場合
       vty:
         proxy: fumidai
         protocol: ssh -oKexAlgorithms=+diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
         ip: 192.168.0.11
         port: -p 22
 
-  R2:
+
+  r2:
     os: iosxe
-    type: router
-    platform: csr1000v
+    platform: CSR1000v
+    type: iosxe
     connections:
-      vty:
-        proxy: fumidai
-        protocol: ssh -oKexAlgorithms=+diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
-        ip: 192.168.0.12
-        port: -p 22
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 42503
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
+
+  r3:
+    os: iosxe
+    platform: CSR1000v
+    type: iosxe
+    connections:
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 48927
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
+
+  r4:
+    os: iosxe
+    platform: CSR1000v
+    type: iosxe
+    connections:
+      console:
+        protocol: telnet
+        ip: feve.nsc.css.fujitsu.com
+        port: 41539
+        arguments:
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
 
 topology:
-  R1:
+
+  fumidai:
     interfaces:
-      GigabitEthernet4:
-        ipv4: 192.168.0.11/24
-        link: link-1
+      pnet0:
+        type: ethernet
+
+  r1:
+    interfaces:
+      GigabitEthernet1:
+        ipv4: 192.168.12.1/24
+        link: r1-r2
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.13.1/24
+        link: r1-r3
         type: ethernet
       Loopback0:
         ipv4: 192.168.255.1/32
-        link: R1_Loopback0
+        link: r1_Loopback0
         type: loopback
 
-  R2:
+  r2:
     interfaces:
-      GigabitEthernet4:
-        ipv4: 192.168.0.12/24
-        link: link-1
+      GigabitEthernet1:
+        ipv4: 192.168.12.2/24
+        link: r1-r2
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.24.2/24
+        link: r2-r4
         type: ethernet
       Loopback0:
         ipv4: 192.168.255.2/32
-        link: R2_Loopback0
+        link: r2_Loopback0
+        type: loopback
+
+  r3:
+    interfaces:
+      GigabitEthernet1:
+        ipv4: 192.168.34.3/24
+        link: r3-r4
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.13.3/24
+        link: r1-r3
+        type: ethernet
+      Loopback0:
+        ipv4: 192.168.255.3/32
+        link: r3_Loopback0
+        type: loopback
+
+  r4:
+    interfaces:
+      GigabitEthernet1:
+        ipv4: 192.168.34.4/24
+        link: r3-r4
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.24.4/24
+        link: r2-r4
+        type: ethernet
+      Loopback0:
+        ipv4: 192.168.255.4/32
+        link: r4_Loopback0
         type: loopback
 ```
-
 
 <br><br>
 
@@ -166,320 +346,3 @@ topology:
 ```bash
 pyats run job job.py --testbed-file lab-testbed.yml --html-logs
 ```
-
-<br><br>
-
-### basic
-
-`pyats run job --testbed-file ~/lab-testbed.yml basic/basic_example_job.py`
-
-```bash
-iida@FCCLS0008993-00:~/pyats/examples/basic$ pyats run job --testbed-file ~/lab-testbed.yml basic/basic_example_job.py
-2022-01-08T16:58:08: %EASYPY-INFO: Starting job run: basic_example_job
-2022-01-08T16:58:08: %EASYPY-INFO: Runinfo directory: /home/iida/.pyats/runinfo/basic_example_job.2022Jan08_16:58:07.895112
-2022-01-08T16:58:08: %EASYPY-INFO: --------------------------------------------------------------------------------
-2022-01-08T16:58:08: %EASYPY-INFO: Testbed file /home/iida/lab-testbed.yml exists and is readable.
-2022-01-08T16:58:11: %ATS-INFO: Checking all devices are up and ready is disabled, '--check-all-devices-up' must be set to True in case of pyats runs or '-check_all_devices_up' set to True in case of legacy easypy runs
-2022-01-08T16:58:11: %EASYPY-INFO: Starting task execution: Task-1
-2022-01-08T16:58:11: %EASYPY-INFO:     test harness = pyats.aetest
-2022-01-08T16:58:11: %EASYPY-INFO:     testscript   = /home/iida/pyats/examples/basic/basic_example_script.py
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                            Starting common setup                             |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                   Starting subsection sample_subsection_1                    |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: Aetest Common Setup
-2022-01-08T16:58:11: %AETEST-INFO: The result of subsection sample_subsection_1 is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                   Starting subsection sample_subsection_2                    |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: Inside subsection sample_subsection_2
-2022-01-08T16:58:11: %SCRIPT-INFO: Inside class common_setup
-2022-01-08T16:58:11: %AETEST-INFO: The result of subsection sample_subsection_2 is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: The result of common setup is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                           Starting testcase tc_one                           |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                      Starting section prepare_testcase                       |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: Preparing the test
-2022-01-08T16:58:11: %SCRIPT-INFO: section prepare_testcase
-2022-01-08T16:58:11: %AETEST-INFO: The result of section prepare_testcase is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                        Starting section simple_test_1                        |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: First test section
-2022-01-08T16:58:11: %AETEST-INFO: The result of section simple_test_1 is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                        Starting section simple_test_2                        |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: Second test section
-2022-01-08T16:58:11: %AETEST-INFO: The result of section simple_test_2 is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                       Starting section clean_testcase                        |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: Pass testcase cleanup
-2022-01-08T16:58:11: %AETEST-INFO: The result of section clean_testcase is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: The result of testcase tc_one is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                           Starting testcase tc_two                           |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                        Starting section simple_test_1                        |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: First test section
-2022-01-08T16:58:11: %AETEST-ERROR: Failed reason: This is an intentional failure
-2022-01-08T16:58:11: %AETEST-INFO: The result of section simple_test_1 is => FAILED
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                        Starting section simple_test_2                        |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: Second test section
-2022-01-08T16:58:11: %AETEST-INFO: The result of section simple_test_2 is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                       Starting section clean_testcase                        |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: Pass testcase cleanup
-2022-01-08T16:58:11: %AETEST-INFO: The result of section clean_testcase is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: The result of testcase tc_two is => FAILED
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                           Starting common cleanup                            |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %AETEST-INFO: |                     Starting subsection clean_everything                     |
-2022-01-08T16:58:11: %AETEST-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:11: %SCRIPT-INFO: Aetest Common Cleanup
-2022-01-08T16:58:11: %AETEST-INFO: The result of subsection clean_everything is => PASSED
-2022-01-08T16:58:11: %AETEST-INFO: The result of common cleanup is => PASSED
-2022-01-08T16:58:11: %CONTRIB-INFO: WebEx Token not given as argument or in config. No WebEx notification will be sent
-2022-01-08T16:58:11: %EASYPY-INFO: --------------------------------------------------------------------------------
-2022-01-08T16:58:11: %EASYPY-INFO: Job finished. Wrapping up...
-2022-01-08T16:58:12: %EASYPY-INFO: Creating archive file: /home/iida/.pyats/archive/22-Jan/basic_example_job.2022Jan08_16:58:07.895112.zip
-2022-01-08T16:58:13: %EASYPY-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:13: %EASYPY-INFO: |                                Easypy Report                                 |
-2022-01-08T16:58:13: %EASYPY-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:13: %EASYPY-INFO: pyATS Instance   : /usr
-2022-01-08T16:58:13: %EASYPY-INFO: Python Version   : cpython-3.8.5 (64bit)
-2022-01-08T16:58:13: %EASYPY-INFO: CLI Arguments    : /home/iida/.local/bin/pyats run job basic_example_job.py --testbed-file /home/iida/lab-testbed.yml
-2022-01-08T16:58:13: %EASYPY-INFO: User             : iida
-2022-01-08T16:58:13: %EASYPY-INFO: Host Server      : FCCLS0008993-00
-2022-01-08T16:58:13: %EASYPY-INFO: Host OS Version  : Ubuntu 20.04 focal (x86_64)
-2022-01-08T16:58:13: %EASYPY-INFO:
-2022-01-08T16:58:13: %EASYPY-INFO: Job Information
-2022-01-08T16:58:13: %EASYPY-INFO:     Name         : basic_example_job
-2022-01-08T16:58:13: %EASYPY-INFO:     Start time   : 2022-01-08 16:58:11.640604
-2022-01-08T16:58:13: %EASYPY-INFO:     Stop time    : 2022-01-08 16:58:11.887459
-2022-01-08T16:58:13: %EASYPY-INFO:     Elapsed time : 0.246855
-2022-01-08T16:58:13: %EASYPY-INFO:     Archive      : /home/iida/.pyats/archive/22-Jan/basic_example_job.2022Jan08_16:58:07.895112.zip
-2022-01-08T16:58:13: %EASYPY-INFO:
-2022-01-08T16:58:13: %EASYPY-INFO: Total Tasks    : 1
-2022-01-08T16:58:13: %EASYPY-INFO:
-2022-01-08T16:58:13: %EASYPY-INFO: Overall Stats
-2022-01-08T16:58:13: %EASYPY-INFO:     Passed     : 3
-2022-01-08T16:58:13: %EASYPY-INFO:     Passx      : 0
-2022-01-08T16:58:13: %EASYPY-INFO:     Failed     : 1
-2022-01-08T16:58:13: %EASYPY-INFO:     Aborted    : 0
-2022-01-08T16:58:13: %EASYPY-INFO:     Blocked    : 0
-2022-01-08T16:58:13: %EASYPY-INFO:     Skipped    : 0
-2022-01-08T16:58:13: %EASYPY-INFO:     Errored    : 0
-2022-01-08T16:58:13: %EASYPY-INFO:
-2022-01-08T16:58:13: %EASYPY-INFO:     TOTAL      : 4
-2022-01-08T16:58:13: %EASYPY-INFO:
-2022-01-08T16:58:13: %EASYPY-INFO: Success Rate   : 75.00 %
-2022-01-08T16:58:13: %EASYPY-INFO:
-2022-01-08T16:58:13: %EASYPY-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:13: %EASYPY-INFO: |                             Task Result Summary                              |
-2022-01-08T16:58:13: %EASYPY-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:13: %EASYPY-INFO: Task-1: basic_example_script.common_setup                                 PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: Task-1: basic_example_script.tc_one                                       PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: Task-1: basic_example_script.tc_two                                       FAILED
-2022-01-08T16:58:13: %EASYPY-INFO: Task-1: basic_example_script.common_cleanup                               PASSED
-2022-01-08T16:58:13: %EASYPY-INFO:
-2022-01-08T16:58:13: %EASYPY-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:13: %EASYPY-INFO: |                             Task Result Details                              |
-2022-01-08T16:58:13: %EASYPY-INFO: +------------------------------------------------------------------------------+
-2022-01-08T16:58:13: %EASYPY-INFO: Task-1: basic_example_script
-2022-01-08T16:58:13: %EASYPY-INFO: |-- common_setup                                                          PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: |   |-- sample_subsection_1                                               PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: |   `-- sample_subsection_2                                               PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: |-- tc_one                                                                PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: |   |-- prepare_testcase                                                  PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: |   |-- simple_test_1                                                     PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: |   |-- simple_test_2                                                     PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: |   `-- clean_testcase                                                    PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: |-- tc_two                                                                FAILED
-2022-01-08T16:58:13: %EASYPY-INFO: |   |-- simple_test_1                                                     FAILED
-2022-01-08T16:58:13: %EASYPY-INFO: |   |-- simple_test_2                                                     PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: |   `-- clean_testcase                                                    PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: `-- common_cleanup                                                        PASSED
-2022-01-08T16:58:13: %EASYPY-INFO:     `-- clean_everything                                                  PASSED
-2022-01-08T16:58:13: %EASYPY-INFO: Sending report email...
-2022-01-08T16:58:13: %EASYPY-INFO: Missing SMTP server configuration, or failed to reach/authenticate/send mail. Result notification email failed to send.
-2022-01-08T16:58:13: %EASYPY-INFO: Done!
-
-Pro Tip
--------
-   Try the following command to view your logs:
-       pyats logs view
-
-iida@FCCLS0008993-00:~/pyats/examples/basic$
-```
-
-
-## pyats create project
-
-テンプレートファイルが作られるので大変便利。
-
-`pyats create project`
-
-```bash
-$ pyats create project
-Project Name: test_pj
-Testcase names [enter to finish]:
-  1. testcase_one
-  2. testcase_two
-  3.
-Will you be using testcase datafiles [Y/n]: y
-Generating your project...
-
-
-$ tree test_pj
-test_pj
-├── test_pj.py
-├── test_pj_data.yaml
-└── test_pj_job.py
-
-0 directories, 3 files
-```
-
-```bash
-'''
-test_pj.py
-
-'''
-# see https://pubhub.devnetcloud.com/media/pyats/docs/aetest/index.html
-# for documentation on pyATS test scripts
-
-# optional author information
-# (update below with your contact information if needed)
-__author__ = 'Cisco Systems Inc.'
-__copyright__ = 'Copyright (c) 2019, Cisco Systems Inc.'
-__contact__ = ['pyats-support-ext@cisco.com']
-__credits__ = ['list', 'of', 'credit']
-__version__ = 1.0
-
-import logging
-
-from pyats import aetest
-
-# create a logger for this module
-logger = logging.getLogger(__name__)
-
-class CommonSetup(aetest.CommonSetup):
-
-    @aetest.subsection
-    def connect(self, testbed):
-        '''
-        establishes connection to all your testbed devices.
-        '''
-        # make sure testbed is provided
-        assert testbed, 'Testbed is not provided!'
-
-        # connect to all testbed devices
-        testbed.connect()
-
-
-class testcase_one(aetest.Testcase):
-    '''testcase_one
-
-    < docstring description of this testcase >
-
-    '''
-
-    # testcase groups (uncomment to use)
-    # groups = []
-
-    @aetest.setup
-    def setup(self):
-        pass
-
-    # you may have N tests within each testcase
-    # as long as each bears a unique method name
-    # this is just an example
-    @aetest.test
-    def test(self):
-        pass
-
-    @aetest.cleanup
-    def cleanup(self):
-        pass
-
-
-class testcase_two(aetest.Testcase):
-    '''testcase_two
-
-    < docstring description of this testcase >
-
-    '''
-
-    # testcase groups (uncomment to use)
-    # groups = []
-
-    @aetest.setup
-    def setup(self):
-        pass
-
-    # you may have N tests within each testcase
-    # as long as each bears a unique method name
-    # this is just an example
-    @aetest.test
-    def test(self):
-        pass
-
-    @aetest.cleanup
-    def cleanup(self):
-        pass
-
-
-
-class CommonCleanup(aetest.CommonCleanup):
-    '''CommonCleanup Section
-
-    < common cleanup docstring >
-
-    '''
-
-    # uncomment to add new subsections
-    # @aetest.subsection
-    # def subsection_cleanup_one(self):
-    #     pass
-
-if __name__ == '__main__':
-    # for stand-alone execution
-    import argparse
-    from pyats import topology
-
-    parser = argparse.ArgumentParser(description = "standalone parser")
-    parser.add_argument('--testbed', dest = 'testbed',
-                        help = 'testbed YAML file',
-                        type = topology.loader.load,
-                        default = None)
-
-    # do the parsing
-    args = parser.parse_known_args()[0]
-
-    aetest.main(testbed = args.testbed)
-
-```
-
-
-<br><br><br>
-
-# Genie
-
-pyatsの例の中にGenieも含まれている。
-
-https://github.com/CiscoTestAutomation/examples/tree/master/libraries
-
-https://developer.cisco.com/docs/genie-docs/

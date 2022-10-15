@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pyats run job ping_job.py --testbed-file lab.yml

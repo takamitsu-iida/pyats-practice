@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-# Import Genie
-from genie.conf import Genie
+# import Genie
+from genie.testbed import load
 
-testbed = Genie.init('lab.yml')
+testbed = load('lab.yml')
 
 uut = testbed.devices['uut']
 
@@ -11,7 +11,7 @@ uut = testbed.devices['uut']
 uut.connect(via='console')
 
 #
-# コマンドを打ち込む
+# execute command
 #
 output = uut.execute('show version')
 
