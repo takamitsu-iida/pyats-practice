@@ -1,5 +1,6 @@
 ﻿# フォルダごと無視
 /data/
+/recorded/
 
 # フォルダは残すけどその下はすべて無視
 /log/*
@@ -285,4 +286,3 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-

@@ -19,8 +19,12 @@ intf.learn()
 from pprint import pprint
 pprint(intf.info)
 
-# Let's get all the up interfaces
+# pyatsのfindを使ってupになっているインタフェースを見つける
+# https://pubhub.devnetcloud.com/media/pyats/docs/utilities/helper_functions.html
+#
+# Rに渡す配列は、辞書型のキーの順番で、最後の要素だけは一致させる値になる
+#
 from pyats.utils.objects import R, find
-req1 = R(['info', '(.*)', 'oper_status', 'up'])
-intf_up = find(intf, req1, filter_=False)
+req = R(['info', '(.*)', 'oper_status', 'up'])
+intf_up = find(intf, req, filter_=False)
 pprint(intf_up)

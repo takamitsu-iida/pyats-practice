@@ -6,7 +6,6 @@ from pyats import aetest
 from genie.testbed import load
 from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 
-# create a logger for this module
 logger = logging.getLogger(__name__)
 
 ###################################################################
@@ -41,6 +40,7 @@ class CommonSetup(aetest.CommonSetup):
 ###################################################################
 
 class ping_class(aetest.Testcase):
+
     @aetest.setup
     def setup(self, testbed, ping_list):
         """ Make sure devices can ping a list of addresses. """
@@ -48,7 +48,9 @@ class ping_class(aetest.Testcase):
         # Create an array of destination IPs from our argparse
         ping_list = ping_list.split()
 
+        # 実行結果をクラス内変数に保管しておく
         self.ping_results = {}
+
         for device_name, device in testbed.devices.items():
             # Only attempt to ping on supported network operation systems
             if device.os in ("ios", "iosxe", "iosxr", "nxos"):
@@ -78,13 +80,8 @@ class ping_class(aetest.Testcase):
                             device_step.failed(f'Device {device_name} had {ips[ip]}% success pinging {ip}')
 
 class CommonCleanup(aetest.CommonCleanup):
-    """CommonCleanup Section
+    """CommonCleanup Section"""
 
-    < common cleanup docstring >
-
-    """
-
-    # uncomment to add new subsections
     # @aetest.subsection
     # def subsection_cleanup_one(self):
     #     pass

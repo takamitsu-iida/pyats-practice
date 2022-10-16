@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-import os
 import argparse
+import os
+
 from pyats.easypy import run
 
 # List of addresses to ping
@@ -19,7 +20,6 @@ ping_list = [
     '192.168.255.3',
     '192.168.255.4'
 ]
-
 
 # Custom Arguments
 # https://pubhub.devnetcloud.com/media/pyats/docs/easypy/jobfile.html#custom-arguments

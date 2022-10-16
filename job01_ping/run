@@ -1,0 +1,13 @@
+#!/bin/bash
+
+JOB=ping_job.py
+TESTBED=lab.yml
+
+# RECORD
+# pyats run job $JOB --testbed-file $TESTBED --record recorded
+
+# REPLAY
+# pyats run job $JOB --testbed-file $TESTBED --replay recorded
+
+# REAL DEVICE
+pyats run job $JOB --testbed-file $TESTBED

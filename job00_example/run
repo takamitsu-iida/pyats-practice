@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pyats run job example_job.py --testbed-file lab.yml

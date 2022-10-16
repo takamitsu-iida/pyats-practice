@@ -1,13 +1,4 @@
-#!/usr/bin/python3
-
-###################################################################
-# basic_example.py : A very simple test script example which include:
-#     common_setup
-#     Tescases
-#     common_cleanup
-# The purpose of this sample test script is to show the "hello world"
-# of aetest.
-###################################################################
+#!/usr/bin/env python
 
 # To get a logger for the script
 import logging

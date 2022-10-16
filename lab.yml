@@ -4,18 +4,14 @@
 # testbed file for lab
 #
 
+# to validate the testbed file
+#   pyats validate testbed [file]
+
 #
 # NOTE
 # 1) The device name must match the hostname of the device, otherwise, the connection will hang.
 # 2) At least one device need to have the alias ‘uut’ in the testbed yaml file.
 #
-
-
-# to validate the testbed file
-# pyats validate testbed [file]
-
-
-
 
 testbed:
   name: iida-pyats on eve-ng
@@ -84,6 +80,10 @@ devices:
           # - end
           # init_config_commandsに空のリストを渡せば設定変更を抑止できる
           init_config_commands: []
+
+        settings:
+          EXEC_TIMEOUT: 10  # default 60
+          CONFIG_TIMEOUT: 20  # default 60
 
       # SSHで踏み台を経由する場合
       vty:
