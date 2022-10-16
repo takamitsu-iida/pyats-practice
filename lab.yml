@@ -72,6 +72,9 @@ devices:
           #  - show version
           # init_exec_commandsに空っぽのリストを渡せば何も実行されなくなる
           # init_exec_commands: []
+          init_exec_commands:
+            - term len 0
+            - term wid 0
 
           # osがiosxeの場合、接続と同時に以下の設定変更を行う
           # - no logging console
@@ -201,115 +204,116 @@ devices:
 
 
 
-topology:
-
-  fumidai:
-    interfaces:
-      pnet0:
-        type: ethernet
-
-  r1:
-    interfaces:
-      GigabitEthernet1:
-        ipv4: 192.168.12.1/24
-        link: r1-r2
-        type: ethernet
-      GigabitEthernet2:
-        ipv4: 192.168.13.1/24
-        link: r1-r3
-        type: ethernet
-      Loopback0:
-        ipv4: 192.168.255.1/32
-        link: r1_Loopback0
-        type: loopback
-
-  r2:
-    interfaces:
-      GigabitEthernet1:
-        ipv4: 192.168.12.2/24
-        link: r1-r2
-        type: ethernet
-      GigabitEthernet2:
-        ipv4: 192.168.24.2/24
-        link: r2-r4
-        type: ethernet
-      Loopback0:
-        ipv4: 192.168.255.2/32
-        link: r2_Loopback0
-        type: loopback
-
-  r3:
-    interfaces:
-      GigabitEthernet1:
-        ipv4: 192.168.34.3/24
-        link: r3-r4
-        type: ethernet
-      GigabitEthernet2:
-        ipv4: 192.168.13.3/24
-        link: r1-r3
-        type: ethernet
-      Loopback0:
-        ipv4: 192.168.255.3/32
-        link: r3_Loopback0
-        type: loopback
-
-  r4:
-    interfaces:
-      GigabitEthernet1:
-        ipv4: 192.168.34.4/24
-        link: r3-r4
-        type: ethernet
-      GigabitEthernet2:
-        ipv4: 192.168.24.4/24
-        link: r2-r4
-        type: ethernet
-      Loopback0:
-        ipv4: 192.168.255.4/32
-        link: r4_Loopback0
-        type: loopback
-
-
-  sw1:
-    interfaces:
-      Ethernet0/0:
-        link: sw1-sw2
-        type: ethernet
-      Ethernet0/1:
-        link: sw1-sw3
-        type: ethernet
-      Ethernet0/2:
-        link: sw2-sw4
-        type: ethernet
-  sw2:
-    interfaces:
-      Ethernet0/0:
-        link: sw1-sw2
-        type: ethernet
-      Ethernet0/1:
-        link: sw2-sw4
-        type: ethernet
-      Ethernet0/2:
-        link: sw2-sw3
-        type: ethernet
-  sw3:
-    interfaces:
-      Ethernet0/0:
-        link: sw3-sw4
-        type: ethernet
-      Ethernet0/1:
-        link: sw1-sw3
-        type: ethernet
-      Ethernet0/2:
-        link: sw2-sw3
-        type: ethernet
-  sw4:
-    interfaces:
-      Ethernet0/0:
-        link: sw3-sw4
-        type: ethernet
-      Ethernet0/1:
-        link: sw2-sw4
-        type: ethernet
-      Ethernet0/2:
-        link: sw1-sw4
-        type: ethernet
+#topology:
+#
+#  fumidai:
+#    interfaces:
+#      pnet0:
+#        type: ethernet
+#
+#  r1:
+#    interfaces:
+#      GigabitEthernet1:
+#        ipv4: 192.168.12.1/24
+#        link: r1-r2
+#        type: ethernet
+#      GigabitEthernet2:
+#        ipv4: 192.168.13.1/24
+#        link: r1-r3
+#        type: ethernet
+#      Loopback0:
+#        ipv4: 192.168.255.1/32
+#        link: r1_Loopback0
+#        type: loopback
+#
+#  r2:
+#    interfaces:
+#      GigabitEthernet1:
+#        ipv4: 192.168.12.2/24
+#        link: r1-r2
+#        type: ethernet
+#      GigabitEthernet2:
+#        ipv4: 192.168.24.2/24
+#        link: r2-r4
+#        type: ethernet
+#      Loopback0:
+#        ipv4: 192.168.255.2/32
+#        link: r2_Loopback0
+#        type: loopback
+#
+#  r3:
+#    interfaces:
+#      GigabitEthernet1:
+#        ipv4: 192.168.34.3/24
+#        link: r3-r4
+#        type: ethernet
+#      GigabitEthernet2:
+#        ipv4: 192.168.13.3/24
+#        link: r1-r3
+#        type: ethernet
+#      Loopback0:
+#        ipv4: 192.168.255.3/32
+#        link: r3_Loopback0
+#        type: loopback
+#
+#  r4:
+#    interfaces:
+#      GigabitEthernet1:
+#        ipv4: 192.168.34.4/24
+#        link: r3-r4
+#        type: ethernet
+#      GigabitEthernet2:
+#        ipv4: 192.168.24.4/24
+#        link: r2-r4
+#        type: ethernet
+#      Loopback0:
+#        ipv4: 192.168.255.4/32
+#        link: r4_Loopback0
+#        type: loopback
+#
+#
+#  sw1:
+#    interfaces:
+#      Ethernet0/0:
+#        link: sw1-sw2
+#        type: ethernet
+#      Ethernet0/1:
+#        link: sw1-sw3
+#        type: ethernet
+#      Ethernet0/2:
+#        link: sw2-sw4
+#        type: ethernet
+#  sw2:
+#    interfaces:
+#      Ethernet0/0:
+#        link: sw1-sw2
+#        type: ethernet
+#      Ethernet0/1:
+#        link: sw2-sw4
+#        type: ethernet
+#      Ethernet0/2:
+#        link: sw2-sw3
+#        type: ethernet
+#  sw3:
+#    interfaces:
+#      Ethernet0/0:
+#        link: sw3-sw4
+#        type: ethernet
+#      Ethernet0/1:
+#        link: sw1-sw3
+#        type: ethernet
+#      Ethernet0/2:
+#        link: sw2-sw3
+#        type: ethernet
+#  sw4:
+#    interfaces:
+#      Ethernet0/0:
+#        link: sw3-sw4
+#        type: ethernet
+#      Ethernet0/1:
+#        link: sw2-sw4
+#        type: ethernet
+#      Ethernet0/2:
+#        link: sw1-sw4
+#        type: ethernet
+#

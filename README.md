@@ -350,6 +350,24 @@ Testbed Devices:
     `-- Ethernet0/2 ----------> sw1-sw4
 ```
 
+:::note warn
+testbedファイルのなかでtopologyを記述した場合、PythonでのAPI利用に支障がでることがあります。
+
+```python
+from genie.libs.conf.interface import Interface
+gig1 = Interface(device=uut, name='GigabitEthernet1')
+```
+
+このように`Interface`オブジェクトを作成しようとすると例外がraiseします。
+
+```text
+File "src/pyats/topology/device.py", line 296, in pyats.topology.device.DeviceBase.add_interface
+# pyats.topology.exceptions.DuplicateInterfaceError: Interface 'GigabitEthernet1' already exists on this device 'r1'.
+```
+
+明確に使い道が想定される場合をのぞいて、testbedファイルの中にtopologyセクションは記載しないほうが良さそうです。
+:::
+
 <br><br>
 
 ## job
@@ -368,7 +386,7 @@ pyats logs view
 
 <br><br>
 
-## ログ置き場
+## jobのログ置き場
 
 `~/.pyats/` に保管される。
 
@@ -388,7 +406,7 @@ pyats logs view
 - PYATS_CONFIGURATION=path/to/pyats.conf
 - cli argument --pyats-configuration can be used to specify a configuration file
 
-ログ置き場を変えたいなら、この部分の設定。
+jobのログ置き場を変えたいなら、この部分を変更すればよい。
 
 ```INI
 # configuration related to easypy execution
