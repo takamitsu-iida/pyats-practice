@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+#
+# configure r1 in lab
+#
+
 from pprint import pprint
 
 # import Genie
@@ -10,10 +14,6 @@ uut = testbed.devices['uut']
 
 # connect to the uut
 uut.connect(via='console')
-
-#
-# configure r1
-#
 
 from genie.libs.conf.vrf import Vrf
 from genie.libs.conf.interface import Interface
@@ -108,6 +108,8 @@ pprint(str(cfgs[uut.name]))
 # apply
 ospf1.build_config(apply=True)
 
-# 注意！
-# unconfigするとospfの設定がまるごと消える
-# ospf1.build_unconfig(apply=True)
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()

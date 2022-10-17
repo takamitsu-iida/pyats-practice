@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+#
+# configure using Genie Conf Object
+#
+
 # import Genie
 from genie.testbed import load
 
@@ -9,10 +13,6 @@ uut = testbed.devices['uut']
 
 # connect to the uut
 uut.connect(via='console')
-
-#
-# configure using Genie Conf Object
-#
 
 # 設定できる機能はここで検索
 # https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
@@ -56,3 +56,9 @@ gig4.build_config(apply=True)
 # 特定の項目だけを消したい場合はattributeを付与する
 # 複数項目を消したい場合はattributes={"switchport_enable": True, "enable": True}のように辞書型で渡す
 gig1.build_unconfig(apply=True, attributes="description")
+
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()

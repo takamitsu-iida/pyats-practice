@@ -36,6 +36,15 @@ https://developer.cisco.com/pyats/
 
 https://pubhub.devnetcloud.com/media/pyats/docs/index.html
 
+- Genieでパースできるコマンド検索
+
+https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers
+
+
+- Genieでサポートしている機能名検索
+
+https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
+
 - aetest
 
 https://pubhub.devnetcloud.com/media/pyats/docs/aetest/index.html
@@ -309,10 +318,25 @@ jobのログ置き場を変えたいなら、この部分を変更すればよ�
 
 ### デフォルトのプロンプト
 
-Cisco以外の機器で挙動がおかしいときは、正規表現を見直す。
+Cisco以外の機器で挙動がおかしいときや、新しい装置のプラグインを作成するときはここに記載の正規表現を確認する。
 
 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/services/service_dialogs.html
 
+<br><br>
+
+### disconnect
+
+コネクションを切断するにはdisconnect()を呼ぶ。
+
+接続・切断を短期間に行うことで生じる問題を避けるためにdisconnect()はデフォルトで約10秒待機する。
+このデフォルト値は長過ぎるので、単一コネクションであれば短くした方が良い。
+複数のコネクションを同時に生成しているときは慎重に判断する。
+
+```python
+dev.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+dev.settings.POST_DISCONNECT_WAIT_SEC = 0
+dev.disconnect()
+```
 
 ### send
 

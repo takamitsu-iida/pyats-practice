@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+#
+# save and load ops object
+#
+
 import os
 import sys
 
@@ -42,10 +46,17 @@ intf = Interface(device=uut)
 # learn all interface
 intf.learn()
 
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()
+
+# save
 with open(log_file, 'wb') as f:
     f.write(intf.pickle(intf))
 
-# load saved data
+# load
 import pickle
 with open(log_file, 'rb') as f:
     loaded = pickle.load(f)

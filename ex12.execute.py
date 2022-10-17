@@ -1,10 +1,20 @@
 #!/usr/bin/env python
 
-#
-# same as ex10.execute.py
-#
-
 import sys
+import os
+
+#
+# overwrite standard telnetlib
+#
+def here(path=''):
+  return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
+
+if not here('./lib') in sys.path:
+  sys.path.insert(0, here('./lib'))
+
+import telnetlib
+if telnetlib.MODIFIED_BY:
+    print('modified telnetlib is loaded.')
 
 # import Genie
 from genie.testbed import load
@@ -23,7 +33,7 @@ except (TimeoutError, ConnectionError) as e:
 
 # execute command
 try:
-    output = uut.execute('show version')
+    output = uut.execute('show running-config')
 except SubCommandFailure as e:
     print(e)
 
@@ -33,6 +43,5 @@ if uut.is_connected():
     uut.settings.POST_DISCONNECT_WAIT_SEC = 0
     uut.disconnect()
 
-# print output
 from pprint import pprint
 pprint(output)

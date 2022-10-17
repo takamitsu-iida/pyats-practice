@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+#
+# 抽象的な機能名を指定して学習
+#
+
 # import Genie
 from genie.testbed import load
 
@@ -7,18 +11,17 @@ testbed = load('lab.yml')
 
 uut = testbed.devices['uut']
 
+# connect
 uut.connect(via='console')
 
-#
-# 抽象的な機能名を指定して学習させる
-#
-
-# サポートしている機能名はここから探す
-# https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
-
-# routing table
-
+# learn routing table
 routing = uut.learn('routing')
+
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()
 
 from pprint import pprint
 pprint(routing.info)

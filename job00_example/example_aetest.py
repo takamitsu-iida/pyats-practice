@@ -3,16 +3,6 @@
 from pyats import aetest
 from genie.testbed import load
 
-"""
-class CommonSetup(aetest.CommonSetup):
-    @aetest.subsection
-    def connect_to_device(self, testbed):
-        # 渡されたtestbedをGenieのtestbedに変換する
-        # testbed = load(testbed)
-        # self.parent.parameters.update(testbed=testbed)
-        pass
-"""
-
 class Testcase1(aetest.Testcase):
     @aetest.test
     def trivial_test(self):
@@ -54,15 +44,6 @@ class NeilArmstrong(aetest.Testcase):
 
         with steps.start('second step', description = 'this is the second step') as step:
             print('Currnet step index: ', step.index)
-
-
-"""
-class CommonCleanup(aetest.CommonCleanup):
-    @aetest.subsection
-    def disconnect_from_devices(self, testbed):
-        # デバイスから切断する
-        pass
-"""
 
 
 # for running as its own executable

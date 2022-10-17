@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
+#
 # compare two ops objects
 # https://pubhub.devnetcloud.com/media/pyats-getting-started/docs/quickstart/comparebeforeafter.html
+#
 
 import os
 import sys
@@ -48,6 +50,12 @@ interface Gig1
 ip ospf cost 100
 exit
 ''')
+
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()
 
 # from genie.utils.diff import Diff
 # diff = Diff(pre_ospf, post_ospf)

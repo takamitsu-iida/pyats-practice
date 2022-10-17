@@ -13,9 +13,17 @@ testbed = load('lab.yml')
 
 uut = testbed.devices['uut']
 
+# connect
 uut.connect(via='console')
 
+# parse
 parsed = uut.parse('show interfaces')
+
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()
 
 # display parsed data
 for name, data in parsed.items():

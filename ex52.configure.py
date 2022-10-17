@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 
+#
+# configure static route
+#
+
+# ドキュメントがないので使い方はソースコードを参照
+# https://github.com/CiscoTestAutomation/genielibs/blob/master/pkgs/conf-pkg/src/genie/libs/conf/static_routing/iosxe/tests/test_static_routing.py
+
 from pprint import pprint
 
 # import Genie
@@ -11,13 +18,6 @@ uut = testbed.devices['uut']
 
 # connect to the uut
 uut.connect(via='console')
-
-#
-# configure static route
-#
-
-# ドキュメントがないので使い方はソースコードを参照
-# https://github.com/CiscoTestAutomation/genielibs/blob/master/pkgs/conf-pkg/src/genie/libs/conf/static_routing/iosxe/tests/test_static_routing.py
 
 from genie.libs.conf.static_routing.static_routing import StaticRouting
 
@@ -37,4 +37,10 @@ pprint(str(cfgs[uut.name]))
 static_routing.build_config(apply=True)
 
 # delete static route
-static_routing.build_unconfig(apply=True)
+# static_routing.build_unconfig(apply=True)
+
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()

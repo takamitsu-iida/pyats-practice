@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+#
+# configure directly
+#
+
 # import Genie
 from genie.testbed import load
 
@@ -10,9 +14,7 @@ uut = testbed.devices['uut']
 # connect to the uut
 uut.connect(via='console')
 
-#
-# configure directly
-#
+# configure
 output = uut.configure('''
 interface Gig1
 description "configured by pyats"
@@ -21,6 +23,12 @@ interface Gig2
 description "configured by pyats"
 exit
 ''')
+
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()
 
 from pprint import pprint
 pprint(output)

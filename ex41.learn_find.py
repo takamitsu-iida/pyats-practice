@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
+#
 # pyatsのfindを使ってインタフェースを見つける
 # https://pubhub.devnetcloud.com/media/pyats/docs/utilities/helper_functions.html
+#
 
 # import Genie
 from genie.testbed import load
@@ -10,6 +12,7 @@ testbed = load('lab.yml')
 
 uut = testbed.devices['uut']
 
+# connect
 uut.connect(via='console')
 
 # 機種固有のInterfaceをインポートする場合
@@ -20,9 +23,16 @@ uut.connect(via='console')
 # 装置情報から自動で機種にあったInterfaceをロードする場合
 from genie.ops.utils import get_ops
 Interface = get_ops('interface', uut)
-
 intf = Interface(device=uut)
+
+# learn
 intf.learn()
+
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()
 
 from pprint import pprint
 pprint(intf.info)

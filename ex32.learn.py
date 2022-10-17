@@ -4,21 +4,31 @@
 # 抽象的な機能名を指定して学習させる
 #
 
-# サポートしている機能名はここから探す
-# https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
+from pprint import pprint
 
 # import Genie
 from genie.testbed import load
+from unicon.core.errors import TimeoutError, ConnectionError, SubCommandFailure
 
 testbed = load('lab.yml')
 
 learnt = {}
 for name, dev in testbed.devices.items():
     if dev.type == 'Switch':
-        dev.connect(via='console')
-        learnt[name] = dev.learn('stp')
+        try:
+            # connect
+            dev.connect(via='console')
 
-from pprint import pprint
+            # learn
+            learnt[name] = dev.learn('stp')
+
+            # disconnect
+            dev.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 1
+            dev.settings.POST_DISCONNECT_WAIT_SEC = 1
+            dev.disconnect()
+
+        except (TimeoutError, ConnectionError, SubCommandFailure) as e:
+            print(e)
 
 for name, stp in learnt.items():
     print(name)

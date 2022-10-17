@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
+#
 # compare two ops objects
 # https://pubhub.devnetcloud.com/media/pyats-getting-started/docs/quickstart/comparebeforeafter.html
+#
 
 import os
 import sys
@@ -50,6 +52,13 @@ ip ospf cost 100
 exit
 ''')
 
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()
+
+# generate diff
 config_diff = Diff(pre_conf, post_conf)
 config_diff.findDiff()
 print(config_diff)

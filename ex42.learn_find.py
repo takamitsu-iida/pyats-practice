@@ -14,8 +14,17 @@ testbed = load('lab.yml')
 learnt = {}
 for name, dev in testbed.devices.items():
     if dev.type == 'Switch':
+        # connect
         dev.connect(via='console')
+
+        # learn
         learnt[name] = dev.learn('stp')
+
+        # disconnect
+        dev.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+        dev.settings.POST_DISCONNECT_WAIT_SEC = 0
+        dev.disconnect()
+
 
 for name, stp in learnt.items():
     print(name)

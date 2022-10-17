@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 
+#
+# 抽象的な機能名を指定して学習させる
+#
+
 import os
 import sys
+from pprint import pprint
 
 #
 # overwrite standard telnetlib
@@ -13,7 +18,8 @@ if not here('./lib') in sys.path:
   sys.path.insert(0, here('./lib'))
 
 import telnetlib
-print("modified telnetlib is loaded. DEBUG LEVEL is {}.".format(telnetlib.DEBUGLEVEL))
+if telnetlib.MODIFIED_BY:
+    print('modified telnetlib is loaded.')
 
 # import Genie
 from genie.testbed import load
@@ -22,14 +28,8 @@ testbed = load('lab.yml')
 
 uut = testbed.devices['uut']
 
+# connect
 uut.connect(via='console')
-
-#
-# 抽象的な機能名を指定して学習させる
-#
-
-# サポートしている機能名はここから探す
-# https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
 
 # 機種固有のInterfaceをインポートする場合
 # from genie.libs.ops.interface.ios.interface import Interface
@@ -46,13 +46,17 @@ intf = Interface(device=uut)
 # learn all interfaces
 intf.learn()
 
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()
+
 # learnt correctly?
 assert intf.info
 
 # intf object should be like this
 # {'info': {'interface_name': {
-
-from pprint import pprint
 
 intf_list = intf.info.keys()
 

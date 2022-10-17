@@ -36,6 +36,7 @@ testbed = load('lab.yml')
 
 uut = testbed.devices['uut']
 
+# connect
 uut.connect(via='console')
 
 # 機種にあったInterfaceクラスをロードする
@@ -49,3 +50,9 @@ try:
     intf.learn_poll(verify=verify_interface_status, sleep=5, attempt=3)
 except StopIteration as e:
     print(e)
+
+# disconnect
+if uut.is_connected():
+    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
+    uut.disconnect()
