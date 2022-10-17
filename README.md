@@ -1,7 +1,8 @@
 # pyats-practice
 
 https://developer.cisco.com/pyats/ にあるIntroduction to pyATSが秀逸。
-ブラウザの中に説明とターミナルとエディタがあり、ページ内で実行して結果を確認できる
+
+ブラウザの中に説明文とターミナルとエディタがあり、ブラウザのなかでコマンドを実行して結果を確認できる。
 
 - learnを実行してログを収集
 
@@ -27,6 +28,12 @@ pyats diff working_snapshot broken_snapshot --output diff_snapshot
 
 ## ドキュメント
 
+- devnet pyATS
+
+https://developer.cisco.com/pyats/
+
+- pyATS Documentation
+
 https://pubhub.devnetcloud.com/media/pyats/docs/index.html
 
 - aetest
@@ -37,13 +44,15 @@ https://pubhub.devnetcloud.com/media/pyats/docs/aetest/index.html
 
 https://pubhub.devnetcloud.com/media/pyats/docs/easypy/jobfile.html
 
-https://developer.cisco.com/pyats/
-
-https://developer.cisco.com/docs/pyats/
+- genie
 
 https://developer.cisco.com/docs/genie-docs/
 
+- examples(github)
+
 https://github.com/CiscoTestAutomation/examples
+
+- solution example(github)
 
 https://github.com/CiscoTestAutomation/solutions_examples
 
@@ -222,73 +231,6 @@ devices:
             - term len 0
             - term wid 0
           init_config_commands: []
-
-topology:
-
-  fumidai:
-    interfaces:
-      pnet0:
-        type: ethernet
-
-  r1:
-    interfaces:
-      GigabitEthernet1:
-        ipv4: 192.168.12.1/24
-        link: r1-r2
-        type: ethernet
-      GigabitEthernet2:
-        ipv4: 192.168.13.1/24
-        link: r1-r3
-        type: ethernet
-      Loopback0:
-        ipv4: 192.168.255.1/32
-        link: r1_Loopback0
-        type: loopback
-
-  r2:
-    interfaces:
-      GigabitEthernet1:
-        ipv4: 192.168.12.2/24
-        link: r1-r2
-        type: ethernet
-      GigabitEthernet2:
-        ipv4: 192.168.24.2/24
-        link: r2-r4
-        type: ethernet
-      Loopback0:
-        ipv4: 192.168.255.2/32
-        link: r2_Loopback0
-        type: loopback
-
-  r3:
-    interfaces:
-      GigabitEthernet1:
-        ipv4: 192.168.34.3/24
-        link: r3-r4
-        type: ethernet
-      GigabitEthernet2:
-        ipv4: 192.168.13.3/24
-        link: r1-r3
-        type: ethernet
-      Loopback0:
-        ipv4: 192.168.255.3/32
-        link: r3_Loopback0
-        type: loopback
-
-  r4:
-    interfaces:
-      GigabitEthernet1:
-        ipv4: 192.168.34.4/24
-        link: r3-r4
-        type: ethernet
-      GigabitEthernet2:
-        ipv4: 192.168.24.4/24
-        link: r2-r4
-        type: ethernet
-      Loopback0:
-        ipv4: 192.168.255.4/32
-        link: r4_Loopback0
-        type: loopback
 ```
 
 記述したtestbedがおかしくないか検証できる。
@@ -297,56 +239,9 @@ topology:
 pyats validate testbed [testbed yaml file]
 ```
 
-実行例。
-
-```bash
-$ pyats validate testbed lab.yml
-Loading testbed file: lab.yml
---------------------------------------------------------------------------------
-
-Testbed Name:
-    iida-pyats on eve-ng
-
-Testbed Devices:
-.
-|-- fumidai [linux/linux]
-|   `-- pnet0
-|-- r1 [iosxe/CSR1000v]
-|   |-- GigabitEthernet1 ----------> r1-r2
-|   |-- GigabitEthernet2 ----------> r1-r3
-|   `-- Loopback0 ----------> r1_Loopback0
-|-- r2 [iosxe/CSR1000v]
-|   |-- GigabitEthernet1 ----------> r1-r2
-|   |-- GigabitEthernet2 ----------> r2-r4
-|   `-- Loopback0 ----------> r2_Loopback0
-|-- r3 [iosxe/CSR1000v]
-|   |-- GigabitEthernet1 ----------> r3-r4
-|   |-- GigabitEthernet2 ----------> r1-r3
-|   `-- Loopback0 ----------> r3_Loopback0
-|-- r4 [iosxe/CSR1000v]
-|   |-- GigabitEthernet1 ----------> r3-r4
-|   |-- GigabitEthernet2 ----------> r2-r4
-|   `-- Loopback0 ----------> r4_Loopback0
-|-- sw1 [ios/IOL]
-|   |-- Ethernet0/0 ----------> sw1-sw2
-|   |-- Ethernet0/1 ----------> sw1-sw3
-|   `-- Ethernet0/2 ----------> sw2-sw4
-|-- sw2 [ios/IOL]
-|   |-- Ethernet0/0 ----------> sw1-sw2
-|   |-- Ethernet0/1 ----------> sw2-sw4
-|   `-- Ethernet0/2 ----------> sw2-sw3
-|-- sw3 [ios/IOL]
-|   |-- Ethernet0/0 ----------> sw3-sw4
-|   |-- Ethernet0/1 ----------> sw1-sw3
-|   `-- Ethernet0/2 ----------> sw2-sw3
-`-- sw4 [ios/IOL]
-    |-- Ethernet0/0 ----------> sw3-sw4
-    |-- Ethernet0/1 ----------> sw2-sw4
-    `-- Ethernet0/2 ----------> sw1-sw4
-```
-
 :::note warn
-testbedファイルのなかでtopologyを記述した場合、PythonでのAPI利用に支障がでることがあります。
+> testbedファイルのなかでtopologyを記述した場合、PythonでのAPI利用に支障がでることがあります。
+:::
 
 ```python
 from genie.libs.conf.interface import Interface
@@ -361,7 +256,7 @@ File "src/pyats/topology/device.py", line 296, in pyats.topology.device.DeviceBa
 ```
 
 明確に使い道が想定される場合をのぞいて、testbedファイルの中にtopologyセクションは記載しないほうが良さそうです。
-:::
+
 
 <br><br>
 

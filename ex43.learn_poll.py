@@ -7,11 +7,16 @@
 # see
 # https://pubhub.devnetcloud.com/media/genie-docs/docs/userguide/Ops/user/ops.html
 
-from pprint import pprint
-
 # import Genie
 from genie.testbed import load
-from genie.libs.ops.interface.iosxe.interface import Interface
+
+# 機種固有のInterfaceをインポートする場合
+# from genie.libs.ops.interface.ios.interface import Interface
+# from genie.libs.ops.interface.iosxr.interface import Interface
+# from genie.libs.ops.interface.iosxe.interface import Interface
+
+# 装置情報から自動で機種にあったInterfaceをロードする場合
+from genie.ops.utils import get_ops
 
 # verify at least one interface is up, or raise Exception
 def verify_interface_status(obj):
@@ -32,6 +37,9 @@ testbed = load('lab.yml')
 uut = testbed.devices['uut']
 
 uut.connect(via='console')
+
+# 機種にあったInterfaceクラスをロードする
+Interface = get_ops('interface', uut)
 
 intf = Interface(device=uut)
 

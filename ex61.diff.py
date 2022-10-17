@@ -4,7 +4,6 @@
 # https://pubhub.devnetcloud.com/media/pyats-getting-started/docs/quickstart/comparebeforeafter.html
 
 import os
-from pdb import post_mortem
 import sys
 
 #
@@ -20,11 +19,8 @@ import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
 
-from pprint import pprint
-
 # import Genie
 from genie.testbed import load
-from genie.utils.diff import Diff
 
 testbed = load('lab.yml')
 
@@ -53,6 +49,7 @@ ip ospf cost 100
 exit
 ''')
 
+# from genie.utils.diff import Diff
 # diff = Diff(pre_ospf, post_ospf)
 # diff.findDiff()
 # print(diff)

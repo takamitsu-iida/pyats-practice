@@ -12,9 +12,14 @@ uut = testbed.devices['uut']
 
 uut.connect(via='console')
 
-# インタフェースを学習させるには機種の情報が必要
-# ios, iosxr, iosxe
-from genie.libs.ops.interface.iosxe.interface import Interface
+# 機種固有のInterfaceをインポートする場合
+# from genie.libs.ops.interface.ios.interface import Interface
+# from genie.libs.ops.interface.iosxr.interface import Interface
+# from genie.libs.ops.interface.iosxe.interface import Interface
+
+# 装置情報から自動で機種にあったInterfaceをロードする場合
+from genie.ops.utils import get_ops
+Interface = get_ops('interface', uut)
 
 intf = Interface(device=uut)
 intf.learn()

@@ -13,7 +13,12 @@ if not here('./lib') in sys.path:
   sys.path.insert(0, here('./lib'))
 
 import telnetlib
-print("modified telnetlib is loaded. DEBUG LEVEL is {}.".format(telnetlib.DEBUGLEVEL))
+if telnetlib.MODIFIED_BY:
+    print('modified telnetlib is loaded.')
+
+# log directory and log file
+log_dir = os.path.join(here('.'), 'log')
+log_file = os.path.join(log_dir, 'r1_interface.data')
 
 # import Genie
 from genie.testbed import load
@@ -24,13 +29,6 @@ uut = testbed.devices['uut']
 
 uut.connect(via='console')
 
-#
-# 抽象的な機能名を指定して学習させる
-#
-
-# サポートしている機能名はここから探す
-# https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
-
 # 機種固有のInterfaceをインポートする場合
 # from genie.libs.ops.interface.ios.interface import Interface
 # from genie.libs.ops.interface.iosxr.interface import Interface
@@ -39,32 +37,19 @@ uut.connect(via='console')
 # 装置情報から自動で機種にあったInterfaceをロードする場合
 from genie.ops.utils import get_ops
 Interface = get_ops('interface', uut)
-
-# get ops object
 intf = Interface(device=uut)
 
-# learn all interfaces
+# learn all interface
 intf.learn()
 
-# learnt correctly?
-assert intf.info
+with open(log_file, 'wb') as f:
+    f.write(intf.pickle(intf))
 
-# intf object should be like this
-# {'info': {'interface_name': {
+# load saved data
+import pickle
+with open(log_file, 'rb') as f:
+    loaded = pickle.load(f)
 
-from pprint import pprint
-
-intf_list = intf.info.keys()
-
-if intf_list:
-    print('learnt interfaces')
-    pprint(intf_list)
-
-    # print only Gig1
-    pprint(intf.info['GigabitEthernet1'])
-
-    # or print all interfaces
-    # pprint(intf.info)
-
-else:
-    print('interface not found')
+diff = loaded.diff(intf)
+diff.findDiff()
+print(diff)

@@ -19,8 +19,6 @@ import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
 
-from pprint import pprint
-
 # import Genie
 from genie.testbed import load
 from genie.utils.diff import Diff
