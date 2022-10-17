@@ -559,7 +559,9 @@ https://github.com/CiscoDevNet/pyats-plugin-examples/tree/master/unicon_plugin_e
 
 <br>
 
-### ex10.execute.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex10.execute.py)
+### ex10.execute.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex10.execute.py)
 
 接続後にコマンドを打ち込む例。
 
@@ -585,13 +587,20 @@ r1#
  '\r\n'
 ```
 
-### ex11.execute.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex11.execute.py)
+<br><br>
+
+### ex11.execute.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex11.execute.py)
 
 show running-configを打ち込むだけですが、
 telnetで接続しているときに長大な出力を受け取ると不具合がでることがありますので、その対処を加えた例です。
 
+<br><br>
 
-### ex20.parse.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex20.parse.py)
+### ex20.parse.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex20.parse.py)
 
 show versionを打ち込んで、その応答を辞書型に変換する例です。
 
@@ -615,7 +624,11 @@ r1#
              'hostname': 'r1',
 ```
 
-### ex30.learn.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex30.learn.py)
+<br><br>
+
+### ex30.learn.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex30.learn.py)
 
 単体で実行したコマンドの応答をパースするのではなく、抽象的な機能名を指定して包括的に学習させることもできます。
 
@@ -642,7 +655,11 @@ https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
                                                                                 'source_protocol_codes': 'L'},
 ```
 
-### ex31.learn.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex31.learn.py)
+<br><br>
+
+### ex31.learn.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex31.learn.py)
 
 インタフェース情報を学習させる例です。
 インタフェースの学習は他の機能とちょっと違う書き方をします。
@@ -708,7 +725,11 @@ dict_keys(['GigabitEthernet4', 'GigabitEthernet3', 'GigabitEthernet2', 'GigabitE
  'type': 'CSR vNIC'}
 ```
 
-### ex32.learn.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex32.learn.py)
+<br><br>
+
+### ex32.learn.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex32.learn.py)
 
 `stp`を指定して学習させる例です。
 
@@ -791,7 +812,11 @@ sw4
                                     'vlan_id': 1}}}}}
 ```
 
-### ex33.learn.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex33.learn.py)
+<br><br>
+
+### ex33.learn.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex33.learn.py)
 
 `config`を指定して学習させる例です。
 
@@ -812,8 +837,11 @@ r1#
 
 ```
 
+<br><br>
 
-### ex40.parse_find.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex40.parse_find.py)
+### ex40.parse_find.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex40.parse_find.py)
 
 `show interfaces`コマンドをパースして辞書型のオブジェクトを取得したあと、欲しい情報を探しに行く例です。
 
@@ -853,7 +881,11 @@ Rに渡しているリストは辞書型の階層のキーです。最後の要�
 
 Gig3とGig4とLo0が送信パケット数ゼロ(out_pkts==0)ということがわかります。
 
-### ex41.learn_find.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex41.learn_find.py)
+<br><br>
+
+### ex41.learn_find.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex41.learn_find.py)
 
 もう少し実践的に探す例です。
 
@@ -888,8 +920,11 @@ print("up and full duplex interfaces")
 pprint(intf_up_full)
 ```
 
+<br><br>
 
-### ex42.learn_find.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex42.learn_find.py)
+### ex42.learn_find.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex42.learn_find.py)
 
 stpでブロックポートがどこにあるのかを見つける例です。
 
@@ -912,7 +947,11 @@ sw4 Ethernet0/1
 sw4 Ethernet0/0
 ```
 
-### ex43.learn_poll.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex43.learn_poll.py)
+<br><br>
+
+### ex43.learn_poll.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex43.learn_poll.py)
 
 学習した状態が特定の条件を満たすまで、定期的に学習を続ける例です。
 
@@ -941,8 +980,11 @@ except StopIteration as e:
 
 verify=で渡す関数において例外をraiseすれば条件を満たしていないと判断され、繰り返し学習を継続します。
 
+<br><br>
 
-### ex50.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex50.configure.py)
+### ex50.configure.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex50.configure.py)
 
 装置に設定を投げ込む例です。
 
@@ -985,7 +1027,11 @@ r1#
  'exit\r\n')
 ```
 
-### ex51.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex51.configure.py)
+<br><br>
+
+### ex51.configure.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex51.configure.py)
 
 Genieが備えているオブジェクトに設定を行い、投入すべきコマンドを機械的に生成させる例です。
 
@@ -1082,7 +1128,11 @@ r1(config-if)# exit
 r1(config)#end
 ```
 
-### ex52.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex52.configure.py)
+<br><br>
+
+### ex52.configure.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex52.configure.py)
 
 スタティックルーティングを設定する例です。
 
@@ -1094,7 +1144,11 @@ static_routing = StaticRouting()
 static_routing.device_attr[uut].vrf_attr['default'].address_family_attr['ipv4'].route_attr['10.10.10.0/24'].interface_attr['GigabitEthernet1'].if_nexthop = '192.168.12.2'
 ```
 
-### ex53.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex53.configure.py)
+<br><br>
+
+### ex53.configure.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex53.configure.py)
 
 OSPFを設定する例です。
 
@@ -1109,7 +1163,11 @@ ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_cos
 ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_type = 'point-to-point'
 ```
 
-### ex54.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex54.configure.py)
+<br><br>
+
+### ex54.configure.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex54.configure.py)
 
 いろいろ実験しているうちにr1の設定が消えてしまったので、pyATSで投入する例を作りました。
 CDPを設定して、インタフェースを設定して、OSPFをを設定します。
@@ -1208,9 +1266,11 @@ r1(config)#end
 r1#
 ```
 
+<br><br>
 
+### ex60.diff.py
 
-### ex60.diff.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex60.diff.py)
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex60.diff.py)
 
 作業前後のコンフィグで差分を表示する例です。
 
@@ -1230,7 +1290,11 @@ r1#
 - ip ospf cost 100:
 ```
 
-### ex61.diff.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex61.diff.py)
+<br><br>
+
+### ex61.diff.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex61.diff.py)
 
 OSPFの全情報を学習させて、作業前後で比較する例です。
 
@@ -1307,7 +1371,11 @@ r1#
 +          spf_runs_count: 36
 ```
 
-### ex70.save.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex70.save.py)
+<br><br>
+
+### ex70.save.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex70.save.py)
 
 学習させた情報をファイルに保管しておく例です。
 
