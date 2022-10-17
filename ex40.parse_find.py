@@ -29,11 +29,14 @@ for name, data in parsed.items():
                 print(f"{name} is not used.")
                 # uut.configure('int {}\n shutdown'.format(name))
 
-# pyatsのfindを使う
+# pyats find
 # https://pubhub.devnetcloud.com/media/pyats/docs/utilities/helper_functions.html
-# 学習結果の辞書型はこうなっている
-# intf_name: {'counters': {'out_pkts': 0 }}
+
 from pyats.utils.objects import R, find
+
+# from
+# {interface_name: {'counters': {'out_pkts': 0
+
 req = R(['(.*)', 'counters', 'out_pkts', 0])
-intf0 = find(parsed, req, filter_=False)
-pprint(intf0)
+found = find(parsed, req, filter_=False)
+pprint(found)

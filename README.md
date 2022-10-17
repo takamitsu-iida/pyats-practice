@@ -48,9 +48,6 @@ https://github.com/CiscoTestAutomation/examples
 https://github.com/CiscoTestAutomation/solutions_examples
 
 
-
-
-
 <br><br>
 
 ## install
@@ -83,9 +80,7 @@ pip install yang.connector
 
 インベントリをtestbedと呼ぶ。testbedはYAML形式で記述する。
 
-装置に関する情報だけでなく、どのように接続しているか、も記述する。
-
-接続に関連した項目はtestbedに記述できるので、マニュアルに目を通した方が結果的に近道。
+接続に関連した項目はtestbedに記述できるので、マニュアルに目を通しておくとよい。
 
 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
 
@@ -518,7 +513,7 @@ rtr.disable()
 
 その装置からpingを打つ。オプションがたくさんある。
 
-拡張pingを指定するextd_pingの指定は真偽値ではなくyes/noになっている。
+拡張pingを指定するextd_pingの指定は真偽値ではなくyes/noなので注意。
 
 応答がないと例外SubCommandFailureがraiseする。
 
@@ -526,6 +521,39 @@ rtr.disable()
 output = ping(addr="9.33.11.41")
 output = ping(addr="10.2.1.1", extd_ping='yes')
 ```
+
+動作例。
+
+到達できるアドレスにpingするときは、
+
+```python
+output = uut.ping(addr="192.168.255.1")
+pprint(output)
+```
+
+こういう出力になる。
+
+```bash
+('ping 192.168.255.1\r\n'
+ 'Type escape sequence to abort.\r\n'
+ 'Sending 5, 100-byte ICMP Echos to 192.168.255.1, timeout is 2 seconds:\r\n'
+ '!!!!!\r\n'
+ 'Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms\r\n')
+```
+
+到達できないところにpingすると、SubCommandFailure例外がraiseしてスクリプトが停止してしまう。
+
+```bash
+r1#
+Traceback (most recent call last):
+  File "./ex60.diff.py", line 18, in <module>
+    output = uut.ping(addr="192.168.255.100")
+  File "src/unicon/bases/routers/services.py", line 270, in unicon.bases.routers.services.BaseService.__call__
+  File "src/unicon/bases/routers/services.py", line 244, in unicon.bases.routers.services.BaseService.get_service_result
+unicon.core.errors.SubCommandFailure: ('sub_command failure, patterns matched in the output:', ['Success rate is 0 percent'], 'service result', 'ping 192.168.255.100\r\nType escape sequence to abort.\r\nSending 5, 100-byte ICMP Echos to 192.168.255.100, timeout is 2 seconds:\r\n.....\r\nSuccess rate is 0 percent (0/5)\r\n')
+```
+
+ping()を使う場合は例外処理を忘れずにやること。
 
 ### copy
 
@@ -582,15 +610,41 @@ with device.guestshell(enable_guestshell=True, retries=30) as gs:
     output = gs.execute("ifconfig")
 ```
 
-### get_config
+<br><br>
 
-running-configを取得する。
+# telnet接続時の不具合対処
+
+:::note warn
+testbedへの接続プロトコルがtelnetの場合のみ、この対処が必要です。SSHであれば問題ありません。
+:::
+
+uniconはPython標準のtelnetlibを利用します。
+
+telnetlibは一度に長大な応答がくることを想定していませんので、
+show running-configやshow tech等を投げこむと、期待しているデータを受信できずにスクリプトが停止していまいます。
+
+telnetlibの受信バッファを大きくすればよいだけなのですが、標準ライブラリを直接書き換えるわけにはいきません。
+そこでtelnetlib.pyのコピーをローカルのlibフォルダに保存して、それを先に読み込ませるようにします。
+
+下記をスクリプトの先頭に入れておくとよいでしょう。
 
 ```python
-rtr.get_config()
-rtr.get_config(target='standby')
-```
+import sys
+import os
 
+#
+# overwrite standard telnetlib
+#
+def here(path=''):
+  return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
+
+if not here('./lib') in sys.path:
+  sys.path.insert(0, here('./lib'))
+
+import telnetlib
+if telnetlib.MODIFIED_BY:
+    print('modified telnetlib is loaded.')
+```
 
 <br><br>
 
@@ -608,3 +662,16 @@ https://github.com/CiscoTestAutomation/unicon.plugins/tree/master/src/unicon/plu
 プラグインの例があるので、それを拡張していくのが早道。
 
 https://github.com/CiscoDevNet/pyats-plugin-examples/tree/master/unicon_plugin_example
+
+
+＜つづく＞
+
+<br><br>
+
+# 動作例
+
+実際に動作させてみた例です。
+
+<br><br>
+
+## 構成図

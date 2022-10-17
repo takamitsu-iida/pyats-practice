@@ -4,6 +4,7 @@
 # https://pubhub.devnetcloud.com/media/pyats-getting-started/docs/quickstart/comparebeforeafter.html
 
 import os
+from pdb import post_mortem
 import sys
 
 #
@@ -31,8 +32,8 @@ uut = testbed.devices['uut']
 
 uut.connect(via='console')
 
-# learn configuration
-pre_conf = uut.learn('config')
+# learn ospf state
+pre_ospf = uut.learn('ospf')
 
 # change ospf config
 # cost 100 -> 10
@@ -43,7 +44,7 @@ exit
 ''')
 
 # learn current config
-post_conf = uut.learn('config')
+post_ospf = uut.learn('ospf')
 
 # revert ospf config
 uut.configure('''
@@ -52,6 +53,10 @@ ip ospf cost 100
 exit
 ''')
 
-config_diff = Diff(pre_conf, post_conf)
-config_diff.findDiff()
-print(config_diff)
+# diff = Diff(pre_ospf, post_ospf)
+# diff.findDiff()
+# print(diff)
+
+diff = post_ospf.diff(pre_ospf)
+diff.findDiff()
+print(diff)

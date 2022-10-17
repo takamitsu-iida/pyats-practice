@@ -64,7 +64,7 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 38905
-        timeout: 10
+        timeout: 20
         arguments:
           # osがiosxeの場合、接続と同時に以下のコマンドが投入される
           #  - term length 0

@@ -46,5 +46,13 @@ gig4.build_config(apply=True)
 
 # 注意！
 # unconfigすると全てのインタフェース設定が消え、shutdownが打ち込まれる
-# default interface GigabitEthernet1
 # gig1.build_unconfig(apply=True)
+# !
+# default interface GigabitEthernet1
+# interface GigabitEthernet1
+#  shutdown
+# !
+
+# 特定の項目だけを消したい場合はattributeを付与する
+# 複数項目を消したい場合はattributes={"switchport_enable": True, "enable": True}のように辞書型で渡す
+gig1.build_unconfig(apply=True, attributes="description")

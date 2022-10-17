@@ -33,8 +33,8 @@ uut.add_feature(static_routing)
 cfgs = static_routing.build_config(apply=False)
 pprint(str(cfgs[uut.name]))
 
-# 適用
+# add static route
 static_routing.build_config(apply=True)
 
-# 削除
+# delete static route
 static_routing.build_unconfig(apply=True)

@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 
+#
+# 抽象的な機能名を指定して学習させる
+#
+
+# サポートしている機能名はここから探す
+# https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
+
 # import Genie
 from genie.testbed import load
 

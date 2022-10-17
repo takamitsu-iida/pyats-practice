@@ -16,6 +16,8 @@ uut.connect(via='console')
 # サポートしている機能名はここから探す
 # https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
 
+# routing table
+
 routing = uut.learn('routing')
 
 from pprint import pprint

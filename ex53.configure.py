@@ -37,15 +37,14 @@ ospf1.device_attr[uut].vrf_attr[vrf0].router_id = '192.168.255.1'
 ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_cost = 10
 ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_type = 'point-to-point'
 
-# これは必須
-uut.add_feature(ospf1)
-
-# ここで作ったコンフィグは辞書型
-# {r1: {}}
 cfgs = ospf1.build_config(apply=False)
+# cfgs = {r1: {...}}
 pprint(str(cfgs[uut.name]))
 
-# 適用
+# add feature to the device
+uut.add_feature(ospf1)
+
+# apply
 ospf1.build_config(apply=True)
 
 # 注意！
