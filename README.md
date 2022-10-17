@@ -555,4 +555,778 @@ https://github.com/CiscoDevNet/pyats-plugin-examples/tree/master/unicon_plugin_e
 
 ## 構成図
 
-https://takamitsu-iida.github.io/pyats-practice/img/fig1.PNG
+![構成図](https://takamitsu-iida.github.io/pyats-practice/img/fig1.PNG "構成図")
+
+<br>
+
+### ex10.execute.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex10.execute.py)
+
+接続後にコマンドを打ち込む例。
+
+```python
+output = uut.execute('show version')
+
+from pprint import pprint
+pprint(output)
+```
+
+実行結果。
+
+```bash
+r1#
+('Cisco IOS XE Software, Version 17.03.04a\r\n'
+ 'Cisco IOS Software [Amsterdam], Virtual XE Software '
+ '(X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.4a, RELEASE SOFTWARE '
+ '(fc3)\r\n'
+ 'Technical Support: http://www.cisco.com/techsupport\r\n'
+ 'Copyright (c) 1986-2021 by Cisco Systems, Inc.\r\n'
+ 'Compiled Tue 20-Jul-21 04:59 by mcpre\r\n'
+ '\r\n'
+ '\r\n'
+```
+
+### ex11.execute.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex11.execute.py)
+
+show running-configを打ち込むだけですが、
+telnetで接続しているときに長大な出力を受け取ると不具合がでることがありますので、その対処を加えた例です。
+
+
+### ex20.parse.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex20.parse.py)
+
+show versionを打ち込んで、その応答を辞書型に変換する例です。
+
+Genieで対応済みのコマンドはここで検索できます。
+
+https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers
+
+
+実行例。
+
+```bash
+r1#
+{'version': {'chassis': 'CSR1000V',
+             'chassis_sn': '934T7HPFN7R',
+             'compiled_by': 'mcpre',
+             'compiled_date': 'Tue 20-Jul-21 04:59',
+             'copyright_years': '1986-2021',
+             'curr_config_register': '0x2102',
+             'disks': {'bootflash:.': {'disk_size': '6188032',
+                                       'type_of_disk': 'virtual hard disk'}},
+             'hostname': 'r1',
+```
+
+### ex30.learn.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex30.learn.py)
+
+単体で実行したコマンドの応答をパースするのではなく、抽象的な機能名を指定して包括的に学習させることもできます。
+
+サポートしている機能名はここから探します。
+
+https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
+
+`routing` を指定して実行するとルーティングテーブルを取得できます。
+
+実行例。
+
+画面に出力すると横に長くて見づらいですが、階層の深い辞書型になっていることがわかります。
+
+```bash
+{'vrf': {'default': {'address_family': {'ipv4': {'routes': {'192.168.12.0/24': {'active': True,
+                                                                                'next_hop': {'outgoing_interface': {'GigabitEthernet1': {'outgoing_interface': 'GigabitEthernet1'}}},
+                                                                                'route': '192.168.12.0/24',
+                                                                                'source_protocol': 'connected',
+                                                                                'source_protocol_codes': 'C'},
+                                                            '192.168.12.1/32': {'active': True,
+                                                                                'next_hop': {'outgoing_interface': {'GigabitEthernet1': {'outgoing_interface': 'GigabitEthernet1'}}},
+                                                                                'route': '192.168.12.1/32',
+                                                                                'source_protocol': 'local',
+                                                                                'source_protocol_codes': 'L'},
+```
+
+### ex31.learn.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex31.learn.py)
+
+インタフェース情報を学習させる例です。
+インタフェースの学習は他の機能とちょっと違う書き方をします。
+
+実行例。
+
+```bash
+learnt interfaces
+dict_keys(['GigabitEthernet4', 'GigabitEthernet3', 'GigabitEthernet2', 'GigabitEthernet1', 'Loopback0'])
+{'accounting': {'arp': {'chars_in': 1020,
+                        'chars_out': 1080,
+                        'pkts_in': 17,
+                        'pkts_out': 18},
+                'cdp': {'chars_in': 1667889,
+                        'chars_out': 1644294,
+                        'pkts_in': 3943,
+                        'pkts_out': 3943},
+                'ip': {'chars_in': 2648174,
+                       'chars_out': 2650232,
+                       'pkts_in': 23233,
+                       'pkts_out': 23234},
+                'other': {'chars_in': 1683291,
+                          'chars_out': 1645374,
+                          'pkts_in': 3994,
+                          'pkts_out': 3961}},
+ 'auto_negotiate': True,
+ 'bandwidth': 1000000,
+ 'counters': {'in_broadcast_pkts': 0,
+              'in_crc_errors': 0,
+              'in_errors': 0,
+              'in_mac_pause_frames': 0,
+              'in_multicast_pkts': 0,
+              'in_octets': 8128590,
+              'in_pkts': 51162,
+              'last_clear': 'never',
+              'out_broadcast_pkts': 0,
+              'out_errors': 0,
+              'out_mac_pause_frames': 0,
+              'out_multicast_pkts': 0,
+              'out_octets': 7943936,
+              'out_pkts': 50153,
+              'rate': {'in_rate': 0,
+                       'in_rate_pkts': 0,
+                       'load_interval': 300,
+                       'out_rate': 0,
+                       'out_rate_pkts': 0}},
+ 'delay': 10,
+ 'description': 'to r2',
+ 'duplex_mode': 'full',
+ 'enabled': True,
+ 'encapsulation': {'encapsulation': 'arpa'},
+ 'flow_control': {'receive': False, 'send': False},
+ 'ipv4': {'192.168.12.1/24': {'ip': '192.168.12.1',
+                              'prefix_length': '24',
+                              'secondary': False}},
+ 'mac_address': '5002.0001.0000',
+ 'mtu': 9000,
+ 'oper_status': 'up',
+ 'phys_address': '5002.0001.0000',
+ 'port_channel': {'port_channel_member': False},
+ 'port_speed': '1000mbps',
+ 'switchport_enable': False,
+ 'type': 'CSR vNIC'}
+```
+
+### ex32.learn.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex32.learn.py)
+
+`stp`を指定して学習させる例です。
+
+実行例。
+
+```bash
+sw4
+{'global': {'bpdu_filter': False,
+            'bpdu_guard': False,
+            'bpduguard_timeout_recovery': 300,
+            'etherchannel_misconfig_guard': True,
+            'loop_guard': False},
+ 'mstp': {'default': {'domain': 'default', 'name': '', 'revision': 0}},
+ 'pvst': {'default': {'forwarding_delay': 15,
+                      'hello_time': 2,
+                      'max_age': 20,
+                      'pvst_id': 'default',
+                      'vlans': {1: {'bridge_address': 'aabb.cc00.0600',
+                                    'bridge_priority': 32768,
+                                    'configured_bridge_priority': 32768,
+                                    'designated_root_address': 'aabb.cc00.0300',
+                                    'designated_root_priority': 32769,
+                                    'forwarding_delay': 15,
+                                    'hello_time': 2,
+                                    'hold_time': 1,
+                                    'interfaces': {'Ethernet0/0': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 92713,
+                                                                                'bpdu_sent': 1},
+                                                                   'designated_bridge_address': 'aabb.cc00.0500',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 100,
+                                                                   'designated_port_num': 1,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 0,
+                                                                   'name': 'Ethernet0/0',
+                                                                   'port_num': 1,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'blocking',
+                                                                   'role': 'alternate'},
+                                                   'Ethernet0/1': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 92722,
+                                                                                'bpdu_sent': 0},
+                                                                   'designated_bridge_address': 'aabb.cc00.0400',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 100,
+                                                                   'designated_port_num': 2,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/1',
+                                                                   'port_num': 2,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'blocking',
+                                                                   'role': 'alternate'},
+                                                   'Ethernet0/2': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 92674,
+                                                                                'bpdu_sent': 1},
+                                                                   'designated_bridge_address': 'aabb.cc00.0300',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 0,
+                                                                   'designated_port_num': 3,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/2',
+                                                                   'port_num': 3,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'root'}},
+                                    'max_age': 20,
+                                    'root_cost': 100,
+                                    'root_port': 3,
+                                    'sys_id_ext': 1,
+                                    'time_since_topology_change': '2d03h',
+                                    'topology_changes': 2,
+                                    'vlan_id': 1}}}}}
+```
+
+### ex33.learn.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex33.learn.py)
+
+`config`を指定して学習させる例です。
+
+実行例。
+深い意味合いまで解釈しているわけではなく、ブロック化されている設定は親となる行をキーとした辞書型に格納しているだけです。
+
+```bash
+r1#
+{'Building configuration...': {},
+ 'Current configuration : 6519 bytes': {},
+ 'boot-end-marker': {},
+ 'boot-start-marker': {},
+ 'call-home': {'contact-email-addr sch-smart-licensing@cisco.com': {},
+               'profile "CiscoTAC-1"': {'active': {},
+                                        'destination transport-method http': {}}},
+ 'cdp run': {},
+ 'control-plane': {},
+
+```
+
+
+### ex40.parse_find.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex40.parse_find.py)
+
+`show interfaces`コマンドをパースして辞書型のオブジェクトを取得したあと、欲しい情報を探しに行く例です。
+
+単純に辞書型の中をループさせて、`out_pkts`が0になっているインタフェースを見つけることもできますが、ソースコードは読みづらいです。
+
+深い辞書型を探索するときには、Rとfindをインポートすると簡単です。
+
+https://pubhub.devnetcloud.com/media/pyats/docs/utilities/helper_functions.html
+
+
+```python
+req = R(['(.*)', 'counters', 'out_pkts', 0])
+found = find(parsed, req, filter_=False)
+pprint(found)
+```
+
+Rに渡しているリストは辞書型の階層のキーです。最後の要素に値を指定するとで、その値に一致するものを取得します。
+この例ではこのような階層のエントリを探しています。
+
+```python
+{
+    '(.*)': {
+        'counters': {
+            'out_pkts': 0
+        }
+    }
+}
+```
+
+実行例。
+
+```bash
+[(0, ['GigabitEthernet3', 'counters', 'out_pkts']),
+ (0, ['GigabitEthernet4', 'counters', 'out_pkts']),
+ (0, ['Loopback0', 'counters', 'out_pkts'])]
+```
+
+Gig3とGig4とLo0が送信パケット数ゼロ(out_pkts==0)ということがわかります。
+
+### ex41.learn_find.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex41.learn_find.py)
+
+もう少し実践的に探す例です。
+
+oper_statusがupのインタフェースを探す場合はこうします。
+
+```python
+req = R(['info', '(.*)', 'oper_status', 'up'])
+intf_up = find(intf, req, filter_=False)
+print('up interfaces')
+pprint(intf_up)
+```
+
+duplexがfullのインタフェースを探す場合はこうします。
+
+```python
+req2 = R(['info', '(.*)', 'duplex_mode', 'full'])
+intf_full = find(intf, req2, filter_=False)
+print('full duplex interfaces')
+pprint(intf_full)
+```
+
+oper_statusがupで、かつ、duplexがfullのインタフェースを探すにはこうします。
+`(.*)`という指定で既に使っていましたが、キーには正規表現が使えます。
+
+```python
+req3 = [
+    R(['info', '(?P<interface>.*)', 'oper_status', 'up']),
+    R(['info', '(?P<interface>.*)', 'duplex_mode', 'full'])
+]
+intf_up_full = find(intf, *req3, filter_=False)
+print("up and full duplex interfaces")
+pprint(intf_up_full)
+```
+
+
+### ex42.learn_find.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex42.learn_find.py)
+
+stpでブロックポートがどこにあるのかを見つける例です。
+
+全てのスイッチを順番に接続して、`stp`を指定して学習させます。
+学習結果は一つの辞書型に格納しておきます。
+その辞書型に対してこのような探索をかけると全てのブロックポートを見つけることができます。
+
+```python
+from pyats.utils.objects import R, find
+req = R(['(.*)', 'info', 'pvst', 'default', 'vlans', '(.*)', 'interfaces', '(.*)', 'port_state', 'blocking'])
+found = find(learnt, req, filter_=False)
+```
+
+実行結果。sw3のe0/2とsw4のe0/1、sw4のe0/0がブロックポートになっています。
+
+```bash
+found blocking port
+sw3 Ethernet0/2
+sw4 Ethernet0/1
+sw4 Ethernet0/0
+```
+
+### ex43.learn_poll.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex43.learn_poll.py)
+
+学習した状態が特定の条件を満たすまで、定期的に学習を続ける例です。
+
+ここでは「upしているインタフェースが少なくとも１つある」という条件を満たすまで、5秒間隔で3回、繰り返し学習します。
+
+```python
+# verify at least one interface is up, or raise Exception
+def verify_interface_status(obj):
+    # make sure interface has learnt
+    assert obj.info
+    for name in obj.info.keys():
+        oper_status = obj.info[name].get('oper_status', None)
+        if oper_status == 'up':
+            print("verified successfully")
+            return
+
+    raise Exception("Could not find any up interface")
+
+
+intf = Interface(device=uut)
+try:
+    intf.learn_poll(verify=verify_interface_status, sleep=5, attempt=3)
+except StopIteration as e:
+    print(e)
+```
+
+verify=で渡す関数において例外をraiseすれば条件を満たしていないと判断され、繰り返し学習を継続します。
+
+
+### ex50.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex50.configure.py)
+
+装置に設定を投げ込む例です。
+
+コピー＆ペーストでターミナルに貼り付ける感覚で使えます。
+
+```python
+output = uut.configure('''
+interface Gig1
+description "configured by pyats"
+exit
+interface Gig2
+description "configured by pyats"
+exit
+''')
+```
+
+実行例。config termは自動で打ち込まれます。最後のendも自動で打ち込まれます。
+
+```bash
+r1#
+
+2022-10-17 18:48:16,073: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#
+r1(config)#interface Gig1
+r1(config-if)#description "configured by pyats"
+r1(config-if)#exit
+r1(config)#interface Gig2
+r1(config-if)#description "configured by pyats"
+r1(config-if)#exit
+r1(config)#end
+r1#
+('\r\n'
+ 'interface Gig1\r\n'
+ 'description "configured by pyats"\r\n'
+ 'exit\r\n'
+ 'interface Gig2\r\n'
+ 'description "configured by pyats"\r\n'
+ 'exit\r\n')
+```
+
+### ex51.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex51.configure.py)
+
+Genieが備えているオブジェクトに設定を行い、投入すべきコマンドを機械的に生成させる例です。
+
+設定用のInterfaceオブジェクトを作成して、そのオブジェクトに設定を仕込んでいきます。
+build_config()でその装置に投入すべきコンフィグが作成されます。
+
+```python
+from genie.conf.base import Interface
+
+gig1 = Interface(device=uut, name='GigabitEthernet1')
+gig2 = Interface(device=uut, name='GigabitEthernet2')
+gig3 = Interface(device=uut, name='GigabitEthernet3')
+gig4 = Interface(device=uut, name='GigabitEthernet4')
+gig1.description = "configured by Genie Conf Object"
+gig2.description = "configured by Genie Conf Object"
+gig3.description = "configured by Genie Conf Object"
+gig4.description = "configured by Genie Conf Object"
+
+# verify config
+print(gig1.build_config(apply=False))
+print(gig2.build_config(apply=False))
+print(gig3.build_config(apply=False))
+print(gig4.build_config(apply=False))
+
+# apply config
+gig1.build_config(apply=True)
+gig2.build_config(apply=True)
+gig3.build_config(apply=True)
+gig4.build_config(apply=True)
+```
+
+実行例。
+
+build_config()するたびに設定を投入していることがわかります。
+投入すべきコマンドをひとまとめにして、一気に投入した方がよいかもしれません。
+
+```bash
+r1#
+interface GigabitEthernet1
+ description configured by Genie Conf Object
+ exit
+interface GigabitEthernet2
+ description configured by Genie Conf Object
+ exit
+interface GigabitEthernet3
+ description configured by Genie Conf Object
+ exit
+interface GigabitEthernet4
+ description configured by Genie Conf Object
+ exit
+
+2022-10-17 18:52:51,428: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#interface GigabitEthernet1
+r1(config-if)# description configured by Genie Conf Object
+r1(config-if)# exit
+r1(config)#end
+r1#
+
+2022-10-17 18:52:52,143: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#interface GigabitEthernet2
+r1(config-if)# description configured by Genie Conf Object
+r1(config-if)# exit
+r1(config)#end
+r1#
+
+2022-10-17 18:52:52,857: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#interface GigabitEthernet3
+r1(config-if)# description configured by Genie Conf Object
+r1(config-if)# exit
+r1(config)#end
+r1#
+
+2022-10-17 18:52:53,553: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#interface GigabitEthernet4
+r1(config-if)# description configured by Genie Conf Object
+r1(config-if)# exit
+r1(config)#end
+r1#
+
+2022-10-17 18:52:54,270: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#interface GigabitEthernet1
+r1(config-if)# no description configured by Genie Conf Object
+r1(config-if)# exit
+r1(config)#end
+```
+
+### ex52.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex52.configure.py)
+
+スタティックルーティングを設定する例です。
+
+```python
+from genie.libs.conf.static_routing.static_routing import StaticRouting
+
+static_routing = StaticRouting()
+
+static_routing.device_attr[uut].vrf_attr['default'].address_family_attr['ipv4'].route_attr['10.10.10.0/24'].interface_attr['GigabitEthernet1'].if_nexthop = '192.168.12.2'
+```
+
+### ex53.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex53.configure.py)
+
+OSPFを設定する例です。
+
+```python
+# create Ospf object
+ospf1 = Ospf()
+
+# add configurations to vrf default
+ospf1.device_attr[uut].vrf_attr[vrf0].instance = '1'
+ospf1.device_attr[uut].vrf_attr[vrf0].router_id = '192.168.255.1'
+ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_cost = 10
+ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_type = 'point-to-point'
+```
+
+### ex54.configure.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex54.configure.py)
+
+いろいろ実験しているうちにr1の設定が消えてしまったので、pyATSで投入する例を作りました。
+CDPを設定して、インタフェースを設定して、OSPFをを設定します。
+
+実行例。
+
+```bash
+2022-10-17 18:59:39,820: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#
+r1(config)#cdp run
+r1(config)#interface Gig1
+r1(config-if)#cdp enable
+r1(config-if)#exit
+r1(config)#interface Gig2
+r1(config-if)#cdp enable
+r1(config-if)#exit
+r1(config)#end
+r1#
+('\r\n'
+ 'cdp run\r\n'
+ 'interface Gig1\r\n'
+ 'cdp enable\r\n'
+ 'exit\r\n'
+ 'interface Gig2\r\n'
+ 'cdp enable\r\n'
+ 'exit\r\n')
+
+2022-10-17 18:59:41,134: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#interface Loopback0
+r1(config-if)# ip address 192.168.255.1 255.255.255.255
+r1(config-if)# no shutdown
+r1(config-if)# exit
+r1(config)#end
+r1#
+
+2022-10-17 18:59:41,935: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#interface GigabitEthernet1
+r1(config-if)# description to r2
+r1(config-if)# ip address 192.168.12.1 255.255.255.0
+r1(config-if)# mtu 9000
+r1(config-if)# no shutdown
+r1(config-if)# exit
+r1(config)#end
+r1#
+
+2022-10-17 18:59:42,906: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#interface GigabitEthernet2
+r1(config-if)# description to r3
+r1(config-if)# ip address 192.168.13.1 255.255.255.0
+r1(config-if)# mtu 9000
+r1(config-if)# no shutdown
+r1(config-if)# exit
+r1(config)#end
+r1#
+('router ospf 1\n'
+ ' router-id 192.168.255.1\n'
+ ' network 192.168.12.1 0.0.0.0 area 0\n'
+ ' network 192.168.13.1 0.0.0.0 area 0\n'
+ ' network 192.168.255.1 0.0.0.0 area 0\n'
+ ' exit\n'
+ 'interface GigabitEthernet1\n'
+ ' ip ospf cost 100\n'
+ ' ip ospf network point-to-point\n'
+ ' exit\n'
+ 'interface GigabitEthernet2\n'
+ ' ip ospf cost 100\n'
+ ' ip ospf network point-to-point\n'
+ ' exit')
+
+2022-10-17 18:59:44,312: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#router ospf 1
+r1(config-router)# router-id 192.168.255.1
+r1(config-router)# network 192.168.12.1 0.0.0.0 area 0
+r1(config-router)# network 192.168.13.1 0.0.0.0 area 0
+r1(config-router)# network 192.168.255.1 0.0.0.0 area 0
+r1(config-router)# exit
+r1(config)#interface GigabitEthernet1
+r1(config-if)# ip ospf cost 100
+r1(config-if)# ip ospf network point-to-point
+r1(config-if)# exit
+r1(config)#interface GigabitEthernet2
+r1(config-if)# ip ospf cost 100
+r1(config-if)# ip ospf network point-to-point
+r1(config-if)# exit
+r1(config)#end
+r1#
+```
+
+
+
+### ex60.diff.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex60.diff.py)
+
+作業前後のコンフィグで差分を表示する例です。
+
+ここではGig1のOSPFコストを10に変更する作業を実施しています。
+
+実行例。
+
++記号は増えた行、-記号は削除された行です。
+Gig1のコストは、元々100だったのが10に変更されていることがわかります。
+
+```bash
+r1#
++Current configuration : 6519 bytes:
+-Current configuration : 6520 bytes:
+ interface GigabitEthernet1:
++ ip ospf cost 10:
+- ip ospf cost 100:
+```
+
+### ex61.diff.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex61.diff.py)
+
+OSPFの全情報を学習させて、作業前後で比較する例です。
+
+実行例を見れば分かると思いますが、そのままではちょっと使えない感じです。
+チェックサムとかシーケンス番号は変わって当然なので、そういうのを排除しないと実用できなそうです。
+
+実行例。
+
+```bash
+r1#
+ info:
+  vrf:
+   default:
+    address_family:
+     ipv4:
+      instance:
+       1:
+        areas:
+         0.0.0.0:
+          database:
+           lsa_types:
+            1:
+             lsas:
+              192.168.255.1 192.168.255.1:
+               ospfv2:
+                body:
+                 router:
+                  links:
+                   192.168.12.0:
+                    topologies:
+                     0:
+-                     metric: 100
++                     metric: 10
+                   192.168.255.2:
+                    topologies:
+                     0:
+-                     metric: 100
++                     metric: 10
+                header:
+-                age: 218
++                age: 2
+-                checksum: 0xB20
++                checksum: 0xAE30
+-                seq_num: 80000049
++                seq_num: 8000004A
+              192.168.255.2 192.168.255.2:
+               ospfv2:
+                header:
+-                age: 1734
++                age: 1743
+              192.168.255.3 192.168.255.3:
+               ospfv2:
+                header:
+-                age: 1868
++                age: 1877
+              192.168.255.4 192.168.255.4:
+               ospfv2:
+                header:
+-                age: 1787
++                age: 1796
+          interfaces:
+           GigabitEthernet1:
+-           cost: 100
++           cost: 10
+-           hello_timer: 00:00:07
++           hello_timer: 00:00:08
+           GigabitEthernet2:
+-           hello_timer: 00:00:06
++           hello_timer: 00:00:07
+          statistics:
+-          area_scope_lsa_cksum_sum: 0x012C67
++          area_scope_lsa_cksum_sum: 0x01CF77
+-          spf_runs_count: 35
++          spf_runs_count: 36
+```
+
+### ex70.save.py [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex70.save.py)
+
+学習させた情報をファイルに保管しておく例です。
+
+保存はこうします。
+
+```python
+# learn all interface
+intf.learn()
+
+with open(log_file, 'wb') as f:
+    f.write(intf.pickle(intf))
+```
+
+ファイルから復元するにはこうします。
+
+```python
+
+# load saved data
+import pickle
+with open(log_file, 'rb') as f:
+    loaded = pickle.load(f)
+```
