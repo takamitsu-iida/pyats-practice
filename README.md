@@ -239,24 +239,8 @@ devices:
 pyats validate testbed [testbed yaml file]
 ```
 
-:::note warn
-> testbedファイルのなかでtopologyを記述した場合、PythonでのAPI利用に支障がでることがあります。
-:::
-
-```python
-from genie.libs.conf.interface import Interface
-gig1 = Interface(device=uut, name='GigabitEthernet1')
-```
-
-このように`Interface`オブジェクトを作成しようとすると例外がraiseします。
-
-```text
-File "src/pyats/topology/device.py", line 296, in pyats.topology.device.DeviceBase.add_interface
-# pyats.topology.exceptions.DuplicateInterfaceError: Interface 'GigabitEthernet1' already exists on this device 'r1'.
-```
-
-明確に使い道が想定される場合をのぞいて、testbedファイルの中にtopologyセクションは記載しないほうが良さそうです。
-
+> testbedファイルのなかでtopologyを記述した場合、PythonでのAPI利用に支障がでることがある。
+> 明確に使い道が想定される場合をのぞいて、testbedファイルの中にtopologyセクションは記載しないほうが良さそう。
 
 <br><br>
 
@@ -570,3 +554,5 @@ https://github.com/CiscoDevNet/pyats-plugin-examples/tree/master/unicon_plugin_e
 <br><br>
 
 ## 構成図
+
+https://takamitsu-iida.github.io/pyats-practice/img/fig1.PNG
