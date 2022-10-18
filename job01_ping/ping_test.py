@@ -46,10 +46,7 @@ class ping_class(aetest.Testcase):
     def setup(self, testbed, ping_list):
         """ Make sure devices can ping a list of addresses. """
 
-        # Create an array of destination IPs from our argparse
-        ping_list = ping_list.split()
-
-        # 実行結果をクラス内変数に保管しておく
+        # 実行結果を次の関数で参照できるように、クラス変数に保管しておく
         self.ping_results = {}
 
         for device_name, device in testbed.devices.items():
@@ -102,6 +99,11 @@ if __name__ == "__main__":
     import argparse
     from pyats import topology
 
+    ping_list = [
+        '192.168.255.1',
+        '192.168.255.2'
+    ]
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
@@ -112,15 +114,7 @@ if __name__ == "__main__":
         default=None,
     )
 
-    parser.add_argument(
-        '--dest',
-        dest = 'ping_list',
-        type=str,
-        default = '192.168.255.1 192.168.255.2',
-        help = 'space delimted list of IP address(es) to test connectivity'
-    )
-
     # parse command line arguments only we know
     args, _ = parser.parse_known_args()
 
-    aetest.main(testbed=args.testbed, ping_list=args.ping_list)
+    aetest.main(testbed=args.testbed, ping_list=ping_list)

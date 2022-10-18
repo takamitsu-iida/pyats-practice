@@ -1,8 +1,13 @@
 # pyats-practice
 
-https://developer.cisco.com/pyats/ にあるIntroduction to pyATSが秀逸。
 
-ブラウザの中に説明文とターミナルとエディタがあり、ブラウザのなかでコマンドを実行して結果を確認できる。
+DevNetのサイトにあるIntroduction to pyATSが秀逸です。
+
+ブラウザの中に説明文とターミナルとエディタがあり、コマンドを実行して動作結果を確認できます。
+ドキュメントを読む前にまずこれを試してみるべきです。
+
+https://developer.cisco.com/pyats/
+
 
 - learnを実行してログを収集
 
@@ -22,13 +27,15 @@ pyats learn interface ospf platform --testbed-file broken-tb.yaml --output broke
 pyats diff working_snapshot broken_snapshot --output diff_snapshot
 ```
 
-上記を実行するだけでも使う価値があると思わせる内容になっている。
+上記を実行するだけでもpyATSを使う価値があると思わせる内容になっています。
 
 <br><br>
 
 ## ドキュメント
 
-- devnet pyATS https://developer.cisco.com/pyats/
+DevNetのサイトからたどれます。
+
+- DevNet pyATS https://developer.cisco.com/pyats/
 
 - pyATS Documentation https://pubhub.devnetcloud.com/media/pyats/docs/index.html
 
@@ -50,13 +57,13 @@ pyats diff working_snapshot broken_snapshot --output diff_snapshot
 
 ## install
 
-venvでpython環境を作る。
+venvでPython環境を作ります。
 
 ```bash
 $ python3 -m venv .venv
 ```
 
-direnvを設定してディレクトリに入ったら自動でactivateする。
+direnvと組み合わせるのがオススメです。ディレクトリに入ったら自動でactivateしてくれます。
 
 ```bash
 echo 'source .venv/bin/activate' > .envrc
@@ -64,7 +71,7 @@ echo 'unset PS1' >> .envrc
 direnv allow
 ```
 
-pyatsに関連したモジュールを全てインストールする。
+Python環境が整ったら、pipでpyatsに関連したモジュールを全てインストールします。
 
 ```bash
 pip install pyats[full]
@@ -76,14 +83,21 @@ pip install yang.connector
 
 ## testbed
 
-インベントリをtestbedと呼ぶ。testbedはYAML形式で記述する。
+インベントリのことをテストベッド(testbed)と呼びます。
+testbedはYAML形式で記述します。
 
-接続に関連した項目はtestbedに記述できるので、マニュアルに目を通しておくとよい。
+接続に関連したパラメータはtestbedにも記述できるので、マニュアルに目を通しておくとよいと思います。
 
 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
 
-利用しているラボのtestbedはこの通り。
-eve-ng上の仮想環境なのでルータ・スイッチにパスワードは設定されていない。
+利用しているラボのtestbedは概ねこのような感じにしています。
+
+eve-ng上の仮想環境ですのでルータ・スイッチにパスワードは設定されていません。
+その場合は設定を省略するのではなく、空文字列のパスワードを指定します。
+
+proxyという項目を指定することで、踏み台を経由することができます。
+SSHに組み込まれたプロキシ機能ではなく、踏み台になる装置に実際に接続して、改めてコマンドを発行して乗り込んでいくスタイルです。
+何段でも経由できますし、最初はSSH、次はtelnet、のようにプロトコルが変わっても大丈夫です。
 
 ```yml
 ---
@@ -187,7 +201,6 @@ devices:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
           POST_DISCONNECT_WAIT_SEC: 1
 
-
   r2:
     os: iosxe
     platform: CSR1000v
@@ -249,20 +262,22 @@ devices:
 pyats validate testbed [testbed yaml file]
 ```
 
-> testbedファイルのなかでtopologyを記述した場合、PythonでのAPI利用に支障がでることがある。
-> 明確に使い道が想定される場合をのぞいて、testbedファイルの中にtopologyセクションは記載しないほうが良さそう。
+> testbedファイルのなかでtopologyを記述した場合、PythonでのAPI利用に支障がでることがあります。
+> 明確に使い道が想定される場合をのぞいて、testbedファイルの中にtopologyセクションは記載しないほうが良さそうです。
 
 <br><br>
 
 ## job
 
-jobファイルを作成して実行すると、結果をブラウザで確認できる。
+テストを実行する形式の一つがjobです。
+
+jobファイルを作成して実行すると、実行結果をブラウザで確認できます。
 
 ```bash
 pyats run job job.py --testbed-file lab.yml
 ```
 
-ログの確認。HTTPサーバが立ち上がってブラウザが起動する。
+ログを確認するには、次のコマンドを実行します。HTTPサーバが立ち上がり、自動でブラウザが開きます。
 
 ```bash
 pyats logs view
@@ -272,17 +287,18 @@ pyats logs view
 
 ## jobのログ置き場
 
-`~/.pyats/` に保管される。
+過去に実行したジョブはすべて記録として残っています。この記録は `~/.pyats/` に保管されています。
 
-知らぬ間に膨れ上がっているかもしれないので要注意。
+アーカイブされたログもここに保管されていますので、知らぬ間に膨れ上がっているかもしれません。
+ときどき確認して要らないものは削除しましょう。
 
 <br><br>
 
 ## pyatsの設定
 
-`pyats.conf`ファイルを用意する。INI形式で記載。
+pyATSの環境設定を変更するには `pyats.conf` ファイルを用意します。INI形式で記載します。
 
-ファイルはこの順番で読み込まれる。同じ設定項目はあとに読まれた方で上書きされる。
+ファイルはこの順番で読み込まれれ、同じ設定項目はあとに読まれた方で上書きされます。
 
 - /etc/pyats.conf
 - $VIRTUAL_ENV/pyats.conf
@@ -290,7 +306,7 @@ pyats logs view
 - PYATS_CONFIGURATION=path/to/pyats.conf
 - cli argument --pyats-configuration can be used to specify a configuration file
 
-jobのログ置き場を変えたいなら、この部分を変更すればよい。
+jobのログ置き場はデフォルトで~/.pyatsですが、この部分を変更すれば違う場所に保存できます。
 
 ```INI
 # configuration related to easypy execution
@@ -309,15 +325,16 @@ jobのログ置き場を変えたいなら、この部分を変更すればよ�
 
 # unicon
 
-接続ライブラリ。
+pyATSが利用している接続ライブラリです。便利です。
 
-スタックや冗長化したルートプロセッサに対応している。
+プラグイン形式で多くのサービスが組み込まれていて、スタックや冗長化したルートプロセッサにも対応しています。
 
 <br><br>
 
-### デフォルトのプロンプト
+### デフォルトのプロンプト処理
 
-Cisco以外の機器で挙動がおかしいときや、新しい装置のプラグインを作成するときはここに記載の正規表現を確認する。
+Cisco以外の機器で挙動がおかしいときや、
+新しい装置のプラグインを作成するときはここに記載の正規表現を確認するとよいでしょう。
 
 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/services/service_dialogs.html
 
@@ -325,11 +342,12 @@ https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/services/service_dia
 
 ### disconnect
 
-コネクションを切断するにはdisconnect()を呼ぶ。
+コネクションを切断するにはdisconnect()を呼びます。
 
-接続・切断を短期間に行うことで生じる問題を避けるためにdisconnect()はデフォルトで約10秒待機する。
-このデフォルト値は長過ぎるので、単一コネクションであれば短くした方が良い。
-複数のコネクションを同時に生成しているときは慎重に判断する。
+接続・切断を短期間に行うことで生じる問題を避けるためにdisconnect()はデフォルトで約10秒待機します。
+このデフォルト値は長過ぎるので、単一コネクションであれば短くした方が良いでしょう。
+
+複数のコネクションをfor文で回しながらdisconnect()するのであれば、この設定は慎重に判断したほうがいいでしょう。
 
 参照 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
 
@@ -339,7 +357,7 @@ dev.settings.POST_DISCONNECT_WAIT_SEC = 0
 dev.disconnect()
 ```
 
-testbedファイルに書き込んでもよい。
+testbedファイルに設定しておくこともできますが、優先度はtestbedの方が高いので、プログラムのなかで動作を変えることはできなくなります。
 
 ```yml
   r1:
@@ -359,24 +377,24 @@ testbedファイルに書き込んでもよい。
 
 ### execute
 
-コマンドの打ち込みであればsend()やsendline()ではなくexecute()を使う。
+コマンドの打ち込みであればsend()やsendline()ではなくexecute()を使います。
 
-デフォルトのタイムアウトは60秒。それを超えるとunicon.core.errors.TimeoutErrorが出る。
-長大な応答が予期されるときはtimeoutを指定する。
+デフォルトのタイムアウトは60秒です。それを超えるとunicon.core.errors.TimeoutErrorがraiseします。
+show techのように長大な応答が来ると予期されるときはtimeoutを指定したほうがよいでしょう。
 
-このようにコマンド投入でモードの変更が発生するとunicon.core.errors.StateMachineErrorが出てスクリプトが停止する。
+config termのようにモード変更が発生するコマンドを投げ込むとunicon.core.errors.StateMachineErrorが出てスクリプトが停止します。
 
 ```python
 dev.execute('config term')
 ```
 
-モードの変更が伴うコマンドを投入するときはallow_state_changeをTrueにする。
+モードの変更が伴うコマンドを投入するときはallow_state_changeをTrueにします。
 
 ```python
 dev.execute('config term', allow_state_change=True)
 ```
 
-実行時にYes/Noの確認が生じる場合は、Dialogを指定する。
+実行時にYes/Noの確認が生じる場合はDialogを指定します。
 
 ```python
 from unicon.eal.dialogs import Statement, Dialog
@@ -393,7 +411,7 @@ dev.execute("write erase", reply=dialog)
 
 ### send
 
-送信する。改行コード'\r'が必要。
+文字列を送信します。改行コード'\r'が必要です。
 
 ```python
 dev.send("show clock\r")
@@ -402,7 +420,7 @@ dev.send("show clock\r", target='standby')
 
 ### sendline
 
-送信する。改行コード不要。
+文字列を送信します。改行コードは不要です。
 
 ```python
 dev.sendline("show clock")
@@ -410,11 +428,11 @@ dev.sendline("show clock")
 
 ### expect
 
-応答を待ち合わせ。待ち合わせる文字列は正規表現が使える。
+正規表現で応答を待ち合わせます。
 
-応答バッファのデフォルトは8Kバイト。show techのように長大なレスポンスだと恐らくバッファが足りない。
+応答バッファのデフォルトは8Kバイトです。show techのように長大なレスポンスだとバッファはが足りないかもしれません。
 
-タイムアウトのデフォルトは10秒。タイムアウト時には例外がでる。
+タイムアウトのデフォルトは10秒です。タイムアウトすると例外がraiseします。
 
 ```python
 dev.sendline("show interfaces")
@@ -423,11 +441,11 @@ dev.expect([r'^pat1', r'pat2'], timeout=10)
 
 ### receive
 
-応答バッファを検索する。真偽値を返す。見つからなくても例外は発報されない。
+受信バッファを検索して真偽値を返します。見つからなくても例外はraiseされません。
 
-`r'nopattern^`を渡すと、`timeout`になるまでバッファを探し続ける。
+`r'nopattern^`を渡すと、`timeout`になるまでバッファを探し続けます。
 
-`receive_buffer()`でバッファを取得する。
+応答のテキストは`receive_buffer()`で取得します。
 
 ```python
 dev.transmit("show interfaces")
@@ -437,7 +455,7 @@ output = dev.receive_buffer()
 
 ### log_user
 
-接続中のコマンド応答を画面に表示するかどうか。
+接続中のコマンド応答を画面に表示するかどうかを指定します。
 
 ```python
 dev.log_user(enable=True)
@@ -446,7 +464,7 @@ dev.log_user(enable=False)
 
 ### log_file
 
-ログのファイルハンドラ変更する。引数を渡さなければ現在設定されているファイル名を返す。
+ログのファイルハンドラ変更します。引数を渡さなければ現在設定されているファイル名が返ります。
 
 ```python
 dev.log_file(filename='/some/path/uut.log')
@@ -455,9 +473,9 @@ dev.log_file() # Returns current FileHandler filename
 
 ### enable disable
 
-管理者モードを変更する。
+特権モードを変更する。
 
-引数に管理者モードになるためのコマンドが渡せるので、`enable`以外のコマンドで管理者モードに入るような装置でも使える。
+引数に管理者モードになるためのコマンドを渡せます。
 
 ```python
 dev.enable()
@@ -467,11 +485,11 @@ dev.disable()
 
 ### ping
 
-その装置からpingを打つ。オプションがたくさんある。
+その装置からpingを打ちます。
 
-拡張pingを指定するextd_pingの指定は真偽値ではなくyes/noなので注意。
+Cisco機器のpingコマンドですのでオプションがたくさんあります。
 
-応答がないと例外SubCommandFailureがraiseする。
+拡張pingを指定するextd_pingは真偽値ではなくyes/noで指定します。
 
 ```python
 output = ping(addr="9.33.11.41")
@@ -497,8 +515,7 @@ pprint(output)
  'Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms\r\n')
 ```
 
-到達できないところにpingすると、unicon.core.errors.SubCommandFailureがraiseしてスクリプトが停止してしまう。
-ping()を使う場合は例外処理を忘れずにやること。
+到達できないところにpingすると、unicon.core.errors.SubCommandFailureがraiseしてスクリプトが停止してしまいます。
 
 ```bash
 r1#
@@ -510,11 +527,13 @@ Traceback (most recent call last):
 unicon.core.errors.SubCommandFailure: ('sub_command failure, patterns matched in the output:', ['Success rate is 0 percent'], 'service result', 'ping 192.168.255.100\r\nType escape sequence to abort.\r\nSending 5, 100-byte ICMP Echos to 192.168.255.100, timeout is 2 seconds:\r\n.....\r\nSuccess rate is 0 percent (0/5)\r\n')
 ```
 
+ping()を使う場合は例外処理が必須です。
+
 ### copy
 
-IOSでのcopyコマンドに相当。設定の保存に使う。
+IOSでのcopyコマンドに相当します。乗り込んだ装置での設定の保存に使います。
 
-成功した場合はcopyコマンドの応答、失敗した場合は例外がraiseする。
+成功した場合はcopyコマンドの応答、失敗した場合は例外がraiseします。
 
 ```python
 out = dev.copy(source='running-conf', dest='startup-config')
@@ -528,14 +547,15 @@ out = dev.copy(source = 'tftp:',
 
 ### reload
 
-（実際に試したことはない）
+（実際に試したことはありません）
 
-装置を再起動する。再起動に使うコマンドを細かく指定できる。
+装置を再起動します。再起動に使うコマンドを細かく指定できます。
 
-再起動で接続は切れるが、再接続してくれる。
-プロンプトの処理がうまくできないケースは`prompt_recover`をTrueにする。
+再起動で接続は切れるが、再接続してくれるようです。
 
-再起動時の応答が欲しいときには、`return_output`をTrueにする。
+再起動したことによりプロンプトの処理がうまく継続できないケースは`prompt_recover`をTrueにします。
+
+再起動時の応答が欲しいときには`return_output`をTrueにします。
 
 ```python
 dev.reload()
@@ -552,13 +572,19 @@ result, output = dev.reload(return_output=True)
 
 ### bash_console guestshell
 
-これら機能を搭載した機種ならコマンドの打ち込みに使える。
+これら機能を搭載した機種でコマンドの打ち込みに使います。
+
+bash
 
 ```python
 with device.bash_console() as bash:
     output1 = bash.execute('ls')
     output2 = bash.execute('pwd')
+```
 
+guestshell
+
+```python
 with device.guestshell(enable_guestshell=True, retries=30) as gs:
     output = gs.execute("ifconfig")
 ```
@@ -567,12 +593,12 @@ with device.guestshell(enable_guestshell=True, retries=30) as gs:
 
 # telnet接続時の不具合対処
 
-> testbedへの接続プロトコルがtelnetの場合のみ、この対処が必要です。SSHであれば問題ありません。
+> testbedへの接続プロトコルがtelnetの場合のみ、この対処が必要です。
 
 uniconはPython標準のtelnetlibを利用します。
 
 telnetlibは一度に長大な応答がくることを想定していませんので、
-show running-configやshow tech等を投げこむと、期待しているデータを受信できずにスクリプトが停止していまいます。
+show running-configやshow tech等を投げこむと、期待しているデータを受信できずにスクリプトが停止することがあります。
 
 telnetlibの受信バッファを大きくすればよいだけなのですが、標準ライブラリを直接書き換えるわけにはいきません。
 そこでtelnetlib.pyのコピーをローカルのlibフォルダに保存して、それを先に読み込ませるようにします。
@@ -601,12 +627,12 @@ if telnetlib.MODIFIED_BY:
 
 # プラグイン開発
 
-新しい装置に対応させるにはプラグインの開発が必要。
+新しい装置に対応させるにはプラグインの開発が必要です。
 
 https://pubhub.devnetcloud.com/media/unicon/docs/developer_guide/plugins.html
 
-実装済みプラグインのソースコードを見たほうが早い。
-ほとんどの処理はgenericで対応できるので、装置固有の差分になるところだけ実装すれば良さそう。
+実装済みプラグインのソースコードを見たほうが早いです。
+ほとんどの処理はgenericで対応済みなので、装置固有の差分になるところだけ実装すれば良さそうです。
 
 https://github.com/CiscoTestAutomation/unicon.plugins/tree/master/src/unicon/plugins
 
@@ -621,7 +647,7 @@ https://github.com/CiscoDevNet/pyats-plugin-examples/tree/master/unicon_plugin_e
 
 # 動作例
 
-実際に動作させてみた例です。
+Pythonスクリプトで動作させた例をいくつか。
 
 <br><br>
 
@@ -635,7 +661,7 @@ https://github.com/CiscoDevNet/pyats-plugin-examples/tree/master/unicon_plugin_e
 
 [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex10.execute.py)
 
-接続後にコマンドを打ち込む例。
+接続後にコマンドを打ち込む例です。
 
 ```python
 output = uut.execute('show version')
@@ -682,7 +708,9 @@ telnetで接続しているときに長大な出力を受け取ると不具合�
 
 [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex13.execute.py)
 
-全てのルータに接続して、複数のコマンドを打ち込んで、装置ごとにその結果をファイルに保存する例です。
+ログを採取する例です。
+
+テストベッド内の全てのルータに接続して、複数のコマンドを打ち込んで、装置ごとにその結果をファイルに保存する例です。
 
 ```python
 for name, dev in testbed.devices.items():
@@ -757,16 +785,13 @@ r1#
 
 [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex30.learn.py)
 
-単体で実行したコマンドの応答をパースするのではなく、抽象的な機能名を指定して包括的に学習させることもできます。
+抽象的な機能名を指定して包括的に学習させることもできます。
 
 サポートしている機能名はここから探します。
 
 https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
 
-`routing` を指定して実行するとルーティングテーブルを取得できます。
-
-実行例。
-
+たとえば`routing` を指定して実行するとルーティングテーブルを取得できます。
 画面に出力すると横に長くて見づらいですが、階層の深い辞書型になっていることがわかります。
 
 ```bash
@@ -789,7 +814,6 @@ https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
 [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex31.learn.py)
 
 インタフェース情報を学習させる例です。
-インタフェースの学習は他の機能とちょっと違う書き方をします。
 
 実行例。
 
@@ -947,8 +971,10 @@ sw4
 
 `config`を指定して学習させる例です。
 
+深い意味合いまで解釈しているわけではありません。
+ブロック化されている設定を、親となる行をキーとした辞書型に格納しているだけです。
+
 実行例。
-深い意味合いまで解釈しているわけではなく、ブロック化されている設定は親となる行をキーとした辞書型に格納しているだけです。
 
 ```bash
 r1#
@@ -985,8 +1011,9 @@ found = find(parsed, req, filter_=False)
 pprint(found)
 ```
 
-Rに渡しているリストは辞書型の階層のキーです。最後の要素に値を指定するとで、その値に一致するものを取得します。
-この例ではこのような階層のエントリを探しています。
+Rに渡しているリストは辞書型の階層のキーです。
+最後の要素に値を指定するとで、その値に一致するものを取得します。
+上記の例ではこのような階層のエントリを探しています。
 
 ```python
 {
@@ -1014,7 +1041,7 @@ Gig3とGig4とLo0が送信パケット数ゼロ(out_pkts==0)ということが�
 
 [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex41.learn_find.py)
 
-もう少し実践的に探す例です。
+もう少し実践的な例です。
 
 oper_statusがupのインタフェースを探す場合はこうします。
 
@@ -1056,7 +1083,8 @@ pprint(intf_up_full)
 stpでブロックポートがどこにあるのかを見つける例です。
 
 全てのスイッチを順番に接続して、`stp`を指定して学習させます。
-学習結果は一つの辞書型に格納しておきます。
+
+学習結果を一つの辞書型に格納しておきます。
 その辞書型に対してこのような探索をかけると全てのブロックポートを見つけることができます。
 
 ```python
@@ -1065,7 +1093,10 @@ req = R(['(.*)', 'info', 'pvst', 'default', 'vlans', '(.*)', 'interfaces', '(.*)
 found = find(learnt, req, filter_=False)
 ```
 
-実行結果。sw3のe0/2とsw4のe0/1、sw4のe0/0がブロックポートになっています。
+実行結果。
+
+sw3のe0/2とsw4のe0/1、sw4のe0/0がブロックポートになっていることがわかります。
+手作業で探すと大変ですが、いとも簡単に見つけることができます。
 
 ```bash
 found blocking port
@@ -1297,7 +1328,7 @@ ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_typ
 [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex54.configure.py)
 
 いろいろ実験しているうちにr1の設定が消えてしまったので、pyATSで投入する例を作りました。
-CDPを設定して、インタフェースを設定して、OSPFをを設定します。
+CDPを設定して、インタフェースを設定して、OSPFを設定します。
 
 実行例。
 
@@ -1406,6 +1437,7 @@ r1#
 実行例。
 
 +記号は増えた行、-記号は削除された行です。
+
 Gig1のコストは、元々100だったのが10に変更されていることがわかります。
 
 ```bash
@@ -1504,7 +1536,7 @@ r1#
 
 [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex70.save.py)
 
-学習させた情報をファイルに保管しておく例です。
+学習させた情報をファイルに保管する例です。
 
 保存はこうします。
 
@@ -1525,3 +1557,17 @@ import pickle
 with open(log_file, 'rb') as f:
     loaded = pickle.load(f)
 ```
+
+<br><br>
+
+# testとjob
+
+検証作業では、OKなのかNGなのか、判定する場面が多々あります。
+
+ルーティングの検証であればPingできることが期待値かもしれませんし、
+アクセスリストの検証であればPingに失敗するのが期待値かもしれません。
+
+どういう条件ならOKなのか、をプログラムで記述して、実行結果をわかりやすくまとめてくれるのがaetestです。
+
+
+aetestを単体で実行してもよいのですが、job形式にしておくと後からブラウザで結果を参照できて便利です。

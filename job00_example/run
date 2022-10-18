@@ -1,3 +1,5 @@
 #!/bin/bash
 
-pyats run job example_job.py --testbed-file lab.yml
+JOB=example_job.py
+
+pyats run job $JOB

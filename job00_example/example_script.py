@@ -1,134 +1,172 @@
 #!/usr/bin/env python
 
-# To get a logger for the script
 import logging
 
-# Needed for aetest script
 from pyats import aetest
 
-# Get your logger for your script
-log = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 ###################################################################
 ###                  COMMON SETUP SECTION                       ###
 ###################################################################
 
-# This is how to create a CommonSetup
-# You can have one of no CommonSetup
-# CommonSetup can be named whatever you want
-
 class common_setup(aetest.CommonSetup):
-    """ Common Setup section """
+    """ セットアップセクションです。
 
-    # CommonSetup have subsection.
-    # You can have 1 to as many subsection as wanted
-    # here is an example of 2 subsections
+    デコレータ@aetest.subsectionを付与した関数を作成します。
+    関数名は任意で構いません。
 
-    # First subsection
+    関数は何個作成しても構いません。書いた順番に実行されます。
+
+    関数を超えて値を共有したい場合は、クラス変数に値を格納します。
+    """
+
     @aetest.subsection
     def sample_subsection_1(self):
         """ Common Setup subsection """
-        log.info("Aetest Common Setup ")
+        logger.info('aetest common setup 1')
 
-    # If you want to get the name of current section,
-    # add section to the argument of the function.
-
-    # Second subsection
     @aetest.subsection
-    def sample_subsection_2(self, section):
+    def sample_subsection_2(self):
         """ Common Setup subsection """
-        log.info("Inside %s" % (section))
+        logger.info('aetest common setup 2')
 
-        # And how to access the class itself ?
-
-        # self refers to the instance of that class, and remains consistent
-        # throughout the execution of that container.
-        log.info("Inside class %s" % (self.uid))
 
 ###################################################################
 ###                     TESTCASES SECTION                       ###
 ###################################################################
 
-# This is how to create a testcase
-# You can have 0 to as many testcase as wanted
-
-# Testcase name : tc_one
+#
+# テストケース１．
+#
 class tc_one(aetest.Testcase):
-    """ This is user Testcases section """
+    """テストケース１．
 
-    # Testcases are divided into 3 sections
-    # Setup, Test and Cleanup.
+    aetest.Testcaseを継承したクラスであることが重要です。
+    クラス名は任意です。
 
-    # This is how to create a setup section
+    テストケースは3つのセクションで構成されます。
+    1. Setup
+    2. Test
+    3. Cleanup
+
+    デコレータを付与することで関数の役割が決まります。
+    """
+
     @aetest.setup
     def prepare_testcase(self, section):
-        """ Testcase Setup section """
-        log.info("Preparing the test")
-        log.info(section)
+        """テストケース１．セットアップセクション
+        """
+        # 引数sectionでセクション名を受け取ります。
+        logger.info('TestCase1-Setup')
 
-    # This is how to create a test section
-    # You can have 0 to as many test section as wanted
+        # 共通的に使う値はクラス変数に格納しておく
+        self.value = 1
 
-    # First test section
-    @ aetest.test
+
+    @aetest.test
     def simple_test_1(self):
-        """ Sample test section. Only print """
-        log.info("First test section ")
+        """テストケース１．テストセクション１．
+        """
+        logger.info('TestCase1-Test1')
 
-    # Second test section
-    @ aetest.test
+        # PASSする
+        assert 1 + 1 == 2
+        assert self.value + 1 == 2
+
+
+    @aetest.test
     def simple_test_2(self):
-        """ Sample test section. Only print """
-        log.info("Second test section ")
+        """テストケース１．テストセクション２．
+        """
+        logger.info('TestCase1-Test2')
 
-    # This is how to create a cleanup section
+        # PASSする
+        self.value += -1
+        assert self.value == 0
+
+
     @aetest.cleanup
     def clean_testcase(self):
-        """ Testcase cleanup section """
-        log.info("Pass testcase cleanup")
+        """ テストケース１．クリンナップセクション
+        """
+        logger.info('TestCase1-Cleanup')
+        del self.value
 
-# Testcase name : tc_two
+
+#
+# テストケース２．
+#
 class tc_two(aetest.Testcase):
-    """ This is user Testcases section """
+    """ テストケース２．
+    """
 
-    @ aetest.test
+    @aetest.test
     def simple_test_1(self):
-        """ Sample test section. Only print """
-        log.info("First test section ")
+        """テストケース２．テストセクション１．
+        """
+        logger.info('TestCase2-Test1')
+
+        # 意図的に失敗させる
         self.failed('This is an intentional failure')
 
-    # Second test section
-    @ aetest.test
-    def simple_test_2(self):
-        """ Sample test section. Only print """
-        log.info("Second test section ")
 
-    # This is how to create a cleanup section
-    @aetest.cleanup
-    def clean_testcase(self):
-        """ Testcase cleanup section """
-        log.info("Pass testcase cleanup")
+#
+# テストケース３．
+#
+@aetest.loop(a=[2, 3])
+class tc_three(aetest.Testcase):
+    """ テストケース３．
+    """
+    @aetest.test
+    @aetest.test.loop(b=[4, 5])
+    def simple_test_1(self, a, b):
+        """テストケース３．テストセクション１．
+        """
+        logger.info('TestCase3-Test2')
+        logger.info("%s ^ %s = %s" % (a, b, a**b))
+
+
+#
+# テストケース４．
+#
+class tc_four(aetest.Testcase):
+
+    @aetest.setup
+    def prepare_testcase(self):
+        # 共通的に使う値はクラス変数に格納しておく
+        self.a = [1, 2, 3, 4, 5]
+        self.b = [4, 5, 6, 7, 8]
+
+    @aetest.test
+    def simple_test_1(self, steps):
+        logger.info('TestCase4-Test1')
+        for i in self.a:
+            with steps.start(f'step for a={i}', continue_=True) as a_step:
+                logger.info(f'Current step index: {a_step.index}')
+                for j in self.b:
+                    with a_step.start(f'step for b={j}', continue_=True) as b_step:
+                        logger.info(f'Current step index: {b_step.index}')
+                        if i >= j:
+                            a_step.failed(f'{i} >= {j}')
+
 
 #####################################################################
 ####                       COMMON CLEANUP SECTION                 ###
 #####################################################################
 
-# This is how to create a CommonCleanup
-# You can have 0 , or 1 CommonCleanup.
-# CommonCleanup can be named whatever you want :)
 class common_cleanup(aetest.CommonCleanup):
-    """ Common Cleanup for Sample Test """
-
-    # CommonCleanup follow exactly the same rule as CommonSetup regarding
-    # subsection
-    # You can have 1 to as many subsection as wanted
-    # here is an example of 1 subsections
+    """クリンナップセクション
+    """
 
     @aetest.subsection
     def clean_everything(self):
-        """ Common Cleanup Subsection """
-        log.info("Aetest Common Cleanup ")
+        """クリンナップセクション
+        """
+        logger.info('aetest Common Cleanup')
 
-if __name__ == '__main__': # pragma: no cover
+
+if __name__ == '__main__':
+
     result = aetest.main()
     aetest.exit_cli_code(result)

@@ -45,7 +45,7 @@ class interface_duplex(aetest.Testcase):
     def setup(self, testbed):
         """Learn and save the interface details from the testbed devices."""
 
-        # 実行結果をクラス内変数に保管しておく
+        # 実行結果をクラス変数に保管しておく
         self.learnt_interfaces = {}
 
         for device_name, device in testbed.devices.items():
@@ -80,10 +80,16 @@ class interface_duplex(aetest.Testcase):
 
 class CommonCleanup(aetest.CommonCleanup):
     """CommonCleanup Section"""
+
     # @aetest.subsection
     # def subsection_cleanup_one(self):
     #     pass
     pass
+
+    @aetest.subsection
+    def disconnect(self, testbed):
+        testbed.disconnect()
+
 
 #
 # stand-alone test
