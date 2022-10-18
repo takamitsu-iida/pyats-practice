@@ -20,6 +20,10 @@ import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
 
+#
+# pyATS
+#
+
 # log directory and log file
 log_dir = os.path.join(here('.'), 'log')
 log_file = os.path.join(log_dir, 'r1_interface.data')
@@ -48,8 +52,6 @@ intf.learn()
 
 # disconnect
 if uut.is_connected():
-    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
-    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
     uut.disconnect()
 
 # save

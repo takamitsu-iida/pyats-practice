@@ -21,8 +21,6 @@ parsed = uut.parse('show interfaces')
 
 # disconnect
 if uut.is_connected():
-    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
-    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
     uut.disconnect()
 
 # display parsed data

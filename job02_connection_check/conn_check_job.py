@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 
-# Example: job.py
-# -------------------
-#
-#   a simple job file for the script above
-
-# pyats run job job.py --testbed-file lab-testbed.yml --html-logs
+import os
 
 from pyats.easypy import run
 
-def main():
+SCRIPT_FILE = 'conn_check_test.py'
+SCRIPT_DIR = os.path.dirname(__file__)
+SCRIPT_PATH = os.path.join(SCRIPT_DIR, SCRIPT_FILE)
 
-    # run api launches a testscript as an individual task.
-    run('conn_check.py')
+def main(runtime):
+    run(
+        testscript=SCRIPT_PATH,
+        runtime=runtime,
+        taskid='conn_check'
+    )

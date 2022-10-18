@@ -10,6 +10,7 @@
 #
 # NOTE
 # 1) The device name must match the hostname of the device, otherwise, the connection will hang.
+#    or use dev.connect(learn_hostname=True)
 # 2) At least one device need to have the alias ‘uut’ in the testbed yaml file.
 #
 
@@ -52,11 +53,11 @@ devices:
     # https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/supported_platforms.html#
     os: iosxe
 
-    # 任意
+    # optional
     platform: CSR1000v
     type: iosxe
 
-    # スタックしている場合はchassis_typeを指定
+    # in case of stacked device
     # chassis_type: stack
 
     connections:
@@ -64,18 +65,24 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 38905
-        timeout: 20
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1     # default 10
+          POST_DISCONNECT_WAIT_SEC: 1         # default 10
+          EXEC_TIMEOUT: 20                    # default 60
+          CONFIG_TIMEOUT: 20                  # default 60
         arguments:
+          # dev.connect()に渡す引数
+          # ここでの指定の方が優先度が高く強い
+          connection_timeout: 10              # default 60
           # osがiosxeの場合、接続と同時に以下のコマンドが投入される
           #  - term length 0
           #  - term width 0
           #  - show version
-          # init_exec_commandsに空っぽのリストを渡せば何も実行されなくなる
+          # init_exec_commandsに空のリストを渡せば何も実行されなくなる
           # init_exec_commands: []
           init_exec_commands:
             - term len 0
             - term wid 0
-
           # osがiosxeの場合、接続と同時に以下の設定変更を行う
           # - no logging console
           # - line console 0
@@ -84,17 +91,23 @@ devices:
           # init_config_commandsに空のリストを渡せば設定変更を抑止できる
           init_config_commands: []
 
-        settings:
-          EXEC_TIMEOUT: 10  # default 60
-          CONFIG_TIMEOUT: 20  # default 60
-
       # SSHで踏み台を経由する場合
       vty:
         proxy: fumidai
         protocol: ssh -oKexAlgorithms=+diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
         ip: 192.168.0.11
         port: -p 22
-
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
+          EXEC_TIMEOUT: 20
+          CONFIG_TIMEOUT: 20
+        arguments:
+          connection_timeout: 10
+          init_exec_commands:
+            - term len 0
+            - term wid 0
+          init_config_commands: []
 
   r2:
     os: iosxe
@@ -105,7 +118,11 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 42503
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
@@ -120,7 +137,11 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 48927
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
@@ -135,12 +156,15 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 41539
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
           init_config_commands: []
-
 
   sw1:
     os: ios
@@ -151,7 +175,11 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 42961
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
@@ -166,7 +194,11 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 45895
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
@@ -181,7 +213,11 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 48429
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
@@ -196,13 +232,15 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 34521
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
           init_config_commands: []
-
-
 
 #topology:
 #
@@ -316,4 +354,3 @@ devices:
 #      Ethernet0/2:
 #        link: sw1-sw4
 #        type: ethernet
-#

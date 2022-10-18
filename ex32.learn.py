@@ -23,8 +23,6 @@ for name, dev in testbed.devices.items():
             learnt[name] = dev.learn('stp')
 
             # disconnect
-            dev.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 1
-            dev.settings.POST_DISCONNECT_WAIT_SEC = 1
             dev.disconnect()
 
         except (TimeoutError, ConnectionError, SubCommandFailure) as e:

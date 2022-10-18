@@ -25,15 +25,16 @@ ping_list = [
 # https://pubhub.devnetcloud.com/media/pyats/docs/easypy/jobfile.html#custom-arguments
 parser = argparse.ArgumentParser()
 parser.add_argument(
-        "--dest",
-        dest = "ping_list",
+        '--dest',
+        dest = 'ping_list',
         type=str,
-        default = " ".join(ping_list),
-        help = "space delimted list of IP address(es) to test connectivity"
+        default = ' '.join(ping_list),
+        help = 'space delimted list of IP address(es) to test connectivity'
     )
 
-# compute the script path from this location
-SCRIPT_PATH = os.path.dirname(__file__)
+SCRIPT_FILE = 'ping_test.py'
+SCRIPT_DIR = os.path.dirname(__file__)
+SCRIPT_PATH = os.path.join(SCRIPT_DIR, SCRIPT_FILE)
 
 def main(runtime):
     """job file entrypoint"""
@@ -43,8 +44,8 @@ def main(runtime):
 
     # run script, pass arguments to script as parameters
     run(
-        testscript=os.path.join(SCRIPT_PATH, "ping_test.py"),
+        testscript=SCRIPT_PATH,
         runtime=runtime,
-        taskid="Ping",
+        taskid='Ping',
         **vars(args)
     )

@@ -1,14 +1,17 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 
-# conn_check.py --testbed lab.yml
-
-from pyats import aetest
+# conn_check_test.py --testbed lab.yml
 
 import logging
 import re
 
+from pyats import aetest
+
 logger = logging.getLogger(__name__)
 
+###################################################################
+###                  COMMON SETUP SECTION                       ###
+###################################################################
 
 class CommonSetup(aetest.CommonSetup):
 
@@ -38,6 +41,10 @@ class CommonSetup(aetest.CommonSetup):
             ios2.connect()
 
 
+###################################################################
+###                     TESTCASES SECTION                       ###
+###################################################################
+
 @aetest.loop(device=('ios1', 'ios2'))
 class PingTestcase(aetest.Testcase):
 
@@ -45,33 +52,32 @@ class PingTestcase(aetest.Testcase):
     def ping(self, device, destination):
         try:
             result = self.parameters[device].ping(destination)
-
         except Exception as e:
-            self.failed('Ping {} from device {} failed with error: {}'.format(
-                destination,
-                device,
-                str(e),
-            ),
-                goto=['exit'])
+            message = 'Ping {} from device {} failed with error: {}'.format(destination, device, str(e))
+            self.failed(message, goto=['exit'])
         else:
             match = re.search(r'Success rate is (?P<rate>\d+) percent', result)
             success_rate = match.group('rate')
+            message = 'Ping {} with success rate of {}%'.format(destination, success_rate)
+            logger.info(message)
 
-            logger.info('Ping {} with success rate of {}%'.format(
-                destination,
-                success_rate,
-            )
-            )
 
+#####################################################################
+####                       COMMON CLEANUP SECTION                 ###
+#####################################################################
 
 class CommonCleanup(aetest.CommonCleanup):
 
     @aetest.subsection
     def disconnect(self, steps, ios1, ios2):
         with steps.start('Disconnecting from %s' % ios1.name):
+            ios1.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+            ios1.settings.POST_DISCONNECT_WAIT_SEC = 0
             ios1.disconnect()
 
         with steps.start('Disconnecting from %s' % ios2.name):
+            ios2.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
+            ios2.settings.POST_DISCONNECT_WAIT_SEC = 0
             ios2.disconnect()
 
 
@@ -79,11 +85,19 @@ if __name__ == '__main__':
 
     import argparse
 
-    from pyats.topology import loader
+    from pyats import topology
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--testbed', dest='testbed', type=loader.load)
 
-    args, unknown = parser.parse_known_args()
+    parser.add_argument(
+        '--testbed',
+        dest='testbed',
+        help='testbed YAML file',
+        type=topology.loader.load,
+        default=None,
+    )
 
-    aetest.main(**vars(args))
+    # parse command line arguments only we know
+    args, _ = parser.parse_known_args()
+
+    aetest.main(testbed=args.testbed)

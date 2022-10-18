@@ -28,43 +28,23 @@ pyats diff working_snapshot broken_snapshot --output diff_snapshot
 
 ## ドキュメント
 
-- devnet pyATS
+- devnet pyATS https://developer.cisco.com/pyats/
 
-https://developer.cisco.com/pyats/
+- pyATS Documentation https://pubhub.devnetcloud.com/media/pyats/docs/index.html
 
-- pyATS Documentation
+- Genie https://developer.cisco.com/docs/genie-docs/
 
-https://pubhub.devnetcloud.com/media/pyats/docs/index.html
+- Genieでparseできるコマンド検索 https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers
 
-- Genieでパースできるコマンド検索
+- Genieでlearnできる機能検索 https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
 
-https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers
+- aetest https://pubhub.devnetcloud.com/media/pyats/docs/aetest/index.html
 
+- job file https://pubhub.devnetcloud.com/media/pyats/docs/easypy/jobfile.html
 
-- Genieでサポートしている機能名検索
+- examples(github) https://github.com/CiscoTestAutomation/examples
 
-https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
-
-- aetest
-
-https://pubhub.devnetcloud.com/media/pyats/docs/aetest/index.html
-
-- job file
-
-https://pubhub.devnetcloud.com/media/pyats/docs/easypy/jobfile.html
-
-- genie
-
-https://developer.cisco.com/docs/genie-docs/
-
-- examples(github)
-
-https://github.com/CiscoTestAutomation/examples
-
-- solution example(github)
-
-https://github.com/CiscoTestAutomation/solutions_examples
-
+- solution example(github) https://github.com/CiscoTestAutomation/solutions_examples
 
 <br><br>
 
@@ -103,6 +83,7 @@ pip install yang.connector
 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
 
 利用しているラボのtestbedはこの通り。
+eve-ng上の仮想環境なのでルータ・スイッチにパスワードは設定されていない。
 
 ```yml
 ---
@@ -169,10 +150,18 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: feve
         port: 38905
-        timeout: 10
+        #
+        # dev.connect()に渡される引数よりもtestbedで指定した値の方が優先される
+        #
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1     # default 10
+          POST_DISCONNECT_WAIT_SEC: 1         # default 10
+          EXEC_TIMEOUT: 20                    # default 60
+          CONFIG_TIMEOUT: 20                  # default 60
         arguments:
+          connection_timeout: 10
           # osがiosxeの場合、接続と同時に以下のコマンドが投入される
           #  - term length 0
           #  - term width 0
@@ -194,6 +183,9 @@ devices:
         protocol: ssh -oKexAlgorithms=+diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
         ip: 192.168.0.11
         port: -p 22
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
 
 
   r2:
@@ -203,8 +195,11 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: feve
         port: 42503
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
           init_exec_commands:
             - term len 0
@@ -218,8 +213,11 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: feve
         port: 48927
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
           init_exec_commands:
             - term len 0
@@ -233,8 +231,11 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: feve
         port: 41539
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
           init_exec_commands:
             - term len 0
@@ -312,8 +313,6 @@ jobのログ置き場を変えたいなら、この部分を変更すればよ�
 
 スタックや冗長化したルートプロセッサに対応している。
 
-プレイバック機能があり、接続したログを使ってモックを作れる。
-
 <br><br>
 
 ### デフォルトのプロンプト
@@ -332,19 +331,73 @@ https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/services/service_dia
 このデフォルト値は長過ぎるので、単一コネクションであれば短くした方が良い。
 複数のコネクションを同時に生成しているときは慎重に判断する。
 
+参照 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
+
 ```python
 dev.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
 dev.settings.POST_DISCONNECT_WAIT_SEC = 0
 dev.disconnect()
 ```
 
+testbedファイルに書き込んでもよい。
+
+```yml
+  r1:
+    os: iosxe
+    platform: CSR1000v
+    type: iosxe
+    connections:
+      console:
+        protocol: telnet
+        ip: feve
+        port: 38905
+        timeout: 20
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
+```
+
+### execute
+
+コマンドの打ち込みであればsend()やsendline()ではなくexecute()を使う。
+
+デフォルトのタイムアウトは60秒。それを超えるとunicon.core.errors.TimeoutErrorが出る。
+長大な応答が予期されるときはtimeoutを指定する。
+
+このようにコマンド投入でモードの変更が発生するとunicon.core.errors.StateMachineErrorが出てスクリプトが停止する。
+
+```python
+dev.execute('config term')
+```
+
+モードの変更が伴うコマンドを投入するときはallow_state_changeをTrueにする。
+
+```python
+dev.execute('config term', allow_state_change=True)
+```
+
+実行時にYes/Noの確認が生じる場合は、Dialogを指定する。
+
+```python
+from unicon.eal.dialogs import Statement, Dialog
+dialog = Dialog([
+    Statement(pattern=r'.*Do you wish to proceed anyway\? \(y/n\)\s*\[n\]',
+                        action='sendline(y)',
+                        loop_continue=True,
+                        continue_timer=False)
+])
+dev.execute("write erase", reply=dialog)
+```
+
+参照 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/services/generic_services.html#execute
+
 ### send
 
 送信する。改行コード'\r'が必要。
 
 ```python
-rtr.send("show clock\r")
-rtr.send("show clock\r", target='standby')
+dev.send("show clock\r")
+dev.send("show clock\r", target='standby')
 ```
 
 ### sendline
@@ -352,7 +405,7 @@ rtr.send("show clock\r", target='standby')
 送信する。改行コード不要。
 
 ```python
-rtr.sendline("show clock")
+dev.sendline("show clock")
 ```
 
 ### expect
@@ -364,8 +417,8 @@ rtr.sendline("show clock")
 タイムアウトのデフォルトは10秒。タイムアウト時には例外がでる。
 
 ```python
-rtr.sendline("show interfaces")
-rtr.expect([r'^pat1', r'pat2'], timeout=10)
+dev.sendline("show interfaces")
+dev.expect([r'^pat1', r'pat2'], timeout=10)
 ```
 
 ### receive
@@ -377,9 +430,9 @@ rtr.expect([r'^pat1', r'pat2'], timeout=10)
 `receive_buffer()`でバッファを取得する。
 
 ```python
-rtr.transmit("show interfaces")
-rtr.receive(r'^pat1', timeout=10, target='standby')
-output = rtr.receive_buffer()
+dev.transmit("show interfaces")
+dev.receive(r'^pat1', timeout=10, target='standby')
+output = dev.receive_buffer()
 ```
 
 ### log_user
@@ -387,8 +440,8 @@ output = rtr.receive_buffer()
 接続中のコマンド応答を画面に表示するかどうか。
 
 ```python
-rtr.log_user(enable=True)
-rtr.log_user(enable=False)
+dev.log_user(enable=True)
+dev.log_user(enable=False)
 ```
 
 ### log_file
@@ -396,8 +449,8 @@ rtr.log_user(enable=False)
 ログのファイルハンドラ変更する。引数を渡さなければ現在設定されているファイル名を返す。
 
 ```python
-rtr.log_file(filename='/some/path/uut.log')
-rtr.log_file() # Returns current FileHandler filename
+dev.log_file(filename='/some/path/uut.log')
+dev.log_file() # Returns current FileHandler filename
 ```
 
 ### enable disable
@@ -407,9 +460,9 @@ rtr.log_file() # Returns current FileHandler filename
 引数に管理者モードになるためのコマンドが渡せるので、`enable`以外のコマンドで管理者モードに入るような装置でも使える。
 
 ```python
-rtr.enable()
-rtr.enable(command='enable 7')
-rtr.disable()
+dev.enable()
+dev.enable(command='enable 7')
+dev.disable()
 ```
 
 ### ping
@@ -444,7 +497,8 @@ pprint(output)
  'Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms\r\n')
 ```
 
-到達できないところにpingすると、SubCommandFailure例外がraiseしてスクリプトが停止してしまう。
+到達できないところにpingすると、unicon.core.errors.SubCommandFailureがraiseしてスクリプトが停止してしまう。
+ping()を使う場合は例外処理を忘れずにやること。
 
 ```bash
 r1#
@@ -456,8 +510,6 @@ Traceback (most recent call last):
 unicon.core.errors.SubCommandFailure: ('sub_command failure, patterns matched in the output:', ['Success rate is 0 percent'], 'service result', 'ping 192.168.255.100\r\nType escape sequence to abort.\r\nSending 5, 100-byte ICMP Echos to 192.168.255.100, timeout is 2 seconds:\r\n.....\r\nSuccess rate is 0 percent (0/5)\r\n')
 ```
 
-ping()を使う場合は例外処理を忘れずにやること。
-
 ### copy
 
 IOSでのcopyコマンドに相当。設定の保存に使う。
@@ -465,9 +517,9 @@ IOSでのcopyコマンドに相当。設定の保存に使う。
 成功した場合はcopyコマンドの応答、失敗した場合は例外がraiseする。
 
 ```python
-out = rtr.copy(source='running-conf', dest='startup-config')
+out = dev.copy(source='running-conf', dest='startup-config')
 
-out = rtr.copy(source = 'tftp:',
+out = dev.copy(source = 'tftp:',
                 dest = 'bootflash:',
                 source_file  = 'copy-test',
                 dest_file = 'copy-test',
@@ -476,11 +528,9 @@ out = rtr.copy(source = 'tftp:',
 
 ### reload
 
-実際に試したことはない。
+（実際に試したことはない）
 
-装置を再起動する。
-
-再起動に使うコマンドを指定できる。
+装置を再起動する。再起動に使うコマンドを細かく指定できる。
 
 再起動で接続は切れるが、再接続してくれる。
 プロンプトの処理がうまくできないケースは`prompt_recover`をTrueにする。
@@ -488,16 +538,16 @@ out = rtr.copy(source = 'tftp:',
 再起動時の応答が欲しいときには、`return_output`をTrueにする。
 
 ```python
-rtr.reload()
+dev.reload()
 
 # If reload command is other than 'reload'
-rtr.reload(reload_command="reload location all", timeout=400)
+dev.reload(reload_command="reload location all", timeout=400)
 
 # using prompt_recovery option
-rtr.reload(prompt_recovery=True)
+dev.reload(prompt_recovery=True)
 
 # using return_output
-result, output = rtr.reload(return_output=True)
+result, output = dev.reload(return_output=True)
 ```
 
 ### bash_console guestshell
@@ -517,9 +567,7 @@ with device.guestshell(enable_guestshell=True, retries=30) as gs:
 
 # telnet接続時の不具合対処
 
-:::note warn
-testbedへの接続プロトコルがtelnetの場合のみ、この対処が必要です。SSHであれば問題ありません。
-:::
+> testbedへの接続プロトコルがtelnetの場合のみ、この対処が必要です。SSHであれば問題ありません。
 
 uniconはPython標準のtelnetlibを利用します。
 
@@ -617,8 +665,63 @@ r1#
 
 [source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex11.execute.py)
 
+ex10.execute.pyと同一ですが、各処理に例外のハンドリングを加えたものです。
+
+<br><br>
+
+### ex12.execute.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex12.execute.py)
+
 show running-configを打ち込むだけですが、
 telnetで接続しているときに長大な出力を受け取ると不具合がでることがありますので、その対処を加えた例です。
+
+<br><br>
+
+### ex13.execute.py
+
+[source code](https://github.com/takamitsu-iida/pyats-practice/blob/main/ex13.execute.py)
+
+全てのルータに接続して、複数のコマンドを打ち込んで、装置ごとにその結果をファイルに保存する例です。
+
+```python
+for name, dev in testbed.devices.items():
+    if dev.platform == 'CSR1000v':
+
+        log_path = os.path.join(log_dir, f'ex13_{name}.log')
+        with open(log_path, 'w') as f:
+            # connect
+            try:
+                dev.connect(via='console')
+            except (TimeoutError, ConnectionError, SubCommandFailure) as e:
+                f.write(str(e))
+                continue
+
+            # execute
+            for cmd in command_list:
+                try:
+                    f.write('\n===\n')
+                    f.write(cmd)
+                    f.write('\n===\n')
+                    f.write(dev.execute(cmd))
+                    f.write('\n\n')
+                except SubCommandFailure:
+                    f.write(f'`{cmd}` invalid. Skipping.')
+
+            # disconnect
+            if dev.is_connected():
+                dev.disconnect()
+```
+
+これを実行するとlogディレクトリにファイルが保存されます。
+
+```bash
+log
+├── ex13_r1.log
+├── ex13_r2.log
+├── ex13_r3.log
+└── ex13_r4.log
+```
 
 <br><br>
 

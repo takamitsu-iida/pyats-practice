@@ -59,6 +59,4 @@ gig1.build_unconfig(apply=True, attributes="description")
 
 # disconnect
 if uut.is_connected():
-    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
-    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
     uut.disconnect()

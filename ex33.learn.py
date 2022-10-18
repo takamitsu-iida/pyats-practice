@@ -20,6 +20,10 @@ import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
 
+#
+# pyATS
+#
+
 # import Genie
 from genie.testbed import load
 
@@ -35,8 +39,6 @@ output = uut.learn('config')
 
 # disconnect
 if uut.is_connected():
-    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
-    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
     uut.disconnect()
 
 from pprint import pprint

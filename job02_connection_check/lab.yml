@@ -20,8 +20,11 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 38905
-        timeout: 10
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
@@ -36,7 +39,11 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 42503
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
@@ -51,7 +58,11 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 48927
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
@@ -66,8 +77,36 @@ devices:
         protocol: telnet
         ip: feve.nsc.css.fujitsu.com
         port: 41539
+        settings:
+          GRACEFUL_DISCONNECT_WAIT_SEC: 1
+          POST_DISCONNECT_WAIT_SEC: 1
         arguments:
+          connection_timeout: 10
           init_exec_commands:
             - term len 0
             - term wid 0
           init_config_commands: []
+
+
+topology:
+  r1:
+    interfaces:
+      GigabitEthernet1:
+        ipv4: 192.168.12.1/24
+        link: r1-r2
+        type: ethernet
+      Loopback0:
+        ipv4: 192.168.255.1/32
+        link: r1_Loopback0
+        type: loopback
+
+  r2:
+    interfaces:
+      GigabitEthernet1:
+        ipv4: 192.168.12.2/24
+        link: r1-r2
+        type: ethernet
+      Loopback0:
+        ipv4: 192.168.255.2/32
+        link: r2_Loopback0
+        type: loopback

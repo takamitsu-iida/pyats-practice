@@ -21,8 +21,6 @@ for name, dev in testbed.devices.items():
         learnt[name] = dev.learn('stp')
 
         # disconnect
-        dev.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
-        dev.settings.POST_DISCONNECT_WAIT_SEC = 0
         dev.disconnect()
 
 

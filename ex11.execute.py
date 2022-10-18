@@ -8,7 +8,10 @@ import sys
 
 # import Genie
 from genie.testbed import load
-from unicon.core.errors import TimeoutError, ConnectionError, SubCommandFailure
+from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
+from unicon.core.errors import SubCommandFailure
+
+
 
 testbed = load('lab.yml')
 
@@ -17,7 +20,7 @@ uut = testbed.devices['uut']
 # connect to the uut
 try:
     uut.connect(via='console')
-except (TimeoutError, ConnectionError) as e:
+except (TimeoutError, StateMachineError, ConnectionError) as e:
     print(e)
     sys.exit(1)
 
@@ -29,8 +32,6 @@ except SubCommandFailure as e:
 
 # disconnect from the uut
 if uut.is_connected():
-    uut.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
-    uut.settings.POST_DISCONNECT_WAIT_SEC = 0
     uut.disconnect()
 
 # print output
