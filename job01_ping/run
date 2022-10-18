@@ -1,7 +1,7 @@
 #!/bin/bash
 
 JOB=ping_job.py
-TESTBED=lab.yml
+TESTBED=../lab.yml
 
 # RECORD
 # pyats run job $JOB --testbed-file $TESTBED --record recorded

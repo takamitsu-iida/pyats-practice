@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# conn_check_test.py --testbed lab.yml
-
 import logging
 import re
 
@@ -28,18 +26,16 @@ class CommonSetup(aetest.CommonSetup):
         self.parent.parameters.update(ios1=ios1, ios2=ios2)
 
         # get corresponding links
-        links = ios1.find_links(ios2)
-
-        assert len(links) >= 1, 'require one link between ios1 and ios2'
+        # links = ios1.find_links(ios2)
+        # assert len(links) >= 1, 'require one link between ios1 and ios2'
 
     @aetest.subsection
     def establish_connections(self, steps, ios1, ios2):
-        with steps.start('Connecting to %s' % ios1.name):
-            ios1.connect()
+        with steps.start(f'Connecting to {ios1.name}'):
+            ios1.connect(via='console')
 
-        with steps.start('Connecting to %s' % ios2.name):
-            ios2.connect()
-
+        with steps.start(f'Connecting to {ios2.name}'):
+            ios2.connect(via='console')
 
 ###################################################################
 ###                     TESTCASES SECTION                       ###
@@ -61,7 +57,6 @@ class PingTestcase(aetest.Testcase):
             message = 'Ping {} with success rate of {}%'.format(destination, success_rate)
             logger.info(message)
 
-
 #####################################################################
 ####                       COMMON CLEANUP SECTION                 ###
 #####################################################################
@@ -70,21 +65,18 @@ class CommonCleanup(aetest.CommonCleanup):
 
     @aetest.subsection
     def disconnect(self, steps, ios1, ios2):
-        with steps.start('Disconnecting from %s' % ios1.name):
-            ios1.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
-            ios1.settings.POST_DISCONNECT_WAIT_SEC = 0
+        with steps.start(f'Disconnecting from {ios1.name}'):
             ios1.disconnect()
 
-        with steps.start('Disconnecting from %s' % ios2.name):
-            ios2.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
-            ios2.settings.POST_DISCONNECT_WAIT_SEC = 0
+        with steps.start('Disconnecting from {ios2.name}'):
             ios2.disconnect()
 
 
 if __name__ == '__main__':
 
-    import argparse
+    # python conn_check_test.py --testbed ../lab.yml
 
+    import argparse
     from pyats import topology
 
     parser = argparse.ArgumentParser()

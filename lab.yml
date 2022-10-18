@@ -63,7 +63,7 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
         port: 38905
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1     # default 10
@@ -116,7 +116,7 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
         port: 42503
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
@@ -135,7 +135,7 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
         port: 48927
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
@@ -154,7 +154,7 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
         port: 41539
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
@@ -173,7 +173,7 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
         port: 42961
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
@@ -192,7 +192,7 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
         port: 45895
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
@@ -211,7 +211,7 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
         port: 48429
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
@@ -230,7 +230,7 @@ devices:
     connections:
       console:
         protocol: telnet
-        ip: feve.nsc.css.fujitsu.com
+        ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
         port: 34521
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1

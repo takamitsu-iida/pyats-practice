@@ -27,14 +27,13 @@ class CommonSetup(aetest.CommonSetup):
         # make sure testbed is provided
         assert testbed, 'Testbed is not provided!'
 
-        # connect to all testbed devices
-        #   By default ANY error in the CommonSetup will fail the entire test run
-        #   Here we catch common exceptions if a device is unavailable to allow test to continue
-        try:
-            testbed.connect()
-        except (TimeoutError, StateMachineError, ConnectionError):
-            logger.error('Unable to connect to all devices')
-
+        # connect only CSR1000v router
+        for _, dev in testbed.devices.items():
+            if dev.platform == 'CSR1000v':
+                try:
+                    dev.connect(via='console')
+                except (TimeoutError, StateMachineError, ConnectionError):
+                    logger.error('Unable to connect to all devices')
 
 ###################################################################
 ###                     TESTCASES SECTION                       ###
@@ -43,17 +42,18 @@ class CommonSetup(aetest.CommonSetup):
 class interface_duplex(aetest.Testcase):
     @aetest.setup
     def setup(self, testbed):
-        """Learn and save the interface details from the testbed devices."""
+        """ルータのインタフェース情報を学習してクラス変数の保管する"""
 
-        # 実行結果をクラス変数に保管しておく
         self.learnt_interfaces = {}
 
         for device_name, device in testbed.devices.items():
-            # Only attempt to learn details on supported network operation systems
-            if device.os in ('ios', 'iosxe', 'iosxr', 'nxos'):
-                logger.info(f'{device_name} connected status: {device.connected}')
-                logger.info(f'Learning Interfaces for {device_name}')
-                self.learnt_interfaces[device_name] = device.learn('interface').info
+            # 対象はCSR1000vのみ
+            if device.platform != 'CSR1000v':
+                continue
+
+            logger.info(f'{device_name} connected status: {device.connected}')
+            logger.info(f'Learning Interfaces for {device_name}')
+            self.learnt_interfaces[device_name] = device.learn('interface').info
 
     @aetest.test
     def test(self, steps):
@@ -79,13 +79,6 @@ class interface_duplex(aetest.Testcase):
 #####################################################################
 
 class CommonCleanup(aetest.CommonCleanup):
-    """CommonCleanup Section"""
-
-    # @aetest.subsection
-    # def subsection_cleanup_one(self):
-    #     pass
-    pass
-
     @aetest.subsection
     def disconnect(self, testbed):
         testbed.disconnect()
@@ -95,10 +88,11 @@ class CommonCleanup(aetest.CommonCleanup):
 # stand-alone test
 #
 if __name__ == '__main__':
+
+    # python duplex_test.py --testbed ../lab.yml
+
     import argparse
     from pyats import topology
-
-    # from genie.conf import Genie
 
     parser = argparse.ArgumentParser()
     parser.add_argument(

@@ -79,6 +79,12 @@ pip install rest.connector
 pip install yang.connector
 ```
 
+パスワードの類を暗号化して記述するためのモジュールをインストールします。
+
+```bash
+pip install cryptography
+```
+
 <br><br>
 
 ## testbed
@@ -264,6 +270,53 @@ pyats validate testbed [testbed yaml file]
 
 > testbedファイルのなかでtopologyを記述した場合、PythonでのAPI利用に支障がでることがあります。
 > 明確に使い道が想定される場合をのぞいて、testbedファイルの中にtopologyセクションは記載しないほうが良さそうです。
+
+<br><br>
+
+## 秘匿化
+
+testbedファイルにパスワードをそのまま書くのはよくないので暗号化します。
+
+参照 https://pubhub.devnetcloud.com/media/pyats/docs/utilities/secret_strings.html
+
+```bash
+pip install cryptography
+```
+
+`~/.pyats/pyats.conf`を作成して設定を記述します。
+
+```INI
+[secrets]
+string.representer = pyats.utils.secret_strings.FernetSecretStringRepresenter
+```
+
+```bash
+chmod 600 ~/.pyats/pyats.conf
+```
+
+```bash
+pyats secret keygen
+```
+
+生成されたキーをコピーして、`~/.pyats/pyats.conf`の[secrets]セクションに追記します。
+
+```INI
+[secrets]
+string.representer = pyats.utils.secret_strings.FernetSecretStringRepresenter
+string.key = ....
+```
+
+文字列を暗号化します。
+
+```bash
+pyats secret encode
+```
+
+testbedファイルでは生成された文字列を使ってこのように書きます。
+
+```
+password: "%ENC{ ... }"
+```
 
 <br><br>
 

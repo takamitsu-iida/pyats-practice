@@ -25,18 +25,12 @@ class CommonSetup(aetest.CommonSetup):
         # add them to testscript parameters
         self.parent.parameters.update(ios1=ios1, ios2=ios2)
 
-        # get corresponding links
-        links = ios1.find_links(ios2)
-
-        assert len(links) >= 1, 'require one link between ios1 and ios2'
-
     @aetest.subsection
     def establish_connections(self, steps, ios1, ios2):
         with steps.start('Connecting to %s' % ios1.name):
-            ios1.connect()
-
+            ios1.connect(via='console')
         with steps.start('Connecting to %s' % ios2.name):
-            ios2.connect()
+            ios2.connect(via='console')
 
 
 ###################################################################
