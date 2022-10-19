@@ -1401,12 +1401,31 @@ r1(config)#end
 
 スタティックルーティングを設定する例です。
 
+追加して、削除します。
+
 ```python
 from genie.libs.conf.static_routing.static_routing import StaticRouting
 
 static_routing = StaticRouting()
 
-static_routing.device_attr[uut].vrf_attr['default'].address_family_attr['ipv4'].route_attr['10.10.10.0/24'].interface_attr['GigabitEthernet1'].if_nexthop = '192.168.12.2'
+# ipv4オブジェクトを取り出す
+ipv4 = static_routing.device_attr[uut].vrf_attr['default'].address_family_attr['ipv4']
+
+# スタティックルートを加えていく
+ipv4.route_attr['10.10.10.0/24'].interface_attr['GigabitEthernet1'].if_nexthop = '192.168.12.2'
+ipv4.route_attr['10.10.20.0/24'].interface_attr['GigabitEthernet1'].if_nexthop = '192.168.12.2'
+ipv4.route_attr['10.10.30.0/24'].interface_attr['GigabitEthernet1'].if_nexthop = '192.168.12.2'
+ipv4.route_attr['10.10.40.0/24'].interface_attr['GigabitEthernet1'].if_nexthop = '192.168.12.2'
+ipv4.route_attr['10.10.50.0/24'].interface_attr['GigabitEthernet1'].if_nexthop = '192.168.12.2'
+
+# これは必須
+uut.add_feature(static_routing)
+
+# add static route
+static_routing.build_config(apply=True)
+
+# delete static route
+static_routing.build_unconfig(apply=True)
 ```
 
 <br><br>

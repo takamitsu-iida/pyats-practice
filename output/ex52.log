@@ -1,32 +1,56 @@
 
-2022-10-19 10:29:27,085: %UNICON-INFO: +++ r1 logfile /tmp/r1-cli-20221019T102927081.log +++
+2022-10-19 20:53:29,441: %UNICON-INFO: +++ r1 logfile /tmp/r1-cli-20221019T205329438.log +++
 
-2022-10-19 10:29:27,085: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+2022-10-19 20:53:29,442: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
 Trying 10.38.220.42...
 
 
-2022-10-19 10:29:27,172: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140554473747648 +++
+2022-10-19 20:53:29,510: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140531943523472 +++
 
-2022-10-19 10:29:27,172: %UNICON-INFO: connection to r1
+2022-10-19 20:53:29,510: %UNICON-INFO: connection to r1
 Connected to 10.38.220.42.
 Escape character is '^]'.
 ]0;r1
 r1#
 
-2022-10-19 10:29:28,278: %UNICON-INFO: +++ initializing handle +++
+2022-10-19 20:53:30,607: %UNICON-INFO: +++ initializing handle +++
 
-2022-10-19 10:29:28,344: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
+2022-10-19 20:53:30,671: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
 term len 0
 r1#
 
-2022-10-19 10:29:28,625: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
+2022-10-19 20:53:30,979: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
 term wid 0
 r1#
-'ip route 10.10.10.0 255.255.255.0 GigabitEthernet1 192.168.12.2'
+('ip route 10.10.10.0 255.255.255.0 GigabitEthernet1 192.168.12.2\n'
+ 'ip route 10.10.20.0 255.255.255.0 GigabitEthernet1 192.168.12.2\n'
+ 'ip route 10.10.30.0 255.255.255.0 GigabitEthernet1 192.168.12.2\n'
+ 'ip route 10.10.40.0 255.255.255.0 GigabitEthernet1 192.168.12.2\n'
+ 'ip route 10.10.50.0 255.255.255.0 GigabitEthernet1 192.168.12.2')
 
-2022-10-19 10:29:29,103: %UNICON-INFO: +++ r1 with via 'console': configure +++
+2022-10-19 20:53:32,230: %UNICON-INFO: +++ r1 with via 'console': configure +++
 config term
 Enter configuration commands, one per line.  End with CNTL/Z.
 r1(config)#ip route 10.10.10.0 255.255.255.0 GigabitEthernet1 192.168.12.2
+r1(config)#ip route 10.10.20.0 255.255.255.0 GigabitEthernet1 192.168.12.2
+r1(config)#ip route 10.10.30.0 255.255.255.0 GigabitEthernet1 192.168.12.2
+r1(config)#ip route 10.10.40.0 255.255.255.0 GigabitEthernet1 192.168.12.2
+r1(config)#ip route 10.10.50.0 255.255.255.0 GigabitEthernet1 192.168.12.2
+r1(config)#end
+r1#
+('no ip route 10.10.10.0 255.255.255.0 GigabitEthernet1 192.168.12.2\n'
+ 'no ip route 10.10.20.0 255.255.255.0 GigabitEthernet1 192.168.12.2\n'
+ 'no ip route 10.10.30.0 255.255.255.0 GigabitEthernet1 192.168.12.2\n'
+ 'no ip route 10.10.40.0 255.255.255.0 GigabitEthernet1 192.168.12.2\n'
+ 'no ip route 10.10.50.0 255.255.255.0 GigabitEthernet1 192.168.12.2')
+
+2022-10-19 20:53:33,894: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#no ip route 10.10.10.0 255.255.255.0 GigabitEthernet1 192.168.12.2
+r1(config)#no ip route 10.10.20.0 255.255.255.0 GigabitEthernet1 192.168.12.2
+r1(config)#no ip route 10.10.30.0 255.255.255.0 GigabitEthernet1 192.168.12.2
+r1(config)#no ip route 10.10.40.0 255.255.255.0 GigabitEthernet1 192.168.12.2
+r1(config)#no ip route 10.10.50.0 255.255.255.0 GigabitEthernet1 192.168.12.2
 r1(config)#end
 r1#
