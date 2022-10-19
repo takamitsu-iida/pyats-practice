@@ -714,10 +714,10 @@ Pythonスクリプトで動作させた例をいくつか。
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex10.execute.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex10.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex10.log" target="_blank">log</a>]
 </p>
 
-<p><a href="" target="_blank">実行ログ全文</a></p>
+<p><a href="" target="_blank">log</a></p>
 
 接続後にコマンドを打ち込む例です。
 
@@ -749,7 +749,7 @@ r1#
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex11.execute.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex11.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex11.log" target="_blank">log</a>]
 </p>
 
 ex10.execute.pyと同一ですが、各処理に例外のハンドリングを加えたものです。
@@ -760,7 +760,7 @@ ex10.execute.pyと同一ですが、各処理に例外のハンドリングを�
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex12.execute.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex12.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex12.log" target="_blank">log</a>]
 </p>
 
 show running-configを打ち込むだけですが、
@@ -772,7 +772,7 @@ telnetで接続しているときに長大な出力を受け取ると不具合�
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex13.execute.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex13.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex13.log" target="_blank">log</a>]
 </p>
 
 ログを採取する例です。
@@ -824,7 +824,7 @@ log
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex20.parse.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex20.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex20.log" target="_blank">log</a>]
 </p>
 
 show versionを打ち込んで、その応答を辞書型に変換する例です。
@@ -855,7 +855,7 @@ r1#
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex30.learn.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex30.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex30.log" target="_blank">log</a>]
 </p>
 
 抽象的な機能名を指定して包括的に学習させることもできます。
@@ -886,7 +886,7 @@ https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex31.learn.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex31.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex31.log" target="_blank">log</a>]
 </p>
 
 インタフェース情報を学習させる例です。
@@ -958,7 +958,7 @@ dict_keys(['GigabitEthernet4', 'GigabitEthernet3', 'GigabitEthernet2', 'GigabitE
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex32.learn.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex32.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex32.log" target="_blank">log</a>]
 </p>
 
 `stp`を指定して学習させる例です。
@@ -1048,7 +1048,7 @@ sw4
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex33.learn.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex33.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex33.log" target="_blank">log</a>]
 </p>
 
 `config`を指定して学習させる例です。
@@ -1078,7 +1078,7 @@ r1#
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex40.parse_find.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex40.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex40.log" target="_blank">log</a>]
 </p>
 
 `show interfaces`コマンドをパースして辞書型のオブジェクトを取得したあと、欲しい情報を探しに行く例です。
@@ -1126,7 +1126,7 @@ Gig3とGig4とLo0が送信パケット数ゼロ(out_pkts==0)ということが�
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex41.learn_find.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex41.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex41.log" target="_blank">log</a>]
 </p>
 
 もう少し実践的な例です。
@@ -1168,7 +1168,7 @@ pprint(intf_up_full)
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex42.learn_find.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex42.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex42.log" target="_blank">log</a>]
 </p>
 
 
@@ -1203,7 +1203,7 @@ sw4 Ethernet0/0
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex43.learn_poll.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex43.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex43.log" target="_blank">log</a>]
 </p>
 
 学習した状態が特定の条件を満たすまで、定期的に学習を続ける例です。
@@ -1239,7 +1239,7 @@ verify=で渡す関数において例外をraiseすれば条件を満たして�
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex50.configure.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex50.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex50.log" target="_blank">log</a>]
 </p>
 
 装置に設定を投げ込む例です。
@@ -1289,7 +1289,7 @@ r1#
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex51.configure.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex51.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex51.log" target="_blank">log</a>]
 </p>
 
 Genieが備えているオブジェクトに設定を行い、投入すべきコマンドを機械的に生成させる例です。
@@ -1393,7 +1393,7 @@ r1(config)#end
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex52.configure.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex52.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex52.log" target="_blank">log</a>]
 </p>
 
 スタティックルーティングを設定する例です。
@@ -1412,7 +1412,7 @@ static_routing.device_attr[uut].vrf_attr['default'].address_family_attr['ipv4'].
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex53.configure.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex53.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex53.log" target="_blank">log</a>]
 </p>
 
 OSPFを設定する例です。
@@ -1434,7 +1434,7 @@ ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_typ
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex54.configure.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex54.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex54.log" target="_blank">log</a>]
 </p>
 
 いろいろ実験しているうちにr1の設定が消えてしまったので、pyATSで投入する例を作りました。
@@ -1540,7 +1540,7 @@ r1#
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex60.diff.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex60.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex60.log" target="_blank">log</a>]
 </p>
 
 作業前後のコンフィグで差分を表示する例です。
@@ -1568,7 +1568,7 @@ r1#
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex61.diff.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex61.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex61.log" target="_blank">log</a>]
 </p>
 
 OSPFの全情報を学習させて、作業前後で比較する例です。
@@ -1652,7 +1652,7 @@ r1#
 
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex70.save.py" target="_blank">source</a>]　
-[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex70.log" target="_blank">実行ログ全文</a>]
+[<a href="https://takamitsu-iida.github.io/pyats-practice/output/ex70.log" target="_blank">log</a>]
 </p>
 
 学習させた情報をファイルに保管する例です。
