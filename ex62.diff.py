@@ -34,25 +34,20 @@ uut = testbed.devices['uut']
 
 uut.connect(via='console')
 
-# learn ospf state
-pre_ospf = uut.learn('ospf')
+# learn routing table
+pre_routing = uut.learn('routing')
 
-# change ospf config
-# cost 100 -> 10
+# change static route
 uut.configure('''
-interface Gig1
-ip ospf cost 10
-exit
+ip route 192.168.100.0 255.255.255.0 null 0
 ''')
 
-# learn current config
-post_ospf = uut.learn('ospf')
+# learn current routing table
+post_routing = uut.learn('routing')
 
-# revert ospf config
+# revert static route
 uut.configure('''
-interface Gig1
-ip ospf cost 100
-exit
+no ip route 192.168.100.0 255.255.255.0 null 0
 ''')
 
 # disconnect
@@ -68,7 +63,7 @@ print('='*10)
 print('WITHOUT EXCLUDE')
 print('='*10)
 
-diff = post_ospf.diff(pre_ospf)
+diff = post_routing.diff(pre_routing)
 diff.findDiff()
 print(diff)
 
@@ -76,14 +71,9 @@ print('='*10)
 print('WITH EXCLUDE')
 print('='*10)
 
-# OSPFではこれらを差分計算の対象から除外
-exclude = [
-    'database',
-    'dead_timer',
-    'hello_timer',
-    'statistics'
-    ]
+# routingではこれらを差分計算の対象から除外
+exclude=['updated']
 
-diff = post_ospf.diff(pre_ospf, exclude=exclude)
+diff = post_routing.diff(pre_routing, exclude=exclude)
 diff.findDiff
 print(diff)

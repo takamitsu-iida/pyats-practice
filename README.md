@@ -1576,13 +1576,31 @@ r1#
 
 OSPFの全情報を学習させて、作業前後で比較する例です。
 
-実行例を見れば分かると思いますが、そのままではちょっと使えない感じです。
-チェックサムとかシーケンス番号は変わって当然なので、そういうのを排除しないと実用できなそうです。
+- OSPFの状態を学習
+- インタフェースのコストを変更
+- OSPFの状態を学習
+- 学習した情報の差分を出力
+
+学習した情報のなかには時間の経過と共に変化する統計情報も含まれています。
+そういった項目は除外して差分をとらないとノイズになってしまいます。
+
+除外を指定するのは簡単です。辞書型のキーをリストで指定します。
+
+まずは何も除外しない場合の出力を確認して、そこから取り除きたいキーを指定すればよいでしょう。
+OSPFの場合はこれらを除外しておけばよさそうです。
+
+```python
+exclude = [
+    'database',
+    'dead_timer',
+    'hello_timer',
+    'statistics'
+    ]
+```
 
 実行例。
 
 ```bash
-r1#
  info:
   vrf:
    default:
@@ -1592,62 +1610,57 @@ r1#
        1:
         areas:
          0.0.0.0:
-          database:
-           lsa_types:
-            1:
-             lsas:
-              192.168.255.1 192.168.255.1:
-               ospfv2:
-                body:
-                 router:
-                  links:
-                   192.168.12.0:
-                    topologies:
-                     0:
--                     metric: 100
-+                     metric: 10
-                   192.168.255.2:
-                    topologies:
-                     0:
--                     metric: 100
-+                     metric: 10
-                header:
--                age: 218
-+                age: 2
--                checksum: 0xB20
-+                checksum: 0xAE30
--                seq_num: 80000049
-+                seq_num: 8000004A
-              192.168.255.2 192.168.255.2:
-               ospfv2:
-                header:
--                age: 1734
-+                age: 1743
-              192.168.255.3 192.168.255.3:
-               ospfv2:
-                header:
--                age: 1868
-+                age: 1877
-              192.168.255.4 192.168.255.4:
-               ospfv2:
-                header:
--                age: 1787
-+                age: 1796
           interfaces:
            GigabitEthernet1:
 -           cost: 100
 +           cost: 10
--           hello_timer: 00:00:07
-+           hello_timer: 00:00:08
-           GigabitEthernet2:
--           hello_timer: 00:00:06
-+           hello_timer: 00:00:07
-          statistics:
--          area_scope_lsa_cksum_sum: 0x012C67
-+          area_scope_lsa_cksum_sum: 0x01CF77
--          spf_runs_count: 35
-+          spf_runs_count: 36
 ```
+
+エリア0のインタフェースGig1のコストが100から10に変わっていることが、差分を見るだけでわかります。
+
+<br><br>
+
+### ex62.diff.py
+
+<p>
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex62.diff.py" target="_blank">source</a>]　
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/output/ex62.log" target="_blank">log</a>]
+</p>
+
+ルーティングテーブルの差分を検出する例です。
+
+- ルーティングテーブルを学習
+- スタティックルートを設定
+- ルーティングテーブルを学習
+- 学習した情報の差分を出力
+
+ルーティングテーブルにも時間の経過とともに変化する項目がありますので、差分の計算から除外します。
+
+```python
+exclude=['updated']
+```
+
+実行例。
+
+```bash
+ info:
+  vrf:
+   default:
+    address_family:
+     ipv4:
+      routes:
++      192.168.100.0/24:
++       active: True
++       next_hop:
++        outgoing_interface:
++         Null0:
++          outgoing_interface: Null0
++       route: 192.168.100.0/24
++       source_protocol: static
++       source_protocol_codes: S
+```
+
+192.168.100.0/24という経路情報がスタティックとして追加（＋）されたことがわかります。
 
 <br><br>
 

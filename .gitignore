@@ -8,7 +8,7 @@
 _config_/*
 
 # pickleで保存したファイルは無視
-*.pickle
+# *.pickle
 
 # ansibleのリトライファイルは虫
 *.retry

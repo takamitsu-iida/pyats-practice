@@ -1,0 +1,185 @@
+modified telnetlib is loaded.
+
+2022-10-19 16:35:13,792: %UNICON-INFO: +++ r1 logfile /tmp/r1-cli-20221019T163513790.log +++
+
+2022-10-19 16:35:13,793: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 16:35:13,864: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140679292799536 +++
+
+2022-10-19 16:35:13,864: %UNICON-INFO: connection to r1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r1
+r1#
+
+2022-10-19 16:35:14,956: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 16:35:15,020: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
+term len 0
+r1#
+
+2022-10-19 16:35:15,296: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r1#
+
+2022-10-19 16:35:17,046: %UNICON-INFO: +++ r1 with via 'console': executing command 'show vrf detail' +++
+show vrf detail
+r1#
+
+2022-10-19 16:35:17,326: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip route' +++
+show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP
+       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       H - NHRP, G - NHRP registered, g - NHRP registration summary
+       o - ODR, P - periodic downloaded static route, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+       & - replicated local route overrides by connected
+
+Gateway of last resort is not set
+
+      10.0.0.0/24 is subnetted, 1 subnets
+S        10.10.10.0 [1/0] via 192.168.12.2, GigabitEthernet1
+      192.168.12.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.12.0/24 is directly connected, GigabitEthernet1
+L        192.168.12.1/32 is directly connected, GigabitEthernet1
+      192.168.13.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.13.0/24 is directly connected, GigabitEthernet2
+L        192.168.13.1/32 is directly connected, GigabitEthernet2
+O     192.168.24.0/24 [110/200] via 192.168.12.2, 00:10:28, GigabitEthernet1
+O     192.168.34.0/24 [110/200] via 192.168.13.3, 1d21h, GigabitEthernet2
+      192.168.255.0/32 is subnetted, 4 subnets
+C        192.168.255.1 is directly connected, Loopback0
+O        192.168.255.2 [110/101] via 192.168.12.2, 00:10:28, GigabitEthernet1
+O        192.168.255.3 [110/101] via 192.168.13.3, 1d21h, GigabitEthernet2
+O        192.168.255.4 [110/201] via 192.168.13.3, 00:10:28, GigabitEthernet2
+                       [110/201] via 192.168.12.2, 00:10:28, GigabitEthernet1
+r1#
+
+2022-10-19 16:35:17,594: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ipv6 route' +++
+show ipv6 route
+r1#
+
+2022-10-19 16:35:17,824: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#
+r1(config)#ip route 192.168.100.0 255.255.255.0 null 0
+r1(config)#end
+r1#
+
+2022-10-19 16:35:18,530: %UNICON-INFO: +++ r1 with via 'console': executing command 'show vrf detail' +++
+show vrf detail
+r1#
+
+2022-10-19 16:35:18,827: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip route' +++
+show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP
+       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       H - NHRP, G - NHRP registered, g - NHRP registration summary
+       o - ODR, P - periodic downloaded static route, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+       & - replicated local route overrides by connected
+
+Gateway of last resort is not set
+
+      10.0.0.0/24 is subnetted, 1 subnets
+S        10.10.10.0 [1/0] via 192.168.12.2, GigabitEthernet1
+      192.168.12.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.12.0/24 is directly connected, GigabitEthernet1
+L        192.168.12.1/32 is directly connected, GigabitEthernet1
+      192.168.13.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.13.0/24 is directly connected, GigabitEthernet2
+L        192.168.13.1/32 is directly connected, GigabitEthernet2
+O     192.168.24.0/24 [110/200] via 192.168.12.2, 00:10:30, GigabitEthernet1
+O     192.168.34.0/24 [110/200] via 192.168.13.3, 1d21h, GigabitEthernet2
+S     192.168.100.0/24 is directly connected, Null0
+      192.168.255.0/32 is subnetted, 4 subnets
+C        192.168.255.1 is directly connected, Loopback0
+O        192.168.255.2 [110/101] via 192.168.12.2, 00:10:30, GigabitEthernet1
+O        192.168.255.3 [110/101] via 192.168.13.3, 1d21h, GigabitEthernet2
+O        192.168.255.4 [110/201] via 192.168.13.3, 00:10:30, GigabitEthernet2
+                       [110/201] via 192.168.12.2, 00:10:30, GigabitEthernet1
+r1#
+
+2022-10-19 16:35:19,087: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ipv6 route' +++
+show ipv6 route
+r1#
+
+2022-10-19 16:35:19,313: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#
+r1(config)#no ip route 192.168.100.0 255.255.255.0 null 0
+r1(config)#end
+r1#
+==========
+WITHOUT EXCLUDE
+==========
+ info:
+  vrf:
+   default:
+    address_family:
+     ipv4:
+      routes:
+       192.168.24.0/24:
+        next_hop:
+         next_hop_list:
+          1:
+-          updated: 00:10:28
++          updated: 00:10:30
+       192.168.255.2/32:
+        next_hop:
+         next_hop_list:
+          1:
+-          updated: 00:10:28
++          updated: 00:10:30
+       192.168.255.4/32:
+        next_hop:
+         next_hop_list:
+          1:
+-          updated: 00:10:28
++          updated: 00:10:30
+          2:
+-          updated: 00:10:28
++          updated: 00:10:30
++      192.168.100.0/24:
++       active: True
++       next_hop:
++        outgoing_interface:
++         Null0:
++          outgoing_interface: Null0
++       route: 192.168.100.0/24
++       source_protocol: static
++       source_protocol_codes: S
+==========
+WITH EXCLUDE
+==========
+ info:
+  vrf:
+   default:
+    address_family:
+     ipv4:
+      routes:
++      192.168.100.0/24:
++       active: True
++       next_hop:
++        outgoing_interface:
++         Null0:
++          outgoing_interface: Null0
++       route: 192.168.100.0/24
++       source_protocol: static
++       source_protocol_codes: S
