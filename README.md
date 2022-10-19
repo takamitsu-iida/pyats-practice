@@ -1706,3 +1706,31 @@ with open(log_file, 'rb') as f:
 
 
 aetestを単体で実行してもよいのですが、job形式にしておくと後からブラウザで結果を参照できて便利です。
+
+
+<br>
+
+## pingで疎通確認をテスト
+
+pingして100%応答があればOKと判定する例です。
+
+[job01_ping](https://github.com/takamitsu-iida/pyats-practice/tree/main/job01_ping)
+
+<br>
+
+## インタフェースの状態をテスト
+
+インタフェースのduplexがfullであればOKと判定する例です。
+
+[job03_duplex](https://github.com/takamitsu-iida/pyats-practice/tree/main/job03_duplex)
+
+<br>
+
+## ルーティングテーブルの状態をテスト
+
+過去に採取したルーティングテーブルと、現在のルーティングテーブルを比較して、違いがなければOKとする例です。
+
+[job04_route](https://github.com/takamitsu-iida/pyats-practice/tree/main/job04_route)
+
+
+作業によって経路情報が変化することが期待値である場合は、もうちょっと複雑な判定が必要になります。
