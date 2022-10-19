@@ -120,4 +120,4 @@ conn_check: conn_check_test
 
 ブラウザでの確認。
 
-![実行結果](https://takamitsu-iida.github.io/pyats-practice/job02_duplex/img/fig1.PNG "実行結果")
+![実行結果](https://takamitsu-iida.github.io/pyats-practice/job02_connection_check/img/fig1.PNG "実行結果")

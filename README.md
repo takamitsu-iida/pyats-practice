@@ -1,6 +1,5 @@
 # pyats-practice
 
-
 DevNetのサイトにあるIntroduction to pyATSが秀逸です。
 
 ブラウザの中に説明文とターミナルとエディタがあり、コマンドを実行して動作結果を確認できます。
@@ -52,6 +51,12 @@ DevNetのサイトからたどれます。
 - examples(github) https://github.com/CiscoTestAutomation/examples
 
 - solution example(github) https://github.com/CiscoTestAutomation/solutions_examples
+
+<br><br>
+
+## deck
+
+- 説明会向けに作成 https://takamitsu-iida.github.io/decks/pyats-practice/
 
 <br><br>
 
@@ -715,7 +720,6 @@ Pythonスクリプトで動作させた例をいくつか。
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex10.execute.py" target="_blank">source</a>]　
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/output/ex10.log" target="_blank">log</a>]
-
 </p>
 
 接続後にコマンドを打ち込む例です。
