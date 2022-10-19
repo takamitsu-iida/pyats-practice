@@ -1,0 +1,44 @@
+
+2022-10-19 10:26:48,475: %UNICON-INFO: +++ r1 logfile /tmp/r1-cli-20221019T102648471.log +++
+
+2022-10-19 10:26:48,476: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:26:48,557: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140072413475648 +++
+
+2022-10-19 10:26:48,558: %UNICON-INFO: connection to r1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r1
+r1#
+
+2022-10-19 10:26:49,655: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:26:49,722: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
+term len 0
+r1#
+
+2022-10-19 10:26:50,004: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r1#
+
+2022-10-19 10:26:50,284: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#
+r1(config)#interface Gig1
+r1(config-if)#description "configured by pyats"
+r1(config-if)#exit
+r1(config)#interface Gig2
+r1(config-if)#description "configured by pyats"
+r1(config-if)#exit
+r1(config)#end
+r1#
+('\r\n'
+ 'interface Gig1\r\n'
+ 'description "configured by pyats"\r\n'
+ 'exit\r\n'
+ 'interface Gig2\r\n'
+ 'description "configured by pyats"\r\n'
+ 'exit\r\n')

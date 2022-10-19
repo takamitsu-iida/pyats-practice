@@ -203,7 +203,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
+# *.log
 local_settings.py
 
 # Flask stuff:
@@ -247,7 +247,7 @@ ENV/
 
 # Logs
 logs
-*.log
+# *.log
 npm-debug.log*
 
 # Runtime data

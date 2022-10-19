@@ -1,0 +1,1159 @@
+modified telnetlib is loaded.
+
+2022-10-19 10:38:42,005: %UNICON-INFO: +++ r1 logfile /tmp/r1-cli-20221019T103842001.log +++
+
+2022-10-19 10:38:42,006: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:38:42,081: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140001060014544 +++
+
+2022-10-19 10:38:42,082: %UNICON-INFO: connection to r1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r1
+r1#
+
+2022-10-19 10:38:43,166: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:38:43,231: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
+term len 0
+r1#
+
+2022-10-19 10:38:43,516: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r1#
+
+2022-10-19 10:38:48,941: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf' +++
+show ip ospf
+ Routing Process "ospf 1" with ID 192.168.255.1
+ Start time: 2d02h, Time elapsed: 2d14h
+ Supports only single TOS(TOS0) routes
+ Supports opaque LSA
+ Supports Link-local Signaling (LLS)
+ Supports area transit capability
+ Supports NSSA (compatible with RFC 3101)
+ Supports Database Exchange Summary List Optimization (RFC 5243)
+ Event-log enabled, Maximum number of events: 1000, Mode: cyclic
+ Router is not originating router-LSAs with maximum metric
+ Initial SPF schedule delay 50 msecs
+ Minimum hold time between two consecutive SPFs 200 msecs
+ Maximum wait time between two consecutive SPFs 5000 msecs
+ Incremental-SPF disabled
+ Initial LSA throttle delay 50 msecs
+ Minimum hold time for LSA throttle 200 msecs
+ Maximum wait time for LSA throttle 5000 msecs
+ Minimum LSA arrival 100 msecs
+ LSA group pacing timer 240 secs
+ Interface flood pacing timer 33 msecs
+ Retransmission pacing timer 66 msecs
+ EXCHANGE/LOADING adjacency limit: initial 300, process maximum 300
+ Number of external LSA 0. Checksum Sum 0x000000
+ Number of opaque AS LSA 0. Checksum Sum 0x000000
+ Number of DCbitless external and opaque AS LSA 0
+ Number of DoNotAge external and opaque AS LSA 0
+ Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+ Number of areas transit capable is 0
+ External flood list length 0
+ IETF NSF helper support enabled
+ Cisco NSF helper support enabled
+ Reference bandwidth unit is 100 mbps
+    Area BACKBONE(0)
+        Number of interfaces in this area is 3 (1 loopback)
+	Area has no authentication
+	SPF algorithm last executed 00:00:26.504 ago
+	SPF algorithm executed 46 times
+	Area ranges are
+	Number of LSA 4. Checksum Sum 0x02DB8E
+	Number of opaque link LSA 0. Checksum Sum 0x000000
+	Number of DCbitless LSA 0
+	Number of indication LSA 0
+	Number of DoNotAge LSA 0
+	Flood list length 0
+
+r1#
+
+2022-10-19 10:38:49,210: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip protocols' +++
+show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "application"
+  Sending updates every 0 seconds
+  Invalid after 0 seconds, hold down 0, flushed after 0
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Maximum path: 32
+  Routing for Networks:
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 4)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.255.1
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    192.168.12.1 0.0.0.0 area 0
+    192.168.13.1 0.0.0.0 area 0
+    192.168.255.1 0.0.0.0 area 0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    192.168.255.4        110      00:00:26
+    192.168.255.3        110      1d15h
+    192.168.255.2        110      00:00:26
+  Distance: (default is 110)
+
+r1#
+
+2022-10-19 10:38:49,502: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:38:49,989: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf mpls ldp interface' +++
+show ip ospf mpls ldp interface
+Loopback0
+  Process ID 1, Area 0
+  LDP is not configured through LDP autoconfig
+  LDP-IGP Synchronization : Not required
+  Holddown timer is disabled
+  Interface is up 
+GigabitEthernet2
+  Process ID 1, Area 0
+  LDP is not configured through LDP autoconfig
+  LDP-IGP Synchronization : Not required
+  Holddown timer is disabled
+  Interface is up 
+GigabitEthernet1
+  Process ID 1, Area 0
+  LDP is not configured through LDP autoconfig
+  LDP-IGP Synchronization : Not required
+  Holddown timer is disabled
+  Interface is up 
+r1#
+
+2022-10-19 10:38:50,266: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf mpls traffic-eng link' +++
+show ip ospf mpls traffic-eng link
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+
+  Area 0 MPLS TE not initialized
+r1#
+
+2022-10-19 10:38:50,545: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:38:50,923: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database router' +++
+show ip ospf database router
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+
+		Router Link States (Area 0)
+
+  LS age: 28
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 192.168.255.1
+  Advertising Router: 192.168.255.1
+  LS Seq Number: 8000009B
+  Checksum: 0x6672
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.255.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.3
+     (Link Data) Router Interface address: 192.168.13.1
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.13.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.2
+     (Link Data) Router Interface address: 192.168.12.1
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.12.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+
+  LS age: 1852
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 192.168.255.2
+  Advertising Router: 192.168.255.2
+  LS Seq Number: 800000D0
+  Checksum: 0xAADD
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.255.2
+     (Link Data) Network Mask: 255.255.255.255
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.4
+     (Link Data) Router Interface address: 192.168.24.2
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.24.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.1
+     (Link Data) Router Interface address: 192.168.12.2
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.12.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+
+  LS age: 1454
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 192.168.255.3
+  Advertising Router: 192.168.255.3
+  LS Seq Number: 800000AB
+  Checksum: 0xEBA6
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.255.3
+     (Link Data) Network Mask: 255.255.255.255
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.4
+     (Link Data) Router Interface address: 192.168.34.3
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.34.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.1
+     (Link Data) Router Interface address: 192.168.13.3
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.13.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+
+  LS age: 1266
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 192.168.255.4
+  Advertising Router: 192.168.255.4
+  LS Seq Number: 800000AA
+  Checksum: 0xDE99
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.255.4
+     (Link Data) Network Mask: 255.255.255.255
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.3
+     (Link Data) Router Interface address: 192.168.34.4
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.34.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.2
+     (Link Data) Router Interface address: 192.168.24.4
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.24.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+
+r1#
+
+2022-10-19 10:38:51,198: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database network' +++
+show ip ospf database network
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+r1#
+
+2022-10-19 10:38:51,475: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database external' +++
+show ip ospf database external
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+r1#
+
+2022-10-19 10:38:51,755: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database summary' +++
+show ip ospf database summary
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+r1#
+
+2022-10-19 10:38:52,035: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database opaque-area' +++
+show ip ospf database opaque-area
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+r1#
+
+2022-10-19 10:38:52,339: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf virtual-links' +++
+show ip ospf virtual-links
+r1#
+
+2022-10-19 10:38:52,627: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf interface' +++
+show ip ospf interface
+Loopback0 is up, line protocol is up 
+  Internet Address 192.168.255.1/32, Interface ID 12, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type LOOPBACK, Cost: 1
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           1         no          no            Base
+  Loopback interface is treated as a stub Host
+GigabitEthernet2 is up, line protocol is up 
+  Internet Address 192.168.13.1/24, Interface ID 8, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type POINT_TO_POINT, Cost: 100
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           100       no          no            Base
+  Transmit Delay is 1 sec, State POINT_TO_POINT
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:07
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Can be protected by per-prefix Loop-Free FastReroute
+  Can be used for per-prefix Loop-Free FastReroute repair paths
+  Not Protected by per-prefix TI-LFA
+  Index 1/3/3, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 1 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1 
+    Adjacent with neighbor 192.168.255.3
+  Suppress hello for 0 neighbor(s)
+GigabitEthernet1 is up, line protocol is up 
+  Internet Address 192.168.12.1/24, Interface ID 7, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type POINT_TO_POINT, Cost: 100
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           100       no          no            Base
+  Transmit Delay is 1 sec, State POINT_TO_POINT
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:08
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Can be protected by per-prefix Loop-Free FastReroute
+  Can be used for per-prefix Loop-Free FastReroute repair paths
+  Not Protected by per-prefix TI-LFA
+  Index 1/2/2, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 1 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1 
+    Adjacent with neighbor 192.168.255.2
+  Suppress hello for 0 neighbor(s)
+r1#
+
+2022-10-19 10:38:52,904: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:38:53,352: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:38:53,790: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:38:54,230: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf neighbor detail' +++
+show ip ospf neighbor detail
+ Neighbor 192.168.255.3, interface address 192.168.13.3, interface-id 8
+    In the area 0 via interface GigabitEthernet2
+    Neighbor priority is 0, State is FULL, 6 state changes
+    DR is 0.0.0.0 BDR is 0.0.0.0
+    Options is 0x12 in Hello (E-bit, L-bit)
+    Options is 0x52 in DBD (E-bit, L-bit, O-bit)
+    LLS Options is 0x1 (LR)
+    Dead timer due in 00:00:34
+    Neighbor is up for 2d01h   
+    Index 1/1/1, retransmission queue length 0, number of retransmission 0
+    First 0x0(0)/0x0(0)/0x0(0) Next 0x0(0)/0x0(0)/0x0(0)
+    Last retransmission scan length is 0, maximum is 0
+    Last retransmission scan time is 0 msec, maximum is 0 msec
+ Neighbor 192.168.255.2, interface address 192.168.12.2, interface-id 7
+    In the area 0 via interface GigabitEthernet1
+    Neighbor priority is 0, State is FULL, 6 state changes
+    DR is 0.0.0.0 BDR is 0.0.0.0
+    Options is 0x12 in Hello (E-bit, L-bit)
+    Options is 0x52 in DBD (E-bit, L-bit, O-bit)
+    LLS Options is 0x1 (LR)
+    Dead timer due in 00:00:37
+    Neighbor is up for 2d01h   
+    Index 1/2/2, retransmission queue length 0, number of retransmission 0
+    First 0x0(0)/0x0(0)/0x0(0) Next 0x0(0)/0x0(0)/0x0(0)
+    Last retransmission scan length is 0, maximum is 0
+    Last retransmission scan time is 0 msec, maximum is 0 msec
+r1#
+
+2022-10-19 10:38:54,494: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf interface GigabitEthernet2' +++
+show ip ospf interface GigabitEthernet2
+GigabitEthernet2 is up, line protocol is up 
+  Internet Address 192.168.13.1/24, Interface ID 8, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type POINT_TO_POINT, Cost: 100
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           100       no          no            Base
+  Transmit Delay is 1 sec, State POINT_TO_POINT
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:05
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Can be protected by per-prefix Loop-Free FastReroute
+  Can be used for per-prefix Loop-Free FastReroute repair paths
+  Not Protected by per-prefix TI-LFA
+  Index 1/3/3, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 1 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1 
+    Adjacent with neighbor 192.168.255.3
+  Suppress hello for 0 neighbor(s)
+r1#
+
+2022-10-19 10:38:54,780: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:38:55,252: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf interface GigabitEthernet1' +++
+show ip ospf interface GigabitEthernet1
+GigabitEthernet1 is up, line protocol is up 
+  Internet Address 192.168.12.1/24, Interface ID 7, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type POINT_TO_POINT, Cost: 100
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           100       no          no            Base
+  Transmit Delay is 1 sec, State POINT_TO_POINT
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:05
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Can be protected by per-prefix Loop-Free FastReroute
+  Can be used for per-prefix Loop-Free FastReroute repair paths
+  Not Protected by per-prefix TI-LFA
+  Index 1/2/2, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 1 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1 
+    Adjacent with neighbor 192.168.255.2
+  Suppress hello for 0 neighbor(s)
+r1#
+
+2022-10-19 10:38:55,550: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:38:56,025: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf sham-links' +++
+show ip ospf sham-links
+r1#
+
+2022-10-19 10:38:56,387: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#
+r1(config)#interface Gig1
+r1(config-if)#ip ospf cost 10
+r1(config-if)#exit
+r1(config)#end
+r1#
+
+2022-10-19 10:38:57,931: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf' +++
+show ip ospf
+ Routing Process "ospf 1" with ID 192.168.255.1
+ Start time: 2d02h, Time elapsed: 2d14h
+ Supports only single TOS(TOS0) routes
+ Supports opaque LSA
+ Supports Link-local Signaling (LLS)
+ Supports area transit capability
+ Supports NSSA (compatible with RFC 3101)
+ Supports Database Exchange Summary List Optimization (RFC 5243)
+ Event-log enabled, Maximum number of events: 1000, Mode: cyclic
+ Router is not originating router-LSAs with maximum metric
+ Initial SPF schedule delay 50 msecs
+ Minimum hold time between two consecutive SPFs 200 msecs
+ Maximum wait time between two consecutive SPFs 5000 msecs
+ Incremental-SPF disabled
+ Initial LSA throttle delay 50 msecs
+ Minimum hold time for LSA throttle 200 msecs
+ Maximum wait time for LSA throttle 5000 msecs
+ Minimum LSA arrival 100 msecs
+ LSA group pacing timer 240 secs
+ Interface flood pacing timer 33 msecs
+ Retransmission pacing timer 66 msecs
+ EXCHANGE/LOADING adjacency limit: initial 300, process maximum 300
+ Number of external LSA 0. Checksum Sum 0x000000
+ Number of opaque AS LSA 0. Checksum Sum 0x000000
+ Number of DCbitless external and opaque AS LSA 0
+ Number of DoNotAge external and opaque AS LSA 0
+ Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+ Number of areas transit capable is 0
+ External flood list length 0
+ IETF NSF helper support enabled
+ Cisco NSF helper support enabled
+ Reference bandwidth unit is 100 mbps
+    Area BACKBONE(0)
+        Number of interfaces in this area is 3 (1 loopback)
+	Area has no authentication
+	SPF algorithm last executed 00:00:00.914 ago
+	SPF algorithm executed 47 times
+	Area ranges are
+	Number of LSA 4. Checksum Sum 0x027F9E
+	Number of opaque link LSA 0. Checksum Sum 0x000000
+	Number of DCbitless LSA 0
+	Number of indication LSA 0
+	Number of DoNotAge LSA 0
+	Flood list length 1
+
+r1#
+
+2022-10-19 10:38:58,255: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip protocols' +++
+show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "application"
+  Sending updates every 0 seconds
+  Invalid after 0 seconds, hold down 0, flushed after 0
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Maximum path: 32
+  Routing for Networks:
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 4)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.255.1
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    192.168.12.1 0.0.0.0 area 0
+    192.168.13.1 0.0.0.0 area 0
+    192.168.255.1 0.0.0.0 area 0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    192.168.255.4        110      00:00:01
+    192.168.255.3        110      1d15h
+    192.168.255.2        110      00:00:01
+  Distance: (default is 110)
+
+r1#
+
+2022-10-19 10:38:58,532: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:38:58,965: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf mpls ldp interface' +++
+show ip ospf mpls ldp interface
+Loopback0
+  Process ID 1, Area 0
+  LDP is not configured through LDP autoconfig
+  LDP-IGP Synchronization : Not required
+  Holddown timer is disabled
+  Interface is up 
+GigabitEthernet2
+  Process ID 1, Area 0
+  LDP is not configured through LDP autoconfig
+  LDP-IGP Synchronization : Not required
+  Holddown timer is disabled
+  Interface is up 
+GigabitEthernet1
+  Process ID 1, Area 0
+  LDP is not configured through LDP autoconfig
+  LDP-IGP Synchronization : Not required
+  Holddown timer is disabled
+  Interface is up 
+r1#
+
+2022-10-19 10:38:59,245: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf mpls traffic-eng link' +++
+show ip ospf mpls traffic-eng link
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+
+  Area 0 MPLS TE not initialized
+r1#
+
+2022-10-19 10:38:59,521: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:38:59,969: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database router' +++
+show ip ospf database router
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+
+		Router Link States (Area 0)
+
+  LS age: 3
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 192.168.255.1
+  Advertising Router: 192.168.255.1
+  LS Seq Number: 8000009C
+  Checksum: 0xA82
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.255.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.3
+     (Link Data) Router Interface address: 192.168.13.1
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.13.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.2
+     (Link Data) Router Interface address: 192.168.12.1
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 10
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.12.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 10
+
+
+  LS age: 1861
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 192.168.255.2
+  Advertising Router: 192.168.255.2
+  LS Seq Number: 800000D0
+  Checksum: 0xAADD
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.255.2
+     (Link Data) Network Mask: 255.255.255.255
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.4
+     (Link Data) Router Interface address: 192.168.24.2
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.24.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.1
+     (Link Data) Router Interface address: 192.168.12.2
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.12.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+
+  LS age: 1463
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 192.168.255.3
+  Advertising Router: 192.168.255.3
+  LS Seq Number: 800000AB
+  Checksum: 0xEBA6
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.255.3
+     (Link Data) Network Mask: 255.255.255.255
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.4
+     (Link Data) Router Interface address: 192.168.34.3
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.34.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.1
+     (Link Data) Router Interface address: 192.168.13.3
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.13.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+
+  LS age: 1275
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 192.168.255.4
+  Advertising Router: 192.168.255.4
+  LS Seq Number: 800000AA
+  Checksum: 0xDE99
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.255.4
+     (Link Data) Network Mask: 255.255.255.255
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.3
+     (Link Data) Router Interface address: 192.168.34.4
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.34.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 192.168.255.2
+     (Link Data) Router Interface address: 192.168.24.4
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 192.168.24.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 100
+
+
+r1#
+
+2022-10-19 10:39:00,315: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database network' +++
+show ip ospf database network
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+r1#
+
+2022-10-19 10:39:00,603: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database external' +++
+show ip ospf database external
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+r1#
+
+2022-10-19 10:39:00,835: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database summary' +++
+show ip ospf database summary
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+r1#
+
+2022-10-19 10:39:01,114: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf database opaque-area' +++
+show ip ospf database opaque-area
+
+            OSPF Router with ID (192.168.255.1) (Process ID 1)
+r1#
+
+2022-10-19 10:39:01,396: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf virtual-links' +++
+show ip ospf virtual-links
+r1#
+
+2022-10-19 10:39:01,673: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf interface' +++
+show ip ospf interface
+Loopback0 is up, line protocol is up 
+  Internet Address 192.168.255.1/32, Interface ID 12, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type LOOPBACK, Cost: 1
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           1         no          no            Base
+  Loopback interface is treated as a stub Host
+GigabitEthernet2 is up, line protocol is up 
+  Internet Address 192.168.13.1/24, Interface ID 8, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type POINT_TO_POINT, Cost: 100
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           100       no          no            Base
+  Transmit Delay is 1 sec, State POINT_TO_POINT
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:08
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Can be protected by per-prefix Loop-Free FastReroute
+  Can be used for per-prefix Loop-Free FastReroute repair paths
+  Not Protected by per-prefix TI-LFA
+  Index 1/3/3, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 1 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1 
+    Adjacent with neighbor 192.168.255.3
+  Suppress hello for 0 neighbor(s)
+GigabitEthernet1 is up, line protocol is up 
+  Internet Address 192.168.12.1/24, Interface ID 7, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type POINT_TO_POINT, Cost: 10
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           10        no          no            Base
+  Transmit Delay is 1 sec, State POINT_TO_POINT
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:08
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Can be protected by per-prefix Loop-Free FastReroute
+  Can be used for per-prefix Loop-Free FastReroute repair paths
+  Not Protected by per-prefix TI-LFA
+  Index 1/2/2, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 1 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1 
+    Adjacent with neighbor 192.168.255.2
+  Suppress hello for 0 neighbor(s)
+r1#
+
+2022-10-19 10:39:01,934: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:39:02,354: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:39:02,790: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:39:03,240: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf neighbor detail' +++
+show ip ospf neighbor detail
+ Neighbor 192.168.255.3, interface address 192.168.13.3, interface-id 8
+    In the area 0 via interface GigabitEthernet2
+    Neighbor priority is 0, State is FULL, 6 state changes
+    DR is 0.0.0.0 BDR is 0.0.0.0
+    Options is 0x12 in Hello (E-bit, L-bit)
+    Options is 0x52 in DBD (E-bit, L-bit, O-bit)
+    LLS Options is 0x1 (LR)
+    Dead timer due in 00:00:36
+    Neighbor is up for 2d01h   
+    Index 1/1/1, retransmission queue length 0, number of retransmission 0
+    First 0x0(0)/0x0(0)/0x0(0) Next 0x0(0)/0x0(0)/0x0(0)
+    Last retransmission scan length is 0, maximum is 0
+    Last retransmission scan time is 0 msec, maximum is 0 msec
+ Neighbor 192.168.255.2, interface address 192.168.12.2, interface-id 7
+    In the area 0 via interface GigabitEthernet1
+    Neighbor priority is 0, State is FULL, 6 state changes
+    DR is 0.0.0.0 BDR is 0.0.0.0
+    Options is 0x12 in Hello (E-bit, L-bit)
+    Options is 0x52 in DBD (E-bit, L-bit, O-bit)
+    LLS Options is 0x1 (LR)
+    Dead timer due in 00:00:38
+    Neighbor is up for 2d01h   
+    Index 1/2/2, retransmission queue length 0, number of retransmission 0
+    First 0x0(0)/0x0(0)/0x0(0) Next 0x0(0)/0x0(0)/0x0(0)
+    Last retransmission scan length is 0, maximum is 0
+    Last retransmission scan time is 0 msec, maximum is 0 msec
+r1#
+
+2022-10-19 10:39:03,503: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf interface GigabitEthernet2' +++
+show ip ospf interface GigabitEthernet2
+GigabitEthernet2 is up, line protocol is up 
+  Internet Address 192.168.13.1/24, Interface ID 8, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type POINT_TO_POINT, Cost: 100
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           100       no          no            Base
+  Transmit Delay is 1 sec, State POINT_TO_POINT
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:06
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Can be protected by per-prefix Loop-Free FastReroute
+  Can be used for per-prefix Loop-Free FastReroute repair paths
+  Not Protected by per-prefix TI-LFA
+  Index 1/3/3, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 1 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1 
+    Adjacent with neighbor 192.168.255.3
+  Suppress hello for 0 neighbor(s)
+r1#
+
+2022-10-19 10:39:03,790: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:39:04,214: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf interface GigabitEthernet1' +++
+show ip ospf interface GigabitEthernet1
+GigabitEthernet1 is up, line protocol is up 
+  Internet Address 192.168.12.1/24, Interface ID 7, Area 0
+  Attached via Network Statement
+  Process ID 1, Router ID 192.168.255.1, Network Type POINT_TO_POINT, Cost: 10
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           10        no          no            Base
+  Transmit Delay is 1 sec, State POINT_TO_POINT
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:05
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Can be protected by per-prefix Loop-Free FastReroute
+  Can be used for per-prefix Loop-Free FastReroute repair paths
+  Not Protected by per-prefix TI-LFA
+  Index 1/2/2, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 1 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1 
+    Adjacent with neighbor 192.168.255.2
+  Suppress hello for 0 neighbor(s)
+r1#
+
+2022-10-19 10:39:04,500: %UNICON-INFO: +++ r1 with via 'console': executing command 'show running-config | section router ospf 1' +++
+show running-config | section router ospf 1
+router ospf 1
+ router-id 192.168.255.1
+ network 192.168.12.1 0.0.0.0 area 0
+ network 192.168.13.1 0.0.0.0 area 0
+ network 192.168.255.1 0.0.0.0 area 0
+r1#
+
+2022-10-19 10:39:04,935: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip ospf sham-links' +++
+show ip ospf sham-links
+r1#
+
+2022-10-19 10:39:05,260: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#
+r1(config)#interface Gig1
+r1(config-if)#ip ospf cost 100
+r1(config-if)#exit
+r1(config)#end
+r1#
+ info:
+  vrf:
+   default:
+    address_family:
+     ipv4:
+      instance:
+       1:
+        areas:
+         0.0.0.0:
+          database:
+           lsa_types:
+            1:
+             lsas:
+              192.168.255.1 192.168.255.1:
+               ospfv2:
+                body:
+                 router:
+                  links:
+                   192.168.12.0:
+                    topologies:
+                     0:
+-                     metric: 100
++                     metric: 10
+                   192.168.255.2:
+                    topologies:
+                     0:
+-                     metric: 100
++                     metric: 10
+                header:
+-                age: 28
++                age: 3
+-                checksum: 0x6672
++                checksum: 0xA82
+-                seq_num: 8000009B
++                seq_num: 8000009C
+              192.168.255.2 192.168.255.2:
+               ospfv2:
+                header:
+-                age: 1852
++                age: 1861
+              192.168.255.3 192.168.255.3:
+               ospfv2:
+                header:
+-                age: 1454
++                age: 1463
+              192.168.255.4 192.168.255.4:
+               ospfv2:
+                header:
+-                age: 1266
++                age: 1275
+          interfaces:
+           GigabitEthernet1:
+-           cost: 100
++           cost: 10
+            neighbors:
+             192.168.255.2:
+-             dead_timer: 00:00:37
++             dead_timer: 00:00:38
+           GigabitEthernet2:
+-           hello_timer: 00:00:07
++           hello_timer: 00:00:08
+            neighbors:
+             192.168.255.3:
+-             dead_timer: 00:00:34
++             dead_timer: 00:00:36
+          statistics:
+-          area_scope_lsa_cksum_sum: 0x02DB8E
++          area_scope_lsa_cksum_sum: 0x027F9E
+-          spf_runs_count: 46
++          spf_runs_count: 47

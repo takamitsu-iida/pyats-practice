@@ -1,0 +1,391 @@
+modified telnetlib is loaded.
+
+2022-10-19 10:09:00,909: %UNICON-INFO: +++ r1 logfile /tmp/r1-cli-20221019T100900906.log +++
+
+2022-10-19 10:09:00,910: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:09:00,983: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140433850379136 +++
+
+2022-10-19 10:09:00,983: %UNICON-INFO: connection to r1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r1
+r1#
+
+2022-10-19 10:09:02,068: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:09:02,133: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
+term len 0
+r1#
+
+2022-10-19 10:09:02,479: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r1#
+
+2022-10-19 10:09:04,494: %UNICON-INFO: +++ r1 with via 'console': executing command 'show vrf' +++
+show vrf
+r1#
+
+2022-10-19 10:09:04,796: %UNICON-INFO: +++ r1 with via 'console': executing command 'show interfaces' +++
+show interfaces
+GigabitEthernet1 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0001.0000 (bia 5002.0001.0000)
+  Description: to r2
+  Internet address is 192.168.12.1/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:01, output 00:00:03, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     69659 packets input, 11060820 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     68650 packets output, 10774202 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 4 interface resets
+     17 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet2 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0001.0001 (bia 5002.0001.0001)
+  Description: to r3
+  Internet address is 192.168.13.1/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     51153 packets input, 7827234 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     50144 packets output, 7675594 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 5 interface resets
+     17 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet3 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0001.0002 (bia 5002.0001.0002)
+  Description: configured by Genie Conf Object
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet4 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0001.0003 (bia 5002.0001.0003)
+  Description: configured by Genie Conf Object
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+Loopback0 is up, line protocol is up 
+  Hardware is Loopback
+  Internet address is 192.168.255.1/32
+  MTU 1514 bytes, BW 8000000 Kbit/sec, DLY 5000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation LOOPBACK, loopback not set
+  Keepalive set (10 sec)
+  Last input 15:58:22, output 15:58:22, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/0 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+r1#
+
+2022-10-19 10:09:05,266: %UNICON-INFO: +++ r1 with via 'console': executing command 'show interfaces accounting' +++
+show interfaces accounting
+GigabitEthernet1 to r2
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       6666    2810280       6635    2669274
+                      IP      39060    4453952      39057    4456598
+                     ARP         26       1560         27       1620
+                     CDP       6606    2794338       6608    2667654
+GigabitEthernet2 to r3
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       5300    2028720       5278    2019624
+                      IP      31111    3549750      31107    3550234
+                     ARP         20       1200         22       1320
+                     CDP       5246    2014464       5256    2018304
+Interface GigabitEthernet3 is disabled
+
+Interface GigabitEthernet4 is disabled
+
+Loopback0 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+No traffic sent or received on this interface.
+r1#
+
+2022-10-19 10:09:05,553: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip interface' +++
+show ip interface
+GigabitEthernet1 is up, line protocol is up
+  Internet address is 192.168.12.1/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet2 is up, line protocol is up
+  Internet address is 192.168.13.1/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet3 is administratively down, line protocol is down
+  Internet protocol processing disabled
+GigabitEthernet4 is administratively down, line protocol is down
+  Internet protocol processing disabled
+Loopback0 is up, line protocol is up
+  Internet address is 192.168.255.1/32
+  Broadcast address is 255.255.255.255
+  Address determined by non-volatile memory
+  MTU is 1514 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+r1#
+
+2022-10-19 10:09:06,229: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ipv6 interface' +++
+show ipv6 interface
+r1#
+learnt interfaces
+dict_keys(['GigabitEthernet4', 'GigabitEthernet3', 'GigabitEthernet2', 'GigabitEthernet1', 'Loopback0'])
+{'accounting': {'arp': {'chars_in': 1560,
+                        'chars_out': 1620,
+                        'pkts_in': 26,
+                        'pkts_out': 27},
+                'cdp': {'chars_in': 2794338,
+                        'chars_out': 2667654,
+                        'pkts_in': 6606,
+                        'pkts_out': 6608},
+                'ip': {'chars_in': 4453952,
+                       'chars_out': 4456598,
+                       'pkts_in': 39060,
+                       'pkts_out': 39057},
+                'other': {'chars_in': 2810280,
+                          'chars_out': 2669274,
+                          'pkts_in': 6666,
+                          'pkts_out': 6635}},
+ 'auto_negotiate': True,
+ 'bandwidth': 1000000,
+ 'counters': {'in_broadcast_pkts': 0,
+              'in_crc_errors': 0,
+              'in_errors': 0,
+              'in_mac_pause_frames': 0,
+              'in_multicast_pkts': 0,
+              'in_octets': 11060820,
+              'in_pkts': 69659,
+              'last_clear': 'never',
+              'out_broadcast_pkts': 0,
+              'out_errors': 0,
+              'out_mac_pause_frames': 0,
+              'out_multicast_pkts': 0,
+              'out_octets': 10774202,
+              'out_pkts': 68650,
+              'rate': {'in_rate': 0,
+                       'in_rate_pkts': 0,
+                       'load_interval': 300,
+                       'out_rate': 0,
+                       'out_rate_pkts': 0}},
+ 'delay': 10,
+ 'description': 'to r2',
+ 'duplex_mode': 'full',
+ 'enabled': True,
+ 'encapsulation': {'encapsulation': 'arpa'},
+ 'flow_control': {'receive': False, 'send': False},
+ 'ipv4': {'192.168.12.1/24': {'ip': '192.168.12.1',
+                              'prefix_length': '24',
+                              'secondary': False}},
+ 'mac_address': '5002.0001.0000',
+ 'mtu': 9000,
+ 'oper_status': 'up',
+ 'phys_address': '5002.0001.0000',
+ 'port_channel': {'port_channel_member': False},
+ 'port_speed': '1000mbps',
+ 'switchport_enable': False,
+ 'type': 'CSR vNIC'}

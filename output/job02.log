@@ -1,0 +1,240 @@
+2022-10-19T10:41:40: %EASYPY-INFO: Starting job run: conn_check_job
+2022-10-19T10:41:40: %EASYPY-INFO: Runinfo directory: /home/iida/.pyats/runinfo/conn_check_job.2022Oct19_10:41:39.894419
+2022-10-19T10:41:40: %EASYPY-INFO: --------------------------------------------------------------------------------
+2022-10-19T10:41:50: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:50: %EASYPY-INFO: |                              Clean Information                               |
+2022-10-19T10:41:50: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:50: %EASYPY-INFO: {'bringup': {}, 'cleaners': {}, 'devices': {}}
+
+2022-10-19T10:41:50: %ATS-INFO: Checking all devices are up and ready is disabled, '--check-all-devices-up' must be set to True in case of pyats runs or '-check_all_devices_up' set to True in case of legacy easypy runs
+2022-10-19T10:41:50: %EASYPY-INFO: Starting task execution: conn_check
+2022-10-19T10:41:50: %EASYPY-INFO:     test harness = pyats.aetest
+2022-10-19T10:41:50: %EASYPY-INFO:     testscript   = /home/iida/git/pyats-practice/job02_connection_check/conn_check_test.py
+2022-10-19T10:41:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:51: %AETEST-INFO: |                            Starting common setup                             |
+2022-10-19T10:41:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:51: %AETEST-INFO: |                      Starting subsection check_topology                      |
+2022-10-19T10:41:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:51: %AETEST-INFO: The result of subsection check_topology is => PASSED
+2022-10-19T10:41:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:51: %AETEST-INFO: |                  Starting subsection establish_connections                   |
+2022-10-19T10:41:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:52: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:41:52: %AETEST-INFO: :                      Starting STEP 1: Connecting to r1                       :
+2022-10-19T10:41:52: %AETEST-INFO: +..............................................................................+
+
+2022-10-19 10:41:52,259: %UNICON-INFO: +++ r1 logfile /home/iida/.pyats/runinfo/conn_check_job.2022Oct19_10:41:39.894419/r1-cli-1666143712.log +++
+
+2022-10-19 10:41:52,260: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:41:52,366: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140700805872704 +++
+
+2022-10-19 10:41:52,367: %UNICON-INFO: connection to r1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r1
+r1#
+
+2022-10-19 10:41:53,450: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:41:53,516: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
+term len 0
+r1#
+
+2022-10-19 10:41:53,792: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r1#
+2022-10-19T10:41:54: %AETEST-INFO: The result of STEP 1: Connecting to r1 is => PASSED
+2022-10-19T10:41:54: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:41:54: %AETEST-INFO: :                      Starting STEP 2: Connecting to r2                       :
+2022-10-19T10:41:54: %AETEST-INFO: +..............................................................................+
+
+2022-10-19 10:41:54,176: %UNICON-INFO: +++ r2 logfile /home/iida/.pyats/runinfo/conn_check_job.2022Oct19_10:41:39.894419/r2-cli-1666143714.log +++
+
+2022-10-19 10:41:54,178: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:41:54,340: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 42503, id: 140700805948272 +++
+
+2022-10-19 10:41:54,341: %UNICON-INFO: connection to r2
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r2
+r2#
+
+2022-10-19 10:41:55,435: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:41:55,502: %UNICON-INFO: +++ r2 with via 'console': executing command 'term len 0' +++
+term len 0
+r2#
+
+2022-10-19 10:41:55,788: %UNICON-INFO: +++ r2 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r2#
+2022-10-19T10:41:56: %AETEST-INFO: The result of STEP 2: Connecting to r2 is => PASSED
+2022-10-19T10:41:56: %AETEST-INFO: +..........................................................+
+2022-10-19T10:41:56: %AETEST-INFO: :                       STEPS Report                       :
+2022-10-19T10:41:56: %AETEST-INFO: +..........................................................+
+2022-10-19T10:41:56: %AETEST-INFO: STEP 1 - Connecting to r1                         Passed    
+2022-10-19T10:41:56: %AETEST-INFO: STEP 2 - Connecting to r2                         Passed    
+2022-10-19T10:41:56: %AETEST-INFO: ............................................................
+2022-10-19T10:41:56: %AETEST-INFO: The result of subsection establish_connections is => PASSED
+2022-10-19T10:41:56: %AETEST-INFO: The result of common setup is => PASSED
+2022-10-19T10:41:56: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:56: %AETEST-INFO: |                 Starting testcase PingTestcase[device=ios1]                  |
+2022-10-19T10:41:56: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:56: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:56: %AETEST-INFO: |               Starting section ping[destination=192.168.255.1]               |
+2022-10-19T10:41:56: %AETEST-INFO: +------------------------------------------------------------------------------+
+
+2022-10-19 10:41:56,669: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.255.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r1#
+2022-10-19T10:41:56: %SCRIPT-INFO: Ping 192.168.255.1 with success rate of 100%
+2022-10-19T10:41:56: %AETEST-INFO: The result of section ping[destination=192.168.255.1] is => PASSED
+2022-10-19T10:41:56: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:56: %AETEST-INFO: |               Starting section ping[destination=192.168.255.2]               |
+2022-10-19T10:41:56: %AETEST-INFO: +------------------------------------------------------------------------------+
+
+2022-10-19 10:41:56,853: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.255.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r1#
+2022-10-19T10:41:57: %SCRIPT-INFO: Ping 192.168.255.2 with success rate of 100%
+2022-10-19T10:41:57: %AETEST-INFO: The result of section ping[destination=192.168.255.2] is => PASSED
+2022-10-19T10:41:57: %AETEST-INFO: The result of testcase PingTestcase[device=ios1] is => PASSED
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:57: %AETEST-INFO: |                 Starting testcase PingTestcase[device=ios2]                  |
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:57: %AETEST-INFO: |               Starting section ping[destination=192.168.255.1]               |
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+
+2022-10-19 10:41:57,024: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.255.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r2#
+2022-10-19T10:41:57: %SCRIPT-INFO: Ping 192.168.255.1 with success rate of 100%
+2022-10-19T10:41:57: %AETEST-INFO: The result of section ping[destination=192.168.255.1] is => PASSED
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:57: %AETEST-INFO: |               Starting section ping[destination=192.168.255.2]               |
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+
+2022-10-19 10:41:57,182: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.255.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r2#
+2022-10-19T10:41:57: %SCRIPT-INFO: Ping 192.168.255.2 with success rate of 100%
+2022-10-19T10:41:57: %AETEST-INFO: The result of section ping[destination=192.168.255.2] is => PASSED
+2022-10-19T10:41:57: %AETEST-INFO: The result of testcase PingTestcase[device=ios2] is => PASSED
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:57: %AETEST-INFO: |                           Starting common cleanup                            |
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:57: %AETEST-INFO: |                        Starting subsection disconnect                        |
+2022-10-19T10:41:57: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:41:57: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:41:57: %AETEST-INFO: :                    Starting STEP 1: Disconnecting from r1                    :
+2022-10-19T10:41:57: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:41:59: %AETEST-INFO: The result of STEP 1: Disconnecting from r1 is => PASSED
+2022-10-19T10:41:59: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:41:59: %AETEST-INFO: :               Starting STEP 2: Disconnecting from {ios2.name}                :
+2022-10-19T10:41:59: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:42:01: %AETEST-INFO: The result of STEP 2: Disconnecting from {ios2.name} is => PASSED
+2022-10-19T10:42:01: %AETEST-INFO: +..........................................................+
+2022-10-19T10:42:01: %AETEST-INFO: :                       STEPS Report                       :
+2022-10-19T10:42:01: %AETEST-INFO: +..........................................................+
+2022-10-19T10:42:01: %AETEST-INFO: STEP 1 - Disconnecting from r1                    Passed    
+2022-10-19T10:42:01: %AETEST-INFO: STEP 2 - Disconnecting from {ios2.name}           Passed    
+2022-10-19T10:42:01: %AETEST-INFO: ............................................................
+2022-10-19T10:42:01: %AETEST-INFO: The result of subsection disconnect is => PASSED
+2022-10-19T10:42:01: %AETEST-INFO: The result of common cleanup is => PASSED
+2022-10-19T10:42:02: %CONTRIB-INFO: WebEx Token not given as argument or in config. No WebEx notification will be sent
+2022-10-19T10:42:02: %EASYPY-INFO: --------------------------------------------------------------------------------
+2022-10-19T10:42:02: %EASYPY-INFO: Job finished. Wrapping up...
+2022-10-19T10:42:03: %EASYPY-INFO: Creating archive file: /home/iida/.pyats/archive/22-Oct/conn_check_job.2022Oct19_10:41:39.894419.zip
+2022-10-19T10:42:03: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:03: %EASYPY-INFO: |                                Easypy Report                                 |
+2022-10-19T10:42:03: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:03: %EASYPY-INFO: pyATS Instance   : /home/iida/git/pyats-practice/.venv
+2022-10-19T10:42:03: %EASYPY-INFO: Python Version   : cpython-3.8.10 (64bit)
+2022-10-19T10:42:03: %EASYPY-INFO: CLI Arguments    : /home/iida/git/pyats-practice/.venv/bin/pyats run job conn_check_job.py --testbed-file ../lab.yml
+2022-10-19T10:42:03: %EASYPY-INFO: User             : iida
+2022-10-19T10:42:03: %EASYPY-INFO: Host Server      : FCCLS0008993-00
+2022-10-19T10:42:03: %EASYPY-INFO: Host OS Version  : Ubuntu 20.04 focal (x86_64)
+2022-10-19T10:42:03: %EASYPY-INFO: 
+2022-10-19T10:42:03: %EASYPY-INFO: Job Information
+2022-10-19T10:42:03: %EASYPY-INFO:     Name         : conn_check_job
+2022-10-19T10:42:03: %EASYPY-INFO:     Start time   : 2022-10-19 10:41:50.549389+09:00
+2022-10-19T10:42:03: %EASYPY-INFO:     Stop time    : 2022-10-19 10:42:02.032781+09:00
+2022-10-19T10:42:03: %EASYPY-INFO:     Elapsed time : 11.483392
+2022-10-19T10:42:03: %EASYPY-INFO:     Archive      : /home/iida/.pyats/archive/22-Oct/conn_check_job.2022Oct19_10:41:39.894419.zip
+2022-10-19T10:42:03: %EASYPY-INFO: 
+2022-10-19T10:42:03: %EASYPY-INFO: Total Tasks    : 1 
+2022-10-19T10:42:03: %EASYPY-INFO: 
+2022-10-19T10:42:03: %EASYPY-INFO: Overall Stats
+2022-10-19T10:42:03: %EASYPY-INFO:     Passed     : 4
+2022-10-19T10:42:03: %EASYPY-INFO:     Passx      : 0
+2022-10-19T10:42:03: %EASYPY-INFO:     Failed     : 0
+2022-10-19T10:42:03: %EASYPY-INFO:     Aborted    : 0
+2022-10-19T10:42:03: %EASYPY-INFO:     Blocked    : 0
+2022-10-19T10:42:03: %EASYPY-INFO:     Skipped    : 0
+2022-10-19T10:42:03: %EASYPY-INFO:     Errored    : 0
+2022-10-19T10:42:03: %EASYPY-INFO: 
+2022-10-19T10:42:03: %EASYPY-INFO:     TOTAL      : 4
+2022-10-19T10:42:03: %EASYPY-INFO: 
+2022-10-19T10:42:03: %EASYPY-INFO: Success Rate   : 100.00 %
+2022-10-19T10:42:03: %EASYPY-INFO: 
+2022-10-19T10:42:03: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:03: %EASYPY-INFO: |                             Task Result Summary                              |
+2022-10-19T10:42:03: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:03: %EASYPY-INFO: conn_check: conn_check_test.common_setup                                  PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: conn_check: conn_check_test.PingTestcase[device=ios1]                     PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: conn_check: conn_check_test.PingTestcase[device=ios2]                     PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: conn_check: conn_check_test.common_cleanup                                PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: 
+2022-10-19T10:42:03: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:03: %EASYPY-INFO: |                             Task Result Details                              |
+2022-10-19T10:42:03: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:03: %EASYPY-INFO: conn_check: conn_check_test
+2022-10-19T10:42:03: %EASYPY-INFO: |-- common_setup                                                          PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |   |-- check_topology                                                    PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |   `-- establish_connections                                             PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |       |-- STEP 1: Connecting to r1                                      PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |       `-- STEP 2: Connecting to r2                                      PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |-- PingTestcase[device=ios1]                                             PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |   |-- ping[destination=192.168.255.1]                                   PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |   `-- ping[destination=192.168.255.2]                                   PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |-- PingTestcase[device=ios2]                                             PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |   |-- ping[destination=192.168.255.1]                                   PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: |   `-- ping[destination=192.168.255.2]                                   PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: `-- common_cleanup                                                        PASSED
+2022-10-19T10:42:03: %EASYPY-INFO:     `-- disconnect                                                        PASSED
+2022-10-19T10:42:03: %EASYPY-INFO:         |-- STEP 1: Disconnecting from r1                                 PASSED
+2022-10-19T10:42:03: %EASYPY-INFO:         `-- STEP 2: Disconnecting from {ios2.name}                        PASSED
+2022-10-19T10:42:03: %EASYPY-INFO: Sending report email...
+2022-10-19T10:42:03: %EASYPY-INFO: Missing SMTP server configuration, or failed to reach/authenticate/send mail. Result notification email failed to send.
+2022-10-19T10:42:03: %EASYPY-INFO: Done!
+
+Pro Tip
+-------
+   Try the following command to view your logs:
+       pyats logs view
+

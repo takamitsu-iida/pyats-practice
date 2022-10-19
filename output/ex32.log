@@ -1,0 +1,987 @@
+
+2022-10-19 10:09:33,988: %UNICON-INFO: +++ sw1 logfile /tmp/sw1-cli-20221019T100933985.log +++
+
+2022-10-19 10:09:33,989: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:09:34,088: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 42961, id: 140496784777424 +++
+
+2022-10-19 10:09:34,089: %UNICON-INFO: connection to sw1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;sw1
+sw1>
+
+2022-10-19 10:09:35,168: %UNICON-INFO: +++ initializing handle +++
+enable
+sw1#
+
+2022-10-19 10:09:35,319: %UNICON-INFO: +++ sw1 with via 'console': executing command 'term len 0' +++
+term len 0
+sw1#
+
+2022-10-19 10:09:35,546: %UNICON-INFO: +++ sw1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+sw1#
+
+2022-10-19 10:09:39,617: %UNICON-INFO: +++ sw1 with via 'console': executing command 'show spanning-tree summary' +++
+show spanning-tree summary
+Switch is in pvst mode
+Root bridge for: VLAN0001
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+Configured Pathcost method used is short
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     0         0        0          3          3
+---------------------- -------- --------- -------- ---------- ----------
+1 vlan                       0         0        0          3          3
+sw1#
+
+2022-10-19 10:09:39,857: %UNICON-INFO: +++ sw1 with via 'console': executing command 'show errdisable recovery' +++
+show errdisable recovery
+ErrDisable Reason            Timer Status
+-----------------            --------------
+arp-inspection               Disabled
+bpduguard                    Disabled
+channel-misconfig (STP)      Disabled
+dhcp-rate-limit              Disabled
+dtp-flap                     Disabled
+gbic-invalid                 Disabled
+inline-power                 Disabled
+l2ptguard                    Disabled
+link-flap                    Disabled
+mac-limit                    Disabled
+link-monitor-failure         Disabled
+loopback                     Disabled
+oam-remote-failure           Disabled
+pagp-flap                    Disabled
+port-mode-failure            Disabled
+pppoe-ia-rate-limit          Disabled
+psecure-violation            Disabled
+security-violation           Disabled
+sfp-config-mismatch          Disabled
+storm-control                Disabled
+udld                         Disabled
+unicast-flood                Disabled
+vmps                         Disabled
+psp                          Disabled
+dual-active-recovery         Disabled
+
+Timer interval: 300 seconds
+
+Interfaces that will be enabled at the next timeout:
+
+sw1#
+
+2022-10-19 10:09:40,087: %UNICON-INFO: +++ sw1 with via 'console': executing command 'show spanning-tree mst detail' +++
+show spanning-tree mst detail
+% Switch is not in mst mode
+
+sw1#
+
+2022-10-19 10:09:40,339: %UNICON-INFO: +++ sw1 with via 'console': executing command 'show spanning-tree mst configuration' +++
+show spanning-tree mst configuration
+% Switch is not in mst mode
+Name      []
+Revision  0     Instances configured 1
+
+Instance  Vlans mapped
+--------  ---------------------------------------------------------------------
+0         1-4094
+-------------------------------------------------------------------------------
+sw1#
+
+2022-10-19 10:09:40,565: %UNICON-INFO: +++ sw1 with via 'console': executing command 'show spanning-tree detail' +++
+show spanning-tree detail
+
+ VLAN0001 is executing the ieee compatible Spanning Tree protocol
+  Bridge Identifier has priority 32768, sysid 1, address aabb.cc00.0300
+  Configured hello time 2, max age 20, forward delay 15
+  We are the root of the spanning tree
+  Topology change flag not set, detected flag not set
+  Number of topology changes 3 last change occurred 3d19h ago
+          from Ethernet0/2
+  Times:  hold 1, topology change 35, notification 2
+          hello 2, max age 20, forward delay 15 
+  Timers: hello 1, topology change 0, notification 0, aging 300
+
+ Port 1 (Ethernet0/0) of VLAN0001 is designated forwarding 
+   Port path cost 100, Port priority 128, Port Identifier 128.1.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0300
+   Designated port id is 128.1, designated path cost 0
+   Timers: message age 0, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 164538, received 7
+
+ Port 2 (Ethernet0/1) of VLAN0001 is designated forwarding 
+   Port path cost 100, Port priority 128, Port Identifier 128.2.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0300
+   Designated port id is 128.2, designated path cost 0
+   Timers: message age 0, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 164521, received 5
+
+ Port 3 (Ethernet0/2) of VLAN0001 is designated forwarding 
+   Port path cost 100, Port priority 128, Port Identifier 128.3.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0300
+   Designated port id is 128.3, designated path cost 0
+   Timers: message age 0, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 164470, received 1
+
+sw1#
+
+2022-10-19 10:09:40,761: %UNICON-INFO: +++ sw1 with via 'console': executing command 'show spanning-tree' +++
+show spanning-tree
+
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     aabb.cc00.0300
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     aabb.cc00.0300
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    Shr 
+Et0/1               Desg FWD 100       128.2    Shr 
+Et0/2               Desg FWD 100       128.3    Shr 
+
+
+sw1#
+
+2022-10-19 10:09:42,967: %UNICON-INFO: +++ sw2 logfile /tmp/sw2-cli-20221019T100942964.log +++
+
+2022-10-19 10:09:42,967: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:09:43,044: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 45895, id: 140496732169936 +++
+
+2022-10-19 10:09:43,045: %UNICON-INFO: connection to sw2
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;sw2
+sw2>
+sw2>
+
+2022-10-19 10:09:45,144: %UNICON-INFO: +++ initializing handle +++
+enable
+sw2#
+
+2022-10-19 10:09:45,328: %UNICON-INFO: +++ sw2 with via 'console': executing command 'term len 0' +++
+term len 0
+sw2#
+
+2022-10-19 10:09:45,555: %UNICON-INFO: +++ sw2 with via 'console': executing command 'term wid 0' +++
+term wid 0
+sw2#
+
+2022-10-19 10:09:45,855: %UNICON-INFO: +++ sw2 with via 'console': executing command 'show spanning-tree summary' +++
+show spanning-tree summary
+Switch is in pvst mode
+Root bridge for: none
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+Configured Pathcost method used is short
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     0         0        0          3          3
+---------------------- -------- --------- -------- ---------- ----------
+1 vlan                       0         0        0          3          3
+sw2#
+
+2022-10-19 10:09:46,083: %UNICON-INFO: +++ sw2 with via 'console': executing command 'show errdisable recovery' +++
+show errdisable recovery
+ErrDisable Reason            Timer Status
+-----------------            --------------
+arp-inspection               Disabled
+bpduguard                    Disabled
+channel-misconfig (STP)      Disabled
+dhcp-rate-limit              Disabled
+dtp-flap                     Disabled
+gbic-invalid                 Disabled
+inline-power                 Disabled
+l2ptguard                    Disabled
+link-flap                    Disabled
+mac-limit                    Disabled
+link-monitor-failure         Disabled
+loopback                     Disabled
+oam-remote-failure           Disabled
+pagp-flap                    Disabled
+port-mode-failure            Disabled
+pppoe-ia-rate-limit          Disabled
+psecure-violation            Disabled
+security-violation           Disabled
+sfp-config-mismatch          Disabled
+storm-control                Disabled
+udld                         Disabled
+unicast-flood                Disabled
+vmps                         Disabled
+psp                          Disabled
+dual-active-recovery         Disabled
+
+Timer interval: 300 seconds
+
+Interfaces that will be enabled at the next timeout:
+
+sw2#
+
+2022-10-19 10:09:46,313: %UNICON-INFO: +++ sw2 with via 'console': executing command 'show spanning-tree mst detail' +++
+show spanning-tree mst detail
+% Switch is not in mst mode
+
+sw2#
+
+2022-10-19 10:09:46,545: %UNICON-INFO: +++ sw2 with via 'console': executing command 'show spanning-tree mst configuration' +++
+show spanning-tree mst configuration
+% Switch is not in mst mode
+Name      []
+Revision  0     Instances configured 1
+
+Instance  Vlans mapped
+--------  ---------------------------------------------------------------------
+0         1-4094
+-------------------------------------------------------------------------------
+sw2#
+
+2022-10-19 10:09:46,778: %UNICON-INFO: +++ sw2 with via 'console': executing command 'show spanning-tree detail' +++
+show spanning-tree detail
+
+ VLAN0001 is executing the ieee compatible Spanning Tree protocol
+  Bridge Identifier has priority 32768, sysid 1, address aabb.cc00.0400
+  Configured hello time 2, max age 20, forward delay 15
+  Current root has priority 32769, address aabb.cc00.0300
+  Root port is 1 (Ethernet0/0), cost of root path is 100
+  Topology change flag not set, detected flag not set
+  Number of topology changes 8 last change occurred 3d19h ago
+          from Ethernet0/2
+  Times:  hold 1, topology change 35, notification 2
+          hello 2, max age 20, forward delay 15 
+  Timers: hello 0, topology change 0, notification 0, aging 300
+
+ Port 1 (Ethernet0/0) of VLAN0001 is root forwarding 
+   Port path cost 100, Port priority 128, Port Identifier 128.1.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0300
+   Designated port id is 128.1, designated path cost 0
+   Timers: message age 1, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 7, received 164541
+
+ Port 2 (Ethernet0/1) of VLAN0001 is designated forwarding 
+   Port path cost 100, Port priority 128, Port Identifier 128.2.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0400
+   Designated port id is 128.2, designated path cost 100
+   Timers: message age 0, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 164520, received 0
+
+ Port 3 (Ethernet0/2) of VLAN0001 is designated forwarding 
+   Port path cost 100, Port priority 128, Port Identifier 128.3.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0400
+   Designated port id is 128.3, designated path cost 100
+   Timers: message age 0, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 164463, received 1
+
+sw2#
+
+2022-10-19 10:09:46,967: %UNICON-INFO: +++ sw2 with via 'console': executing command 'show spanning-tree' +++
+show spanning-tree
+
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     aabb.cc00.0300
+             Cost        100
+             Port        1 (Ethernet0/0)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     aabb.cc00.0400
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Root FWD 100       128.1    Shr 
+Et0/1               Desg FWD 100       128.2    Shr 
+Et0/2               Desg FWD 100       128.3    Shr 
+
+
+sw2#
+
+2022-10-19 10:09:49,176: %UNICON-INFO: +++ sw3 logfile /tmp/sw3-cli-20221019T100949174.log +++
+
+2022-10-19 10:09:49,177: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:09:49,248: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 48429, id: 140496731871264 +++
+
+2022-10-19 10:09:49,249: %UNICON-INFO: connection to sw3
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;sw3
+sw3>
+sw3>
+
+2022-10-19 10:09:51,348: %UNICON-INFO: +++ initializing handle +++
+enable
+sw3#
+
+2022-10-19 10:09:51,507: %UNICON-INFO: +++ sw3 with via 'console': executing command 'term len 0' +++
+term len 0
+sw3#
+
+2022-10-19 10:09:51,737: %UNICON-INFO: +++ sw3 with via 'console': executing command 'term wid 0' +++
+term wid 0
+sw3#
+
+2022-10-19 10:09:52,067: %UNICON-INFO: +++ sw3 with via 'console': executing command 'show spanning-tree summary' +++
+show spanning-tree summary
+Switch is in pvst mode
+Root bridge for: none
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+Configured Pathcost method used is short
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     1         0        0          2          3
+---------------------- -------- --------- -------- ---------- ----------
+1 vlan                       1         0        0          2          3
+sw3#
+
+2022-10-19 10:09:52,429: %UNICON-INFO: +++ sw3 with via 'console': executing command 'show errdisable recovery' +++
+show errdisable recovery
+ErrDisable Reason            Timer Status
+-----------------            --------------
+arp-inspection               Disabled
+bpduguard                    Disabled
+channel-misconfig (STP)      Disabled
+dhcp-rate-limit              Disabled
+dtp-flap                     Disabled
+gbic-invalid                 Disabled
+inline-power                 Disabled
+l2ptguard                    Disabled
+link-flap                    Disabled
+mac-limit                    Disabled
+link-monitor-failure         Disabled
+loopback                     Disabled
+oam-remote-failure           Disabled
+pagp-flap                    Disabled
+port-mode-failure            Disabled
+pppoe-ia-rate-limit          Disabled
+psecure-violation            Disabled
+security-violation           Disabled
+sfp-config-mismatch          Disabled
+storm-control                Disabled
+udld                         Disabled
+unicast-flood                Disabled
+vmps                         Disabled
+psp                          Disabled
+dual-active-recovery         Disabled
+
+Timer interval: 300 seconds
+
+Interfaces that will be enabled at the next timeout:
+
+sw3#
+
+2022-10-19 10:09:52,678: %UNICON-INFO: +++ sw3 with via 'console': executing command 'show spanning-tree mst detail' +++
+show spanning-tree mst detail
+% Switch is not in mst mode
+
+sw3#
+
+2022-10-19 10:09:52,926: %UNICON-INFO: +++ sw3 with via 'console': executing command 'show spanning-tree mst configuration' +++
+show spanning-tree mst configuration
+% Switch is not in mst mode
+Name      []
+Revision  0     Instances configured 1
+
+Instance  Vlans mapped
+--------  ---------------------------------------------------------------------
+0         1-4094
+-------------------------------------------------------------------------------
+sw3#
+
+2022-10-19 10:09:53,268: %UNICON-INFO: +++ sw3 with via 'console': executing command 'show spanning-tree detail' +++
+show spanning-tree detail
+
+ VLAN0001 is executing the ieee compatible Spanning Tree protocol
+  Bridge Identifier has priority 32768, sysid 1, address aabb.cc00.0500
+  Configured hello time 2, max age 20, forward delay 15
+  Current root has priority 32769, address aabb.cc00.0300
+  Root port is 2 (Ethernet0/1), cost of root path is 100
+  Topology change flag not set, detected flag not set
+  Number of topology changes 5 last change occurred 3d19h ago
+          from Ethernet0/0
+  Times:  hold 1, topology change 35, notification 2
+          hello 2, max age 20, forward delay 15 
+  Timers: hello 0, topology change 0, notification 0, aging 300
+
+ Port 1 (Ethernet0/0) of VLAN0001 is designated forwarding 
+   Port path cost 100, Port priority 128, Port Identifier 128.1.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0500
+   Designated port id is 128.1, designated path cost 100
+   Timers: message age 0, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 164514, received 1
+
+ Port 2 (Ethernet0/1) of VLAN0001 is root forwarding 
+   Port path cost 100, Port priority 128, Port Identifier 128.2.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0300
+   Designated port id is 128.2, designated path cost 0
+   Timers: message age 2, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 5, received 164527
+
+ Port 3 (Ethernet0/2) of VLAN0001 is alternate blocking 
+   Port path cost 100, Port priority 128, Port Identifier 128.3.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0400
+   Designated port id is 128.3, designated path cost 100
+   Timers: message age 3, forward delay 0, hold 0
+   Number of transitions to forwarding state: 0
+   Link type is shared by default
+   BPDU: sent 1, received 164465
+
+sw3#
+
+2022-10-19 10:09:53,534: %UNICON-INFO: +++ sw3 with via 'console': executing command 'show spanning-tree' +++
+show spanning-tree
+
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     aabb.cc00.0300
+             Cost        100
+             Port        2 (Ethernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     aabb.cc00.0500
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    Shr 
+Et0/1               Root FWD 100       128.2    Shr 
+Et0/2               Altn BLK 100       128.3    Shr 
+
+
+sw3#
+
+2022-10-19 10:09:55,765: %UNICON-INFO: +++ sw4 logfile /tmp/sw4-cli-20221019T100955761.log +++
+
+2022-10-19 10:09:55,765: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:09:55,930: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 34521, id: 140496732055152 +++
+
+2022-10-19 10:09:55,933: %UNICON-INFO: connection to sw4
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;sw4
+sw4>
+sw4>
+
+2022-10-19 10:09:58,060: %UNICON-INFO: +++ initializing handle +++
+enable
+sw4#
+
+2022-10-19 10:09:58,224: %UNICON-INFO: +++ sw4 with via 'console': executing command 'term len 0' +++
+term len 0
+sw4#
+
+2022-10-19 10:09:58,458: %UNICON-INFO: +++ sw4 with via 'console': executing command 'term wid 0' +++
+term wid 0
+sw4#
+
+2022-10-19 10:09:58,971: %UNICON-INFO: +++ sw4 with via 'console': executing command 'show spanning-tree summary' +++
+show spanning-tree summary
+Switch is in pvst mode
+Root bridge for: none
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+Configured Pathcost method used is short
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     2         0        0          1          3
+---------------------- -------- --------- -------- ---------- ----------
+1 vlan                       2         0        0          1          3
+sw4#
+
+2022-10-19 10:09:59,234: %UNICON-INFO: +++ sw4 with via 'console': executing command 'show errdisable recovery' +++
+show errdisable recovery
+ErrDisable Reason            Timer Status
+-----------------            --------------
+arp-inspection               Disabled
+bpduguard                    Disabled
+channel-misconfig (STP)      Disabled
+dhcp-rate-limit              Disabled
+dtp-flap                     Disabled
+gbic-invalid                 Disabled
+inline-power                 Disabled
+l2ptguard                    Disabled
+link-flap                    Disabled
+mac-limit                    Disabled
+link-monitor-failure         Disabled
+loopback                     Disabled
+oam-remote-failure           Disabled
+pagp-flap                    Disabled
+port-mode-failure            Disabled
+pppoe-ia-rate-limit          Disabled
+psecure-violation            Disabled
+security-violation           Disabled
+sfp-config-mismatch          Disabled
+storm-control                Disabled
+udld                         Disabled
+unicast-flood                Disabled
+vmps                         Disabled
+psp                          Disabled
+dual-active-recovery         Disabled
+
+Timer interval: 300 seconds
+
+Interfaces that will be enabled at the next timeout:
+
+sw4#
+
+2022-10-19 10:09:59,471: %UNICON-INFO: +++ sw4 with via 'console': executing command 'show spanning-tree mst detail' +++
+show spanning-tree mst detail
+% Switch is not in mst mode
+
+sw4#
+
+2022-10-19 10:09:59,730: %UNICON-INFO: +++ sw4 with via 'console': executing command 'show spanning-tree mst configuration' +++
+show spanning-tree mst configuration
+% Switch is not in mst mode
+Name      []
+Revision  0     Instances configured 1
+
+Instance  Vlans mapped
+--------  ---------------------------------------------------------------------
+0         1-4094
+-------------------------------------------------------------------------------
+sw4#
+
+2022-10-19 10:10:00,069: %UNICON-INFO: +++ sw4 with via 'console': executing command 'show spanning-tree detail' +++
+show spanning-tree detail
+
+ VLAN0001 is executing the ieee compatible Spanning Tree protocol
+  Bridge Identifier has priority 32768, sysid 1, address aabb.cc00.0600
+  Configured hello time 2, max age 20, forward delay 15
+  Current root has priority 32769, address aabb.cc00.0300
+  Root port is 3 (Ethernet0/2), cost of root path is 100
+  Topology change flag not set, detected flag not set
+  Number of topology changes 2 last change occurred 3d19h ago
+          from Ethernet0/1
+  Times:  hold 1, topology change 35, notification 2
+          hello 2, max age 20, forward delay 15 
+  Timers: hello 0, topology change 0, notification 0, aging 300
+
+ Port 1 (Ethernet0/0) of VLAN0001 is alternate blocking 
+   Port path cost 100, Port priority 128, Port Identifier 128.1.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0500
+   Designated port id is 128.1, designated path cost 100
+   Timers: message age 2, forward delay 0, hold 0
+   Number of transitions to forwarding state: 0
+   Link type is shared by default
+   BPDU: sent 1, received 164518
+
+ Port 2 (Ethernet0/1) of VLAN0001 is alternate blocking 
+   Port path cost 100, Port priority 128, Port Identifier 128.2.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0400
+   Designated port id is 128.2, designated path cost 100
+   Timers: message age 2, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 0, received 164527
+
+ Port 3 (Ethernet0/2) of VLAN0001 is root forwarding 
+   Port path cost 100, Port priority 128, Port Identifier 128.3.
+   Designated root has priority 32769, address aabb.cc00.0300
+   Designated bridge has priority 32769, address aabb.cc00.0300
+   Designated port id is 128.3, designated path cost 0
+   Timers: message age 1, forward delay 0, hold 0
+   Number of transitions to forwarding state: 1
+   Link type is shared by default
+   BPDU: sent 1, received 164479
+
+sw4#
+
+2022-10-19 10:10:00,458: %UNICON-INFO: +++ sw4 with via 'console': executing command 'show spanning-tree' +++
+show spanning-tree
+
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     aabb.cc00.0300
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     aabb.cc00.0600
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Altn BLK 100       128.1    Shr 
+Et0/1               Altn BLK 100       128.2    Shr 
+Et0/2               Root FWD 100       128.3    Shr 
+
+
+sw4#
+sw1
+{'global': {'bpdu_filter': False,
+            'bpdu_guard': False,
+            'bpduguard_timeout_recovery': 300,
+            'etherchannel_misconfig_guard': True,
+            'loop_guard': False},
+ 'mstp': {'default': {'domain': 'default', 'name': '', 'revision': 0}},
+ 'pvst': {'default': {'forwarding_delay': 15,
+                      'hello_time': 2,
+                      'max_age': 20,
+                      'pvst_id': 'default',
+                      'vlans': {1: {'bridge_address': 'aabb.cc00.0300',
+                                    'bridge_priority': 32768,
+                                    'configured_bridge_priority': 32768,
+                                    'designated_root_address': 'aabb.cc00.0300',
+                                    'designated_root_priority': 32769,
+                                    'forwarding_delay': 15,
+                                    'hello_time': 2,
+                                    'hold_time': 1,
+                                    'interfaces': {'Ethernet0/0': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 7,
+                                                                                'bpdu_sent': 164538},
+                                                                   'designated_bridge_address': 'aabb.cc00.0300',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 0,
+                                                                   'designated_port_num': 1,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/0',
+                                                                   'port_num': 1,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'designated'},
+                                                   'Ethernet0/1': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 5,
+                                                                                'bpdu_sent': 164521},
+                                                                   'designated_bridge_address': 'aabb.cc00.0300',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 0,
+                                                                   'designated_port_num': 2,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/1',
+                                                                   'port_num': 2,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'designated'},
+                                                   'Ethernet0/2': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 1,
+                                                                                'bpdu_sent': 164470},
+                                                                   'designated_bridge_address': 'aabb.cc00.0300',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 0,
+                                                                   'designated_port_num': 3,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/2',
+                                                                   'port_num': 3,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'designated'}},
+                                    'max_age': 20,
+                                    'sys_id_ext': 1,
+                                    'time_since_topology_change': '3d19h',
+                                    'topology_changes': 3,
+                                    'vlan_id': 1}}}}}
+sw2
+{'global': {'bpdu_filter': False,
+            'bpdu_guard': False,
+            'bpduguard_timeout_recovery': 300,
+            'etherchannel_misconfig_guard': True,
+            'loop_guard': False},
+ 'mstp': {'default': {'domain': 'default', 'name': '', 'revision': 0}},
+ 'pvst': {'default': {'forwarding_delay': 15,
+                      'hello_time': 2,
+                      'max_age': 20,
+                      'pvst_id': 'default',
+                      'vlans': {1: {'bridge_address': 'aabb.cc00.0400',
+                                    'bridge_priority': 32768,
+                                    'configured_bridge_priority': 32768,
+                                    'designated_root_address': 'aabb.cc00.0300',
+                                    'designated_root_priority': 32769,
+                                    'forwarding_delay': 15,
+                                    'hello_time': 2,
+                                    'hold_time': 1,
+                                    'interfaces': {'Ethernet0/0': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 164541,
+                                                                                'bpdu_sent': 7},
+                                                                   'designated_bridge_address': 'aabb.cc00.0300',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 0,
+                                                                   'designated_port_num': 1,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/0',
+                                                                   'port_num': 1,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'root'},
+                                                   'Ethernet0/1': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 0,
+                                                                                'bpdu_sent': 164520},
+                                                                   'designated_bridge_address': 'aabb.cc00.0400',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 100,
+                                                                   'designated_port_num': 2,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/1',
+                                                                   'port_num': 2,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'designated'},
+                                                   'Ethernet0/2': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 1,
+                                                                                'bpdu_sent': 164463},
+                                                                   'designated_bridge_address': 'aabb.cc00.0400',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 100,
+                                                                   'designated_port_num': 3,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/2',
+                                                                   'port_num': 3,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'designated'}},
+                                    'max_age': 20,
+                                    'root_cost': 100,
+                                    'root_port': 1,
+                                    'sys_id_ext': 1,
+                                    'time_since_topology_change': '3d19h',
+                                    'topology_changes': 8,
+                                    'vlan_id': 1}}}}}
+sw3
+{'global': {'bpdu_filter': False,
+            'bpdu_guard': False,
+            'bpduguard_timeout_recovery': 300,
+            'etherchannel_misconfig_guard': True,
+            'loop_guard': False},
+ 'mstp': {'default': {'domain': 'default', 'name': '', 'revision': 0}},
+ 'pvst': {'default': {'forwarding_delay': 15,
+                      'hello_time': 2,
+                      'max_age': 20,
+                      'pvst_id': 'default',
+                      'vlans': {1: {'bridge_address': 'aabb.cc00.0500',
+                                    'bridge_priority': 32768,
+                                    'configured_bridge_priority': 32768,
+                                    'designated_root_address': 'aabb.cc00.0300',
+                                    'designated_root_priority': 32769,
+                                    'forwarding_delay': 15,
+                                    'hello_time': 2,
+                                    'hold_time': 1,
+                                    'interfaces': {'Ethernet0/0': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 1,
+                                                                                'bpdu_sent': 164514},
+                                                                   'designated_bridge_address': 'aabb.cc00.0500',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 100,
+                                                                   'designated_port_num': 1,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/0',
+                                                                   'port_num': 1,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'designated'},
+                                                   'Ethernet0/1': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 164527,
+                                                                                'bpdu_sent': 5},
+                                                                   'designated_bridge_address': 'aabb.cc00.0300',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 0,
+                                                                   'designated_port_num': 2,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/1',
+                                                                   'port_num': 2,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'root'},
+                                                   'Ethernet0/2': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 164465,
+                                                                                'bpdu_sent': 1},
+                                                                   'designated_bridge_address': 'aabb.cc00.0400',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 100,
+                                                                   'designated_port_num': 3,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 0,
+                                                                   'name': 'Ethernet0/2',
+                                                                   'port_num': 3,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'blocking',
+                                                                   'role': 'alternate'}},
+                                    'max_age': 20,
+                                    'root_cost': 100,
+                                    'root_port': 2,
+                                    'sys_id_ext': 1,
+                                    'time_since_topology_change': '3d19h',
+                                    'topology_changes': 5,
+                                    'vlan_id': 1}}}}}
+sw4
+{'global': {'bpdu_filter': False,
+            'bpdu_guard': False,
+            'bpduguard_timeout_recovery': 300,
+            'etherchannel_misconfig_guard': True,
+            'loop_guard': False},
+ 'mstp': {'default': {'domain': 'default', 'name': '', 'revision': 0}},
+ 'pvst': {'default': {'forwarding_delay': 15,
+                      'hello_time': 2,
+                      'max_age': 20,
+                      'pvst_id': 'default',
+                      'vlans': {1: {'bridge_address': 'aabb.cc00.0600',
+                                    'bridge_priority': 32768,
+                                    'configured_bridge_priority': 32768,
+                                    'designated_root_address': 'aabb.cc00.0300',
+                                    'designated_root_priority': 32769,
+                                    'forwarding_delay': 15,
+                                    'hello_time': 2,
+                                    'hold_time': 1,
+                                    'interfaces': {'Ethernet0/0': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 164518,
+                                                                                'bpdu_sent': 1},
+                                                                   'designated_bridge_address': 'aabb.cc00.0500',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 100,
+                                                                   'designated_port_num': 1,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 0,
+                                                                   'name': 'Ethernet0/0',
+                                                                   'port_num': 1,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'blocking',
+                                                                   'role': 'alternate'},
+                                                   'Ethernet0/1': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 164527,
+                                                                                'bpdu_sent': 0},
+                                                                   'designated_bridge_address': 'aabb.cc00.0400',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 100,
+                                                                   'designated_port_num': 2,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/1',
+                                                                   'port_num': 2,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'blocking',
+                                                                   'role': 'alternate'},
+                                                   'Ethernet0/2': {'cost': 100,
+                                                                   'counters': {'bpdu_received': 164479,
+                                                                                'bpdu_sent': 1},
+                                                                   'designated_bridge_address': 'aabb.cc00.0300',
+                                                                   'designated_bridge_priority': 32769,
+                                                                   'designated_cost': 0,
+                                                                   'designated_port_num': 3,
+                                                                   'designated_port_priority': 128,
+                                                                   'designated_root_address': 'aabb.cc00.0300',
+                                                                   'designated_root_priority': 32769,
+                                                                   'forward_transitions': 1,
+                                                                   'name': 'Ethernet0/2',
+                                                                   'port_num': 3,
+                                                                   'port_priority': 128,
+                                                                   'port_state': 'forwarding',
+                                                                   'role': 'root'}},
+                                    'max_age': 20,
+                                    'root_cost': 100,
+                                    'root_port': 3,
+                                    'sys_id_ext': 1,
+                                    'time_since_topology_change': '3d19h',
+                                    'topology_changes': 2,
+                                    'vlan_id': 1}}}}}

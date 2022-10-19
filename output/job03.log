@@ -1,0 +1,1665 @@
+2022-10-19T10:42:31: %EASYPY-INFO: Starting job run: duplex_job
+2022-10-19T10:42:31: %EASYPY-INFO: Runinfo directory: /home/iida/.pyats/runinfo/duplex_job.2022Oct19_10:42:30.865941
+2022-10-19T10:42:31: %EASYPY-INFO: --------------------------------------------------------------------------------
+2022-10-19T10:42:41: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:41: %EASYPY-INFO: |                              Clean Information                               |
+2022-10-19T10:42:41: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:42: %EASYPY-INFO: {'bringup': {}, 'cleaners': {}, 'devices': {}}
+
+2022-10-19T10:42:42: %ATS-INFO: Checking all devices are up and ready is disabled, '--check-all-devices-up' must be set to True in case of pyats runs or '-check_all_devices_up' set to True in case of legacy easypy runs
+2022-10-19T10:42:42: %EASYPY-INFO: Starting task execution: Duplex
+2022-10-19T10:42:42: %EASYPY-INFO:     test harness = pyats.aetest
+2022-10-19T10:42:42: %EASYPY-INFO:     testscript   = /home/iida/git/pyats-practice/job03_duplex/duplex_test.py
+2022-10-19T10:42:43: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:43: %AETEST-INFO: |                            Starting common setup                             |
+2022-10-19T10:42:43: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:43: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:43: %AETEST-INFO: |                       Starting subsection load_testbed                       |
+2022-10-19T10:42:43: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:43: %SCRIPT-INFO: Converting pyATS testbed to Genie Testbed to support pyATS Library features
+2022-10-19T10:42:43: %AETEST-INFO: The result of subsection load_testbed is => PASSED
+2022-10-19T10:42:43: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:43: %AETEST-INFO: |                         Starting subsection connect                          |
+2022-10-19T10:42:43: %AETEST-INFO: +------------------------------------------------------------------------------+
+
+2022-10-19 10:42:43,695: %UNICON-INFO: +++ r1 logfile /home/iida/.pyats/runinfo/duplex_job.2022Oct19_10:42:30.865941/r1-cli-1666143763.log +++
+
+2022-10-19 10:42:43,695: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:42:43,786: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140196013628096 +++
+
+2022-10-19 10:42:43,789: %UNICON-INFO: connection to r1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r1
+r1#
+
+2022-10-19 10:42:44,888: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:42:44,953: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
+term len 0
+r1#
+
+2022-10-19 10:42:45,241: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r1#
+
+2022-10-19 10:42:45,552: %UNICON-INFO: +++ r2 logfile /home/iida/.pyats/runinfo/duplex_job.2022Oct19_10:42:30.865941/r2-cli-1666143765.log +++
+
+2022-10-19 10:42:45,552: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:42:45,626: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 42503, id: 140196013348416 +++
+
+2022-10-19 10:42:45,627: %UNICON-INFO: connection to r2
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r2
+r2#
+
+2022-10-19 10:42:46,713: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:42:46,789: %UNICON-INFO: +++ r2 with via 'console': executing command 'term len 0' +++
+term len 0
+r2#
+
+2022-10-19 10:42:47,070: %UNICON-INFO: +++ r2 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r2#
+
+2022-10-19 10:42:47,379: %UNICON-INFO: +++ r3 logfile /home/iida/.pyats/runinfo/duplex_job.2022Oct19_10:42:30.865941/r3-cli-1666143767.log +++
+
+2022-10-19 10:42:47,379: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:42:47,456: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 48927, id: 140196013698448 +++
+
+2022-10-19 10:42:47,457: %UNICON-INFO: connection to r3
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r3
+r3#
+
+2022-10-19 10:42:48,570: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:42:48,691: %UNICON-INFO: +++ r3 with via 'console': executing command 'term len 0' +++
+term len 0
+r3#
+
+2022-10-19 10:42:48,976: %UNICON-INFO: +++ r3 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r3#
+
+2022-10-19 10:42:49,298: %UNICON-INFO: +++ r4 logfile /home/iida/.pyats/runinfo/duplex_job.2022Oct19_10:42:30.865941/r4-cli-1666143769.log +++
+
+2022-10-19 10:42:49,298: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:42:49,388: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 41539, id: 140196013578080 +++
+
+2022-10-19 10:42:49,389: %UNICON-INFO: connection to r4
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r4
+r4#
+
+2022-10-19 10:42:50,478: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:42:50,542: %UNICON-INFO: +++ r4 with via 'console': executing command 'term len 0' +++
+term len 0
+r4#
+
+2022-10-19 10:42:50,826: %UNICON-INFO: +++ r4 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r4#
+2022-10-19T10:42:51: %AETEST-INFO: The result of subsection connect is => PASSED
+2022-10-19T10:42:51: %AETEST-INFO: The result of common setup is => PASSED
+2022-10-19T10:42:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:51: %AETEST-INFO: |                      Starting testcase interface_duplex                      |
+2022-10-19T10:42:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:51: %AETEST-INFO: |                            Starting section setup                            |
+2022-10-19T10:42:51: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:42:51: %SCRIPT-INFO: r1 connected status: True
+2022-10-19T10:42:51: %SCRIPT-INFO: Learning Interfaces for r1
+
+2022-10-19 10:42:53,718: %UNICON-INFO: +++ r1 with via 'console': executing command 'show vrf' +++
+show vrf
+r1#
+2022-10-19T10:42:53: %GENIE-INFO: Could not learn <class 'genie.libs.parser.iosxe.show_vrf.ShowVrf'>
+2022-10-19T10:42:53: %GENIE-INFO: Parser Output is empty
+
+2022-10-19 10:42:54,013: %UNICON-INFO: +++ r1 with via 'console': executing command 'show interfaces' +++
+show interfaces
+GigabitEthernet1 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0001.0000 (bia 5002.0001.0000)
+  Description: to r2
+  Internet address is 192.168.12.1/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:03, output 00:00:04, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     69990 packets input, 11110004 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     68981 packets output, 10822338 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 4 interface resets
+     17 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet2 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0001.0001 (bia 5002.0001.0001)
+  Description: to r3
+  Internet address is 192.168.13.1/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:06, output 00:00:05, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     51474 packets input, 7873864 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     50465 packets output, 7722522 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 5 interface resets
+     17 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet3 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0001.0002 (bia 5002.0001.0002)
+  Description: configured by Genie Conf Object
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet4 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0001.0003 (bia 5002.0001.0003)
+  Description: configured by Genie Conf Object
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+Loopback0 is up, line protocol is up 
+  Hardware is Loopback
+  Internet address is 192.168.255.1/32
+  MTU 1514 bytes, BW 8000000 Kbit/sec, DLY 5000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation LOOPBACK, loopback not set
+  Keepalive set (10 sec)
+  Last input 00:00:57, output 00:00:57, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/0 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+r1#
+
+2022-10-19 10:42:54,449: %UNICON-INFO: +++ r1 with via 'console': executing command 'show interfaces accounting' +++
+show interfaces accounting
+GigabitEthernet1 to r2
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       6703    2825931       6672    2683482
+                      IP      39352    4486948      39351    4490526
+                     ARP         26       1560         27       1620
+                     CDP       6643    2809989       6645    2681862
+GigabitEthernet2 to r3
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       5337    2042928       5315    2033832
+                      IP      31393    3581674      31390    3582840
+                     ARP         20       1200         22       1320
+                     CDP       5283    2028672       5293    2032512
+Interface GigabitEthernet3 is disabled
+
+Interface GigabitEthernet4 is disabled
+
+Loopback0 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+No traffic sent or received on this interface.
+r1#
+
+2022-10-19 10:42:54,803: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ip interface' +++
+show ip interface
+GigabitEthernet1 is up, line protocol is up
+  Internet address is 192.168.12.1/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet2 is up, line protocol is up
+  Internet address is 192.168.13.1/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet3 is administratively down, line protocol is down
+  Internet protocol processing disabled
+GigabitEthernet4 is administratively down, line protocol is down
+  Internet protocol processing disabled
+Loopback0 is up, line protocol is up
+  Internet address is 192.168.255.1/32
+  Broadcast address is 255.255.255.255
+  Address determined by non-volatile memory
+  MTU is 1514 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+r1#
+
+2022-10-19 10:42:55,264: %UNICON-INFO: +++ r1 with via 'console': executing command 'show ipv6 interface' +++
+show ipv6 interface
+r1#
+2022-10-19T10:42:55: %GENIE-INFO: Could not learn <class 'genie.libs.parser.iosxe.show_interface.ShowIpv6Interface'>
+2022-10-19T10:42:55: %GENIE-INFO: Parser Output is empty
+2022-10-19T10:42:55: %GENIE-INFO: +====================================================================================================================================================+
+2022-10-19T10:42:55: %GENIE-INFO: | Commands for learning feature 'Interface'                                                                                                          |
+2022-10-19T10:42:55: %GENIE-INFO: +====================================================================================================================================================+
+2022-10-19T10:42:55: %GENIE-INFO: | - Parsed commands                                                                                                                                  |
+2022-10-19T10:42:55: %GENIE-INFO: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+2022-10-19T10:42:55: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowInterfaces'>, arguments: {'interface':''}                                                |
+2022-10-19T10:42:55: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowInterfacesAccounting'>, arguments: {'interface':''}                                      |
+2022-10-19T10:42:55: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowIpInterface'>, arguments: {'interface':''}                                               |
+2022-10-19T10:42:55: %GENIE-INFO: |====================================================================================================================================================|
+2022-10-19T10:42:55: %GENIE-INFO: | - Commands with empty output                                                                                                                       |
+2022-10-19T10:42:55: %GENIE-INFO: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+2022-10-19T10:42:55: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_vrf.ShowVrf'>, arguments: {'vrf':''}                                                                   |
+2022-10-19T10:42:55: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowIpv6Interface'>, arguments: {'interface':''}                                             |
+2022-10-19T10:42:55: %GENIE-INFO: |====================================================================================================================================================|
+2022-10-19T10:42:55: %SCRIPT-INFO: r2 connected status: True
+2022-10-19T10:42:55: %SCRIPT-INFO: Learning Interfaces for r2
+
+2022-10-19 10:42:55,738: %UNICON-INFO: +++ r2 with via 'console': executing command 'show vrf' +++
+show vrf
+r2#
+2022-10-19T10:42:56: %GENIE-INFO: Could not learn <class 'genie.libs.parser.iosxe.show_vrf.ShowVrf'>
+2022-10-19T10:42:56: %GENIE-INFO: Parser Output is empty
+
+2022-10-19 10:42:56,087: %UNICON-INFO: +++ r2 with via 'console': executing command 'show interfaces' +++
+show interfaces
+GigabitEthernet1 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0002.0000 (bia 5002.0002.0000)
+  Internet address is 192.168.12.2/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:06, output 00:00:05, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     46022 packets input, 7173894 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     51636 packets output, 8183311 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 1 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet2 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0002.0001 (bia 5002.0002.0001)
+  Internet address is 192.168.24.2/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:08, output 00:00:04, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     42437 packets input, 6501296 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     42432 packets output, 6497682 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 2 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet3 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0002.0002 (bia 5002.0002.0002)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet4 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0002.0003 (bia 5002.0002.0003)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+Loopback0 is up, line protocol is up 
+  Hardware is Loopback
+  Internet address is 192.168.255.2/32
+  MTU 1514 bytes, BW 8000000 Kbit/sec, DLY 5000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation LOOPBACK, loopback not set
+  Keepalive set (10 sec)
+  Last input 00:00:58, output 00:00:58, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/0 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+r2#
+
+2022-10-19 10:42:56,534: %UNICON-INFO: +++ r2 with via 'console': executing command 'show interfaces accounting' +++
+show interfaces accounting
+GigabitEthernet1 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       6665    2680884       7526    3172971
+                      IP      39350    4490416      44111    5010454
+                     ARP         26       1560         29       1740
+                     CDP       6639    2679324       7497    3171231
+GigabitEthernet2 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       6170    2361018       6164    2358876
+                      IP      36267    4140278      36270    4139304
+                     ARP         25       1500         25       1500
+                     CDP       6145    2359518       6139    2357376
+Interface GigabitEthernet3 is disabled
+
+Interface GigabitEthernet4 is disabled
+
+Loopback0 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+No traffic sent or received on this interface.
+r2#
+
+2022-10-19 10:42:56,832: %UNICON-INFO: +++ r2 with via 'console': executing command 'show ip interface' +++
+show ip interface
+GigabitEthernet1 is up, line protocol is up
+  Internet address is 192.168.12.2/24
+  Broadcast address is 255.255.255.255
+  Address determined by non-volatile memory
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet2 is up, line protocol is up
+  Internet address is 192.168.24.2/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet3 is administratively down, line protocol is down
+  Internet protocol processing disabled
+GigabitEthernet4 is administratively down, line protocol is down
+  Internet protocol processing disabled
+Loopback0 is up, line protocol is up
+  Internet address is 192.168.255.2/32
+  Broadcast address is 255.255.255.255
+  Address determined by non-volatile memory
+  MTU is 1514 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+r2#
+
+2022-10-19 10:42:57,114: %UNICON-INFO: +++ r2 with via 'console': executing command 'show ipv6 interface' +++
+show ipv6 interface
+r2#
+2022-10-19T10:42:57: %GENIE-INFO: Could not learn <class 'genie.libs.parser.iosxe.show_interface.ShowIpv6Interface'>
+2022-10-19T10:42:57: %GENIE-INFO: Parser Output is empty
+2022-10-19T10:42:57: %GENIE-INFO: +====================================================================================================================================================+
+2022-10-19T10:42:57: %GENIE-INFO: | Commands for learning feature 'Interface'                                                                                                          |
+2022-10-19T10:42:57: %GENIE-INFO: +====================================================================================================================================================+
+2022-10-19T10:42:57: %GENIE-INFO: | - Parsed commands                                                                                                                                  |
+2022-10-19T10:42:57: %GENIE-INFO: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+2022-10-19T10:42:57: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowInterfaces'>, arguments: {'interface':''}                                                |
+2022-10-19T10:42:57: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowInterfacesAccounting'>, arguments: {'interface':''}                                      |
+2022-10-19T10:42:57: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowIpInterface'>, arguments: {'interface':''}                                               |
+2022-10-19T10:42:57: %GENIE-INFO: |====================================================================================================================================================|
+2022-10-19T10:42:57: %GENIE-INFO: | - Commands with empty output                                                                                                                       |
+2022-10-19T10:42:57: %GENIE-INFO: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+2022-10-19T10:42:57: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_vrf.ShowVrf'>, arguments: {'vrf':''}                                                                   |
+2022-10-19T10:42:57: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowIpv6Interface'>, arguments: {'interface':''}                                             |
+2022-10-19T10:42:57: %GENIE-INFO: |====================================================================================================================================================|
+2022-10-19T10:42:57: %SCRIPT-INFO: r3 connected status: True
+2022-10-19T10:42:57: %SCRIPT-INFO: Learning Interfaces for r3
+
+2022-10-19 10:42:57,554: %UNICON-INFO: +++ r3 with via 'console': executing command 'show vrf' +++
+show vrf
+r3#
+2022-10-19T10:42:57: %GENIE-INFO: Could not learn <class 'genie.libs.parser.iosxe.show_vrf.ShowVrf'>
+2022-10-19T10:42:57: %GENIE-INFO: Parser Output is empty
+
+2022-10-19 10:42:57,842: %UNICON-INFO: +++ r3 with via 'console': executing command 'show interfaces' +++
+show interfaces
+GigabitEthernet1 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0007.0000 (bia 5002.0007.0000)
+  Internet address is 192.168.34.3/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:04, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     42351 packets input, 6498633 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     42387 packets output, 6502320 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 3 interface resets
+     7 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     1 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet2 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0007.0001 (bia 5002.0007.0001)
+  Internet address is 192.168.13.3/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:09, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     36705 packets input, 5616672 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     42391 packets output, 6484356 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 3 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     1 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet3 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0007.0002 (bia 5002.0007.0002)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet4 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0007.0003 (bia 5002.0007.0003)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+Loopback0 is up, line protocol is up 
+  Hardware is Loopback
+  Internet address is 192.168.255.3/32
+  MTU 1514 bytes, BW 8000000 Kbit/sec, DLY 5000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation LOOPBACK, loopback not set
+  Keepalive set (10 sec)
+  Last input 00:02:18, output 00:02:18, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/0 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+r3#
+
+2022-10-19 10:42:58,221: %UNICON-INFO: +++ r3 with via 'console': executing command 'show interfaces accounting' +++
+show interfaces accounting
+GigabitEthernet1 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       6187    2363010       6192    2367079
+                      IP      36165    4135737      36188    4134821
+                     ARP         32       1920         31       1860
+                     CDP       6148    2360670       6136    2356224
+GigabitEthernet2 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       5315    2033832       6196    2368583
+                      IP      31390    3582840      36189    4115705
+                     ARP         22       1320         31       1860
+                     CDP       5293    2032512       6139    2357376
+Interface GigabitEthernet3 is disabled
+
+Interface GigabitEthernet4 is disabled
+
+Loopback0 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+No traffic sent or received on this interface.
+r3#
+
+2022-10-19 10:42:58,520: %UNICON-INFO: +++ r3 with via 'console': executing command 'show ip interface' +++
+show ip interface
+GigabitEthernet1 is up, line protocol is up
+  Internet address is 192.168.34.3/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet2 is up, line protocol is up
+  Internet address is 192.168.13.3/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet3 is administratively down, line protocol is down
+  Internet protocol processing disabled
+GigabitEthernet4 is administratively down, line protocol is down
+  Internet protocol processing disabled
+Loopback0 is up, line protocol is up
+  Internet address is 192.168.255.3/32
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1514 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+r3#
+
+2022-10-19 10:42:58,872: %UNICON-INFO: +++ r3 with via 'console': executing command 'show ipv6 interface' +++
+show ipv6 interface
+r3#
+2022-10-19T10:42:59: %GENIE-INFO: Could not learn <class 'genie.libs.parser.iosxe.show_interface.ShowIpv6Interface'>
+2022-10-19T10:42:59: %GENIE-INFO: Parser Output is empty
+2022-10-19T10:42:59: %GENIE-INFO: +====================================================================================================================================================+
+2022-10-19T10:42:59: %GENIE-INFO: | Commands for learning feature 'Interface'                                                                                                          |
+2022-10-19T10:42:59: %GENIE-INFO: +====================================================================================================================================================+
+2022-10-19T10:42:59: %GENIE-INFO: | - Parsed commands                                                                                                                                  |
+2022-10-19T10:42:59: %GENIE-INFO: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+2022-10-19T10:42:59: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowInterfaces'>, arguments: {'interface':''}                                                |
+2022-10-19T10:42:59: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowInterfacesAccounting'>, arguments: {'interface':''}                                      |
+2022-10-19T10:42:59: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowIpInterface'>, arguments: {'interface':''}                                               |
+2022-10-19T10:42:59: %GENIE-INFO: |====================================================================================================================================================|
+2022-10-19T10:42:59: %GENIE-INFO: | - Commands with empty output                                                                                                                       |
+2022-10-19T10:42:59: %GENIE-INFO: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+2022-10-19T10:42:59: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_vrf.ShowVrf'>, arguments: {'vrf':''}                                                                   |
+2022-10-19T10:42:59: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowIpv6Interface'>, arguments: {'interface':''}                                             |
+2022-10-19T10:42:59: %GENIE-INFO: |====================================================================================================================================================|
+2022-10-19T10:42:59: %SCRIPT-INFO: r4 connected status: True
+2022-10-19T10:42:59: %SCRIPT-INFO: Learning Interfaces for r4
+
+2022-10-19 10:42:59,357: %UNICON-INFO: +++ r4 with via 'console': executing command 'show vrf' +++
+show vrf
+r4#
+2022-10-19T10:42:59: %GENIE-INFO: Could not learn <class 'genie.libs.parser.iosxe.show_vrf.ShowVrf'>
+2022-10-19T10:42:59: %GENIE-INFO: Parser Output is empty
+
+2022-10-19 10:42:59,654: %UNICON-INFO: +++ r4 with via 'console': executing command 'show interfaces' +++
+show interfaces
+GigabitEthernet1 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0008.0000 (bia 5002.0008.0000)
+  Internet address is 192.168.34.4/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:02, output 00:00:06, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     42358 packets input, 6498088 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     42352 packets output, 6498747 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 3 interface resets
+     1 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     1 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet2 is up, line protocol is up 
+  Hardware is CSR vNIC, address is 5002.0008.0001 (bia 5002.0008.0001)
+  Internet address is 192.168.24.4/24
+  MTU 9000 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:02, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     42428 packets input, 6497296 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     42495 packets output, 6517711 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 3 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     1 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet3 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0008.0002 (bia 5002.0008.0002)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet4 is administratively down, line protocol is down 
+  Hardware is CSR vNIC, address is 5002.0008.0003 (bia 5002.0008.0003)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1000Mbps, link type is auto, media type is Virtual
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+Loopback0 is up, line protocol is up 
+  Hardware is Loopback
+  Internet address is 192.168.255.4/32
+  MTU 1514 bytes, BW 8000000 Kbit/sec, DLY 5000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation LOOPBACK, loopback not set
+  Keepalive set (10 sec)
+  Last input 00:02:18, output 00:02:18, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/0 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     Output 0 broadcasts (0 IP multicasts)
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+r4#
+
+2022-10-19 10:43:00,061: %UNICON-INFO: +++ r4 with via 'console': executing command 'show interfaces accounting' +++
+show interfaces accounting
+GigabitEthernet1 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       6157    2356188       6202    2370503
+                      IP      36181    4138766      36143    4128075
+                     ARP         24       1440         32       1920
+                     CDP       6132    2354688       6148    2360670
+GigabitEthernet2 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+                   Other       6162    2358432       6199    2369351
+                      IP      36265    4138754      36289    4148191
+                     ARP         24       1440         32       1920
+                     CDP       6138    2356992       6145    2359518
+Interface GigabitEthernet3 is disabled
+
+Interface GigabitEthernet4 is disabled
+
+Loopback0 
+                Protocol    Pkts In   Chars In   Pkts Out  Chars Out
+No traffic sent or received on this interface.
+r4#
+
+2022-10-19 10:43:00,364: %UNICON-INFO: +++ r4 with via 'console': executing command 'show ip interface' +++
+show ip interface
+GigabitEthernet1 is up, line protocol is up
+  Internet address is 192.168.34.4/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet2 is up, line protocol is up
+  Internet address is 192.168.24.4/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 9000 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+GigabitEthernet3 is administratively down, line protocol is down
+  Internet protocol processing disabled
+GigabitEthernet4 is administratively down, line protocol is down
+  Internet protocol processing disabled
+Loopback0 is up, line protocol is up
+  Internet address is 192.168.255.4/32
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1514 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5
+  Outgoing Common access list is not set 
+  Outgoing access list is not set
+  Inbound Common access list is not set 
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP Null turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  IPv4 WCCP Redirect outbound is disabled
+  IPv4 WCCP Redirect inbound is disabled
+  IPv4 WCCP Redirect exclude is disabled
+r4#
+
+2022-10-19 10:43:00,701: %UNICON-INFO: +++ r4 with via 'console': executing command 'show ipv6 interface' +++
+show ipv6 interface
+r4#
+2022-10-19T10:43:00: %GENIE-INFO: Could not learn <class 'genie.libs.parser.iosxe.show_interface.ShowIpv6Interface'>
+2022-10-19T10:43:00: %GENIE-INFO: Parser Output is empty
+2022-10-19T10:43:00: %GENIE-INFO: +====================================================================================================================================================+
+2022-10-19T10:43:00: %GENIE-INFO: | Commands for learning feature 'Interface'                                                                                                          |
+2022-10-19T10:43:00: %GENIE-INFO: +====================================================================================================================================================+
+2022-10-19T10:43:00: %GENIE-INFO: | - Parsed commands                                                                                                                                  |
+2022-10-19T10:43:00: %GENIE-INFO: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+2022-10-19T10:43:00: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowInterfaces'>, arguments: {'interface':''}                                                |
+2022-10-19T10:43:00: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowInterfacesAccounting'>, arguments: {'interface':''}                                      |
+2022-10-19T10:43:00: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowIpInterface'>, arguments: {'interface':''}                                               |
+2022-10-19T10:43:00: %GENIE-INFO: |====================================================================================================================================================|
+2022-10-19T10:43:00: %GENIE-INFO: | - Commands with empty output                                                                                                                       |
+2022-10-19T10:43:00: %GENIE-INFO: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+2022-10-19T10:43:00: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_vrf.ShowVrf'>, arguments: {'vrf':''}                                                                   |
+2022-10-19T10:43:00: %GENIE-INFO: |   cmd: <class 'genie.libs.parser.iosxe.show_interface.ShowIpv6Interface'>, arguments: {'interface':''}                                             |
+2022-10-19T10:43:00: %GENIE-INFO: |====================================================================================================================================================|
+2022-10-19T10:43:00: %AETEST-INFO: The result of section setup is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:01: %AETEST-INFO: |                            Starting section test                             |
+2022-10-19T10:43:01: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :          Starting STEP 1: Looking for half-duplex Interfaces on r1           :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 1.1: Checking Interface GigabitEthernet4            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 1.1: Checking Interface GigabitEthernet4 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 1.2: Checking Interface GigabitEthernet3            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 1.2: Checking Interface GigabitEthernet3 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 1.3: Checking Interface GigabitEthernet2            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 1.3: Checking Interface GigabitEthernet2 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 1.4: Checking Interface GigabitEthernet1            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 1.4: Checking Interface GigabitEthernet1 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :               Starting STEP 1.5: Checking Interface Loopback0                :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: Skipped reason: Device r1 Interface Loopback0 has no duplex
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 1.5: Checking Interface Loopback0 is => SKIPPED
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 1: Looking for half-duplex Interfaces on r1 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :          Starting STEP 2: Looking for half-duplex Interfaces on r2           :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :               Starting STEP 2.1: Checking Interface Loopback0                :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: Skipped reason: Device r2 Interface Loopback0 has no duplex
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 2.1: Checking Interface Loopback0 is => SKIPPED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 2.2: Checking Interface GigabitEthernet4            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 2.2: Checking Interface GigabitEthernet4 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 2.3: Checking Interface GigabitEthernet3            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 2.3: Checking Interface GigabitEthernet3 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 2.4: Checking Interface GigabitEthernet2            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 2.4: Checking Interface GigabitEthernet2 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 2.5: Checking Interface GigabitEthernet1            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 2.5: Checking Interface GigabitEthernet1 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 2: Looking for half-duplex Interfaces on r2 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :          Starting STEP 3: Looking for half-duplex Interfaces on r3           :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :               Starting STEP 3.1: Checking Interface Loopback0                :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: Skipped reason: Device r3 Interface Loopback0 has no duplex
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 3.1: Checking Interface Loopback0 is => SKIPPED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 3.2: Checking Interface GigabitEthernet4            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 3.2: Checking Interface GigabitEthernet4 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 3.3: Checking Interface GigabitEthernet3            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 3.3: Checking Interface GigabitEthernet3 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 3.4: Checking Interface GigabitEthernet2            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 3.4: Checking Interface GigabitEthernet2 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 3.5: Checking Interface GigabitEthernet1            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 3.5: Checking Interface GigabitEthernet1 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 3: Looking for half-duplex Interfaces on r3 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :          Starting STEP 4: Looking for half-duplex Interfaces on r4           :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :               Starting STEP 4.1: Checking Interface Loopback0                :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: Skipped reason: Device r4 Interface Loopback0 has no duplex
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 4.1: Checking Interface Loopback0 is => SKIPPED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 4.2: Checking Interface GigabitEthernet4            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 4.2: Checking Interface GigabitEthernet4 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 4.3: Checking Interface GigabitEthernet3            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 4.3: Checking Interface GigabitEthernet3 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 4.4: Checking Interface GigabitEthernet2            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 4.4: Checking Interface GigabitEthernet2 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :            Starting STEP 4.5: Checking Interface GigabitEthernet1            :
+2022-10-19T10:43:01: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 4.5: Checking Interface GigabitEthernet1 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: The result of STEP 4: Looking for half-duplex Interfaces on r4 is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: +..........................................................+
+2022-10-19T10:43:01: %AETEST-INFO: :                       STEPS Report                       :
+2022-10-19T10:43:01: %AETEST-INFO: +..........................................................+
+2022-10-19T10:43:01: %AETEST-INFO: STEP 1 - Looking for half-duplex Interfaces on r1 Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 1.1 - Checking Interface GigabitEthernet4    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 1.2 - Checking Interface GigabitEthernet3    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 1.3 - Checking Interface GigabitEthernet2    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 1.4 - Checking Interface GigabitEthernet1    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 1.5 - Checking Interface Loopback0           Skipped   
+2022-10-19T10:43:01: %AETEST-INFO: STEP 2 - Looking for half-duplex Interfaces on r2 Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 2.1 - Checking Interface Loopback0           Skipped   
+2022-10-19T10:43:01: %AETEST-INFO: STEP 2.2 - Checking Interface GigabitEthernet4    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 2.3 - Checking Interface GigabitEthernet3    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 2.4 - Checking Interface GigabitEthernet2    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 2.5 - Checking Interface GigabitEthernet1    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 3 - Looking for half-duplex Interfaces on r3 Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 3.1 - Checking Interface Loopback0           Skipped   
+2022-10-19T10:43:01: %AETEST-INFO: STEP 3.2 - Checking Interface GigabitEthernet4    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 3.3 - Checking Interface GigabitEthernet3    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 3.4 - Checking Interface GigabitEthernet2    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 3.5 - Checking Interface GigabitEthernet1    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 4 - Looking for half-duplex Interfaces on r4 Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 4.1 - Checking Interface Loopback0           Skipped   
+2022-10-19T10:43:01: %AETEST-INFO: STEP 4.2 - Checking Interface GigabitEthernet4    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 4.3 - Checking Interface GigabitEthernet3    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 4.4 - Checking Interface GigabitEthernet2    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: STEP 4.5 - Checking Interface GigabitEthernet1    Passed    
+2022-10-19T10:43:01: %AETEST-INFO: ............................................................
+2022-10-19T10:43:01: %AETEST-INFO: The result of section test is => PASSED
+2022-10-19T10:43:01: %AETEST-INFO: The result of testcase interface_duplex is => PASSED
+2022-10-19T10:43:02: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:02: %AETEST-INFO: |                           Starting common cleanup                            |
+2022-10-19T10:43:02: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:02: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:02: %AETEST-INFO: |                        Starting subsection disconnect                        |
+2022-10-19T10:43:02: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:04: %AETEST-INFO: The result of subsection disconnect is => PASSED
+2022-10-19T10:43:04: %AETEST-INFO: The result of common cleanup is => PASSED
+2022-10-19T10:43:04: %CONTRIB-INFO: WebEx Token not given as argument or in config. No WebEx notification will be sent
+2022-10-19T10:43:04: %EASYPY-INFO: --------------------------------------------------------------------------------
+2022-10-19T10:43:04: %EASYPY-INFO: Job finished. Wrapping up...
+2022-10-19T10:43:05: %EASYPY-INFO: Creating archive file: /home/iida/.pyats/archive/22-Oct/duplex_job.2022Oct19_10:42:30.865941.zip
+2022-10-19T10:43:05: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:05: %EASYPY-INFO: |                                Easypy Report                                 |
+2022-10-19T10:43:05: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:05: %EASYPY-INFO: pyATS Instance   : /home/iida/git/pyats-practice/.venv
+2022-10-19T10:43:05: %EASYPY-INFO: Python Version   : cpython-3.8.10 (64bit)
+2022-10-19T10:43:05: %EASYPY-INFO: CLI Arguments    : /home/iida/git/pyats-practice/.venv/bin/pyats run job duplex_job.py --testbed-file ../lab.yml
+2022-10-19T10:43:05: %EASYPY-INFO: User             : iida
+2022-10-19T10:43:05: %EASYPY-INFO: Host Server      : FCCLS0008993-00
+2022-10-19T10:43:05: %EASYPY-INFO: Host OS Version  : Ubuntu 20.04 focal (x86_64)
+2022-10-19T10:43:05: %EASYPY-INFO: 
+2022-10-19T10:43:05: %EASYPY-INFO: Job Information
+2022-10-19T10:43:05: %EASYPY-INFO:     Name         : duplex_job
+2022-10-19T10:43:05: %EASYPY-INFO:     Start time   : 2022-10-19 10:42:42.318224+09:00
+2022-10-19T10:43:05: %EASYPY-INFO:     Stop time    : 2022-10-19 10:43:04.687707+09:00
+2022-10-19T10:43:05: %EASYPY-INFO:     Elapsed time : 22.369483
+2022-10-19T10:43:05: %EASYPY-INFO:     Archive      : /home/iida/.pyats/archive/22-Oct/duplex_job.2022Oct19_10:42:30.865941.zip
+2022-10-19T10:43:05: %EASYPY-INFO: 
+2022-10-19T10:43:05: %EASYPY-INFO: Total Tasks    : 1 
+2022-10-19T10:43:05: %EASYPY-INFO: 
+2022-10-19T10:43:05: %EASYPY-INFO: Overall Stats
+2022-10-19T10:43:05: %EASYPY-INFO:     Passed     : 3
+2022-10-19T10:43:05: %EASYPY-INFO:     Passx      : 0
+2022-10-19T10:43:05: %EASYPY-INFO:     Failed     : 0
+2022-10-19T10:43:05: %EASYPY-INFO:     Aborted    : 0
+2022-10-19T10:43:05: %EASYPY-INFO:     Blocked    : 0
+2022-10-19T10:43:05: %EASYPY-INFO:     Skipped    : 0
+2022-10-19T10:43:05: %EASYPY-INFO:     Errored    : 0
+2022-10-19T10:43:05: %EASYPY-INFO: 
+2022-10-19T10:43:05: %EASYPY-INFO:     TOTAL      : 3
+2022-10-19T10:43:05: %EASYPY-INFO: 
+2022-10-19T10:43:05: %EASYPY-INFO: Success Rate   : 100.00 %
+2022-10-19T10:43:05: %EASYPY-INFO: 
+2022-10-19T10:43:05: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:05: %EASYPY-INFO: |                             Task Result Summary                              |
+2022-10-19T10:43:05: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:05: %EASYPY-INFO: Duplex: duplex_test.common_setup                                          PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: Duplex: duplex_test.interface_duplex                                      PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: Duplex: duplex_test.common_cleanup                                        PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: 
+2022-10-19T10:43:05: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:05: %EASYPY-INFO: |                             Task Result Details                              |
+2022-10-19T10:43:05: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:43:05: %EASYPY-INFO: Duplex: duplex_test
+2022-10-19T10:43:05: %EASYPY-INFO: |-- common_setup                                                          PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |   |-- load_testbed                                                      PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |   `-- connect                                                           PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |-- interface_duplex                                                      PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |   |-- setup                                                             PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |   `-- test                                                              PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 1: Looking for half-duplex Interfaces on r1              PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 1.1: Checking Interface GigabitEthernet4                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 1.2: Checking Interface GigabitEthernet3                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 1.3: Checking Interface GigabitEthernet2                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 1.4: Checking Interface GigabitEthernet1                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 1.5: Checking Interface Loopback0                       SKIPPED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 2: Looking for half-duplex Interfaces on r2              PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 2.1: Checking Interface Loopback0                       SKIPPED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 2.2: Checking Interface GigabitEthernet4                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 2.3: Checking Interface GigabitEthernet3                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 2.4: Checking Interface GigabitEthernet2                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 2.5: Checking Interface GigabitEthernet1                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 3: Looking for half-duplex Interfaces on r3              PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 3.1: Checking Interface Loopback0                       SKIPPED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 3.2: Checking Interface GigabitEthernet4                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 3.3: Checking Interface GigabitEthernet3                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 3.4: Checking Interface GigabitEthernet2                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 3.5: Checking Interface GigabitEthernet1                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 4: Looking for half-duplex Interfaces on r4              PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 4.1: Checking Interface Loopback0                       SKIPPED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 4.2: Checking Interface GigabitEthernet4                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 4.3: Checking Interface GigabitEthernet3                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       |-- STEP 4.4: Checking Interface GigabitEthernet2                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: |       `-- STEP 4.5: Checking Interface GigabitEthernet1                 PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: `-- common_cleanup                                                        PASSED
+2022-10-19T10:43:05: %EASYPY-INFO:     `-- disconnect                                                        PASSED
+2022-10-19T10:43:05: %EASYPY-INFO: Sending report email...
+2022-10-19T10:43:05: %EASYPY-INFO: Missing SMTP server configuration, or failed to reach/authenticate/send mail. Result notification email failed to send.
+2022-10-19T10:43:06: %EASYPY-INFO: Done!
+
+Pro Tip
+-------
+   Try the following command to view your logs:
+       pyats logs view
+

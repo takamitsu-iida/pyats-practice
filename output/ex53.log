@@ -1,0 +1,44 @@
+
+2022-10-19 10:36:25,725: %UNICON-INFO: +++ r1 logfile /tmp/r1-cli-20221019T103625722.log +++
+
+2022-10-19 10:36:25,726: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:36:25,803: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140513756890448 +++
+
+2022-10-19 10:36:25,804: %UNICON-INFO: connection to r1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r1
+r1#
+
+2022-10-19 10:36:26,924: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:36:26,992: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
+term len 0
+r1#
+
+2022-10-19 10:36:27,280: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r1#
+('router ospf 1\n'
+ ' router-id 192.168.255.1\n'
+ ' exit\n'
+ 'interface GigabitEthernet1\n'
+ ' ip ospf cost 10\n'
+ ' ip ospf network point-to-point\n'
+ ' exit')
+
+2022-10-19 10:36:27,716: %UNICON-INFO: +++ r1 with via 'console': configure +++
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+r1(config)#router ospf 1
+r1(config-router)# router-id 192.168.255.1
+r1(config-router)# exit
+r1(config)#interface GigabitEthernet1
+r1(config-if)# ip ospf cost 10
+r1(config-if)# ip ospf network point-to-point
+r1(config-if)# exit
+r1(config)#end
+r1#

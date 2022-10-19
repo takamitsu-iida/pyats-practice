@@ -1,0 +1,1012 @@
+2022-10-19T10:40:14: %EASYPY-INFO: Starting job run: ping_job
+2022-10-19T10:40:14: %EASYPY-INFO: Runinfo directory: /home/iida/.pyats/runinfo/ping_job.2022Oct19_10:40:13.466235
+2022-10-19T10:40:14: %EASYPY-INFO: --------------------------------------------------------------------------------
+2022-10-19T10:40:22: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:22: %EASYPY-INFO: |                              Clean Information                               |
+2022-10-19T10:40:22: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:22: %EASYPY-INFO: {'bringup': {}, 'cleaners': {}, 'devices': {}}
+
+2022-10-19T10:40:22: %ATS-INFO: Checking all devices are up and ready is disabled, '--check-all-devices-up' must be set to True in case of pyats runs or '-check_all_devices_up' set to True in case of legacy easypy runs
+2022-10-19T10:40:22: %EASYPY-INFO: Starting task execution: Ping
+2022-10-19T10:40:22: %EASYPY-INFO:     test harness = pyats.aetest
+2022-10-19T10:40:22: %EASYPY-INFO:     testscript   = /home/iida/git/pyats-practice/job01_ping/ping_test.py
+2022-10-19T10:40:23: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:23: %AETEST-INFO: |                            Starting common setup                             |
+2022-10-19T10:40:23: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:23: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:23: %AETEST-INFO: |                       Starting subsection load_testbed                       |
+2022-10-19T10:40:23: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:23: %SCRIPT-INFO: Converting pyATS testbed to Genie Testbed to support pyATS Library features
+2022-10-19T10:40:23: %AETEST-INFO: The result of subsection load_testbed is => PASSED
+2022-10-19T10:40:23: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:23: %AETEST-INFO: |                         Starting subsection connect                          |
+2022-10-19T10:40:23: %AETEST-INFO: +------------------------------------------------------------------------------+
+
+2022-10-19 10:40:23,995: %UNICON-INFO: +++ r1 logfile /home/iida/.pyats/runinfo/ping_job.2022Oct19_10:40:13.466235/r1-cli-1666143623.log +++
+
+2022-10-19 10:40:23,996: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:40:24,087: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 38905, id: 140453243400832 +++
+
+2022-10-19 10:40:24,087: %UNICON-INFO: connection to r1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r1
+r1#
+
+2022-10-19 10:40:25,186: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-19 10:40:25,255: %UNICON-INFO: +++ r1 with via 'console': executing command 'term len 0' +++
+term len 0
+r1#
+
+2022-10-19 10:40:25,540: %UNICON-INFO: +++ r1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r1#
+
+2022-10-19 10:40:25,837: %UNICON-INFO: +++ r2 logfile /home/iida/.pyats/runinfo/ping_job.2022Oct19_10:40:13.466235/r2-cli-1666143625.log +++
+
+2022-10-19 10:40:25,837: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:40:25,910: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 42503, id: 140453243628992 +++
+
+2022-10-19 10:40:25,911: %UNICON-INFO: connection to r2
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r2
+r2>
+
+2022-10-19 10:40:27,009: %UNICON-INFO: +++ initializing handle +++
+enable
+r2#
+
+2022-10-19 10:40:27,171: %UNICON-INFO: +++ r2 with via 'console': executing command 'term len 0' +++
+term len 0
+r2#
+
+2022-10-19 10:40:27,450: %UNICON-INFO: +++ r2 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r2#
+
+2022-10-19 10:40:27,764: %UNICON-INFO: +++ r3 logfile /home/iida/.pyats/runinfo/ping_job.2022Oct19_10:40:13.466235/r3-cli-1666143627.log +++
+
+2022-10-19 10:40:27,767: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:40:27,841: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 48927, id: 140453243437744 +++
+
+2022-10-19 10:40:27,841: %UNICON-INFO: connection to r3
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r3
+r3>
+
+2022-10-19 10:40:28,934: %UNICON-INFO: +++ initializing handle +++
+enable
+r3#
+
+2022-10-19 10:40:29,095: %UNICON-INFO: +++ r3 with via 'console': executing command 'term len 0' +++
+term len 0
+r3#
+
+2022-10-19 10:40:29,385: %UNICON-INFO: +++ r3 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r3#
+
+2022-10-19 10:40:29,689: %UNICON-INFO: +++ r4 logfile /home/iida/.pyats/runinfo/ping_job.2022Oct19_10:40:13.466235/r4-cli-1666143629.log +++
+
+2022-10-19 10:40:29,690: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+Trying 10.38.220.42...
+
+
+2022-10-19 10:40:29,770: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 41539, id: 140453242883232 +++
+
+2022-10-19 10:40:29,771: %UNICON-INFO: connection to r4
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;r4
+r4>
+r4>
+
+2022-10-19 10:40:31,890: %UNICON-INFO: +++ initializing handle +++
+enable
+r4#
+
+2022-10-19 10:40:32,048: %UNICON-INFO: +++ r4 with via 'console': executing command 'term len 0' +++
+term len 0
+r4#
+
+2022-10-19 10:40:32,323: %UNICON-INFO: +++ r4 with via 'console': executing command 'term wid 0' +++
+term wid 0
+r4#
+2022-10-19T10:40:32: %AETEST-INFO: The result of subsection connect is => PASSED
+2022-10-19T10:40:32: %AETEST-INFO: The result of common setup is => PASSED
+2022-10-19T10:40:32: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:32: %AETEST-INFO: |                         Starting testcase ping_class                         |
+2022-10-19T10:40:32: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:33: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:33: %AETEST-INFO: |                            Starting section setup                            |
+2022-10-19T10:40:33: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:33: %SCRIPT-INFO: r1 connected status: True
+2022-10-19T10:40:33: %SCRIPT-INFO: Pinging 192.168.12.1 from r1
+
+2022-10-19 10:40:33,279: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.12.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.12.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r1#
+2022-10-19T10:40:33: %SCRIPT-INFO: Pinging 192.168.12.2 from r1
+
+2022-10-19 10:40:33,447: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.12.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.12.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r1#
+2022-10-19T10:40:33: %SCRIPT-INFO: Pinging 192.168.13.1 from r1
+
+2022-10-19 10:40:33,624: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.13.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.13.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r1#
+2022-10-19T10:40:33: %SCRIPT-INFO: Pinging 192.168.13.3 from r1
+
+2022-10-19 10:40:33,781: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.13.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.13.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r1#
+2022-10-19T10:40:33: %SCRIPT-INFO: Pinging 192.168.24.2 from r1
+
+2022-10-19 10:40:33,937: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.24.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.24.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r1#
+2022-10-19T10:40:34: %SCRIPT-INFO: Pinging 192.168.24.4 from r1
+
+2022-10-19 10:40:34,090: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.24.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.24.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/3 ms
+r1#
+2022-10-19T10:40:34: %SCRIPT-INFO: Pinging 192.168.34.3 from r1
+
+2022-10-19 10:40:34,259: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.34.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.34.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r1#
+2022-10-19T10:40:34: %SCRIPT-INFO: Pinging 192.168.34.4 from r1
+
+2022-10-19 10:40:34,427: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.34.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.34.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r1#
+2022-10-19T10:40:34: %SCRIPT-INFO: Pinging 192.168.255.1 from r1
+
+2022-10-19 10:40:34,583: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.255.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r1#
+2022-10-19T10:40:34: %SCRIPT-INFO: Pinging 192.168.255.2 from r1
+
+2022-10-19 10:40:34,738: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.255.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r1#
+2022-10-19T10:40:34: %SCRIPT-INFO: Pinging 192.168.255.3 from r1
+
+2022-10-19 10:40:34,893: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.255.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r1#
+2022-10-19T10:40:35: %SCRIPT-INFO: Pinging 192.168.255.4 from r1
+
+2022-10-19 10:40:35,046: %UNICON-INFO: +++ r1 with via 'console': ping +++
+ping 192.168.255.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r1#
+2022-10-19T10:40:35: %SCRIPT-INFO: r2 connected status: True
+2022-10-19T10:40:35: %SCRIPT-INFO: Pinging 192.168.12.1 from r2
+
+2022-10-19 10:40:35,326: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.12.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.12.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r2#
+2022-10-19T10:40:35: %SCRIPT-INFO: Pinging 192.168.12.2 from r2
+
+2022-10-19 10:40:35,494: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.12.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.12.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r2#
+2022-10-19T10:40:35: %SCRIPT-INFO: Pinging 192.168.13.1 from r2
+
+2022-10-19 10:40:35,650: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.13.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.13.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r2#
+2022-10-19T10:40:35: %SCRIPT-INFO: Pinging 192.168.13.3 from r2
+
+2022-10-19 10:40:35,805: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.13.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.13.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r2#
+2022-10-19T10:40:35: %SCRIPT-INFO: Pinging 192.168.24.2 from r2
+
+2022-10-19 10:40:35,958: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.24.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.24.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r2#
+2022-10-19T10:40:36: %SCRIPT-INFO: Pinging 192.168.24.4 from r2
+
+2022-10-19 10:40:36,135: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.24.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.24.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r2#
+2022-10-19T10:40:36: %SCRIPT-INFO: Pinging 192.168.34.3 from r2
+
+2022-10-19 10:40:36,310: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.34.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.34.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r2#
+2022-10-19T10:40:36: %SCRIPT-INFO: Pinging 192.168.34.4 from r2
+
+2022-10-19 10:40:36,467: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.34.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.34.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r2#
+2022-10-19T10:40:36: %SCRIPT-INFO: Pinging 192.168.255.1 from r2
+
+2022-10-19 10:40:36,637: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.255.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r2#
+2022-10-19T10:40:36: %SCRIPT-INFO: Pinging 192.168.255.2 from r2
+
+2022-10-19 10:40:36,818: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.255.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r2#
+2022-10-19T10:40:36: %SCRIPT-INFO: Pinging 192.168.255.3 from r2
+
+2022-10-19 10:40:36,973: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.255.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r2#
+2022-10-19T10:40:37: %SCRIPT-INFO: Pinging 192.168.255.4 from r2
+
+2022-10-19 10:40:37,126: %UNICON-INFO: +++ r2 with via 'console': ping +++
+ping 192.168.255.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/3 ms
+r2#
+2022-10-19T10:40:37: %SCRIPT-INFO: r3 connected status: True
+2022-10-19T10:40:37: %SCRIPT-INFO: Pinging 192.168.12.1 from r3
+
+2022-10-19 10:40:37,470: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.12.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.12.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r3#
+2022-10-19T10:40:37: %SCRIPT-INFO: Pinging 192.168.12.2 from r3
+
+2022-10-19 10:40:37,634: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.12.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.12.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r3#
+2022-10-19T10:40:37: %SCRIPT-INFO: Pinging 192.168.13.1 from r3
+
+2022-10-19 10:40:37,788: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.13.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.13.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/9 ms
+r3#
+2022-10-19T10:40:37: %SCRIPT-INFO: Pinging 192.168.13.3 from r3
+
+2022-10-19 10:40:37,977: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.13.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.13.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r3#
+2022-10-19T10:40:38: %SCRIPT-INFO: Pinging 192.168.24.2 from r3
+
+2022-10-19 10:40:38,162: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.24.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.24.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r3#
+2022-10-19T10:40:38: %SCRIPT-INFO: Pinging 192.168.24.4 from r3
+
+2022-10-19 10:40:38,319: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.24.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.24.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r3#
+2022-10-19T10:40:38: %SCRIPT-INFO: Pinging 192.168.34.3 from r3
+
+2022-10-19 10:40:38,473: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.34.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.34.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r3#
+2022-10-19T10:40:38: %SCRIPT-INFO: Pinging 192.168.34.4 from r3
+
+2022-10-19 10:40:38,625: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.34.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.34.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r3#
+2022-10-19T10:40:38: %SCRIPT-INFO: Pinging 192.168.255.1 from r3
+
+2022-10-19 10:40:38,782: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.255.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r3#
+2022-10-19T10:40:38: %SCRIPT-INFO: Pinging 192.168.255.2 from r3
+
+2022-10-19 10:40:38,955: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.255.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r3#
+2022-10-19T10:40:39: %SCRIPT-INFO: Pinging 192.168.255.3 from r3
+
+2022-10-19 10:40:39,131: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.255.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r3#
+2022-10-19T10:40:39: %SCRIPT-INFO: Pinging 192.168.255.4 from r3
+
+2022-10-19 10:40:39,293: %UNICON-INFO: +++ r3 with via 'console': ping +++
+ping 192.168.255.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r3#
+2022-10-19T10:40:39: %SCRIPT-INFO: r4 connected status: True
+2022-10-19T10:40:39: %SCRIPT-INFO: Pinging 192.168.12.1 from r4
+
+2022-10-19 10:40:39,577: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.12.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.12.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r4#
+2022-10-19T10:40:39: %SCRIPT-INFO: Pinging 192.168.12.2 from r4
+
+2022-10-19 10:40:39,751: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.12.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.12.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r4#
+2022-10-19T10:40:39: %SCRIPT-INFO: Pinging 192.168.13.1 from r4
+
+2022-10-19 10:40:39,910: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.13.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.13.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r4#
+2022-10-19T10:40:40: %SCRIPT-INFO: Pinging 192.168.13.3 from r4
+
+2022-10-19 10:40:40,066: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.13.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.13.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r4#
+2022-10-19T10:40:40: %SCRIPT-INFO: Pinging 192.168.24.2 from r4
+
+2022-10-19 10:40:40,217: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.24.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.24.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r4#
+2022-10-19T10:40:40: %SCRIPT-INFO: Pinging 192.168.24.4 from r4
+
+2022-10-19 10:40:40,372: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.24.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.24.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r4#
+2022-10-19T10:40:40: %SCRIPT-INFO: Pinging 192.168.34.3 from r4
+
+2022-10-19 10:40:40,524: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.34.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.34.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r4#
+2022-10-19T10:40:40: %SCRIPT-INFO: Pinging 192.168.34.4 from r4
+
+2022-10-19 10:40:40,679: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.34.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.34.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r4#
+2022-10-19T10:40:40: %SCRIPT-INFO: Pinging 192.168.255.1 from r4
+
+2022-10-19 10:40:40,834: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.255.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/3 ms
+r4#
+2022-10-19T10:40:40: %SCRIPT-INFO: Pinging 192.168.255.2 from r4
+
+2022-10-19 10:40:40,987: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.255.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r4#
+2022-10-19T10:40:41: %SCRIPT-INFO: Pinging 192.168.255.3 from r4
+
+2022-10-19 10:40:41,141: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.255.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+r4#
+2022-10-19T10:40:41: %SCRIPT-INFO: Pinging 192.168.255.4 from r4
+
+2022-10-19 10:40:41,298: %UNICON-INFO: +++ r4 with via 'console': ping +++
+ping 192.168.255.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.255.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+r4#
+2022-10-19T10:40:41: %AETEST-INFO: The result of section setup is => PASSED
+2022-10-19T10:40:41: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:41: %AETEST-INFO: |                            Starting section test                             |
+2022-10-19T10:40:41: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :                Starting STEP 1: Looking for ping failures r1                 :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 1.1: Checking Ping from r1 to 192.168.12.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.12.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.1: Checking Ping from r1 to 192.168.12.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 1.2: Checking Ping from r1 to 192.168.12.2           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.12.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.2: Checking Ping from r1 to 192.168.12.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 1.3: Checking Ping from r1 to 192.168.13.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.13.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.3: Checking Ping from r1 to 192.168.13.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 1.4: Checking Ping from r1 to 192.168.13.3           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.13.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.4: Checking Ping from r1 to 192.168.13.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 1.5: Checking Ping from r1 to 192.168.24.2           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.24.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.5: Checking Ping from r1 to 192.168.24.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 1.6: Checking Ping from r1 to 192.168.24.4           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.24.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.6: Checking Ping from r1 to 192.168.24.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 1.7: Checking Ping from r1 to 192.168.34.3           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.34.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.7: Checking Ping from r1 to 192.168.34.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 1.8: Checking Ping from r1 to 192.168.34.4           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.34.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.8: Checking Ping from r1 to 192.168.34.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 1.9: Checking Ping from r1 to 192.168.255.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.255.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.9: Checking Ping from r1 to 192.168.255.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 1.10: Checking Ping from r1 to 192.168.255.2          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.255.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.10: Checking Ping from r1 to 192.168.255.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 1.11: Checking Ping from r1 to 192.168.255.3          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.255.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.11: Checking Ping from r1 to 192.168.255.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 1.12: Checking Ping from r1 to 192.168.255.4          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r1 had 100% success pinging 192.168.255.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1.12: Checking Ping from r1 to 192.168.255.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 1: Looking for ping failures r1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :                Starting STEP 2: Looking for ping failures r2                 :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 2.1: Checking Ping from r2 to 192.168.12.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.12.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.1: Checking Ping from r2 to 192.168.12.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 2.2: Checking Ping from r2 to 192.168.12.2           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.12.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.2: Checking Ping from r2 to 192.168.12.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 2.3: Checking Ping from r2 to 192.168.13.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.13.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.3: Checking Ping from r2 to 192.168.13.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 2.4: Checking Ping from r2 to 192.168.13.3           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.13.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.4: Checking Ping from r2 to 192.168.13.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 2.5: Checking Ping from r2 to 192.168.24.2           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.24.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.5: Checking Ping from r2 to 192.168.24.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 2.6: Checking Ping from r2 to 192.168.24.4           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.24.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.6: Checking Ping from r2 to 192.168.24.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 2.7: Checking Ping from r2 to 192.168.34.3           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.34.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.7: Checking Ping from r2 to 192.168.34.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 2.8: Checking Ping from r2 to 192.168.34.4           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.34.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.8: Checking Ping from r2 to 192.168.34.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 2.9: Checking Ping from r2 to 192.168.255.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.255.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.9: Checking Ping from r2 to 192.168.255.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 2.10: Checking Ping from r2 to 192.168.255.2          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.255.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.10: Checking Ping from r2 to 192.168.255.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 2.11: Checking Ping from r2 to 192.168.255.3          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.255.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.11: Checking Ping from r2 to 192.168.255.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 2.12: Checking Ping from r2 to 192.168.255.4          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r2 had 100% success pinging 192.168.255.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2.12: Checking Ping from r2 to 192.168.255.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 2: Looking for ping failures r2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :                Starting STEP 3: Looking for ping failures r3                 :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 3.1: Checking Ping from r3 to 192.168.12.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.12.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.1: Checking Ping from r3 to 192.168.12.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 3.2: Checking Ping from r3 to 192.168.12.2           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.12.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.2: Checking Ping from r3 to 192.168.12.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 3.3: Checking Ping from r3 to 192.168.13.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.13.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.3: Checking Ping from r3 to 192.168.13.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 3.4: Checking Ping from r3 to 192.168.13.3           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.13.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.4: Checking Ping from r3 to 192.168.13.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 3.5: Checking Ping from r3 to 192.168.24.2           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.24.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.5: Checking Ping from r3 to 192.168.24.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 3.6: Checking Ping from r3 to 192.168.24.4           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.24.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.6: Checking Ping from r3 to 192.168.24.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 3.7: Checking Ping from r3 to 192.168.34.3           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.34.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.7: Checking Ping from r3 to 192.168.34.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 3.8: Checking Ping from r3 to 192.168.34.4           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.34.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.8: Checking Ping from r3 to 192.168.34.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 3.9: Checking Ping from r3 to 192.168.255.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.255.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.9: Checking Ping from r3 to 192.168.255.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 3.10: Checking Ping from r3 to 192.168.255.2          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.255.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.10: Checking Ping from r3 to 192.168.255.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 3.11: Checking Ping from r3 to 192.168.255.3          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.255.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.11: Checking Ping from r3 to 192.168.255.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 3.12: Checking Ping from r3 to 192.168.255.4          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r3 had 100% success pinging 192.168.255.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3.12: Checking Ping from r3 to 192.168.255.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 3: Looking for ping failures r3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :                Starting STEP 4: Looking for ping failures r4                 :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 4.1: Checking Ping from r4 to 192.168.12.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.12.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.1: Checking Ping from r4 to 192.168.12.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 4.2: Checking Ping from r4 to 192.168.12.2           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.12.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.2: Checking Ping from r4 to 192.168.12.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 4.3: Checking Ping from r4 to 192.168.13.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.13.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.3: Checking Ping from r4 to 192.168.13.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 4.4: Checking Ping from r4 to 192.168.13.3           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.13.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.4: Checking Ping from r4 to 192.168.13.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 4.5: Checking Ping from r4 to 192.168.24.2           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.24.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.5: Checking Ping from r4 to 192.168.24.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 4.6: Checking Ping from r4 to 192.168.24.4           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.24.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.6: Checking Ping from r4 to 192.168.24.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 4.7: Checking Ping from r4 to 192.168.34.3           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.34.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.7: Checking Ping from r4 to 192.168.34.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :           Starting STEP 4.8: Checking Ping from r4 to 192.168.34.4           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.34.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.8: Checking Ping from r4 to 192.168.34.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 4.9: Checking Ping from r4 to 192.168.255.1           :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.255.1
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.9: Checking Ping from r4 to 192.168.255.1 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 4.10: Checking Ping from r4 to 192.168.255.2          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.255.2
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.10: Checking Ping from r4 to 192.168.255.2 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 4.11: Checking Ping from r4 to 192.168.255.3          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.255.3
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.11: Checking Ping from r4 to 192.168.255.3 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :          Starting STEP 4.12: Checking Ping from r4 to 192.168.255.4          :
+2022-10-19T10:40:42: %AETEST-INFO: +..............................................................................+
+2022-10-19T10:40:42: %AETEST-INFO: Passed reason: Device r4 had 100% success pinging 192.168.255.4
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4.12: Checking Ping from r4 to 192.168.255.4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: The result of STEP 4: Looking for ping failures r4 is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +..........................................................+
+2022-10-19T10:40:42: %AETEST-INFO: :                       STEPS Report                       :
+2022-10-19T10:40:42: %AETEST-INFO: +..........................................................+
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1 - Looking for ping failures r1             Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.1 - Checking Ping from r1 to 192.168.12.1  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.2 - Checking Ping from r1 to 192.168.12.2  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.3 - Checking Ping from r1 to 192.168.13.1  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.4 - Checking Ping from r1 to 192.168.13.3  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.5 - Checking Ping from r1 to 192.168.24.2  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.6 - Checking Ping from r1 to 192.168.24.4  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.7 - Checking Ping from r1 to 192.168.34.3  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.8 - Checking Ping from r1 to 192.168.34.4  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.9 - Checking Ping from r1 to 192.168.255.1 Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.10 - Checking Ping from r1 to 192.168.255.2Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.11 - Checking Ping from r1 to 192.168.255.3Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 1.12 - Checking Ping from r1 to 192.168.255.4Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2 - Looking for ping failures r2             Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.1 - Checking Ping from r2 to 192.168.12.1  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.2 - Checking Ping from r2 to 192.168.12.2  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.3 - Checking Ping from r2 to 192.168.13.1  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.4 - Checking Ping from r2 to 192.168.13.3  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.5 - Checking Ping from r2 to 192.168.24.2  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.6 - Checking Ping from r2 to 192.168.24.4  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.7 - Checking Ping from r2 to 192.168.34.3  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.8 - Checking Ping from r2 to 192.168.34.4  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.9 - Checking Ping from r2 to 192.168.255.1 Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.10 - Checking Ping from r2 to 192.168.255.2Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.11 - Checking Ping from r2 to 192.168.255.3Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 2.12 - Checking Ping from r2 to 192.168.255.4Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3 - Looking for ping failures r3             Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.1 - Checking Ping from r3 to 192.168.12.1  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.2 - Checking Ping from r3 to 192.168.12.2  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.3 - Checking Ping from r3 to 192.168.13.1  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.4 - Checking Ping from r3 to 192.168.13.3  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.5 - Checking Ping from r3 to 192.168.24.2  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.6 - Checking Ping from r3 to 192.168.24.4  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.7 - Checking Ping from r3 to 192.168.34.3  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.8 - Checking Ping from r3 to 192.168.34.4  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.9 - Checking Ping from r3 to 192.168.255.1 Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.10 - Checking Ping from r3 to 192.168.255.2Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.11 - Checking Ping from r3 to 192.168.255.3Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 3.12 - Checking Ping from r3 to 192.168.255.4Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4 - Looking for ping failures r4             Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.1 - Checking Ping from r4 to 192.168.12.1  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.2 - Checking Ping from r4 to 192.168.12.2  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.3 - Checking Ping from r4 to 192.168.13.1  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.4 - Checking Ping from r4 to 192.168.13.3  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.5 - Checking Ping from r4 to 192.168.24.2  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.6 - Checking Ping from r4 to 192.168.24.4  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.7 - Checking Ping from r4 to 192.168.34.3  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.8 - Checking Ping from r4 to 192.168.34.4  Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.9 - Checking Ping from r4 to 192.168.255.1 Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.10 - Checking Ping from r4 to 192.168.255.2Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.11 - Checking Ping from r4 to 192.168.255.3Passed    
+2022-10-19T10:40:42: %AETEST-INFO: STEP 4.12 - Checking Ping from r4 to 192.168.255.4Passed    
+2022-10-19T10:40:42: %AETEST-INFO: ............................................................
+2022-10-19T10:40:42: %AETEST-INFO: The result of section test is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: The result of testcase ping_class is => PASSED
+2022-10-19T10:40:42: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:42: %AETEST-INFO: |                           Starting common cleanup                            |
+2022-10-19T10:40:42: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:42: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:42: %AETEST-INFO: |                        Starting subsection disconnect                        |
+2022-10-19T10:40:42: %AETEST-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:44: %AETEST-INFO: The result of subsection disconnect is => PASSED
+2022-10-19T10:40:44: %AETEST-INFO: The result of common cleanup is => PASSED
+2022-10-19T10:40:45: %CONTRIB-INFO: WebEx Token not given as argument or in config. No WebEx notification will be sent
+2022-10-19T10:40:45: %EASYPY-INFO: --------------------------------------------------------------------------------
+2022-10-19T10:40:45: %EASYPY-INFO: Job finished. Wrapping up...
+2022-10-19T10:40:46: %EASYPY-INFO: Creating archive file: /home/iida/.pyats/archive/22-Oct/ping_job.2022Oct19_10:40:13.466235.zip
+2022-10-19T10:40:46: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:46: %EASYPY-INFO: |                                Easypy Report                                 |
+2022-10-19T10:40:46: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:46: %EASYPY-INFO: pyATS Instance   : /home/iida/git/pyats-practice/.venv
+2022-10-19T10:40:46: %EASYPY-INFO: Python Version   : cpython-3.8.10 (64bit)
+2022-10-19T10:40:46: %EASYPY-INFO: CLI Arguments    : /home/iida/git/pyats-practice/.venv/bin/pyats run job ping_job.py --testbed-file ../lab.yml
+2022-10-19T10:40:46: %EASYPY-INFO: User             : iida
+2022-10-19T10:40:46: %EASYPY-INFO: Host Server      : FCCLS0008993-00
+2022-10-19T10:40:46: %EASYPY-INFO: Host OS Version  : Ubuntu 20.04 focal (x86_64)
+2022-10-19T10:40:46: %EASYPY-INFO: 
+2022-10-19T10:40:46: %EASYPY-INFO: Job Information
+2022-10-19T10:40:46: %EASYPY-INFO:     Name         : ping_job
+2022-10-19T10:40:46: %EASYPY-INFO:     Start time   : 2022-10-19 10:40:22.724584+09:00
+2022-10-19T10:40:46: %EASYPY-INFO:     Stop time    : 2022-10-19 10:40:45.034156+09:00
+2022-10-19T10:40:46: %EASYPY-INFO:     Elapsed time : 22.309572
+2022-10-19T10:40:46: %EASYPY-INFO:     Archive      : /home/iida/.pyats/archive/22-Oct/ping_job.2022Oct19_10:40:13.466235.zip
+2022-10-19T10:40:46: %EASYPY-INFO: 
+2022-10-19T10:40:46: %EASYPY-INFO: Total Tasks    : 1 
+2022-10-19T10:40:46: %EASYPY-INFO: 
+2022-10-19T10:40:46: %EASYPY-INFO: Overall Stats
+2022-10-19T10:40:46: %EASYPY-INFO:     Passed     : 3
+2022-10-19T10:40:46: %EASYPY-INFO:     Passx      : 0
+2022-10-19T10:40:46: %EASYPY-INFO:     Failed     : 0
+2022-10-19T10:40:46: %EASYPY-INFO:     Aborted    : 0
+2022-10-19T10:40:46: %EASYPY-INFO:     Blocked    : 0
+2022-10-19T10:40:46: %EASYPY-INFO:     Skipped    : 0
+2022-10-19T10:40:46: %EASYPY-INFO:     Errored    : 0
+2022-10-19T10:40:46: %EASYPY-INFO: 
+2022-10-19T10:40:46: %EASYPY-INFO:     TOTAL      : 3
+2022-10-19T10:40:46: %EASYPY-INFO: 
+2022-10-19T10:40:46: %EASYPY-INFO: Success Rate   : 100.00 %
+2022-10-19T10:40:46: %EASYPY-INFO: 
+2022-10-19T10:40:46: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:46: %EASYPY-INFO: |                             Task Result Summary                              |
+2022-10-19T10:40:46: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:46: %EASYPY-INFO: Ping: ping_test.common_setup                                              PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: Ping: ping_test.ping_class                                                PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: Ping: ping_test.common_cleanup                                            PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: 
+2022-10-19T10:40:46: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:46: %EASYPY-INFO: |                             Task Result Details                              |
+2022-10-19T10:40:46: %EASYPY-INFO: +------------------------------------------------------------------------------+
+2022-10-19T10:40:46: %EASYPY-INFO: Ping: ping_test
+2022-10-19T10:40:46: %EASYPY-INFO: |-- common_setup                                                          PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |   |-- load_testbed                                                      PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |   `-- connect                                                           PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |-- ping_class                                                            PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |   |-- setup                                                             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |   `-- test                                                              PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1: Looking for ping failures r1                          PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.1: Checking Ping from r1 to 192.168.12.1               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.2: Checking Ping from r1 to 192.168.12.2               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.3: Checking Ping from r1 to 192.168.13.1               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.4: Checking Ping from r1 to 192.168.13.3               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.5: Checking Ping from r1 to 192.168.24.2               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.6: Checking Ping from r1 to 192.168.24.4               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.7: Checking Ping from r1 to 192.168.34.3               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.8: Checking Ping from r1 to 192.168.34.4               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.9: Checking Ping from r1 to 192.168.255.1              PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.10: Checking Ping from r1 to 192.168.255.2             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.11: Checking Ping from r1 to 192.168.255.3             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 1.12: Checking Ping from r1 to 192.168.255.4             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2: Looking for ping failures r2                          PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.1: Checking Ping from r2 to 192.168.12.1               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.2: Checking Ping from r2 to 192.168.12.2               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.3: Checking Ping from r2 to 192.168.13.1               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.4: Checking Ping from r2 to 192.168.13.3               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.5: Checking Ping from r2 to 192.168.24.2               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.6: Checking Ping from r2 to 192.168.24.4               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.7: Checking Ping from r2 to 192.168.34.3               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.8: Checking Ping from r2 to 192.168.34.4               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.9: Checking Ping from r2 to 192.168.255.1              PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.10: Checking Ping from r2 to 192.168.255.2             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.11: Checking Ping from r2 to 192.168.255.3             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 2.12: Checking Ping from r2 to 192.168.255.4             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3: Looking for ping failures r3                          PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.1: Checking Ping from r3 to 192.168.12.1               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.2: Checking Ping from r3 to 192.168.12.2               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.3: Checking Ping from r3 to 192.168.13.1               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.4: Checking Ping from r3 to 192.168.13.3               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.5: Checking Ping from r3 to 192.168.24.2               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.6: Checking Ping from r3 to 192.168.24.4               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.7: Checking Ping from r3 to 192.168.34.3               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.8: Checking Ping from r3 to 192.168.34.4               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.9: Checking Ping from r3 to 192.168.255.1              PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.10: Checking Ping from r3 to 192.168.255.2             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.11: Checking Ping from r3 to 192.168.255.3             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 3.12: Checking Ping from r3 to 192.168.255.4             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4: Looking for ping failures r4                          PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.1: Checking Ping from r4 to 192.168.12.1               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.2: Checking Ping from r4 to 192.168.12.2               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.3: Checking Ping from r4 to 192.168.13.1               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.4: Checking Ping from r4 to 192.168.13.3               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.5: Checking Ping from r4 to 192.168.24.2               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.6: Checking Ping from r4 to 192.168.24.4               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.7: Checking Ping from r4 to 192.168.34.3               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.8: Checking Ping from r4 to 192.168.34.4               PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.9: Checking Ping from r4 to 192.168.255.1              PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.10: Checking Ping from r4 to 192.168.255.2             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       |-- STEP 4.11: Checking Ping from r4 to 192.168.255.3             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: |       `-- STEP 4.12: Checking Ping from r4 to 192.168.255.4             PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: `-- common_cleanup                                                        PASSED
+2022-10-19T10:40:46: %EASYPY-INFO:     `-- disconnect                                                        PASSED
+2022-10-19T10:40:46: %EASYPY-INFO: Sending report email...
+2022-10-19T10:40:46: %EASYPY-INFO: Missing SMTP server configuration, or failed to reach/authenticate/send mail. Result notification email failed to send.
+2022-10-19T10:40:46: %EASYPY-INFO: Done!
+
+Pro Tip
+-------
+   Try the following command to view your logs:
+       pyats logs view
+
