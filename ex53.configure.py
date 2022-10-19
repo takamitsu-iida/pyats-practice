@@ -31,6 +31,9 @@ gig1 = Interface(name='GigabitEthernet1')
 # create Ospf object
 ospf1 = Ospf()
 
+# add feature to the device
+uut.add_feature(ospf1)
+
 # add configurations to vrf default
 ospf1.device_attr[uut].vrf_attr[vrf0].instance = '1'
 ospf1.device_attr[uut].vrf_attr[vrf0].router_id = '192.168.255.1'
@@ -41,9 +44,6 @@ cfgs = ospf1.build_config(apply=False)
 
 # cfgs = {r1: {...}}
 pprint(str(cfgs[uut.name]))
-
-# add feature to the device
-uut.add_feature(ospf1)
 
 # apply
 ospf1.build_config(apply=True)
