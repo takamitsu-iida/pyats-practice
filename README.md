@@ -45,6 +45,8 @@ DevNetのサイトからたどれます。
 
 - pyATS Documentation https://pubhub.devnetcloud.com/media/pyats/docs/index.html
 
+- pyATS Development Guide https://pubhub.devnetcloud.com/media/pyats-development-guide/docs/index.html
+
 - Genie https://developer.cisco.com/docs/genie-docs/
 
 - Genieでparseできるコマンド検索 https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers
@@ -58,6 +60,8 @@ DevNetのサイトからたどれます。
 - examples(github) https://github.com/CiscoTestAutomation/examples
 
 - solution example(github) https://github.com/CiscoTestAutomation/solutions_examples
+
+
 
 <br><br>
 
