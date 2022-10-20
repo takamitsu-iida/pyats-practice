@@ -11,8 +11,6 @@ from genie.testbed import load
 from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 from unicon.core.errors import SubCommandFailure
 
-
-
 testbed = load('lab.yml')
 
 uut = testbed.devices['uut']
