@@ -1,12 +1,19 @@
 # pyats-practice
 
-DevNetのサイトにあるIntroduction to pyATSが秀逸です。
+pyATS = python Automated Test System
+
+日本語で入手できる情報は少なめなのが難点です。
+
+導入の敷居を少しでもさげるように、このリポジトリにはサンプルスクリプトを置いておきます。
+
+<br>
+
+### 最初に試すべきこと
+
+<a href="https://developer.cisco.com/pyats/" target="_blank">DevNetのサイト</a>にある<a href="https://developer.cisco.com/learning/labs/intro-to-pyats/stepping-into-the-realm-of-total-network-automation-with-pyats/" target="_blank">Introduction to pyATS</a>が秀逸です。
 
 ブラウザの中に説明文とターミナルとエディタがあり、コマンドを実行して動作結果を確認できます。
 ドキュメントを読む前にまずこれを試してみるべきです。
-
-https://developer.cisco.com/pyats/
-
 
 - learnを実行してログを収集
 
@@ -101,7 +108,7 @@ testbedはYAML形式で記述します。
 
 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
 
-利用しているラボのtestbedは概ねこのような感じにしています。
+利用しているラボのtestbedは概ね以下のような感じにしています。
 
 eve-ng上の仮想環境ですのでルータ・スイッチにパスワードは設定されていません。
 その場合は設定を省略するのではなく、空文字列のパスワードを指定します。
@@ -267,7 +274,7 @@ devices:
           init_config_commands: []
 ```
 
-記述したtestbedがおかしくないか検証できる。
+記述したtestbedファイルにおかしな所がないか検証できます。
 
 ```bash
 pyats validate testbed [testbed yaml file]
