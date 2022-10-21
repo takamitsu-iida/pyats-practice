@@ -1,0 +1,13 @@
+#!/bin/bash
+
+JOB=mock_job.py
+TESTBED=../lab.yml
+
+# WITHOUT RECORD
+# pyats run job $JOB --testbed-file $TESTBED
+
+# RECORD
+pyats run job $JOB --testbed-file $TESTBED --record recorded
+
+# REPLAY using recorded data, 4 times faster than real device
+# pyats run job $JOB --testbed-file $TESTBED --replay recorded --speed 4

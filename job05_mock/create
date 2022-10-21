@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for router in r1 r2 r3 r4 ; do
+mkdir -p $router
+/usr/bin/env python -m unicon.playback.mock --recorded-data recorded/$router --output $router/mock_device.yaml
+done

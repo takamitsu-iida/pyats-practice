@@ -61,6 +61,8 @@ devices:
     # chassis_type: stack
 
     connections:
+      defaults:
+        class: 'unicon.Unicon'
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -109,11 +111,18 @@ devices:
             - term wid 0
           init_config_commands: []
 
+      # モックを使う場合（モックデバイスの作り方はjob05_mockを参照）
+      a:
+        command: mock_device_cli --os iosxe --mock_data_dir r1 --state connect
+        protocol: unknown
+
   r2:
     os: iosxe
     platform: CSR1000v
     type: iosxe
     connections:
+      defaults:
+        class: 'unicon.Unicon'
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -133,6 +142,8 @@ devices:
     platform: CSR1000v
     type: iosxe
     connections:
+      defaults:
+        class: 'unicon.Unicon'
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -152,6 +163,8 @@ devices:
     platform: CSR1000v
     type: iosxe
     connections:
+      defaults:
+        class: 'unicon.Unicon'
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -171,6 +184,8 @@ devices:
     platform: IOL
     type: Switch
     connections:
+      defaults:
+        class: 'unicon.Unicon'
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -190,6 +205,8 @@ devices:
     platform: IOL
     type: Switch
     connections:
+      defaults:
+        class: 'unicon.Unicon'
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -209,6 +226,8 @@ devices:
     platform: IOL
     type: Switch
     connections:
+      defaults:
+        class: 'unicon.Unicon'
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -228,6 +247,8 @@ devices:
     platform: IOL
     type: Switch
     connections:
+      defaults:
+        class: 'unicon.Unicon'
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
