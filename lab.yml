@@ -7,12 +7,15 @@
 # to validate the testbed file
 #   pyats validate testbed [file]
 
-#
 # NOTE
-# 1) The device name must match the hostname of the device, otherwise, the connection will hang.
-#    or use dev.connect(learn_hostname=True)
-# 2) At least one device need to have the alias ‘uut’ in the testbed yaml file.
-#
+# hostname 装置のhostname設定と一致させないといけません
+# alias 任意の名前で構いませんがuutがよいでしょう UUT = Unit Under Test
+# os: 必須です。プラグインの識別に使いますので ios iosxe iosxr nxos、等から選びます
+# platform: 任意です。装置のプラットフォーム名、cat3850、cat9300、等を指定します
+# type: 任意です。router もしくは switch を指定します
+
+# 機種に対応したプラグインを判定する優先順位はこのようになっています
+# chassis_type > os > platform > model
 
 testbed:
   name: iida-pyats on eve-ng
@@ -45,17 +48,14 @@ devices:
   r1:
     alias: 'uut'
 
-    # 機種に対応したプラグインを読み込む優先順位、osは必須でその他は任意
-    #  chassis_type > os > platform > model
-
     # os
     # ios, iosxe, iosxr, nxos, junos
-    # https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/supported_platforms.html#
+    # https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/supported_platforms.html
     os: iosxe
 
     # optional
     platform: CSR1000v
-    type: iosxe
+    type: router
 
     # in case of stacked device
     # chassis_type: stack
@@ -119,7 +119,7 @@ devices:
   r2:
     os: iosxe
     platform: CSR1000v
-    type: iosxe
+    type: router
     connections:
       defaults:
         class: 'unicon.Unicon'
@@ -140,7 +140,7 @@ devices:
   r3:
     os: iosxe
     platform: CSR1000v
-    type: iosxe
+    type: router
     connections:
       defaults:
         class: 'unicon.Unicon'
@@ -161,7 +161,7 @@ devices:
   r4:
     os: iosxe
     platform: CSR1000v
-    type: iosxe
+    type: router
     connections:
       defaults:
         class: 'unicon.Unicon'
@@ -182,7 +182,7 @@ devices:
   sw1:
     os: ios
     platform: IOL
-    type: Switch
+    type: switch
     connections:
       defaults:
         class: 'unicon.Unicon'
@@ -203,7 +203,7 @@ devices:
   sw2:
     os: ios
     platform: IOL
-    type: Switch
+    type: switch
     connections:
       defaults:
         class: 'unicon.Unicon'
@@ -224,7 +224,7 @@ devices:
   sw3:
     os: ios
     platform: IOL
-    type: Switch
+    type: switch
     connections:
       defaults:
         class: 'unicon.Unicon'
@@ -245,7 +245,7 @@ devices:
   sw4:
     os: ios
     platform: IOL
-    type: Switch
+    type: switch
     connections:
       defaults:
         class: 'unicon.Unicon'
