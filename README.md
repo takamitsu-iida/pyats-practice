@@ -876,7 +876,7 @@ r1#
 <p>
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex21.parse_save.py" target="_blank">source</a>]　
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/output/ex21.log" target="_blank">log</a>]　
-[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/templates/show_interfaces.csv.js" target="_blank">jinja2</a>]
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/templates/show_interfaces.csv.j2" target="_blank">jinja2</a>]
 </p>
 
 show interfacesをパースして、結果をCSV形式で保存します。
