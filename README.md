@@ -340,7 +340,7 @@ password: "%ENC{ ... }"
 
 テストを実行する形式の一つがjobです。
 
-jobファイルを作成して実行すると、実行結果をブラウザで確認できます。
+jobファイルはPythonスクリプトですが、直接実行するのではなく、pyatsコマンドに渡して実行します。
 
 ```bash
 pyats run job job.py --testbed-file lab.yml
@@ -350,6 +350,12 @@ pyats run job job.py --testbed-file lab.yml
 
 ```bash
 pyats logs view
+```
+
+ジョブを実行したサーバと、操作している端末が異なる場合は、このように起動します。
+
+```
+pyats logs view --host 0.0.0.0 --port 8888 -v
 ```
 
 <br><br>
