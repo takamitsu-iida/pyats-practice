@@ -348,11 +348,13 @@ Genieスクリプトを実行するときに `--record <dir>` を引数に渡し
 
 Genieはsys.argvを読み取ってるようなので、pythonの引数にスクリプトを渡す形で実行します。
 
+実行例。
+
 ```bash
 python ex10.py --record ./record
 ```
 
-すると、インベントリのデバイスごとにログ・ファイルが記録されます。
+実行すると接続したデバイスごとにログ・ファイルが記録されます。
 これはバイナリファイルです。
 
 ```bash
@@ -366,15 +368,12 @@ record
 次に記録されたデータを使ってモックデバイスのデータを作ります。モックデバイスのデータはYAML形式です。
 
 ```bash
-python -m unicon.playback.mock --recorded-data ./record/r1 --output mock/r1.yaml
-
-tree mock
-mock
-└── r1.yaml
+python -m unicon.playback.mock --recorded-data ./record/r1 --output mock/r1/mock_device.yaml
 ```
 
 > **重要！**
-> モックデバイスのデータファイルの拡張子は **.yaml** です。.ymlだと認識されません。
+> モックデバイスのデータファイルは **装置名/mock_device.yaml** にしておくとよいでしょう。
+> モックデバイスの拡張子は **.yaml** です。.ymlだと認識されません。
 
 エディタでこのYAMLファイルを開きます。
 
@@ -388,15 +387,52 @@ prompt: switch
 prompt: r1
 ```
 
-で一括置換します。
+というように実際のホスト名に修正します（エディタの一括置換機能が便利です）。
 
 モックデバイスに接続して確認します。
 
 ```bash
-mock_device_cli --os iosxe --mock_data_dir mock --state connect
+mock_device_cli --os iosxe --mock_data_dir mock/r1 --state connect
 ```
 
 モックデバイスから抜けるのは`ctrl-d`です。
+
+モックデバイスを対象にしてGenieスクリプトを走らせる場合のテストベッドはこのように記述します。
+
+init_exec_commandsとinit_config_commandsは、リアル装置で実行したときと同じものを指定しないとエラーになります。
+
+```yaml
+---
+
+testbed:
+  name: mock
+
+  # common credentials
+  credentials:
+    default:
+      username: ''
+      password: ''
+    enable:
+      password: ''
+
+devices:
+
+  r1:
+    alias: 'uut'
+    os: iosxe
+    platform: CSR1000v
+    type: router
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      console:
+        command: mock_device_cli --os iosxe --mock_data_dir mock/r1 --state connect
+        protocol: unknown
+        init_exec_commands:
+          - term length 0
+          - term width 0
+        init_config_commands: []
+```
 
 <br><br>
 
