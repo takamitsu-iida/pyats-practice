@@ -13,7 +13,7 @@ testbed = load('lab.yml')
 
 learnt = {}
 for name, dev in testbed.devices.items():
-    if dev.type == 'Switch':
+    if dev.type == 'switch':
         # connect
         dev.connect(via='console')
 

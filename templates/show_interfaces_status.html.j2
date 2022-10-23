@@ -58,26 +58,57 @@
 
 <body>
 
-  {% for node_list in cli_parsed %}
-  <h1>NODE {{ node_list[0]["NODE"] if node_list }}</h1>
-  <div class="wrapper">
-    {% for item in node_list %}
-      <div class="box {% if item['STATUS'] == 'connected' %}up{% elif item['STATUS'] == 'notconnect' %}down{% endif %} ">{{ item["PORT"]|d('') }}</div>
-    {% endfor %}
-  </div>
-  {% endfor %}
+    {%- for node_name, node_data in parsed.items() -%}
+        <h1>{{ node_name }}</h1>
+
+        <div class="wrapper">
+            {%- set interfaces = node_data['interfaces'] | d([]) -%}
+            {%- for intf_name, intf_data in interfaces.items() -%}
+                {%- set intf_name = intf_name | replace('GigabitEthernet', 'G') | replace('Ethernet', 'E') -%}
+                {%- set status = intf_data['status'] | d('') -%}
+                <div class="box {% if status == 'connected' %}up{% elif status == 'notconnect' %}down{% endif %} ">{{ intf_name }}</div>
+            {% endfor %}
+        </div>
+
+    {%- endfor -%}
 
   <BR>
 
-  <h1>command output</h1>
+  <h1>parsed output</h1>
 
   <pre>
     <code>
 
-{{ cli_output }}
+{{ parsed_output }}
 
     </code>
   </pre>
+
+<!--
+parsed_output looks this
+{'sw1': {'interfaces': {'Ethernet0/0': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/1': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/2': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/3': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'notconnect',
+                                        'type': 'unknown',
+                                        'vlan': '1'}}},
+ 'sw2': {'interfaces': {'Ethernet0/0': {'duplex_code': 'auto',
+-->
+
 
 </body>
 

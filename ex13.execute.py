@@ -37,8 +37,6 @@ log_dir = os.path.join(here('.'), 'log')
 
 testbed = load('lab.yml')
 
-uut = testbed.devices['uut']
-
 for name, dev in testbed.devices.items():
     # テストベッド内のすべてのCSR1000vを対象に
     if dev.platform == 'CSR1000v':

@@ -1,0 +1,216 @@
+
+2022-10-23 18:47:19,263: %UNICON-INFO: +++ sw1 logfile /tmp/sw1-cli-20221023T184719260.log +++
+
+2022-10-23 18:47:19,264: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+Trying 10.38.220.42...
+
+
+2022-10-23 18:47:19,334: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 42961, id: 139930408396832 +++
+
+2022-10-23 18:47:19,336: %UNICON-INFO: connection to sw1
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;sw1
+sw1#
+
+2022-10-23 18:47:20,483: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-23 18:47:20,547: %UNICON-INFO: +++ sw1 with via 'console': executing command 'term len 0' +++
+term len 0
+sw1#
+
+2022-10-23 18:47:20,812: %UNICON-INFO: +++ sw1 with via 'console': executing command 'term wid 0' +++
+term wid 0
+sw1#
+
+2022-10-23 18:47:23,529: %UNICON-INFO: +++ sw1 with via 'console': executing command 'show interfaces status' +++
+show interfaces status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Et0/0                        connected    trunk        auto   auto unknown
+Et0/1                        connected    trunk        auto   auto unknown
+Et0/2                        connected    trunk        auto   auto unknown
+Et0/3                        notconnect   1            auto   auto unknown
+sw1#
+
+2022-10-23 18:47:25,765: %UNICON-INFO: +++ sw2 logfile /tmp/sw2-cli-20221023T184725762.log +++
+
+2022-10-23 18:47:25,765: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+Trying 10.38.220.42...
+
+
+2022-10-23 18:47:25,854: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 45895, id: 139930358151056 +++
+
+2022-10-23 18:47:25,855: %UNICON-INFO: connection to sw2
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;sw2
+sw2#
+
+2022-10-23 18:47:27,016: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-23 18:47:27,081: %UNICON-INFO: +++ sw2 with via 'console': executing command 'term len 0' +++
+term len 0
+sw2#
+
+2022-10-23 18:47:27,343: %UNICON-INFO: +++ sw2 with via 'console': executing command 'term wid 0' +++
+term wid 0
+sw2#
+
+2022-10-23 18:47:27,734: %UNICON-INFO: +++ sw2 with via 'console': executing command 'show interfaces status' +++
+show interfaces status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Et0/0                        connected    trunk        auto   auto unknown
+Et0/1                        connected    trunk        auto   auto unknown
+Et0/2                        connected    trunk        auto   auto unknown
+Et0/3                        notconnect   1            auto   auto unknown
+sw2#
+
+2022-10-23 18:47:29,966: %UNICON-INFO: +++ sw3 logfile /tmp/sw3-cli-20221023T184729963.log +++
+
+2022-10-23 18:47:29,966: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+Trying 10.38.220.42...
+
+
+2022-10-23 18:47:30,036: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 48429, id: 139930358245792 +++
+
+2022-10-23 18:47:30,037: %UNICON-INFO: connection to sw3
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;sw3
+sw3#
+
+2022-10-23 18:47:31,149: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-23 18:47:31,212: %UNICON-INFO: +++ sw3 with via 'console': executing command 'term len 0' +++
+term len 0
+sw3#
+
+2022-10-23 18:47:31,476: %UNICON-INFO: +++ sw3 with via 'console': executing command 'term wid 0' +++
+term wid 0
+sw3#
+
+2022-10-23 18:47:31,863: %UNICON-INFO: +++ sw3 with via 'console': executing command 'show interfaces status' +++
+show interfaces status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Et0/0                        connected    trunk        auto   auto unknown
+Et0/1                        connected    trunk        auto   auto unknown
+Et0/2                        connected    trunk        auto   auto unknown
+Et0/3                        notconnect   1            auto   auto unknown
+sw3#
+
+2022-10-23 18:47:34,098: %UNICON-INFO: +++ sw4 logfile /tmp/sw4-cli-20221023T184734094.log +++
+
+2022-10-23 18:47:34,099: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+Trying 10.38.220.42...
+
+
+2022-10-23 18:47:34,186: %UNICON-INFO: +++ connection to spawn: telnet 10.38.220.42 34521, id: 139930357824912 +++
+
+2022-10-23 18:47:34,187: %UNICON-INFO: connection to sw4
+Connected to 10.38.220.42.
+Escape character is '^]'.
+]0;sw4
+sw4#
+
+2022-10-23 18:47:35,329: %UNICON-INFO: +++ initializing handle +++
+
+2022-10-23 18:47:35,392: %UNICON-INFO: +++ sw4 with via 'console': executing command 'term len 0' +++
+term len 0
+sw4#
+
+2022-10-23 18:47:35,655: %UNICON-INFO: +++ sw4 with via 'console': executing command 'term wid 0' +++
+term wid 0
+sw4#
+
+2022-10-23 18:47:36,054: %UNICON-INFO: +++ sw4 with via 'console': executing command 'show interfaces status' +++
+show interfaces status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Et0/0                        connected    trunk        auto   auto unknown
+Et0/1                        connected    trunk        auto   auto unknown
+Et0/2                        connected    trunk        auto   auto unknown
+Et0/3                        notconnect   1            auto   auto unknown
+sw4#
+{'sw1': {'interfaces': {'Ethernet0/0': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/1': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/2': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/3': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'notconnect',
+                                        'type': 'unknown',
+                                        'vlan': '1'}}},
+ 'sw2': {'interfaces': {'Ethernet0/0': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/1': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/2': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/3': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'notconnect',
+                                        'type': 'unknown',
+                                        'vlan': '1'}}},
+ 'sw3': {'interfaces': {'Ethernet0/0': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/1': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/2': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/3': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'notconnect',
+                                        'type': 'unknown',
+                                        'vlan': '1'}}},
+ 'sw4': {'interfaces': {'Ethernet0/0': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/1': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/2': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'connected',
+                                        'type': 'unknown',
+                                        'vlan': 'trunk'},
+                        'Ethernet0/3': {'duplex_code': 'auto',
+                                        'port_speed': 'auto',
+                                        'status': 'notconnect',
+                                        'type': 'unknown',
+                                        'vlan': '1'}}}}
