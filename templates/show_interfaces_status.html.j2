@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>show interface status</title>
+  <meta charset="utf-8">
+  <style>
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+      margin: 40px;
+      font-size: 1.4em;
+    }
+
+    .wrapper {
+      display: grid;
+      padding: 10px;
+      column-gap: 10px;
+      row-gap: 10px;
+      grid-template-columns: repeat(24, 45px);
+      width: 1320px;  /* 24*(45px+10px)=1320px */
+      background-color:silver;
+    }
+
+    .box {
+      background-color:grey;
+      color: #fff;
+      border-radius: 4px;
+      padding: 4px;
+      margin: 0px;
+      font-size: 1.0rem;
+    }
+
+    .down {
+      background-color: black;
+    }
+
+    .up {
+      background-color:green;
+    }
+
+    pre {
+      margin: 1em 0;
+      padding: 1em;
+      font-size: 120%;
+      max-width: 1320px;  /* same as .wrapper */
+      color: #2F4F4F;
+      background-color: #F5F5F5;
+      overflow: auto;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  {% for node_list in cli_parsed %}
+  <h1>NODE {{ node_list[0]["NODE"] if node_list }}</h1>
+  <div class="wrapper">
+    {% for item in node_list %}
+      <div class="box {% if item['STATUS'] == 'connected' %}up{% elif item['STATUS'] == 'notconnect' %}down{% endif %} ">{{ item["PORT"]|d('') }}</div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+
+  <BR>
+
+  <h1>command output</h1>
+
+  <pre>
+    <code>
+
+{{ cli_output }}
+
+    </code>
+  </pre>
+
+</body>
+
+</html>
