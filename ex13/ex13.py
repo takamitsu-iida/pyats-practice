@@ -1,20 +1,7 @@
 #!/usr/bin/env python
 
-import sys
 import os
 
-#
-# overwrite standard telnetlib
-#
-def here(path=''):
-  return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
-
-if not here('./lib') in sys.path:
-  sys.path.insert(0, here('./lib'))
-
-import telnetlib
-if telnetlib.MODIFIED_BY:
-    print('modified telnetlib is loaded.')
 
 #
 # pyATS
@@ -32,13 +19,16 @@ command_list = [
     'show ip route'
 ]
 
+def here(path=''):
+  return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
+
 # log directory
 log_dir = os.path.join(here('.'), 'log')
 
 # create log_dir
 os.makedirs(log_dir, exist_ok=True)
 
-testbed = load('lab.yml')
+testbed = load('mock.yml')
 
 for name, dev in testbed.devices.items():
     # テストベッド内のすべてのCSR1000vを対象に

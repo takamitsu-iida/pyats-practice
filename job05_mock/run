@@ -7,7 +7,7 @@ TESTBED=../lab.yml
 # pyats run job $JOB --testbed-file $TESTBED
 
 # RECORD
-pyats run job $JOB --testbed-file $TESTBED --record recorded
+pyats run job $JOB --testbed-file $TESTBED --record record
 
 # REPLAY using recorded data, 4 times faster than real device
-# pyats run job $JOB --testbed-file $TESTBED --replay recorded --speed 4
+# pyats run job $JOB --testbed-file $TESTBED --replay record --speed 4

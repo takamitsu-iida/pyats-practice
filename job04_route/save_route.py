@@ -16,7 +16,7 @@ def here(path=''):
 # pickle directory
 pkl_dir = os.path.join(here('.'), 'pkl')
 
-# create the diretory
+# create pkl_dir
 os.makedirs(pkl_dir, exist_ok=True)
 
 # load testbed

@@ -322,17 +322,81 @@ string.representer = pyats.utils.secret_strings.FernetSecretStringRepresenter
 string.key = ....
 ```
 
-文字列を暗号化します。
+文字列を暗号化します。パスワードを聞かれるので入力すると、暗号化した文字列が表示されます。
 
 ```bash
 pyats secret encode
 ```
 
-testbedファイルでは生成された文字列を使ってこのように書きます。
+testbedファイルでは表示された文字列を使ってこのように書きます。
 
 ```
 password: "%ENC{ ... }"
 ```
+
+確認のため復号化する場合はこうします。
+
+```bash
+pyats secret decode ...
+```
+
+<br><br>
+
+## モックの作り方
+
+Genieスクリプトを実行するときに `--record <dir>` を引数に渡してあげると、指定したディレクトリにバイナリ形式のログが記録されます。
+
+Genieはsys.argvを読み取ってるようなので、pythonの引数にスクリプトを渡す形で実行します。
+
+```bash
+python ex10.py --record ./record
+```
+
+すると、インベントリのデバイスごとにログ・ファイルが記録されます。
+これはバイナリファイルです。
+
+```bash
+tree record
+record
+└── r1
+
+0 directories, 1 file
+```
+
+次に記録されたデータを使ってモックデバイスのデータを作ります。モックデバイスのデータはYAML形式です。
+
+```bash
+python -m unicon.playback.mock --recorded-data ./record/r1 --output mock/r1.yaml
+
+tree mock
+mock
+└── r1.yaml
+```
+
+> **重要！**
+> モックデバイスのデータファイルの拡張子は **.yaml** です。.ymlだと認識されません。
+
+エディタでこのYAMLファイルを開きます。
+
+```YML
+prompt: switch
+```
+
+の部分を、
+
+```YML
+prompt: r1
+```
+
+で一括置換します。
+
+モックデバイスに接続して確認します。
+
+```bash
+mock_device_cli --os iosxe --mock_data_dir mock --state connect
+```
+
+モックデバイスから抜けるのは`ctrl-d`です。
 
 <br><br>
 
