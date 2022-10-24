@@ -1,0 +1,58 @@
+configure:
+  commands:
+    end:
+      new_state: execute
+    ip route 10.10.10.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "ip route 10.10.10.0\
+      \ 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    ip route 10.10.20.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "ip route 10.10.20.0\
+      \ 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    ip route 10.10.30.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "ip route 10.10.30.0\
+      \ 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    ip route 10.10.40.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "ip route 10.10.40.0\
+      \ 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    ip route 10.10.50.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "ip route 10.10.50.0\
+      \ 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    line console 0:
+      new_state: configure_line
+    no ip route 10.10.10.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "no ip route\
+      \ 10.10.10.0 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    no ip route 10.10.20.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "no ip route\
+      \ 10.10.20.0 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    no ip route 10.10.30.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "no ip route\
+      \ 10.10.30.0 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    no ip route 10.10.40.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "no ip route\
+      \ 10.10.40.0 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    no ip route 10.10.50.0 255.255.255.0 GigabitEthernet1 192.168.12.2: "no ip route\
+      \ 10.10.50.0 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n"
+    no logging console: ''
+  prompt: r1(config)#
+configure_line:
+  commands:
+    end:
+      new_state: execute
+    exec-timeout 0: ''
+  prompt: r1(config-line)#
+connect:
+  commands:
+    ? ''
+    : new_state: execute
+  preface: 'Trying mock_device ...
+
+    Connected to mock_device.
+
+    Escape character is ''^]''.'
+  prompt: ''
+disconnect:
+  commands:
+    null: null
+  prompt: r1#
+execute:
+  commands:
+    config term:
+      new_state: configure
+    config-transaction:
+      new_state: configure
+    show version: ''
+    term length 0: ''
+    term width 0: ''
+  prompt: r1#

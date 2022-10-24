@@ -1,11 +1,48 @@
 #!/bin/bash
 
-DIR=ex20
+ALL_SCRIPTS='
+ex10.execute.py
+ex13.execute.py
+ex20.parse.py
+ex21.parse_csv.py
+ex22.parse_html.py
+ex30.learn.py
+ex31.learn.py
+ex32.learn.py
+ex33.learn.py
+ex40.parse_find.py
+ex41.learn_find.py
+ex42.learn_find.py
+ex43.learn_poll.py
+ex50.configure.py
+ex51.configure.py
+ex52.configure.py
+ex53.configure.py
+ex60.diff.py
+ex61.diff.py
+ex62.diff.py
+ex70.save.py
+'
 
-ROUTERS=r1
-# ROUTERS="r1 r2 r3 r4"
+#SCRIPTS='
+#ex21.parse_csv.py
+#'
 
-for router in $ROUTERS ; do
-/usr/bin/env python -m unicon.playback.mock --recorded-data $DIR/record/$router --output $DIR/mock/$router/mock_device.yaml
-sed --in-place "s/prompt: switch/prompt: $router/g" $DIR/mock/$router/mock_device.yaml
+SCRIPTS=${ALL_SCRIPTS}
+
+DEVICES="r1 r2 r3 r4 sw1 sw2 sw3 sw4"
+
+for script in ${SCRIPTS}; do
+    # 後方一致、最長マッチで.までを削除
+    # ex21.execute.pyならex21になる
+    dir=${script%%.*}
+    /usr/bin/env python ${script} --record ${dir}/record
+
+    for device in ${DEVICES} ; do
+        if [ -e ${dir}/record/${device} ] ; then
+            /usr/bin/env python -m unicon.playback.mock --recorded-data ${dir}/record/${device} --output ${dir}/mock/${device}/mock_device.yaml
+            sed --in-place "s/prompt: switch/prompt: $device/g" ${dir}/mock/${device}/mock_device.yaml
+        fi
+    done
+
 done

@@ -40,28 +40,28 @@ execute:
       \ such\r\nGPL code under the terms of GPL Version 2.0.  For more details, see\
       \ the\r\ndocumentation or \"License Notice\" file accompanying the IOS-XE software,\r\
       \nor the applicable URL provided on the flyer accompanying the IOS-XE\r\nsoftware.\r\
-      \n\r\n\r\nROM: IOS-XE ROMMON\r\n\r\nr1 uptime is 1 week, 2 days, 2 hours, 31\
-      \ minutes\r\nUptime for this control processor is 1 week, 2 days, 2 hours, 33\
-      \ minutes\r\nSystem returned to ROM by reload\r\nSystem image file is \"bootflash:packages.conf\"\
-      \r\nLast reload reason: reload\r\n\r\n\r\n\r\nThis product contains cryptographic\
-      \ features and is subject to United\r\nStates and local country laws governing\
-      \ import, export, transfer and\r\nuse. Delivery of Cisco cryptographic products\
-      \ does not imply\r\nthird-party authority to import, export, distribute or use\
-      \ encryption.\r\nImporters, exporters, distributors and users are responsible\
-      \ for\r\ncompliance with U.S. and local country laws. By using this product\
-      \ you\r\nagree to comply with applicable laws and regulations. If you are unable\r\
-      \nto comply with U.S. and local laws, return this product immediately.\r\n\r\
-      \nA summary of U.S. laws governing Cisco cryptographic products may be found\
-      \ at:\r\nhttp://www.cisco.com/wwl/export/crypto/tool/stqrg.html\r\n\r\nIf you\
-      \ require further assistance please contact us by sending email to\r\nexport@cisco.com.\r\
-      \n\r\nLicense Level: ax\r\nLicense Type: N/A(Smart License Enabled)\r\nNext\
-      \ reload license Level: ax\r\n\r\nThe current throughput level is 1000 kbps\
-      \ \r\n\r\n\r\nSmart Licensing Status: UNREGISTERED/No Licenses in Use\r\n\r\n\
-      cisco CSR1000V (VXE) processor (revision VXE) with 1105173K/3075K bytes of memory.\r\
-      \nProcessor board ID 934T7HPFN7R\r\nRouter operating mode: Autonomous\r\n4 Gigabit\
-      \ Ethernet interfaces\r\n32768K bytes of non-volatile configuration memory.\r\
-      \n3012228K bytes of physical memory.\r\n6188032K bytes of virtual hard disk\
-      \ at bootflash:.\r\n\r\nConfiguration register is 0x2102"
+      \n\r\n\r\nROM: IOS-XE ROMMON\r\n\r\nr1 uptime is 1 week, 2 days, 16 hours, 57\
+      \ minutes\r\nUptime for this control processor is 1 week, 2 days, 16 hours,\
+      \ 59 minutes\r\nSystem returned to ROM by reload\r\nSystem image file is \"\
+      bootflash:packages.conf\"\r\nLast reload reason: reload\r\n\r\n\r\n\r\nThis\
+      \ product contains cryptographic features and is subject to United\r\nStates\
+      \ and local country laws governing import, export, transfer and\r\nuse. Delivery\
+      \ of Cisco cryptographic products does not imply\r\nthird-party authority to\
+      \ import, export, distribute or use encryption.\r\nImporters, exporters, distributors\
+      \ and users are responsible for\r\ncompliance with U.S. and local country laws.\
+      \ By using this product you\r\nagree to comply with applicable laws and regulations.\
+      \ If you are unable\r\nto comply with U.S. and local laws, return this product\
+      \ immediately.\r\n\r\nA summary of U.S. laws governing Cisco cryptographic products\
+      \ may be found at:\r\nhttp://www.cisco.com/wwl/export/crypto/tool/stqrg.html\r\
+      \n\r\nIf you require further assistance please contact us by sending email to\r\
+      \nexport@cisco.com.\r\n\r\nLicense Level: ax\r\nLicense Type: N/A(Smart License\
+      \ Enabled)\r\nNext reload license Level: ax\r\n\r\nThe current throughput level\
+      \ is 1000 kbps \r\n\r\n\r\nSmart Licensing Status: UNREGISTERED/No Licenses\
+      \ in Use\r\n\r\ncisco CSR1000V (VXE) processor (revision VXE) with 1105173K/3075K\
+      \ bytes of memory.\r\nProcessor board ID 934T7HPFN7R\r\nRouter operating mode:\
+      \ Autonomous\r\n4 Gigabit Ethernet interfaces\r\n32768K bytes of non-volatile\
+      \ configuration memory.\r\n3012228K bytes of physical memory.\r\n6188032K bytes\
+      \ of virtual hard disk at bootflash:.\r\n\r\nConfiguration register is 0x2102"
     term length 0: ''
     term width 0: ''
   prompt: r1#

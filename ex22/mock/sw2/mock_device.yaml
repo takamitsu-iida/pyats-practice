@@ -1,0 +1,44 @@
+configure:
+  commands:
+    end:
+      new_state: execute
+    line console 0:
+      new_state: configure_line
+    no logging console: ''
+  prompt: sw2(config)#
+configure_line:
+  commands:
+    end:
+      new_state: execute
+    exec-timeout 0: ''
+  prompt: sw2(config-line)#
+connect:
+  commands:
+    ? ''
+    : new_state: execute
+  preface: 'Trying mock_device ...
+
+    Connected to mock_device.
+
+    Escape character is ''^]''.'
+  prompt: ''
+disconnect:
+  commands:
+    null: null
+  prompt: sw2#
+execute:
+  commands:
+    config term:
+      new_state: configure
+    config-transaction:
+      new_state: configure
+    show interfaces status: "\r\nPort      Name               Status       Vlan  \
+      \     Duplex  Speed Type\r\nEt0/0                        connected    trunk\
+      \        auto   auto unknown\r\nEt0/1                        connected    trunk\
+      \        auto   auto unknown\r\nEt0/2                        connected    trunk\
+      \        auto   auto unknown\r\nEt0/3                        notconnect   1\
+      \            auto   auto unknown"
+    show version: ''
+    term length 0: ''
+    term width 0: ''
+  prompt: sw2#

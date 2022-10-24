@@ -1,0 +1,136 @@
+configure:
+  commands:
+    end:
+      new_state: execute
+    line console 0:
+      new_state: configure_line
+    no logging console: ''
+  prompt: r1(config)#
+configure_line:
+  commands:
+    end:
+      new_state: execute
+    exec-timeout 0: ''
+  prompt: r1(config-line)#
+connect:
+  commands:
+    ? ''
+    : new_state: execute
+  preface: 'Trying mock_device ...
+
+    Connected to mock_device.
+
+    Escape character is ''^]''.'
+  prompt: ''
+disconnect:
+  commands:
+    null: null
+  prompt: r1#
+execute:
+  commands:
+    config term:
+      new_state: configure
+    config-transaction:
+      new_state: configure
+    show running-config: "Building configuration...\r\n\r\nCurrent configuration :\
+      \ 6840 bytes\r\n!\r\n! Last configuration change at 01:14:47 UTC Mon Oct 24\
+      \ 2022\r\n!\r\nversion 17.3\r\nservice timestamps debug datetime msec\r\nservice\
+      \ timestamps log datetime msec\r\nservice call-home\r\nplatform qfp utilization\
+      \ monitor load 80\r\nplatform punt-keepalive disable-kernel-core\r\nplatform\
+      \ console serial\r\n!\r\nhostname r1\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\
+      \n!\r\n!\r\nno logging console\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\n!\r\
+      \n!\r\n!\r\n!\r\nno ip domain lookup\r\n!\r\n!\r\n!\r\nlogin on-success log\r\
+      \n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nsubscriber templating\r\n! \r\n! \r\n!\
+      \ \r\n! \r\n!\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n\
+      !\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ncrypto pki trustpoint\
+      \ TP-self-signed-1754416102\r\n enrollment selfsigned\r\n subject-name cn=IOS-Self-Signed-Certificate-1754416102\r\
+      \n revocation-check none\r\n rsakeypair TP-self-signed-1754416102\r\n!\r\ncrypto\
+      \ pki trustpoint SLA-TrustPoint\r\n enrollment pkcs12\r\n revocation-check crl\r\
+      \n!\r\n!\r\ncrypto pki certificate chain TP-self-signed-1754416102\r\n certificate\
+      \ self-signed 01\r\n  30820330 30820218 A0030201 02020101 300D0609 2A864886\
+      \ F70D0101 05050030 \r\n  31312F30 2D060355 04031326 494F532D 53656C66 2D536967\
+      \ 6E65642D 43657274 \r\n  69666963 6174652D 31373534 34313631 3032301E 170D3232\
+      \ 31303133 31323032 \r\n  30375A17 0D333231 30313231 32303230 375A3031 312F302D\
+      \ 06035504 03132649 \r\n  4F532D53 656C662D 5369676E 65642D43 65727469 66696361\
+      \ 74652D31 37353434 \r\n  31363130 32308201 22300D06 092A8648 86F70D01 01010500\
+      \ 0382010F 00308201 \r\n  0A028201 0100C3C2 47431784 F967F174 49104F3E 0CFBCDD1\
+      \ 66F8B41F F2B2CF6D \r\n  0C9E8A81 EFC821EB F7BFC10F B2A40E27 30CEB5ED FE3DE452\
+      \ C6C20E2F FF7DA18D \r\n  B608BC76 44506B34 4BB2068F B9B3A215 ECAB238C 5B8EB238\
+      \ 1472FA93 1EFE557D \r\n  2CFF1B35 B86ADB75 F78B776C DAE685DC 6461E414 350E48D2\
+      \ 41FCD073 DD653FE0 \r\n  9F2C5F60 2D87D1A4 96B19CE5 E599140B 3C2A0267 DE7C44E2\
+      \ 1BBA540F 392EF1B1 \r\n  7B5EBE01 205DFB69 174D077C 057A8B8C 313A2CCC 641ABDD7\
+      \ 862A1F1C CBAB87B4 \r\n  39043727 FA76E4BE EE15F5F9 51D65BDA 4FD94992 ED229652\
+      \ E4F00283 A7010832 \r\n  74FB0D8E 1103EC69 A174C9FB 1FAE8BDA 3999895F 1FEA3728\
+      \ 4443D1EB 4997262F \r\n  3B31C286 14750203 010001A3 53305130 0F060355 1D130101\
+      \ FF040530 030101FF \r\n  301F0603 551D2304 18301680 1460A43A 1104E975 4FCA5B8E\
+      \ F49ACE6F 2800523E \r\n  8E301D06 03551D0E 04160414 60A43A11 04E9754F CA5B8EF4\
+      \ 9ACE6F28 00523E8E \r\n  300D0609 2A864886 F70D0101 05050003 82010100 5BBD8AC4\
+      \ 95D1E0D3 355B4E00 \r\n  E421E03D 51FCBD02 0F2380A8 A682C2E1 1761217A DBFBFBF4\
+      \ 138FEA0C B02E7431 \r\n  D5D7FD09 0038F0CE 925013C5 D78EDFFD DDB2BF1D 8ADB484A\
+      \ 0393718A 550B23C3 \r\n  1F8F4614 174388DA 685485FE 44EA3B8C 2B013924 4D256742\
+      \ 5205DFFC 6ECAB290 \r\n  B3DB9EF0 F5B2DB58 405CC936 E51C5D15 D8C0A1BC 3E6C36C8\
+      \ 358D34A5 E3097BE6 \r\n  86E4421B 1DB1AB2D 9BA987EC 6332BD4B FCDA8CF9 FF9E92A3\
+      \ 075A1912 A483F074 \r\n  23ADC319 6A92DF4C A512635B 9C821664 BF12BD51 C686AECD\
+      \ 47296351 48C43505 \r\n  D96DA73B F102BD3F 23DA996C 2EB369C7 4F2A1462 F65CC235\
+      \ ABBFAFD3 D0F3EBDA \r\n  6FD695C4 B3E32E28 8BA0DFC7 FCEB9357 385F68A4\r\n \
+      \ \tquit\r\ncrypto pki certificate chain SLA-TrustPoint\r\n certificate ca 01\r\
+      \n  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\
+      \ \r\n  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363\
+      \ \r\n  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\
+      \ \r\n  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305\
+      \ \r\n  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\
+      \ \r\n  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\
+      \ \r\n  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\
+      \ \r\n  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\
+      \ \r\n  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\
+      \ \r\n  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\
+      \ \r\n  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\
+      \ \r\n  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\
+      \ \r\n  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\
+      \ \r\n  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\
+      \ \r\n  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\
+      \ \r\n  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\
+      \ \r\n  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\
+      \ \r\n  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\
+      \ \r\n  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\
+      \ \r\n  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\
+      \ \r\n  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\
+      \ \r\n  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\
+      \ \r\n  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\
+      \ \r\n  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\
+      \ \r\n  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\
+      \ \r\n  D697DF7F 28\r\n  \tquit\r\n!\r\nlicense udi pid CSR1000V sn 934T7HPFN7R\r\
+      \ndiagnostic bootup level minimal\r\nmemory free low-watermark processor 71489\r\
+      \n!\r\n!\r\nspanning-tree extend system-id\r\n!\r\n!\r\nredundancy\r\n!\r\n\
+      !\r\n!\r\n!\r\n!\r\n!\r\ncdp run\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n\
+      !\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n! \r\n! \r\n!\r\n!\r\ninterface Loopback0\r\
+      \n ip address 192.168.255.1 255.255.255.255\r\n!\r\ninterface GigabitEthernet1\r\
+      \n description to r2\r\n mtu 9000\r\n ip address 192.168.12.1 255.255.255.0\r\
+      \n ip ospf network point-to-point\r\n ip ospf cost 100\r\n negotiation auto\r\
+      \n cdp enable\r\n no mop enabled\r\n no mop sysid\r\n!\r\ninterface GigabitEthernet2\r\
+      \n description to r3\r\n mtu 9000\r\n ip address 192.168.13.1 255.255.255.0\r\
+      \n ip ospf network point-to-point\r\n ip ospf cost 100\r\n negotiation auto\r\
+      \n cdp enable\r\n no mop enabled\r\n no mop sysid\r\n!\r\ninterface GigabitEthernet3\r\
+      \n description configured by Genie Conf Object\r\n no ip address\r\n shutdown\r\
+      \n negotiation auto\r\n no mop enabled\r\n no mop sysid\r\n!\r\ninterface GigabitEthernet4\r\
+      \n description configured by Genie Conf Object\r\n no ip address\r\n shutdown\r\
+      \n negotiation auto\r\n no mop enabled\r\n no mop sysid\r\n!\r\nrouter ospf\
+      \ 1\r\n router-id 192.168.255.1\r\n network 192.168.12.1 0.0.0.0 area 0\r\n\
+      \ network 192.168.13.1 0.0.0.0 area 0\r\n network 192.168.255.1 0.0.0.0 area\
+      \ 0\r\n!\r\nip forward-protocol nd\r\nip http server\r\nip http authentication\
+      \ local\r\nip http secure-server\r\n!\r\nip route 10.10.10.0 255.255.255.0 GigabitEthernet1\
+      \ 192.168.12.2\r\nip route 10.10.20.0 255.255.255.0 GigabitEthernet1 192.168.12.2\r\
+      \nip route 10.10.30.0 255.255.255.0 GigabitEthernet1 192.168.12.2\r\nip route\
+      \ 10.10.40.0 255.255.255.0 GigabitEthernet1 192.168.12.2\r\nip route 10.10.50.0\
+      \ 255.255.255.0 GigabitEthernet1 192.168.12.2\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\
+      \n!\r\ncontrol-plane\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nline con 0\r\n exec-timeout\
+      \ 0 0\r\n stopbits 1\r\nline vty 0 4\r\n login\r\n transport input ssh\r\n!\r\
+      \ncall-home\r\n ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\r\
+      \n ! the email address configured in Cisco Smart License Portal will be used\
+      \ as contact email address to send SCH notifications.\r\n contact-email-addr\
+      \ sch-smart-licensing@cisco.com\r\n profile \"CiscoTAC-1\"\r\n  active\r\n \
+      \ destination transport-method http\r\n!\r\n!\r\n!\r\n!\r\n!\r\nend"
+    show version: ''
+    term length 0: ''
+    term width 0: ''
+  prompt: r1#

@@ -1,0 +1,44 @@
+configure:
+  commands:
+    end:
+      new_state: execute
+    exit: " exit\r\n"
+    interface GigabitEthernet1: "interface GigabitEthernet1\r\n"
+    ip ospf cost 10: " ip ospf cost 10\r\n"
+    ip ospf network point-to-point: " ip ospf network point-to-point\r\n"
+    line console 0:
+      new_state: configure_line
+    no logging console: ''
+    router ospf 1: "router ospf 1\r\n"
+    router-id 192.168.255.1: " router-id 192.168.255.1\r\n"
+  prompt: r1(config)#
+configure_line:
+  commands:
+    end:
+      new_state: execute
+    exec-timeout 0: ''
+  prompt: r1(config-line)#
+connect:
+  commands:
+    ? ''
+    : new_state: execute
+  preface: 'Trying mock_device ...
+
+    Connected to mock_device.
+
+    Escape character is ''^]''.'
+  prompt: ''
+disconnect:
+  commands:
+    null: null
+  prompt: r1#
+execute:
+  commands:
+    config term:
+      new_state: configure
+    config-transaction:
+      new_state: configure
+    show version: ''
+    term length 0: ''
+    term width 0: ''
+  prompt: r1#

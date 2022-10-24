@@ -1,0 +1,70 @@
+configure:
+  commands:
+    ? ''
+    : "\r\n"
+    end:
+      new_state: execute
+    ip route 192.168.100.0 255.255.255.0 null 0: "ip route 192.168.100.0 255.255.255.0\
+      \ null 0\r\n"
+    line console 0:
+      new_state: configure_line
+    no ip route 192.168.100.0 255.255.255.0 null 0: "no ip route 192.168.100.0 255.255.255.0\
+      \ null 0\r\n"
+    no logging console: ''
+  prompt: r1(config)#
+configure_line:
+  commands:
+    end:
+      new_state: execute
+    exec-timeout 0: ''
+  prompt: r1(config-line)#
+connect:
+  commands:
+    ? ''
+    : new_state: execute
+  preface: 'Trying mock_device ...
+
+    Connected to mock_device.
+
+    Escape character is ''^]''.'
+  prompt: ''
+disconnect:
+  commands:
+    null: null
+  prompt: r1#
+execute:
+  commands:
+    config term:
+      new_state: configure
+    config-transaction:
+      new_state: configure
+    show ip route: "Codes: L - local, C - connected, S - static, R - RIP, M - mobile,\
+      \ B - BGP\r\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter\
+      \ area \r\n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type\
+      \ 2\r\n       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP\r\
+      \n       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA\r\n      \
+      \ i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\r\n\
+      \       ia - IS-IS inter area, * - candidate default, U - per-user static route\r\
+      \n       H - NHRP, G - NHRP registered, g - NHRP registration summary\r\n  \
+      \     o - ODR, P - periodic downloaded static route, l - LISP\r\n       a -\
+      \ application route\r\n       + - replicated route, % - next hop override, p\
+      \ - overrides from PfR\r\n       & - replicated local route overrides by connected\r\
+      \n\r\nGateway of last resort is not set\r\n\r\n      192.168.12.0/24 is variably\
+      \ subnetted, 2 subnets, 2 masks\r\nC        192.168.12.0/24 is directly connected,\
+      \ GigabitEthernet1\r\nL        192.168.12.1/32 is directly connected, GigabitEthernet1\r\
+      \n      192.168.13.0/24 is variably subnetted, 2 subnets, 2 masks\r\nC     \
+      \   192.168.13.0/24 is directly connected, GigabitEthernet2\r\nL        192.168.13.1/32\
+      \ is directly connected, GigabitEthernet2\r\nO     192.168.24.0/24 [110/200]\
+      \ via 192.168.12.2, 00:00:15, GigabitEthernet1\r\nO     192.168.34.0/24 [110/200]\
+      \ via 192.168.13.3, 6d16h, GigabitEthernet2\r\n      192.168.255.0/32 is subnetted,\
+      \ 4 subnets\r\nC        192.168.255.1 is directly connected, Loopback0\r\nO\
+      \        192.168.255.2 [110/101] via 192.168.12.2, 00:00:15, GigabitEthernet1\r\
+      \nO        192.168.255.3 [110/101] via 192.168.13.3, 6d16h, GigabitEthernet2\r\
+      \nO        192.168.255.4 [110/201] via 192.168.13.3, 00:00:15, GigabitEthernet2\r\
+      \n                       [110/201] via 192.168.12.2, 00:00:15, GigabitEthernet1"
+    show ipv6 route: ''
+    show version: ''
+    show vrf detail: ''
+    term length 0: ''
+    term width 0: ''
+  prompt: r1#

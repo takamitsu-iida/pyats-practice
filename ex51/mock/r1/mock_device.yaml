@@ -1,0 +1,47 @@
+configure:
+  commands:
+    description configured by Genie Conf Object: " description configured by Genie\
+      \ Conf Object\r\n"
+    end:
+      new_state: execute
+    exit: " exit\r\n"
+    interface GigabitEthernet1: "interface GigabitEthernet1\r\n"
+    interface GigabitEthernet2: "interface GigabitEthernet2\r\n"
+    interface GigabitEthernet3: "interface GigabitEthernet3\r\n"
+    interface GigabitEthernet4: "interface GigabitEthernet4\r\n"
+    line console 0:
+      new_state: configure_line
+    no description configured by Genie Conf Object: " no description configured by\
+      \ Genie Conf Object\r\n"
+    no logging console: ''
+  prompt: r1(config)#
+configure_line:
+  commands:
+    end:
+      new_state: execute
+    exec-timeout 0: ''
+  prompt: r1(config-line)#
+connect:
+  commands:
+    ? ''
+    : new_state: execute
+  preface: 'Trying mock_device ...
+
+    Connected to mock_device.
+
+    Escape character is ''^]''.'
+  prompt: ''
+disconnect:
+  commands:
+    null: null
+  prompt: r1#
+execute:
+  commands:
+    config term:
+      new_state: configure
+    config-transaction:
+      new_state: configure
+    show version: ''
+    term length 0: ''
+    term width 0: ''
+  prompt: r1#

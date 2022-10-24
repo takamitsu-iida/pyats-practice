@@ -1,0 +1,44 @@
+configure:
+  commands:
+    ? ''
+    : "\r\n"
+    description "configured by pyats": "description \"configured by pyats\"\r\n"
+    end:
+      new_state: execute
+    exit: "exit\r\n"
+    interface Gig1: "interface Gig1\r\n"
+    interface Gig2: "interface Gig2\r\n"
+    line console 0:
+      new_state: configure_line
+    no logging console: ''
+  prompt: r1(config)#
+configure_line:
+  commands:
+    end:
+      new_state: execute
+    exec-timeout 0: ''
+  prompt: r1(config-line)#
+connect:
+  commands:
+    ? ''
+    : new_state: execute
+  preface: 'Trying mock_device ...
+
+    Connected to mock_device.
+
+    Escape character is ''^]''.'
+  prompt: ''
+disconnect:
+  commands:
+    null: null
+  prompt: r1#
+execute:
+  commands:
+    config term:
+      new_state: configure
+    config-transaction:
+      new_state: configure
+    show version: ''
+    term length 0: ''
+    term width 0: ''
+  prompt: r1#

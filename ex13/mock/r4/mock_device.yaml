@@ -36,13 +36,13 @@ execute:
       \ Route Bridge\r\n                  S - Switch, H - Host, I - IGMP, r - Repeater,\
       \ P - Phone, \r\n                  D - Remote, C - CVTA, M - Two-port Mac Relay\
       \ \r\n\r\nDevice ID        Local Intrfce     Holdtme    Capability  Platform\
-      \  Port ID\r\nr2               Gig 2             173              R I   CSR1000V\
-      \  Gig 2\r\nr3               Gig 1             147              R I   CSR1000V\
+      \  Port ID\r\nr2               Gig 2             145              R I   CSR1000V\
+      \  Gig 2\r\nr3               Gig 1             157              R I   CSR1000V\
       \  Gig 1\r\n\r\nTotal cdp entries displayed : 2"
     show ip ospf neighbor: "\r\nNeighbor ID     Pri   State           Dead Time  \
-      \ Address         Interface\r\n192.168.255.3     0   FULL/  -        00:00:35\
+      \ Address         Interface\r\n192.168.255.3     0   FULL/  -        00:00:37\
       \    192.168.34.3    GigabitEthernet1\r\n192.168.255.2     0   FULL/  -    \
-      \    00:00:32    192.168.24.2    GigabitEthernet2"
+      \    00:00:39    192.168.24.2    GigabitEthernet2"
     show ip route: "Codes: L - local, C - connected, S - static, R - RIP, M - mobile,\
       \ B - BGP\r\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter\
       \ area \r\n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type\
@@ -62,8 +62,8 @@ execute:
       \n      192.168.34.0/24 is variably subnetted, 2 subnets, 2 masks\r\nC     \
       \   192.168.34.0/24 is directly connected, GigabitEthernet1\r\nL        192.168.34.4/32\
       \ is directly connected, GigabitEthernet1\r\n      192.168.255.0/32 is subnetted,\
-      \ 4 subnets\r\nO        192.168.255.1 [110/201] via 192.168.34.3, 6d13h, GigabitEthernet1\r\
-      \n                       [110/201] via 192.168.24.2, 6d13h, GigabitEthernet2\r\
+      \ 4 subnets\r\nO        192.168.255.1 [110/201] via 192.168.34.3, 1w0d, GigabitEthernet1\r\
+      \n                       [110/201] via 192.168.24.2, 1w0d, GigabitEthernet2\r\
       \nO        192.168.255.2 [110/101] via 192.168.24.2, 1w1d, GigabitEthernet2\r\
       \nO        192.168.255.3 [110/101] via 192.168.34.3, 1w1d, GigabitEthernet1\r\
       \nC        192.168.255.4 is directly connected, Loopback0"
@@ -79,8 +79,8 @@ execute:
       \ such\r\nGPL code under the terms of GPL Version 2.0.  For more details, see\
       \ the\r\ndocumentation or \"License Notice\" file accompanying the IOS-XE software,\r\
       \nor the applicable URL provided on the flyer accompanying the IOS-XE\r\nsoftware.\r\
-      \n\r\n\r\nROM: IOS-XE ROMMON\r\n\r\nr4 uptime is 1 week, 1 day, 8 hours, 46\
-      \ minutes\r\nUptime for this control processor is 1 week, 1 day, 8 hours, 48\
+      \n\r\n\r\nROM: IOS-XE ROMMON\r\n\r\nr4 uptime is 1 week, 1 day, 20 hours, 58\
+      \ minutes\r\nUptime for this control processor is 1 week, 1 day, 21 hours, 0\
       \ minutes\r\nSystem returned to ROM by reload\r\nSystem image file is \"bootflash:packages.conf\"\
       \r\nLast reload reason: Unknown reason\r\n\r\n\r\n\r\nThis product contains\
       \ cryptographic features and is subject to United\r\nStates and local country\
