@@ -33,9 +33,11 @@ SCRIPTS=${ALL_SCRIPTS}
 DEVICES="r1 r2 r3 r4 sw1 sw2 sw3 sw4"
 
 for script in ${SCRIPTS}; do
-    # 後方一致、最長マッチで.までを削除
-    # ex21.execute.pyならex21になる
+    # スクリプト名からディレクトリ名を取得する（ex21.execute.pyならex21）
+    # 後方一致、最長マッチで.までを削除して取得
     dir=${script%%.*}
+
+    # --record付きで実行
     /usr/bin/env python ${script} --record ${dir}/record
 
     for device in ${DEVICES} ; do
