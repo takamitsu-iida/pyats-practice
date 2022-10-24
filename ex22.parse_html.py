@@ -4,15 +4,22 @@
 # スイッチ系装置のshow interfaces statusをパースして、HTML形式で保存する
 #
 
+# usage: ex22.parse_html.py [-h] [--testbed TESTBED]
+#
+# optional arguments:
+#   -h, --help         show this help message and exit
+#   --testbed TESTBED  testbed YAML file
+
+import argparse
 import os
 
 from pprint import pformat
-
-# import jinja2
 from jinja2 import Environment, FileSystemLoader
 
-# import Genie
-from genie.testbed import load
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
 
 def here(path=''):
   return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
@@ -24,7 +31,10 @@ templates_dir = here('./templates')
 # pyATS
 #
 
-testbed = load('lab.yml')
+# import Genie
+from genie.testbed import load
+
+testbed = load(args.testbed)
 
 parsed = {}
 for name, dev in testbed.devices.items():

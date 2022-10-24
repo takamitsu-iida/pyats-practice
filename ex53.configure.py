@@ -3,15 +3,32 @@
 #
 # configure ospf
 #
-
 # ドキュメントがないので使い方はソースコードを参照
 # https://github.com/CiscoTestAutomation/genielibs/blob/master/pkgs/conf-pkg/src/genie/libs/conf/ospf/iosxe/tests/test_ospf.py
 
+# usage: ex53.configure.py [-h] [--testbed TESTBED]
+#
+# optional arguments:
+#   -h, --help         show this help message and exit
+#   --testbed TESTBED  testbed YAML file
+
+import argparse
+
 from pprint import pprint
+
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
+
+#
+# pyATS
+#
 
 # import Genie
 from genie.testbed import load
-testbed = load('lab.yml')
+
+testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 

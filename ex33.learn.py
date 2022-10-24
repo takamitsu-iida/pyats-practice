@@ -4,6 +4,13 @@
 # 抽象的な機能名を指定して学習させる
 #
 
+# usage: ex33.learn.py [-h] [--testbed TESTBED]
+#
+# optional arguments:
+#   -h, --help         show this help message and exit
+#   --testbed TESTBED  testbed YAML file
+
+import argparse
 import sys
 import os
 
@@ -20,6 +27,11 @@ import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
 
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
+
 #
 # pyATS
 #
@@ -27,7 +39,7 @@ if telnetlib.MODIFIED_BY:
 # import Genie
 from genie.testbed import load
 
-testbed = load('lab.yml')
+testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 

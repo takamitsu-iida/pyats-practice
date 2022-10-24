@@ -1,0 +1,79 @@
+---
+
+testbed:
+  name: mock
+
+  # common credentials
+  credentials:
+    default:
+      username: ''
+      password: ''
+    enable:
+      password: ''
+
+devices:
+
+  r1:
+    alias: 'uut'
+    os: iosxe
+    platform: CSR1000v
+    type: router
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      console:
+        command: mock_device_cli --os iosxe --mock_data_dir ex13/mock/r1 --state connect
+        protocol: unknown
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []
+
+  r2:
+    os: iosxe
+    platform: CSR1000v
+    type: router
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      console:
+        command: mock_device_cli --os iosxe --mock_data_dir ex13/mock/r2 --state connect
+        protocol: unknown
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []
+
+  r3:
+    os: iosxe
+    platform: CSR1000v
+    type: router
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      console:
+        command: mock_device_cli --os iosxe --mock_data_dir ex13/mock/r3 --state connect
+        protocol: unknown
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []
+
+  r4:
+    os: iosxe
+    platform: CSR1000v
+    type: router
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      console:
+        command: mock_device_cli --os iosxe --mock_data_dir ex13/mock/r4 --state connect
+        protocol: unknown
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []

@@ -4,28 +4,26 @@
 # show interfacesをパースして、CSV形式で保存する
 #
 
+# usage: ex21.parse_csv.py [-h] [--testbed TESTBED]
+#
+# optional arguments:
+#   -h, --help         show this help message and exit
+#   --testbed TESTBED  testbed YAML file
+
+import argparse
 import sys
 import os
 
 from pprint import pprint
-
-# import jinja2
 from jinja2 import Environment, FileSystemLoader
-
-# import Genie
-from genie.testbed import load
-
-def here(path=''):
-  return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
-
-log_dir = here('./log')
-lib_dir = here('./lib')
-templates_dir = here('./templates')
 
 #
 # overwrite standard telnetlib
 #
+def here(path=''):
+  return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
 
+lib_dir = here('./lib')
 if not lib_dir in sys.path:
   sys.path.insert(0, lib_dir)
 
@@ -34,11 +32,22 @@ import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
 
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
+
 #
 # pyATS
 #
 
-testbed = load('lab.yml')
+# import Genie
+from genie.testbed import load
+
+log_dir = here('./log')
+templates_dir = here('./templates')
+
+testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 

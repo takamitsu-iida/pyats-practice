@@ -4,6 +4,7 @@
 # save and load ops object
 #
 
+import argparse
 import os
 import sys
 
@@ -20,18 +21,23 @@ import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
 
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
+
 #
 # pyATS
 #
+
+# import Genie
+from genie.testbed import load
 
 # log directory and log file
 log_dir = os.path.join(here('.'), 'log')
 log_file = os.path.join(log_dir, 'r1_interface.data')
 
-# import Genie
-from genie.testbed import load
-
-testbed = load('lab.yml')
+testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 

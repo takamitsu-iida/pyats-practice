@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+#
+# execute list of show commands and save to a file.
+#
+
+import argparse
 import sys
 import os
 
@@ -15,6 +20,11 @@ if not here('./lib') in sys.path:
 import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
+
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
 
 #
 # pyATS
@@ -38,7 +48,7 @@ log_dir = os.path.join(here('.'), 'log')
 # create log_dir
 os.makedirs(log_dir, exist_ok=True)
 
-testbed = load('lab.yml')
+testbed = load(args.testbed)
 
 for name, dev in testbed.devices.items():
     # テストベッド内のすべてのCSR1000vを対象に

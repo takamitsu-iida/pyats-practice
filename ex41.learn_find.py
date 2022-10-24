@@ -5,10 +5,27 @@
 # https://pubhub.devnetcloud.com/media/pyats/docs/utilities/helper_functions.html
 #
 
+# usage: ex41.learn_find.py [-h] [--testbed TESTBED]
+#
+# optional arguments:
+#   -h, --help         show this help message and exit
+#   --testbed TESTBED  testbed YAML file
+
+import argparse
+
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
+
+#
+# pyATS
+#
+
 # import Genie
 from genie.testbed import load
 
-testbed = load('lab.yml')
+testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 

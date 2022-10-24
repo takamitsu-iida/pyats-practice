@@ -1,5 +1,16 @@
 #!/usr/bin/env python
 
+#
+# execute 'show running-config'
+#
+
+# usage: ex12.execute.py [-h] [--testbed TESTBED]
+#
+# optional arguments:
+#   -h, --help         show this help message and exit
+#   --testbed TESTBED  testbed YAML file
+
+import argparse
 import sys
 import os
 
@@ -16,6 +27,11 @@ import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
 
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
+
 #
 # pyATS
 #
@@ -24,7 +40,7 @@ if telnetlib.MODIFIED_BY:
 from genie.testbed import load
 from unicon.core.errors import TimeoutError, ConnectionError, SubCommandFailure
 
-testbed = load('lab.yml')
+testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 

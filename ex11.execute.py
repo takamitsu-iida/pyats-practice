@@ -4,14 +4,30 @@
 # same as ex10.execute.py
 #
 
+# usage: ex11.execute.py [-h] [--testbed TESTBED]
+#
+# optional arguments:
+#   -h, --help         show this help message and exit
+#   --testbed TESTBED  testbed YAML file
+
+import argparse
 import sys
+
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
+
+#
+# pyATS
+#
 
 # import Genie
 from genie.testbed import load
 from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 from unicon.core.errors import SubCommandFailure
 
-testbed = load('lab.yml')
+testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 

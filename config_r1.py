@@ -4,11 +4,23 @@
 # configure r1 in lab
 #
 
+import argparse
+
 from pprint import pprint
 
 # import Genie
 from genie.testbed import load
-testbed = load('lab.yml')
+
+# script args
+parser = argparse.ArgumentParser()
+parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
+args, _ = parser.parse_known_args()
+
+#
+# pyATS
+#
+
+testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 

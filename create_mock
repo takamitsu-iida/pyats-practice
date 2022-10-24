@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DIR=ex20
+
+ROUTERS=r1
+# ROUTERS="r1 r2 r3 r4"
+
+for router in $ROUTERS ; do
+/usr/bin/env python -m unicon.playback.mock --recorded-data $DIR/record/$router --output $DIR/mock/$router/mock_device.yaml
+sed --in-place "s/prompt: switch/prompt: $router/g" $DIR/mock/$router/mock_device.yaml
+done

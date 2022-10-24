@@ -22,9 +22,10 @@ devices:
       defaults:
         class: 'unicon.Unicon'
       console:
-        command: mock_device_cli --os iosxe --mock_data_dir mock --state connect
+        command: mock_device_cli --os iosxe --mock_data_dir ex20/mock/r1 --state connect
         protocol: unknown
-        init_exec_commands:
-          - term length 0
-          - term width 0
-        init_config_commands: []
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []

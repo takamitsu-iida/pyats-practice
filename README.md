@@ -344,9 +344,12 @@ pyats secret decode ...
 
 ## モックの作り方
 
-Genieスクリプトを実行するときに `--record <dir>` を引数に渡してあげると、指定したディレクトリにバイナリ形式のログが記録されます。
+装置からの出力を加工するようなpyATSスクリプトを開発する場合、毎回リアル装置に接続するよりも、モックデバイスを作ってしまった方が効率的かもしれません。
 
-Genieはsys.argvを読み取ってるようなので、pythonの引数にスクリプトを渡す形で実行します。
+モックデバイスは簡単につくれます。
+
+Genieスクリプトを実行するときに `--record <dir>` を引数に渡すと指定したディレクトリにバイナリ形式のログが記録されます。
+Genieはsys.argvを読み取ってるようなので、pythonの引数にスクリプトを渡す形式で実行します
 
 実行例。
 
@@ -355,7 +358,7 @@ python ex10.py --record ./record
 ```
 
 実行すると接続したデバイスごとにログ・ファイルが記録されます。
-これはバイナリファイルです。
+このログはバイナリファイルです。
 
 ```bash
 tree record
@@ -387,7 +390,7 @@ prompt: switch
 prompt: r1
 ```
 
-というように実際のホスト名に修正します（エディタの一括置換機能が便利です）。
+というように実際のホスト名に修正します（エディタの括置換機能やsedを利用すると簡単です）。
 
 モックデバイスに接続して確認します。
 
@@ -428,10 +431,11 @@ devices:
       console:
         command: mock_device_cli --os iosxe --mock_data_dir mock/r1 --state connect
         protocol: unknown
-        init_exec_commands:
-          - term length 0
-          - term width 0
-        init_config_commands: []
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []
 ```
 
 <br><br>
