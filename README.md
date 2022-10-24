@@ -773,6 +773,99 @@ with device.guestshell(enable_guestshell=True, retries=30) as gs:
 
 <br><br>
 
+## 便利ライブラリ
+
+https://pubhub.devnetcloud.com/media/genie-docs/docs/userguide/utils/index.html#
+
+<br>
+
+### Dq
+
+pyATSのparse()、learn()の戻り値にはqが含まれています。
+これはDqクラスのオブジェクトで、辞書型を検索するのに使います。
+
+- get_values(キー) 指定したキーの値を返す。
+
+- contains(文字列) 文字列を含んでいるもの。位置は関係ない。
+
+- not_contains(文字列) 含んでいないもの。位置は関係ない。
+
+- contains_key_value(キー, 値) キーと値が一致するもの。
+
+- not_contains_key_value(キー, 値) キーと値が一致しないもの。
+
+- value_operator(キー, 演算子, 値) 指定したキーの値が演算子(==, !=, >=, <=, >, <)で評価したときにTrueになるもの。
+
+- sum_value_operator(キー, 演算子, 値) value_operatorの結果の値の和を返す。
+
+- count() 数を返す。メソッドチェーンの最後につける。
+
+- raw(キー) 辞書型を返す。
+
+<br>
+
+### Timeout
+
+同じことを繰り返すときに便利です。
+learn_poll()と同じことを自分でやるならこれを使うとよいでしょう。
+
+```python
+from genie.utils.timeout import Timeout
+
+# Try up to 60 seconds, and between interval wait 10 seconds, display timeout logs
+timeout = Timeout(max_time = 60, interval = 10, disable_log = False)
+
+while timeout.iterate():
+    ret = do_something(**kwargs)
+    if ret is None:
+        return
+    # Didn't get expected result, keep trying
+    timeout.sleep()
+```
+
+タイムアウト時にはTimeoutErrorがraiseされるので、適切にtry-exceptしないとスクリプトが止まってしまいます。
+
+<br>
+
+### Config
+
+コンフィグを辞書型に構造化するクラスです。
+
+```python
+from genie.utils.config import Config
+cfg = '''\
+service unsupported-transceiver
+hostname PE1
+clock timezone PDT -7
+exception pakmem on
+exception sparse off
+exception kdebugger enable
+logging buffered 120000000
+telnet vrf default ipv4 server max-servers 10
+cdp
+line template vty
+ timestamp disable
+ exec-timeout 0 0'''
+
+config = Config(cfg)
+config.tree()
+
+>>> pprint.pprint(config.config)
+{'cdp': {},
+ 'clock timezone PDT -7': {},
+ 'exception kdebugger enable': {},
+ 'exception pakmem on': {},
+ 'exception sparse off': {},
+ 'hostname PE1': {},
+ 'line template vty': {' exec-timeout 0 0': {}, ' timestamp disable': {}},
+ 'logging buffered 120000000': {},
+ 'service unsupported-transceiver': {},
+ 'telnet vrf default ipv4 server max-servers 10': {}}
+```
+
+
+<br><br>
+
 # telnet接続時の不具合対処
 
 > testbedへの接続プロトコルがtelnetの場合のみ、この対処が必要です。
@@ -1422,6 +1515,9 @@ verify=で渡す関数において例外をraiseすれば条件を満たして�
 ```bash
 $ ./ex43.learn_poll.py --testbed ex43/lab.yml
 ```
+
+> genie.utils.timeoutを使うとより汎用にできます。
+> https://pubhub.devnetcloud.com/media/genie-docs/docs/userguide/utils/index.html#
 
 <br><br>
 
