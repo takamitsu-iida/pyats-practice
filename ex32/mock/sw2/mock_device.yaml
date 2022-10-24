@@ -1,0 +1,111 @@
+configure:
+  commands:
+    end:
+      new_state: execute
+    line console 0:
+      new_state: configure_line
+    no logging console: ''
+  prompt: sw2(config)#
+configure_line:
+  commands:
+    end:
+      new_state: execute
+    exec-timeout 0: ''
+  prompt: sw2(config-line)#
+connect:
+  commands:
+    ? ''
+    : new_state: execute
+  preface: 'Trying mock_device ...
+
+    Connected to mock_device.
+
+    Escape character is ''^]''.'
+  prompt: ''
+disconnect:
+  commands:
+    null: null
+  prompt: sw2#
+execute:
+  commands:
+    config term:
+      new_state: configure
+    config-transaction:
+      new_state: configure
+    show errdisable recovery: "ErrDisable Reason            Timer Status\r\n-----------------\
+      \            --------------\r\narp-inspection               Disabled\r\nbpduguard\
+      \                    Disabled\r\nchannel-misconfig (STP)      Disabled\r\ndhcp-rate-limit\
+      \              Disabled\r\ndtp-flap                     Disabled\r\ngbic-invalid\
+      \                 Disabled\r\ninline-power                 Disabled\r\nl2ptguard\
+      \                    Disabled\r\nlink-flap                    Disabled\r\nmac-limit\
+      \                    Disabled\r\nlink-monitor-failure         Disabled\r\nloopback\
+      \                     Disabled\r\noam-remote-failure           Disabled\r\n\
+      pagp-flap                    Disabled\r\nport-mode-failure            Disabled\r\
+      \npppoe-ia-rate-limit          Disabled\r\npsecure-violation            Disabled\r\
+      \nsecurity-violation           Disabled\r\nsfp-config-mismatch          Disabled\r\
+      \nstorm-control                Disabled\r\nudld                         Disabled\r\
+      \nunicast-flood                Disabled\r\nvmps                         Disabled\r\
+      \npsp                          Disabled\r\ndual-active-recovery         Disabled\r\
+      \n\r\nTimer interval: 300 seconds\r\n\r\nInterfaces that will be enabled at\
+      \ the next timeout:"
+    show spanning-tree: "\r\nVLAN0001\r\n  Spanning tree enabled protocol ieee\r\n\
+      \  Root ID    Priority    32769\r\n             Address     aabb.cc00.0300\r\
+      \n             Cost        100\r\n             Port        1 (Ethernet0/0)\r\
+      \n             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec\r\n\r\
+      \n  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)\r\n        \
+      \     Address     aabb.cc00.0400\r\n             Hello Time   2 sec  Max Age\
+      \ 20 sec  Forward Delay 15 sec\r\n             Aging Time  300 sec\r\n\r\nInterface\
+      \           Role Sts Cost      Prio.Nbr Type\r\n------------------- ---- ---\
+      \ --------- -------- --------------------------------\r\nEt0/0             \
+      \  Root FWD 100       128.1    Shr \r\nEt0/1               Desg FWD 100    \
+      \   128.2    Shr \r\nEt0/2               Desg FWD 100       128.3    Shr"
+    show spanning-tree detail: "\r\n VLAN0001 is executing the ieee compatible Spanning\
+      \ Tree protocol\r\n  Bridge Identifier has priority 32768, sysid 1, address\
+      \ aabb.cc00.0400\r\n  Configured hello time 2, max age 20, forward delay 15\r\
+      \n  Current root has priority 32769, address aabb.cc00.0300\r\n  Root port is\
+      \ 1 (Ethernet0/0), cost of root path is 100\r\n  Topology change flag not set,\
+      \ detected flag not set\r\n  Number of topology changes 8 last change occurred\
+      \ 1w2d ago\r\n          from Ethernet0/2\r\n  Times:  hold 1, topology change\
+      \ 35, notification 2\r\n          hello 2, max age 20, forward delay 15 \r\n\
+      \  Timers: hello 0, topology change 0, notification 0, aging 300\r\n\r\n Port\
+      \ 1 (Ethernet0/0) of VLAN0001 is root forwarding \r\n   Port path cost 100,\
+      \ Port priority 128, Port Identifier 128.1.\r\n   Designated root has priority\
+      \ 32769, address aabb.cc00.0300\r\n   Designated bridge has priority 32769,\
+      \ address aabb.cc00.0300\r\n   Designated port id is 128.1, designated path\
+      \ cost 0\r\n   Timers: message age 1, forward delay 0, hold 0\r\n   Number of\
+      \ transitions to forwarding state: 1\r\n   Link type is shared by default\r\n\
+      \   BPDU: sent 7, received 398139\r\n\r\n Port 2 (Ethernet0/1) of VLAN0001 is\
+      \ designated forwarding \r\n   Port path cost 100, Port priority 128, Port Identifier\
+      \ 128.2.\r\n   Designated root has priority 32769, address aabb.cc00.0300\r\n\
+      \   Designated bridge has priority 32769, address aabb.cc00.0400\r\n   Designated\
+      \ port id is 128.2, designated path cost 100\r\n   Timers: message age 0, forward\
+      \ delay 0, hold 0\r\n   Number of transitions to forwarding state: 1\r\n   Link\
+      \ type is shared by default\r\n   BPDU: sent 398118, received 0\r\n\r\n Port\
+      \ 3 (Ethernet0/2) of VLAN0001 is designated forwarding \r\n   Port path cost\
+      \ 100, Port priority 128, Port Identifier 128.3.\r\n   Designated root has priority\
+      \ 32769, address aabb.cc00.0300\r\n   Designated bridge has priority 32769,\
+      \ address aabb.cc00.0400\r\n   Designated port id is 128.3, designated path\
+      \ cost 100\r\n   Timers: message age 0, forward delay 0, hold 0\r\n   Number\
+      \ of transitions to forwarding state: 1\r\n   Link type is shared by default\r\
+      \n   BPDU: sent 398061, received 1"
+    show spanning-tree mst configuration: "% Switch is not in mst mode\r\nName   \
+      \   []\r\nRevision  0     Instances configured 1\r\n\r\nInstance  Vlans mapped\r\
+      \n--------  ---------------------------------------------------------------------\r\
+      \n0         1-4094\r\n-------------------------------------------------------------------------------"
+    show spanning-tree mst detail: '% Switch is not in mst mode'
+    show spanning-tree summary: "Switch is in pvst mode\r\nRoot bridge for: none\r\
+      \nExtended system ID           is enabled\r\nPortfast Default             is\
+      \ disabled\r\nPortFast BPDU Guard Default  is disabled\r\nPortfast BPDU Filter\
+      \ Default is disabled\r\nLoopguard Default            is disabled\r\nEtherChannel\
+      \ misconfig guard is enabled\r\nConfigured Pathcost method used is short\r\n\
+      UplinkFast                   is disabled\r\nBackboneFast                 is\
+      \ disabled\r\n\r\nName                   Blocking Listening Learning Forwarding\
+      \ STP Active\r\n---------------------- -------- --------- -------- ----------\
+      \ ----------\r\nVLAN0001                     0         0        0          3\
+      \          3\r\n---------------------- -------- --------- -------- ----------\
+      \ ----------\r\n1 vlan                       0         0        0          3\
+      \          3"
+    show version: ''
+    term length 0: ''
+    term width 0: ''
+  prompt: sw2#

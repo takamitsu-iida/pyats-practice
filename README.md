@@ -375,8 +375,11 @@ python -m unicon.playback.mock --recorded-data ./record/r1 --output mock/r1/mock
 ```
 
 > **重要！**
-> モックデバイスのデータファイルは **装置名/mock_device.yaml** にしておくとよいでしょう。
+> モックデバイスのデータファイルは 装置名/mock_device.yaml にしておくとよいでしょう。
 > モックデバイスの拡張子は **.yaml** です。.ymlだと認識されません。
+
+> **重要！**
+> モックデバイスでは設定の変更を伴う動作には対応していません。showコマンドのみです。
 
 エディタでこのYAMLファイルを開きます。
 
@@ -843,28 +846,12 @@ Pythonスクリプトで動作させた例をいくつか。
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/output/ex10.log" target="_blank">log</a>]
 </p>
 
-接続後にコマンドを打ち込む例です。
+装置に接続してコマンドを打ち込む例です。
 
-```python
-output = uut.execute('show version')
-
-from pprint import pprint
-pprint(output)
-```
-
-実行結果。
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
 
 ```bash
-r1#
-('Cisco IOS XE Software, Version 17.03.04a\r\n'
- 'Cisco IOS Software [Amsterdam], Virtual XE Software '
- '(X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.4a, RELEASE SOFTWARE '
- '(fc3)\r\n'
- 'Technical Support: http://www.cisco.com/techsupport\r\n'
- 'Copyright (c) 1986-2021 by Cisco Systems, Inc.\r\n'
- 'Compiled Tue 20-Jul-21 04:59 by mcpre\r\n'
- '\r\n'
- '\r\n'
+$ ./ex10.execute.py --testbed ex10/lab.yml
 ```
 
 <br><br>
@@ -899,38 +886,7 @@ telnetで接続しているときに長大な出力を受け取ると不具合�
 [<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/output/ex13.log" target="_blank">log</a>]
 </p>
 
-ログを採取する例です。
-
 テストベッド内の全てのルータに接続して、複数のコマンドを打ち込んで、装置ごとにその結果をファイルに保存する例です。
-
-```python
-for name, dev in testbed.devices.items():
-    if dev.platform == 'CSR1000v':
-
-        log_path = os.path.join(log_dir, f'ex13_{name}.log')
-        with open(log_path, 'w') as f:
-            # connect
-            try:
-                dev.connect(via='console')
-            except (TimeoutError, ConnectionError, SubCommandFailure) as e:
-                f.write(str(e))
-                continue
-
-            # execute
-            for cmd in command_list:
-                try:
-                    f.write('\n===\n')
-                    f.write(cmd)
-                    f.write('\n===\n')
-                    f.write(dev.execute(cmd))
-                    f.write('\n\n')
-                except SubCommandFailure:
-                    f.write(f'`{cmd}` invalid. Skipping.')
-
-            # disconnect
-            if dev.is_connected():
-                dev.disconnect()
-```
 
 これを実行するとlogディレクトリにファイルが保存されます。
 
@@ -940,6 +896,12 @@ log
 ├── ex13_r2.log
 ├── ex13_r3.log
 └── ex13_r4.log
+```
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex13.execute.py --testbed ex13/lab.yml
 ```
 
 <br><br>
@@ -973,6 +935,13 @@ r1#
              'hostname': 'r1',
 ```
 
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex20.parse.py --testbed ex20/lab.yml
+```
+
 <br><br>
 
 ### ex21.parse_csv.py
@@ -991,6 +960,12 @@ logディレクトリの下にCSVファイルが作成されます。
 
 ![CSVファイル](https://takamitsu-iida.github.io/pyats-practice/img/ex21.PNG "CSVファイル")
 
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex21.parse_csv.py --testbed ex21/lab.yml
+```
+
 <br><br>
 
 ### ex22.parse_html.py
@@ -1008,6 +983,13 @@ logディレクトリの下にCSVファイルが作成されます。
 logディレクトリの下にHTMLファイルが作成されます。
 
 ![HTMLファイル](https://takamitsu-iida.github.io/pyats-practice/img/ex22.PNG "HTMLファイル")
+
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex22.parse_html.py --testbed ex22/lab.yml
+```
 
 <br><br>
 
@@ -1039,6 +1021,12 @@ https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/models
                                                                                 'route': '192.168.12.1/32',
                                                                                 'source_protocol': 'local',
                                                                                 'source_protocol_codes': 'L'},
+```
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex30.learn.py --testbed ex30/lab.yml
 ```
 
 <br><br>
@@ -1111,6 +1099,12 @@ dict_keys(['GigabitEthernet4', 'GigabitEthernet3', 'GigabitEthernet2', 'GigabitE
  'port_speed': '1000mbps',
  'switchport_enable': False,
  'type': 'CSR vNIC'}
+```
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex31.learn.py --testbed ex31/lab.yml
 ```
 
 <br><br>
@@ -1203,6 +1197,12 @@ sw4
                                     'vlan_id': 1}}}}}
 ```
 
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex32.learn.py --testbed ex32/lab.yml
+```
+
 <br><br>
 
 ### ex33.learn.py
@@ -1230,7 +1230,12 @@ r1#
                                         'destination transport-method http': {}}},
  'cdp run': {},
  'control-plane': {},
+```
 
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex33.learn.py --testbed ex33/lab.yml
 ```
 
 <br><br>
@@ -1281,6 +1286,12 @@ Rに渡しているリストは辞書型の階層のキーです。
 
 Gig3とGig4とLo0が送信パケット数ゼロ(out_pkts==0)ということがわかります。
 
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex40.parse_find.py --testbed ex40/lab.yml
+```
+
 <br><br>
 
 ### ex41.learn_find.py
@@ -1323,6 +1334,12 @@ print("up and full duplex interfaces")
 pprint(intf_up_full)
 ```
 
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex41.learn_find.py --testbed ex41/lab.yml
+```
+
 <br><br>
 
 ### ex42.learn_find.py
@@ -1356,6 +1373,12 @@ found blocking port
 sw3 Ethernet0/2
 sw4 Ethernet0/1
 sw4 Ethernet0/0
+```
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex42.learn_find.py --testbed ex42/lab.yml
 ```
 
 <br><br>
@@ -1393,6 +1416,12 @@ except StopIteration as e:
 ```
 
 verify=で渡す関数において例外をraiseすれば条件を満たしていないと判断され、繰り返し学習を継続します。
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex43.learn_poll.py --testbed ex43/lab.yml
+```
 
 <br><br>
 
@@ -1442,6 +1471,12 @@ r1#
  'interface Gig2\r\n'
  'description "configured by pyats"\r\n'
  'exit\r\n')
+```
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex50.configure.py --testbed ex50/lab.yml
 ```
 
 <br><br>
@@ -1548,6 +1583,9 @@ r1(config-if)# exit
 r1(config)#end
 ```
 
+> **注意！**
+> コンフィグを変更するためモックでは動作しません。
+
 <br><br>
 
 ### ex52.configure.py
@@ -1586,6 +1624,9 @@ static_routing.build_config(apply=True)
 static_routing.build_unconfig(apply=True)
 ```
 
+> **注意！**
+> コンフィグを変更するためモックでは動作しません。
+
 <br><br>
 
 ### ex53.configure.py
@@ -1607,6 +1648,9 @@ ospf1.device_attr[uut].vrf_attr[vrf0].router_id = '192.168.255.1'
 ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_cost = 10
 ospf1.device_attr[uut].vrf_attr[vrf0].area_attr['0'].interface_attr[gig1].if_type = 'point-to-point'
 ```
+
+> **注意！**
+> コンフィグを変更するためモックでは動作しません。
 
 <br><br>
 
@@ -1714,6 +1758,9 @@ r1(config)#end
 r1#
 ```
 
+> **注意！**
+> コンフィグを変更するためモックでは動作しません。
+
 <br><br>
 
 ### ex60.diff.py
@@ -1740,6 +1787,12 @@ r1#
  interface GigabitEthernet1:
 + ip ospf cost 10:
 - ip ospf cost 100:
+```
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex60.diff.py --testbed ex60/lab.yml
 ```
 
 <br><br>
@@ -1795,6 +1848,12 @@ exclude = [
 
 エリア0のインタフェースGig1のコストが100から10に変わっていることが、差分を見るだけでわかります。
 
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex61.diff.py --testbed ex61/lab.yml
+```
+
 <br><br>
 
 ### ex62.diff.py
@@ -1839,6 +1898,9 @@ exclude=['updated']
 
 192.168.100.0/24という経路情報がスタティックとして追加（＋）されたことがわかります。
 
+> **注意！**
+> コンフィグを変更するためモックでは動作しません。
+
 <br><br>
 
 ### ex70.save.py
@@ -1868,6 +1930,12 @@ with open(log_file, 'wb') as f:
 import pickle
 with open(log_file, 'rb') as f:
     loaded = pickle.load(f)
+```
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex70.save.py --testbed ex70/lab.yml
 ```
 
 <br><br>

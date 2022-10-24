@@ -1,15 +1,15 @@
-# ex10
+# ex41
 
-ex10.execute.py用のモックデバイスです。
+ex41.learn_find.py用のモックデバイスです。
 
 ```bash
-./mock
+ex41/mock
 └── r1
     └── mock_device.yaml
 ```
 
 ```bash
-$ mock_device_cli --os iosxe --mock_data_dir ex10/mock/r1 --state connect
+$ mock_device_cli --os iosxe --mock_data_dir ex41/mock/r1 --state connect
 Trying mock_device ...
 Connected to mock_device.
 Escape character is '^]'.
@@ -19,14 +19,18 @@ r1#?
 Valid commands:
  config term
  config-transaction
+ show interfaces
+ show interfaces accounting
+ show ip interface
+ show ipv6 interface
  show version
+ show vrf
  term length 0
  term width 0
-r1#
 ```
 
 pyATSスクリプトは以下のコマンドで実行します。
 
 ```bash
-$ ./ex10.execute.py --testbed ex10/lab.yml
+$ ./ex41.learn_find.py --testbed ex41/lab.yml
 ```

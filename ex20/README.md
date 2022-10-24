@@ -1,19 +1,20 @@
-# ex10
+# ex20
 
-ex10.execute.py用のモックデバイスです。
+ex20.parse.py用のモックデバイスです。
 
 ```bash
-./mock
+mock
 └── r1
     └── mock_device.yaml
 ```
 
 ```bash
-$ mock_device_cli --os iosxe --mock_data_dir ex10/mock/r1 --state connect
+$ mock_device_cli --os iosxe --mock_data_dir mock/r1 --state connect
 Trying mock_device ...
 Connected to mock_device.
 Escape character is '^]'.
 
+r1#
 r1#?
 % Invalid command '?'
 Valid commands:
@@ -28,5 +29,5 @@ r1#
 pyATSスクリプトは以下のコマンドで実行します。
 
 ```bash
-$ ./ex10.execute.py --testbed ex10/lab.yml
+$ ./ex20.parse.py --testbed ex20/lab.yml
 ```

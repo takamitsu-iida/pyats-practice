@@ -1,6 +1,6 @@
 configure:
   commands:
-    description configured by Genie Conf Object: " description configured by Genie\
+    description configured by Genie Conf Object: "description configured by Genie\
       \ Conf Object\r\n"
     end:
       new_state: execute
@@ -11,7 +11,7 @@ configure:
     interface GigabitEthernet4: "interface GigabitEthernet4\r\n"
     line console 0:
       new_state: configure_line
-    no description configured by Genie Conf Object: " no description configured by\
+    no description configured by Genie Conf Object: "no description configured by\
       \ Genie Conf Object\r\n"
     no logging console: ''
   prompt: r1(config)#

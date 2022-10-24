@@ -1,0 +1,78 @@
+---
+
+testbed:
+  name: mock
+
+  # common credentials
+  credentials:
+    default:
+      username: ''
+      password: ''
+    enable:
+      password: ''
+
+devices:
+
+  sw1:
+    os: ios
+    platform: IOL
+    type: switch
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      console:
+        command: mock_device_cli --os iosxe --mock_data_dir ex32/mock/sw1 --state connect
+        protocol: unknown
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []
+
+  sw2:
+    os: ios
+    platform: IOL
+    type: switch
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      console:
+        command: mock_device_cli --os iosxe --mock_data_dir ex32/mock/sw2 --state connect
+        protocol: unknown
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []
+
+  sw3:
+    os: ios
+    platform: IOL
+    type: switch
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      console:
+        command: mock_device_cli --os iosxe --mock_data_dir ex32/mock/sw3 --state connect
+        protocol: unknown
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []
+
+  sw4:
+    os: ios
+    platform: IOL
+    type: switch
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      console:
+        command: mock_device_cli --os iosxe --mock_data_dir ex32/mock/sw4 --state connect
+        protocol: unknown
+        arguments:
+          init_exec_commands:
+            - term length 0
+            - term width 0
+          init_config_commands: []

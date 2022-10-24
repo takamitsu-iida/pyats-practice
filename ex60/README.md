@@ -1,15 +1,15 @@
-# ex10
+# ex60
 
-ex10.execute.py用のモックデバイスです。
+ex60.diff.py用のモックデバイスです。
 
 ```bash
-./mock
+ex60/mock
 └── r1
     └── mock_device.yaml
 ```
 
 ```bash
-$ mock_device_cli --os iosxe --mock_data_dir ex10/mock/r1 --state connect
+$ mock_device_cli --os iosxe --mock_data_dir ex60/mock/r1 --state connect
 Trying mock_device ...
 Connected to mock_device.
 Escape character is '^]'.
@@ -19,6 +19,7 @@ r1#?
 Valid commands:
  config term
  config-transaction
+ show running-config
  show version
  term length 0
  term width 0
@@ -28,5 +29,5 @@ r1#
 pyATSスクリプトは以下のコマンドで実行します。
 
 ```bash
-$ ./ex10.execute.py --testbed ex10/lab.yml
+$ ./ex60.diff.py --testbed ex60/lab.yml
 ```

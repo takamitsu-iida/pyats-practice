@@ -57,9 +57,9 @@ print(gig4.build_config(apply=False))
 
 # apply config
 gig1.build_config(apply=True)
-gig2.build_config(apply=True)
-gig3.build_config(apply=True)
-gig4.build_config(apply=True)
+#gig2.build_config(apply=True)
+#gig3.build_config(apply=True)
+#gig4.build_config(apply=True)
 
 # 注意！
 # unconfigすると全てのインタフェース設定が消え、shutdownが打ち込まれる

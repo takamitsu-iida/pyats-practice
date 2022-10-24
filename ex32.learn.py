@@ -31,7 +31,7 @@ testbed = load(args.testbed)
 
 learnt = {}
 for name, dev in testbed.devices.items():
-    if dev.type == 'Switch':
+    if dev.type == 'switch':
         try:
             # connect
             dev.connect(via='console')

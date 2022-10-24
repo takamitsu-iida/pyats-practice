@@ -24,11 +24,11 @@ ex62.diff.py
 ex70.save.py
 '
 
-#SCRIPTS='
-#ex21.parse_csv.py
-#'
+# SCRIPTS=${ALL_SCRIPTS}
 
-SCRIPTS=${ALL_SCRIPTS}
+SCRIPTS='
+ex32.learn.py
+'
 
 DEVICES="r1 r2 r3 r4 sw1 sw2 sw3 sw4"
 
@@ -38,7 +38,7 @@ for script in ${SCRIPTS}; do
     dir=${script%%.*}
 
     # --record付きで実行
-    /usr/bin/env python ${script} --record ${dir}/record
+    /usr/bin/env python ${script} --record ${dir}/record  --allow-repeated-commands
 
     for device in ${DEVICES} ; do
         if [ -e ${dir}/record/${device} ] ; then
