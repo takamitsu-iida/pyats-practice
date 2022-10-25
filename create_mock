@@ -2,6 +2,7 @@
 
 ALL_SCRIPTS='
 ex10.execute.py
+ex12.execute.py
 ex13.execute.py
 ex20.parse.py
 ex21.parse_csv.py
@@ -27,7 +28,7 @@ ex70.save.py
 # SCRIPTS=${ALL_SCRIPTS}
 
 SCRIPTS='
-ex32.learn.py
+ex12.execute.py
 '
 
 DEVICES="r1 r2 r3 r4 sw1 sw2 sw3 sw4"

@@ -5,6 +5,7 @@ pyATS = python Automated Test System
 日本語で入手できる情報は少なめなのが難点です。
 
 導入の敷居を少しでもさげるように、このリポジトリにはサンプルスクリプトを置いておきます。
+（コンフィグを操作するスクリプトを除いて）多くのものはモックデバイスを同梱していますので、実際の機器がなくても動作します。
 
 <br>
 
@@ -61,8 +62,6 @@ DevNetのサイトからたどれます。
 
 - solution example(github) https://github.com/CiscoTestAutomation/solutions_examples
 
-
-
 <br><br>
 
 ## deck
@@ -72,6 +71,9 @@ DevNetのサイトからたどれます。
 <br><br>
 
 ## install
+
+個人環境の特定のディレクトリに閉じ込める形でインストールできます。
+不要になったらディレクトリごと削除すればいいでしょう。
 
 venvでPython環境を作ります。
 
@@ -123,19 +125,6 @@ SSHに組み込まれたプロキシ機能ではなく、踏み台になる装�
 
 ```yml
 ---
-
-#
-# testbed file for lab
-#
-
-#
-# NOTE
-# 1) The device name must match the hostname of the device, otherwise, the connection will hang.
-# 2) At least one device need to have the alias ‘uut’ in the testbed yaml file.
-#
-
-# to validate the testbed file
-# pyats validate testbed [file]
 
 testbed:
   name: iida-pyats on eve-ng
@@ -299,22 +288,26 @@ testbedファイルにパスワードをそのまま書くのはよくないの�
 pip install cryptography
 ```
 
-`~/.pyats/pyats.conf`を作成して設定を記述します。
+`~/.pyats/pyats.conf` を作成して以下の設定を記述します。
 
 ```INI
 [secrets]
 string.representer = pyats.utils.secret_strings.FernetSecretStringRepresenter
 ```
 
+ファイルのパーミッションを限定します。
+
 ```bash
 chmod 600 ~/.pyats/pyats.conf
 ```
+
+キーを生成します。
 
 ```bash
 pyats secret keygen
 ```
 
-生成されたキーをコピーして、`~/.pyats/pyats.conf`の[secrets]セクションに追記します。
+画面に表示されたキーをコピーして、`~/.pyats/pyats.conf`の[secrets]セクションに追記します。
 
 ```INI
 [secrets]
@@ -322,13 +315,15 @@ string.representer = pyats.utils.secret_strings.FernetSecretStringRepresenter
 string.key = ....
 ```
 
-文字列を暗号化します。パスワードを聞かれるので入力すると、暗号化した文字列が表示されます。
+パスワードを暗号化します。
+実行するとパスワードの入力をうながされます。
 
 ```bash
 pyats secret encode
 ```
 
 testbedファイルでは表示された文字列を使ってこのように書きます。
+{}を含みますので全体をダブルクオートで括らなければいけません。
 
 ```
 password: "%ENC{ ... }"
@@ -349,7 +344,7 @@ pyats secret decode ...
 モックデバイスは簡単につくれます。
 
 Genieスクリプトを実行するときに `--record <dir>` を引数に渡すと指定したディレクトリにバイナリ形式のログが記録されます。
-Genieはsys.argvを読み取ってるようなので、pythonの引数にスクリプトを渡す形式で実行します
+ディレクトリは事前に作らなくて構いません。
 
 実行例。
 
@@ -361,22 +356,25 @@ python ex10.py --record ./record
 このログはバイナリファイルです。
 
 ```bash
-tree record
+$ tree record
 record
 └── r1
 
 0 directories, 1 file
 ```
 
-次に記録されたデータを使ってモックデバイスのデータを作ります。モックデバイスのデータはYAML形式です。
+次に、記録されたデータを使ってモックデバイスのデータを作ります。モックデバイスのデータはYAML形式です。
 
 ```bash
 python -m unicon.playback.mock --recorded-data ./record/r1 --output mock/r1/mock_device.yaml
 ```
 
 > **重要！**
-> モックデバイスのデータファイルは 装置名/mock_device.yaml にしておくとよいでしょう。
 > モックデバイスの拡張子は **.yaml** です。.ymlだと認識されません。
+
+> **重要！**
+> ディレクトリ内にYAMLファイルが複数あると全て読み込まれるようです。
+> ファイル名は任意でよいと思います。
 
 > **重要！**
 > モックデバイスでは設定の変更を伴う動作には対応していません。showコマンドのみです。
@@ -394,6 +392,11 @@ prompt: r1
 ```
 
 というように実際のホスト名に修正します（エディタの括置換機能やsedを利用すると簡単です）。
+
+> この作業をデバイスごとに繰り返すことになりますが、手作業で繰り返すのは面倒なのでシェルスクリプトにしておくとよいでしょう。
+>
+> https://github.com/takamitsu-iida/pyats-practice/blob/main/create_mock
+
 
 モックデバイスに接続して確認します。
 
@@ -529,9 +532,7 @@ https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/services/service_dia
 接続・切断を短期間に行うことで生じる問題を避けるためにdisconnect()はデフォルトで約10秒待機します。
 このデフォルト値は長過ぎるので、単一コネクションであれば短くした方が良いでしょう。
 
-複数のコネクションをfor文で回しながらdisconnect()するのであれば、この設定は慎重に判断したほうがいいでしょう。
-
-参照 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
+pythonスクリプト内で処理するならこのようにします。
 
 ```python
 dev.settings.GRACEFUL_DISCONNECT_WAIT_SEC = 0
@@ -539,7 +540,9 @@ dev.settings.POST_DISCONNECT_WAIT_SEC = 0
 dev.disconnect()
 ```
 
-testbedファイルに設定しておくこともできますが、優先度はtestbedの方が高いので、プログラムのなかで動作を変えることはできなくなります。
+参照 https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/connection.html
+
+あらかじめtestbedファイルに設定しておくこともできますが、優先度はtestbedの方が高いので、pythonスクリプトで動作を変えることはできなくなります。
 
 ```yml
   r1:
@@ -829,7 +832,7 @@ while timeout.iterate():
 
 ### Config
 
-コンフィグを辞書型に構造化するクラスです。
+コンフィグを構造化するクラスです。
 
 ```python
 from genie.utils.config import Config
@@ -862,7 +865,6 @@ config.tree()
  'service unsupported-transceiver': {},
  'telnet vrf default ipv4 server max-servers 10': {}}
 ```
-
 
 <br><br>
 
@@ -916,13 +918,40 @@ https://github.com/CiscoTestAutomation/unicon.plugins/tree/master/src/unicon/plu
 https://github.com/CiscoDevNet/pyats-plugin-examples/tree/master/unicon_plugin_example
 
 
-＜つづく＞
+＜まだ、続きます＞
+
+
+<br><br>
+
+# パーサー開発
+
+欲しいコマンドのパーサーがなかった場合は、自分で作らなければいけません。
+
+ここに作り方が書かれています。
+
+https://pubhub.devnetcloud.com/media/pyats-development-guide/docs/writeparser/writeparser.html
+
+２つのファイルが必要になります。
+
+- スキーマ定義
+- パーサーの実装
+
+組み込みパーサーの実装はここにあります。
+
+https://github.com/CiscoTestAutomation/genieparser/blob/master/src/genie/libs/parser/iosxe/show_platform.py
+
+これを見ればわかりますが、正規表現でゴリゴリに処理していて、機種ごとに処理を加えたりして、それはもう大変そうです。
+
+ですが、文字列を受け取って辞書型にして返却すればいいわけで、自分だけで使うパーサーであれば、そんなに難しくないのではないかな、という印象です。
+
+＜まだ、続きます＞
 
 <br><br>
 
 # 動作例
 
-Pythonスクリプトで動作させた例をいくつか。
+Pythonスクリプトで動作させた例をいくつか紹介します。
+多くの例はモックデバイスを使ってオフラインで試せます。
 
 <br><br>
 
@@ -958,6 +987,8 @@ $ ./ex10.execute.py --testbed ex10/lab.yml
 
 ex10.execute.pyと同一ですが、各処理に例外のハンドリングを加えたものです。
 
+> これは主に自分用です。どの例外がraiseされるのか、いちいち調べるのは面倒なので。
+
 <br><br>
 
 ### ex12.execute.py
@@ -969,6 +1000,12 @@ ex10.execute.pyと同一ですが、各処理に例外のハンドリングを�
 
 show running-configを打ち込むだけですが、
 telnetで接続しているときに長大な出力を受け取ると不具合がでることがありますので、その対処を加えた例です。
+
+モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+
+```bash
+$ ./ex12.execute.py --testbed ex12/lab.yml
+```
 
 <br><br>
 
@@ -1085,7 +1122,6 @@ $ ./ex22.parse_html.py --testbed ex22/lab.yml
 ```
 
 <br><br>
-
 
 ### ex30.learn.py
 
@@ -1570,6 +1606,7 @@ r1#
 ```
 
 モックデバイスで実行する場合には、テストベッドファイルを以下のように指定します。
+ただし、モックデバイスなのでコンフィグは反映されません。
 
 ```bash
 $ ./ex50.configure.py --testbed ex50/lab.yml
@@ -2045,15 +2082,15 @@ $ ./ex70.save.py --testbed ex70/lab.yml
 
 どういう条件ならOKなのか、をプログラムで記述して、実行結果をわかりやすくまとめてくれるのがaetestです。
 
-
 aetestを単体で実行してもよいのですが、job形式にしておくと後からブラウザで結果を参照できて便利です。
-
 
 <br>
 
 ## pingで疎通確認をテスト
 
 pingして100%応答があればOKと判定する例です。
+
+こちらを参照。
 
 [job01_ping](https://github.com/takamitsu-iida/pyats-practice/tree/main/job01_ping)
 
@@ -2063,6 +2100,8 @@ pingして100%応答があればOKと判定する例です。
 
 インタフェースのduplexがfullであればOKと判定する例です。
 
+こちらを参照。
+
 [job03_duplex](https://github.com/takamitsu-iida/pyats-practice/tree/main/job03_duplex)
 
 <br>
@@ -2071,7 +2110,9 @@ pingして100%応答があればOKと判定する例です。
 
 過去に採取したルーティングテーブルと、現在のルーティングテーブルを比較して、違いがなければOKとする例です。
 
+こちらを参照。
+
 [job04_route](https://github.com/takamitsu-iida/pyats-practice/tree/main/job04_route)
 
-
 作業によって経路情報が変化することが期待値である場合は、もうちょっと複雑な判定が必要になります。
+経路情報単位にその存在確認やネクストホップの妥当性を判断する必要があります。
