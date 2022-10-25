@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# 抽象的な機能名を指定して学習させる
+# interfaceの状態を学習させる
 #
 
 # usage: ex31.learn.py [-h] [--testbed TESTBED]

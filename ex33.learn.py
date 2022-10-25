@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# 抽象的な機能名を指定して学習させる
+# 抽象的な機能名'config'を指定して学習させる
 #
 
 # usage: ex33.learn.py [-h] [--testbed TESTBED]

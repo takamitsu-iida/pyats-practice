@@ -803,7 +803,9 @@ pyATSのparse()、learn()の戻り値にはqが含まれています。
 
 - count() 数を返す。メソッドチェーンの最後につける。
 
-- raw(キー) 辞書型を返す。
+- raw(キー) 辞書型を指定するときのように[キー]で指定。output.q.raw('[interfaces][GigabitEthernet1][neighbors]')のように。
+
+- reconstruct() 戻り値を辞書型にする。メソッドチェーンの最後につける。
 
 <br>
 

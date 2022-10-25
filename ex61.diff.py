@@ -57,7 +57,7 @@ ip ospf cost 10
 exit
 ''')
 
-# learn current config
+# learn current ospf state
 post_ospf = uut.learn('ospf')
 
 # revert ospf config

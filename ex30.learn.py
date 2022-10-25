@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# 抽象的な機能名を指定して学習
+# 抽象的な機能名'routing'を指定して学習
 #
 
 # usage: ex30.learn.py [-h] [--testbed TESTBED]

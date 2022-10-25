@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# 抽象的な機能名を指定して学習させる
+# 抽象的な機能名'stp'を指定して学習させる
 #
 
 # usage: ex32.learn.py [-h] [--testbed TESTBED]
