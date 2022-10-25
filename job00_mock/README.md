@@ -155,7 +155,6 @@ devices:
       defaults:
         class: 'unicon.Unicon'
       console:
-      a:
         command: mock_device_cli --os iosxe --mock_data_dir mock/r1 --state connect
         protocol: unknown
         arguments:
