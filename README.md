@@ -964,6 +964,10 @@ https://github.com/CiscoTestAutomation/genieparser/blob/master/src/genie/libs/pa
 
 ですが自前のパーサーはそこまで苦労する必要はないと思います。
 
+- 独自のshow inventoryパーサー https://github.com/takamitsu-iida/pyats-practice/blob/main/myparser/show_inventory/show_inventory_parser.py
+
+- その使い方 https://github.com/takamitsu-iida/pyats-practice/blob/main/ex90.show_inventory.py
+
 <br><br>
 
 # 動作例
