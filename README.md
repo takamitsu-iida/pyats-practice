@@ -933,20 +933,36 @@ https://github.com/CiscoDevNet/pyats-plugin-examples/tree/master/unicon_plugin_e
 
 https://pubhub.devnetcloud.com/media/pyats-development-guide/docs/writeparser/writeparser.html
 
-２つのファイルが必要になります。
+このやり方は少々重たくて、githubのソースコードをフォークしてビルトインされている標準のパーサー群に自前のパーサーを組み込むやり方です。
 
-- スキーマ定義
-- パーサーの実装
+もう少し簡易的には、自前のパーサーをライブラリとして作成して、それを呼び出すやり方もあります。
 
-組み込みパーサーの実装はここにあります。
+ここに作り方が書いてあります。
+
+https://anirudhkamath.github.io/network-automation-blog/notes/genie-parsing.html
+
+
+こんな感じの使い方になります。
+
+```python
+from myparser.show_inventory.show_inventory_parser import MyShowInventory
+
+myparser = MyShowInventory(device=uut)
+parsed = myparser.parse()
+```
+
+実装では２つのクラスを作成します。
+
+- スキーマ定義のクラス
+- パーサーを実装したクラス
+
+組み込みパーサーのソースコードはgithubにあります。
 
 https://github.com/CiscoTestAutomation/genieparser/blob/master/src/genie/libs/parser/iosxe/show_platform.py
 
 これを見ればわかりますが、正規表現でゴリゴリに処理していて、機種ごとに処理を加えたりして、それはもう大変そうです。
 
-ですが、文字列を受け取って辞書型にして返却すればいいわけで、自分だけで使うパーサーであれば、そんなに難しくないのではないかな、という印象です。
-
-＜まだ、続きます＞
+ですが自前のパーサーはそこまで苦労する必要はないと思います。
 
 <br><br>
 
