@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JOB=downup_job.py
+JOB=ping_loss_job.py
 TESTBED=../lab.yml
 
 # RECORD

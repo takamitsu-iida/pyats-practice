@@ -2141,7 +2141,6 @@ pingして100%応答があればOKと判定する例です。
 作業によって経路情報が変化することが期待値である場合は、もうちょっと複雑な判定が必要になります。
 経路情報単位にその存在確認やネクストホップの妥当性を判断する必要があります。
 
-
 <br>
 
 ## OSPFのネイバー状態をテスト
@@ -2151,3 +2150,14 @@ OSPFのネイバー状態が設計上の期待値通りになっているかを�
 こちらを参照。
 
 [job05_ospf](https://github.com/takamitsu-iida/pyats-practice/tree/main/job05_ospf)
+
+
+<br>
+
+## インタフェースをダウンさせたときのルーティングテーブルをテスト
+
+インタフェースをダウンさせて、期待通りのルーティングテーブルになるかを検証します。
+
+こちらを参照。
+
+[job06_downup](https://github.com/takamitsu-iida/pyats-practice/tree/main/job06_downup)
