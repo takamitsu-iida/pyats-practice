@@ -4,6 +4,13 @@
 
 今現在のルーティングテーブルと、保存しておいた過去のルーティングテーブルを比較して、差分がなければOKと判定します。
 
+<br>
+
+### リプレイ
+
+```bash
+pyats run job route_job.py --testbed-file ../lab.yml --replay record
+```
 
 <br>
 
