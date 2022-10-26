@@ -1,4 +1,4 @@
-# connection check
+# ルータ間の到達確認検証
 
 テストベッド内のルータr1とr2の間で疎通できるか、確認する例です。
 
@@ -6,7 +6,31 @@
 
 デコレータ`@aetest.test.loop(destination=('192.168.255.1', '192.168.255.2'))`を付与することで、pingの宛先に対してループさせています。
 
+
+<br>
+
+### リプレイ
+
+```bash
+pyats run job conn_check_job.py --testbed-file ../lab.yml --replay record
+```
+
+<br>
+
+### テストスクリプト
+
+ループの指定をデコレータで実施しています。
+
 ```python
+#!/usr/bin/env python
+
+import logging
+import re
+
+from pyats import aetest
+
+logger = logging.getLogger(__name__)
+
 ###################################################################
 ###                  COMMON SETUP SECTION                       ###
 ###################################################################
@@ -25,13 +49,17 @@ class CommonSetup(aetest.CommonSetup):
         # add them to testscript parameters
         self.parent.parameters.update(ios1=ios1, ios2=ios2)
 
+        # get corresponding links
+        # links = ios1.find_links(ios2)
+        # assert len(links) >= 1, 'require one link between ios1 and ios2'
+
     @aetest.subsection
     def establish_connections(self, steps, ios1, ios2):
-        with steps.start('Connecting to %s' % ios1.name):
+        with steps.start(f'Connecting to {ios1.name}'):
             ios1.connect(via='console')
-        with steps.start('Connecting to %s' % ios2.name):
-            ios2.connect(via='console')
 
+        with steps.start(f'Connecting to {ios2.name}'):
+            ios2.connect(via='console')
 
 ###################################################################
 ###                     TESTCASES SECTION                       ###
@@ -52,70 +80,43 @@ class PingTestcase(aetest.Testcase):
             success_rate = match.group('rate')
             message = 'Ping {} with success rate of {}%'.format(destination, success_rate)
             logger.info(message)
-```
 
-実行結果。
+#####################################################################
+####                       COMMON CLEANUP SECTION                 ###
+#####################################################################
 
-```bash
-+------------------------------------------------------------------------------+
-|                                Easypy Report                                 |
-+------------------------------------------------------------------------------+
-pyATS Instance   : /home/iida/git/pyats-practice/.venv
-Python Version   : cpython-3.8.10 (64bit)
-CLI Arguments    : /home/iida/git/pyats-practice/.venv/bin/pyats run job conn_check_job.py --testbed-file lab.yml
-User             : iida
-Host Server      : FCCLS0008993-00
-Host OS Version  : Ubuntu 20.04 focal (x86_64)
+class CommonCleanup(aetest.CommonCleanup):
 
-Job Information
-    Name         : conn_check_job
-    Start time   : 2022-10-18 14:29:25.368682+09:00
-    Stop time    : 2022-10-18 14:29:32.936579+09:00
-    Elapsed time : 7.567897
-    Archive      : /home/iida/.pyats/archive/22-Oct/conn_check_job.2022Oct18_14:29:15.473917.zip
+    @aetest.subsection
+    def disconnect(self, steps, ios1, ios2):
+        with steps.start(f'Disconnecting from {ios1.name}'):
+            ios1.disconnect()
 
-Total Tasks    : 1
+        with steps.start('Disconnecting from {ios2.name}'):
+            ios2.disconnect()
 
-Overall Stats
-    Passed     : 4
-    Passx      : 0
-    Failed     : 0
-    Aborted    : 0
-    Blocked    : 0
-    Skipped    : 0
-    Errored    : 0
 
-    TOTAL      : 4
+if __name__ == '__main__':
 
-Success Rate   : 100.00 %
+    # python conn_check_test.py --testbed ../lab.yml
 
-+------------------------------------------------------------------------------+
-|                             Task Result Summary                              |
-+------------------------------------------------------------------------------+
-conn_check: conn_check_test.common_setup                                  PASSED
-conn_check: conn_check_test.PingTestcase[device=ios1]                     PASSED
-conn_check: conn_check_test.PingTestcase[device=ios2]                     PASSED
-conn_check: conn_check_test.common_cleanup                                PASSED
+    import argparse
+    from pyats import topology
 
-+------------------------------------------------------------------------------+
-|                             Task Result Details                              |
-+------------------------------------------------------------------------------+
-conn_check: conn_check_test
-|-- common_setup                                                          PASSED
-|   |-- check_topology                                                    PASSED
-|   `-- establish_connections                                             PASSED
-|       |-- STEP 1: Connecting to r1                                      PASSED
-|       `-- STEP 2: Connecting to r2                                      PASSED
-|-- PingTestcase[device=ios1]                                             PASSED
-|   |-- ping[destination=192.168.255.1]                                   PASSED
-|   `-- ping[destination=192.168.255.2]                                   PASSED
-|-- PingTestcase[device=ios2]                                             PASSED
-|   |-- ping[destination=192.168.255.1]                                   PASSED
-|   `-- ping[destination=192.168.255.2]                                   PASSED
-`-- common_cleanup                                                        PASSED
-    `-- disconnect                                                        PASSED
-        |-- STEP 1: Disconnecting from r1                                 PASSED
-        `-- STEP 2: Disconnecting from r2                                 PASSED
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        '--testbed',
+        dest='testbed',
+        help='testbed YAML file',
+        type=topology.loader.load,
+        default=None,
+    )
+
+    # parse command line arguments only we know
+    args, _ = parser.parse_known_args()
+
+    aetest.main(testbed=args.testbed)
 ```
 
 ブラウザでの確認。
