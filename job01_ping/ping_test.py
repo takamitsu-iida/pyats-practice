@@ -40,6 +40,24 @@ class CommonSetup(aetest.CommonSetup):
 ###                     TESTCASES SECTION                       ###
 ###################################################################
 
+def get_success_rate(parsed):
+    """
+    parse('ping x.x.x.x')の結果からsuccess_rateを抽出して返却
+    """
+    # pingパーサーのスキーマはここにある通り
+    # https://github.com/CiscoTestAutomation/genieparser/blob/master/src/genie/libs/parser/iosxe/ping.py#L48
+    #
+    # {'ping': {'address': '192.168.255.4',
+    #           'result_per_line': ['!!!!!'],
+    #           'statistics': {'received': 5,
+    #                          'round_trip': {'avg_ms': 1, 'max_ms': 2, 'min_ms': 1},
+    #                          'send': 5,
+    #                          'success_rate_percent': 100.0},　★これだけを返す
+    #           'timeout_secs': 2}}
+    success_rate = parsed.q.raw('[ping][statistics][success_rate_percent]')
+    return success_rate
+
+
 class ping_class(aetest.Testcase):
 
     @aetest.setup
@@ -58,12 +76,9 @@ class ping_class(aetest.Testcase):
             for ip in ping_list:
                 logger.info(f'Pinging {ip} from {name}')
                 try:
-                    ping = dev.ping(ip)
-                    pingSuccessRate = ping[(ping.find('percent')-4):ping.find('percent')].strip()
-                    try:
-                        self.ping_results[name][ip] = int(pingSuccessRate)
-                    except:
-                        self.ping_results[name][ip] = 0
+                    parsed = dev.parse(f'ping {ip}')
+                    success_rate = get_success_rate(parsed)
+                    self.ping_results[name][ip] = success_rate
                 except:
                     self.ping_results[name][ip] = 0
 

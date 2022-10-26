@@ -21,16 +21,84 @@ ping_list = [
 ]
 ```
 
-セットアップセクションではuniconのping()を使って上記の宛先にpingして、応答のパーセントを保存します。
+<br>
+
+### リプレイ
+
+```bash
+pyats run job ping_job.py --testbed-file ../lab.yml --replay record
+```
+
+<br>
+
+### テストスクリプト
+
+セットアップセクションではGenieのpingパーサーを使って上記の宛先にpingして、応答のパーセントを保存します。
 
 テストセクションでは結果を保存したself.ping_resultsを取り出して、
 接続したルータでfor文を回し、続いてpingの宛先でfor文を回します。
 値が100%ならpassed、それ以外はfailedとします。
 
 ```python
+#!/usr/bin/env python
+
+import logging
+
+from pyats import aetest
+from genie.testbed import load
+from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
+
+logger = logging.getLogger(__name__)
+
+###################################################################
+###                  COMMON SETUP SECTION                       ###
+###################################################################
+
+class CommonSetup(aetest.CommonSetup):
+    @aetest.subsection
+    def load_testbed(self, testbed):
+        # Convert pyATS testbed to Genie Testbed
+        logger.info('Converting pyATS testbed to Genie Testbed to support pyATS Library features')
+        testbed = load(testbed)
+        self.parent.parameters.update(testbed=testbed)
+
+    @aetest.subsection
+    def connect(self, testbed):
+        """connect to all testbed devices"""
+
+        # make sure testbed is provided
+        assert testbed, 'Testbed is not provided!'
+
+        # CommonSetup内で例外が発生するとテスト自体が停止してしまう
+        # 単純にtestbed.connect()してもよいが、ここではCSR1000vルータにだけ接続する
+        for _, dev in testbed.devices.items():
+            if dev.platform == 'CSR1000v':
+                try:
+                    dev.connect(via='console')
+                except (TimeoutError, StateMachineError, ConnectionError):
+                    logger.error('Unable to connect to all devices')
+
 ###################################################################
 ###                     TESTCASES SECTION                       ###
 ###################################################################
+
+def get_success_rate(parsed):
+    """
+    parse('ping x.x.x.x')の結果からsuccess_rateを抽出して返却
+    """
+    # pingパーサーのスキーマはここにある通り
+    # https://github.com/CiscoTestAutomation/genieparser/blob/master/src/genie/libs/parser/iosxe/ping.py#L48
+    #
+    # {'ping': {'address': '192.168.255.4',
+    #           'result_per_line': ['!!!!!'],
+    #           'statistics': {'received': 5,
+    #                          'round_trip': {'avg_ms': 1, 'max_ms': 2, 'min_ms': 1},
+    #                          'send': 5,
+    #                          'success_rate_percent': 100.0},　★これだけを返す
+    #           'timeout_secs': 2}}
+    success_rate = parsed.q.raw('[ping][statistics][success_rate_percent]')
+    return success_rate
+
 
 class ping_class(aetest.Testcase):
 
@@ -50,12 +118,9 @@ class ping_class(aetest.Testcase):
             for ip in ping_list:
                 logger.info(f'Pinging {ip} from {name}')
                 try:
-                    ping = dev.ping(ip)
-                    pingSuccessRate = ping[(ping.find('percent')-4):ping.find('percent')].strip()
-                    try:
-                        self.ping_results[name][ip] = int(pingSuccessRate)
-                    except:
-                        self.ping_results[name][ip] = 0
+                    parsed = dev.parse(f'ping {ip}')
+                    success_rate = get_success_rate(parsed)
+                    self.ping_results[name][ip] = success_rate
                 except:
                     self.ping_results[name][ip] = 0
 
@@ -71,6 +136,48 @@ class ping_class(aetest.Testcase):
                             device_step.passed(reason)
                         else:
                             device_step.failed(reason)
+
+#####################################################################
+####                       COMMON CLEANUP SECTION                 ###
+#####################################################################
+
+class CommonCleanup(aetest.CommonCleanup):
+    """CommonCleanup Section"""
+
+    @aetest.subsection
+    def disconnect(self, testbed):
+        # testbedそのものから切断
+        testbed.disconnect()
+
+#
+# stand-alone test
+#
+if __name__ == "__main__":
+
+    # python ping_test.py --testbed ../lab.yml
+
+    import argparse
+    from pyats import topology
+
+    ping_list = [
+        '192.168.255.1',
+        '192.168.255.2'
+    ]
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        '--testbed',
+        dest='testbed',
+        help='testbed YAML file',
+        type=topology.loader.load,
+        default=None,
+    )
+
+    # parse command line arguments only we know
+    args, _ = parser.parse_known_args()
+
+    aetest.main(testbed=args.testbed, ping_list=ping_list)
 ```
 
 実行結果。
