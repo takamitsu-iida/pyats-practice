@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JOB=route_job.py
+JOB=downup_job.py
 TESTBED=../lab.yml
 
 # RECORD
@@ -10,4 +10,4 @@ TESTBED=../lab.yml
 # pyats run job $JOB --testbed-file $TESTBED --replay record
 
 # REAL DEVICE
-pyats run job $JOB --testbed-file $TESTBED
+# pyats run job $JOB --testbed-file $TESTBED

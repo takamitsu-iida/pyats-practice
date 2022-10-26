@@ -786,26 +786,28 @@ https://pubhub.devnetcloud.com/media/genie-docs/docs/userguide/utils/index.html#
 
 pyATSのparse()、learn()の戻り値にはqが含まれています。
 これはDqクラスのオブジェクトで、辞書型を検索するのに使います。
+メソッドの多くはDqオブジェクトを返しますので、メソッドチェインで連結して使います。
+値が戻るメソッドはチェインの最後に実行します。
 
-- get_values(キー) 指定したキーの値を返す。
+- get_values(キー) 指定したキーの値のリスト返す。結果が一つしかないとわかっているならget_values(キー, 0)とするとリストではなく値そのものを得る。
 
-- contains(文字列) 文字列を含んでいるもの。位置は関係ない。
+- contains(文字列) 文字列を含んでいるものを返却する。位置は関係ない。
 
-- not_contains(文字列) 含んでいないもの。位置は関係ない。
+- not_contains(文字列) 含んでいないものを返却する。
 
-- contains_key_value(キー, 値) キーと値が一致するもの。
+- contains_key_value(キー, 値) キーと値が一致するもの。キーと値は直接の親子関係であること。
 
 - not_contains_key_value(キー, 値) キーと値が一致しないもの。
 
 - value_operator(キー, 演算子, 値) 指定したキーの値が演算子(==, !=, >=, <=, >, <)で評価したときにTrueになるもの。
 
-- sum_value_operator(キー, 演算子, 値) value_operatorの結果の値の和を返す。
+- sum_value_operator(キー, 演算子, 値) value_operatorの結果の和の**値**を返す。
 
-- count() 数を返す。メソッドチェーンの最後につける。
+- count() 集計した**数**を返す。
 
-- raw(キー) 辞書型を指定するときのように[キー]で指定。output.q.raw('[interfaces][GigabitEthernet1][neighbors]')のように。
+- raw(キー) 辞書型を指定するときのように[キー]で指定。output.q.raw('[interfaces][GigabitEthernet1][neighbors]')のように指定すると、そのキーの**値**を返す。
 
-- reconstruct() 戻り値を辞書型にする。メソッドチェーンの最後につける。
+- reconstruct() 戻り値を**辞書型**で返す。
 
 <br>
 
@@ -828,7 +830,7 @@ while timeout.iterate():
     timeout.sleep()
 ```
 
-タイムアウト時にはTimeoutErrorがraiseされるので、適切にtry-exceptしないとスクリプトが止まってしまいます。
+タイムアウト時には(Python組み込みの)TimeoutErrorがraiseされるので、適切にtry-exceptしないとスクリプトが止まってしまいます。
 
 <br>
 
