@@ -36,6 +36,54 @@ pyats diff working_snapshot broken_snapshot --output diff_snapshot
 
 上記を実行するだけでもpyATSを使う価値があると思わせる内容になっています。
 
+<br>
+
+### このリポジトリでの試し方
+
+このリポジトリをクローンします。
+
+```bash
+git clone https://github.com/takamitsu-iida/pyats-practice.git
+```
+
+ディレクトリを移動すると
+
+```bash
+$ cd pyats-practice
+direnv: error /home/iida/git/pyats-practice/.envrc is blocked. Run `direnv allow` to approve its content
+```
+
+```bash
+$ python3 -m venv .venv
+```
+
+direnvをインストール済みの場合。
+
+```bash
+direnv allow
+```
+
+direnvをインストールしていないなら
+
+```bash
+source .venv/bin/activate
+```
+
+pyATSおよび関連するpythonのモジュールをインストールします。
+
+```bash
+pip install -r requirements.txt
+```
+
+ex??ディレクトリはモックデバイスです。
+これらを指定してスクリプトを実行すれば、リアル機器がなくてもスクリプトは動作します。
+
+たとえば、このように実行します。
+
+```bash
+$ ./ex10.execute.py --testbed ex10/lab.yml
+```
+
 <br><br>
 
 ## ドキュメント
@@ -70,7 +118,7 @@ DevNetのサイトからたどれます。
 
 <br><br>
 
-## install
+## 新規インストール
 
 個人環境の特定のディレクトリに閉じ込める形でインストールできます。
 不要になったらディレクトリごと削除すればいいでしょう。
@@ -102,6 +150,8 @@ pip install yang.connector
 ```bash
 pip install cryptography
 ```
+
+その他、あると便利なものをrequirements.txtに記載しておきました。
 
 <br><br>
 
