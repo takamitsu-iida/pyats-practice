@@ -9,6 +9,61 @@ pyATS = python Automated Test System
 
 <br>
 
+<!--
+
+これから試すこと
+
+組み込みサーバ機能 https://pubhub.devnetcloud.com/media/pyats/docs/utilities/file_transfer_server.html
+    - ファイルサーバとして動作する
+        - Genieからそのサーバに転送できる
+        - シスコ機器のバージョンアップ時にTFTP/FTPサーバとして動作
+
+ファイル転送ユーティリティ
+    - TFTP/FTP/SCP/SFTPクライアントとして動作する
+
+
+pyATSの使い所
+
+- トラブル対応時
+
+    - 現場で作業したteratermログをpyATSでパースして分析する
+
+    - 状態データをlearn()して情報収集しつつrecordして環境をモック化
+        - 別途スクリプトを作り解析する
+
+
+- 検証時
+
+    - 繰り返し実行する作業の自動化
+        - 長時間かかる場合は夜間に起動して、朝確認
+
+    - ログ整理の簡略化
+        - TeraTERMだとログ取りした後のファイルの整理が面倒
+
+    - 報告書のデジタル化
+        - 試験結果がPASSかFAILか、ウェブ画面で確認できるので、pyATSのログの形式のまま納品
+
+    - キッティングの自動化
+        - 初期化された状態の装置の起動後にも対応できるので、コンフィグの流し込み、動作確認テストの実施、までを自動化
+
+- 現地作業時
+
+    - 作業前に全ての状態を保全して、作業後に比較
+
+    - 作業ダブルチェック
+        - 一人は作業端末での作業に集中、一人はjobの実行結果をウェブ画面で確認して工程を管理
+
+- 運用時
+
+    - 顧客環境のモック化（限定的なデジタルツイン）
+        - 過去の状態を保全
+        - pyATSスクリプト開発のテストベッド化
+
+    - NOCからの遠隔作業
+        - こうなったときにはこうして、をスクリプト化しておいて、NOCで実行できるようにする
+
+-->
+
 ### 最初に試すべきこと
 
 <a href="https://developer.cisco.com/pyats/" target="_blank">DevNetのサイト</a>にある<a href="https://developer.cisco.com/learning/labs/intro-to-pyats/stepping-into-the-realm-of-total-network-automation-with-pyats/" target="_blank">Introduction to pyATS</a>が秀逸です。
@@ -1194,6 +1249,49 @@ logディレクトリの下にHTMLファイルが作成されます。
 ```bash
 $ ./ex22.parse_html.py --testbed ex22/lab.yml
 ```
+
+<br><br>
+
+### ex23.parse.py
+
+<p>
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex23.parse.py" target="_blank">source</a>]　
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/output/ex23.log" target="_blank">log</a>]　
+</p>
+
+過去に採取したshowコマンドの出力をパースします。
+
+```python
+#!/usr/bin/env python
+
+from pprint import pprint
+
+# import Genie
+from genie.conf.base import Device
+
+# 'show version' on iosxe
+OUTPUT = '''
+Cisco IOS XE Software, Version 17.03.04a
+Cisco IOS Software [Amsterdam], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.4a, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2021 by Cisco Systems, Inc.
+Compiled Tue 20-Jul-21 04:59 by mcpre
+（省略）
+'''
+
+dev = Device(name='r1', os='iosxe')
+dev.custom.setdefault('abstraction', {'order': ['os']})
+parsed = dev.parse('show version', output=OUTPUT)
+pprint(parsed)
+```
+
+当然ですが、テストベッドファイルは不要です。
+
+```bash
+$ ./ex23.parse.py
+```
+
+実際に活用するには、打ち込んだコマンドと出力を１対１に対応させた外部ファイルを準備した方がいいのですが、その作業をするならモックデータを作った方がいいような気もします。
 
 <br><br>
 
