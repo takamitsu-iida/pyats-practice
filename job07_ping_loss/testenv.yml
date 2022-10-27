@@ -1,0 +1,17 @@
+---
+
+pinger:
+  from: r1
+  to: 192.168.255.4
+  repeat: 10000
+  duration: 60
+
+targets:
+  r2:
+    interfaces:
+      - GigabitEthernet1
+      - GigabitEthernet2
+
+  r4:
+    interfaces:
+      - GigabitEthernet1

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# 単体のコマンドをパースしてダンプする
+# お試し用
 #
 
 import argparse
@@ -22,46 +22,6 @@ testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 
-from pyats.async_ import pcall
-
-import time
-from pprint import pprint
-
-def send_ctrl_shift_6(uut):
-    time.sleep(1)
-    uut.transmit("\036")
-
-def ping(uut):
-    #parsed = uut.parse('ping 192.168.255.4 source loopback0 repeat 100000')
-    #return parsed
-    uut.sendline('ping 192.168.255.4 source loopback0 repeat 100000')
-    uut.receive(r'nopattern^', timeout=10)
-    return uut.receive_buffer()
-
-def ping2(uut):
-    expect = r'Success +rate +is +(?P<success_percent>\d+) +percent +\((?P<received>\d+)\/(?P<sent>\d+)\)'
-
-    uut.sendline('ping 192.168.255.4 source loopback0 repeat 100000')
-
-    # receive() does not raise exception, just block until timeout
-    finished = uut.receive(expect, timeout=180) #, search_size=0)
-    if finished:
-        return uut.receive_buffer()
-
-    # send ctrl-shift-6
-    uut.transmit("\036")
-
-    # expect stop
-    uut.receive(expect, timeout=5) #, search_size=0)
-
-    return uut.receive_buffer()
-
-
-def run_ping(uut):
-    (_, ping_result) = pcall([send_ctrl_shift_6, ping], iargs=[[uut], [uut]])
-    pprint(ping_result)
-
-
 # connect
 uut.connect(via='console')
 
@@ -75,15 +35,26 @@ uut.connect(via='console')
 # parsed = uut.parse('ping 192.168.255.4 source loopback0 repeat 100', timeout=60)
 # pprint(parsed)
 
-# run_ping(uut)
-output = ping2(uut)
+parsed = uut.parse('show ip ospf neighbor')
+pprint(parsed)
+print('='*10 + '\n')
 
-print('='*30)
-pprint(output)
-print('='*30)
+print('Gig1')
+filtered = parsed.q.contains('GigabitEthernet1').reconstruct()
+if not filtered:
+    print('not found')
+else:
+    pprint(filtered)
+
+print('Gig3')
+filtered = parsed.q.contains('GigabitEthernet3').reconstruct()
+if not filtered:
+    print('not found')
+else:
+    pprint(filtered)
 
 
-#uut.transmit("\036")
+
 
 # disconnect
 if uut.is_connected():

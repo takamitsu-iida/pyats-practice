@@ -13,9 +13,12 @@ TASK_ID = 'DownUp'
 def main(runtime):
     """job file entrypoint"""
 
+    testenv_path = os.path.join(here('.'), 'testenv.yml')
+
     # run script, pass arguments to script as parameters
     run(
         testscript=SCRIPT_PATH,
         runtime=runtime,
-        taskid=TASK_ID
+        taskid=TASK_ID,
+        datafile=testenv_path
     )
