@@ -27,12 +27,14 @@ pyATSの使い所
 - トラブル対応時
 
     - 現場で作業したteratermログをpyATSでパースして分析する
+        - コマンドとその出力を１：１に対応付けないといけないので手間はかかる
 
-    - 状態データをlearn()して情報収集しつつrecordして環境をモック化
-        - 別途スクリプトを作り解析する
+    - 状態データをlearn()して情報収集しつつrecordして環境をモック化する
+        - モックデバイスを対象にスクリプトで分析、解析する
+        - 情報収集を自動化するスクリプトを開発して、追加で情報を収集
+        - 必要なら定期的に実施
 
-
-- 検証時
+- 検証作業時
 
     - 繰り返し実行する作業の自動化
         - 長時間かかる場合は夜間に起動して、朝確認
@@ -56,8 +58,9 @@ pyATSの使い所
 - 運用時
 
     - 顧客環境のモック化（限定的なデジタルツイン）
-        - 過去の状態を保全
-        - pyATSスクリプト開発のテストベッド化
+        - 過去の状態を保全（比較用）
+        - 分析して異常値を見つける
+        - モック化したテストベッドでスクリプトを開発して、今後の作業を自動化にする
 
     - NOCからの遠隔作業
         - こうなったときにはこうして、をスクリプト化しておいて、NOCで実行できるようにする
@@ -2242,6 +2245,28 @@ with open(log_file, 'rb') as f:
 ```bash
 $ ./ex70.save.py --testbed ex70/lab.yml
 ```
+
+<br><br>
+
+### ex91.ping.py
+
+<p>
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex91.ping.py" target="_blank">source</a>]　
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/output/ex91.log" target="_blank">log</a>]
+</p>
+
+連続pingを実行して、一定時間後にCtrl-Shift-6を送信して強制停止します。
+
+動作の仕組み。
+
+1. sendline('ping x.x.x.x repeat 10000')でpingコマンドを送り込みます
+1. これは連続pingなので!!!!が流れ続け、いつ終わるかわかりません
+1. receive('Success rate...', timeout=10)でSuccess rateが出力されるか、10秒経過するまで待機します
+1. タイムアウトした場合はtransmit("\036")でCtrl-Shift-6と同じコードを送り込みます
+1. 連続pingが停止するので再びreceive('Success rate...')でping終了時の出力を待ちます
+1. 出力をパースします
+
+検証作業時に連続pingが何個ロスしたか調べたいときはこれを使うとよいでしょう。
 
 <br><br>
 

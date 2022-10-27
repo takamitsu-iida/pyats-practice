@@ -41,10 +41,10 @@ def ping(dev, destination, source='loopback0', repeat=10000, duration=10):
         return None
 
     # 最後の1行とプロンプトを捕捉する場合
-    prompt = r'Success +rate +is +(.*)(\r\n|\n|\r)({}#)$'.format(dev.hostname)
+    pattern = r'Success +rate +is +(.*)(\r\n|\n|\r)({}#)$'.format(dev.hostname)
 
     # 連続pingの!!!!の部分も含めて全部捕捉する場合
-    # prompt = r'(.*)Success +rate +is +(.*)(\r\n|\n|\r)({}#)$'.format(dev.hostname)
+    # pattern = r'(.*)Success +rate +is +(.*)(\r\n|\n|\r)({}#)$'.format(dev.hostname)
 
     # pingコマンドを送信する
     # 出力される応答は別途取得する
@@ -55,7 +55,7 @@ def ping(dev, destination, source='loopback0', repeat=10000, duration=10):
 
     # 最後まで実施してSuccess rate...が出力されるか、もしくはtimeoutになるまで待機する
     # receive() はタイムアウトしても例外を出さないので戻り値の真偽値で結果を判断する
-    finished = dev.receive(prompt, timeout=duration) #, search_size=0)
+    finished = dev.receive(pattern, timeout=duration) #, search_size=0)
     if finished:
         output = dev.receive_buffer()
         return output
@@ -64,7 +64,7 @@ def ping(dev, destination, source='loopback0', repeat=10000, duration=10):
     dev.transmit("\036")
 
     # 連続pingが停止するので、プロンプトの受信を待つ
-    finished = dev.receive(prompt, timeout=5) #, search_size=0)
+    finished = dev.receive(pattern, timeout=5) #, search_size=0)
     if finished:
         output = dev.receive_buffer()
         return output
