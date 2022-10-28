@@ -2435,3 +2435,14 @@ OSPFのネイバー状態が設計上の期待値通りになっているかを�
 こちらを参照。
 
 [job06_downup](https://github.com/takamitsu-iida/pyats-practice/tree/main/job06_downup)
+
+
+<br>
+
+## インタフェースを閉塞して経路を迂回させたときにpingの欠けた数をカウントするテスト
+
+インタフェースをダウン・アップさせて、連続pingが何個欠損するかを集計するテストです。
+
+こちらを参照。
+
+[job07_ping_loss](https://github.com/takamitsu-iida/pyats-practice/tree/main/job07_ping_loss)
