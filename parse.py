@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# お試し用
+# 雑多なお試し用
 #
 
 import argparse
@@ -52,8 +52,6 @@ if not filtered:
     print('not found')
 else:
     pprint(filtered)
-
-
 
 
 # disconnect

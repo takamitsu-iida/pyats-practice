@@ -4,21 +4,27 @@ import os
 
 from pyats.easypy import run
 
-SCRIPT_FILE = 'ping_loss_test.py'
-SCRIPT_DIR = os.path.dirname(__file__)
-SCRIPT_PATH = os.path.join(SCRIPT_DIR, SCRIPT_FILE)
+SCRIPT = 'ping_loss_test.py'
+TASK_ID = 'ping_loss'
+DATAFILE = 'datafile.yml'
 
-TASK_ID = 'DownUp'
+SCRIPT_DIR = os.path.dirname(__file__)
+SCRIPT_PATH = os.path.join(SCRIPT_DIR, SCRIPT)
+DATAFILE_PATH = os.path.join(SCRIPT_DIR, DATAFILE)
 
 def main(runtime):
     """job file entrypoint"""
 
-    testenv_path = os.path.join(here('.'), 'testenv.yml')
+    # run()に渡す引数
+    run_args = {
+        'runtime': runtime,
+        'taskid': TASK_ID,
+        'testscript': SCRIPT_PATH
+    }
 
-    # run script, pass arguments to script as parameters
-    run(
-        testscript=SCRIPT_PATH,
-        runtime=runtime,
-        taskid=TASK_ID,
-        datafile=testenv_path
-    )
+    # データファイルが存在するなら引数に追加
+    if os.path.exists(DATAFILE_PATH):
+        run_args.update({'datafile': DATAFILE_PATH})
+
+    # run script
+    run(**run_args)

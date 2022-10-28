@@ -7,9 +7,10 @@
 # r1-+-(gig1)-r2-r4
 #    +-(gig2)-r3-r4
 #
-# r1からr4への到達経路は2個
-# gig1が優先。gig1をダウンさせて経路がgig2経由でr4に到達できることを確認する
-#
+# r1からr4への到達経路は2経路
+# gig1経由が優先。
+# 1. gig1をダウンさせて経路がgig2経由でr4に到達できることを確認する
+# 2. gig2をダウンさせて経路がgig2経由でr4に到達できることを確認する
 
 import logging
 import os
@@ -22,11 +23,9 @@ from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 
 logger = logging.getLogger(__name__)
 
-def here(path=''):
-  return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
-
-# pickle directory
-pkl_dir = os.path.join(here('.'), 'pkl')
+# 状態データを保存するディレクトリ
+# pickle形式で保存するので、ここでは'pkl'という名前にする
+pkl_dir = os.path.join(os.path.dirname(__file__), 'pkl')
 
 ###################################################################
 ###                  COMMON SETUP SECTION                       ###
@@ -275,17 +274,17 @@ class CommonCleanup(aetest.CommonCleanup):
         testbed.disconnect()
 
 #
-# stand-alone test
+# スタンドアロンで実行する場合
 #
-if __name__ == "__main__":
-
-    # python downup_test.py --testbed ../lab.yml
+# python downup_test.py --testbed ../lab.yml
+#
+if __name__ == '__main__':
 
     import argparse
+
     from pyats import topology
 
     parser = argparse.ArgumentParser()
-
     parser.add_argument(
         '--testbed',
         dest='testbed',
@@ -293,8 +292,6 @@ if __name__ == "__main__":
         type=topology.loader.load,
         default=None,
     )
-
-    # parse command line arguments only we know
     args, _ = parser.parse_known_args()
 
     aetest.main(testbed=args.testbed)
