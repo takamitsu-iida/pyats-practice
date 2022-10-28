@@ -17,9 +17,12 @@
 # 参考
 # https://pubhub.devnetcloud.com/media/pyats/docs/aetest/datafile.html
 
-from ping_loss_util import ping, get_ping_loss, shut, no_shut, verify_ospf_neighbor
 
 import logging
+import os
+
+from datetime import datetime
+from ping_loss_util import ping, get_ping_loss, shut, no_shut, verify_ospf_neighbor
 from pprint import pformat
 
 try:
@@ -105,9 +108,6 @@ class ping_loss_test_class(aetest.Testcase):
         # 連続pingの欠損値を保存する入れ物を作成
         self.ping_loss_result = {}
 
-        # 親クラスに格納
-        self.parent.parameters.update(ping_loss_result=self.ping_loss_result)
-
         # 連続pingを実行する装置名、パラメータを取り出す
         ping_from = pinger['from']
 
@@ -178,6 +178,38 @@ class ping_loss_test_class(aetest.Testcase):
                                 intf_up_step.failed('OSPF neighbor verification failed.')
 
 
+    @aetest.test
+    def dump_result(self):
+        """
+        結果を表に変換して保存
+
+        Args:
+            ping_loss_result (dict): ping_loss_test_classのテストケースで作成したオブジェクト
+        """
+        # ping_loss_resultはこんな形をしている
+        # {'r2': {'GigabitEthernet1': {'down': 0, 'up': 0},
+        #         'GigabitEthernet2': {'down': 0, 'up': 0}},
+        #  'r4': {'GigabitEthernet1': {'down': 0, 'up': 0}}}
+        output = ''
+        if HAS_TABULATE:
+            result = []
+            for device_name, device_data in self.ping_loss_result.items():
+                for intf_name, intf_data in device_data.items():
+                    for k, v in intf_data.items():
+                        result.append([device_name, intf_name, k, v])
+            output = tabulate(result)
+        else:
+            output = pformat(self.ping_loss_result)
+
+        logger.info(output)
+
+        log_path = os.path.join(os.path.dirname(__file__), 'result.txt')
+        with open(log_path, 'w') as f:
+            f.write(datetime.now().strftime('%Y年%m月%d日 %H:%M:%S'))
+            f.write('\n')
+            f.write(output)
+
+
 #####################################################################
 ####                       COMMON CLEANUP SECTION                 ###
 #####################################################################
@@ -193,29 +225,6 @@ class CommonCleanup(aetest.CommonCleanup):
             testbed (genie.libs.conf.testbed.Testbed): テストベッド
         """
         testbed.disconnect()
-
-    @aetest.subsection
-    def dump_result(self, ping_loss_result):
-        """
-        結果を表に変換
-
-        Args:
-            ping_loss_result (dict): ping_loss_test_classのテストケースで作成したオブジェクト
-        """
-        # ping_loss_resultはこんな形をしている
-        # {'r2': {'GigabitEthernet1': {'down': 0, 'up': 0},
-        #         'GigabitEthernet2': {'down': 0, 'up': 0}},
-        #  'r4': {'GigabitEthernet1': {'down': 0, 'up': 0}}}
-        if HAS_TABULATE:
-            result = []
-            for device_name, device_data in ping_loss_result.items():
-                for intf_name, intf_data in device_data.items():
-                    for k, v in intf_data.items():
-                        result.append([device_name, intf_name, k, v])
-            logger.info(tabulate(result))
-            # print(tabulate(result))
-        else:
-            logger.info(pformat(ping_loss_result))
 
 
 #

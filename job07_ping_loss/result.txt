@@ -1,0 +1,9 @@
+2022年10月28日 18:03:26
+--  ----------------  ----  -
+r2  GigabitEthernet1  down  1
+r2  GigabitEthernet1  up    1
+r2  GigabitEthernet2  down  1
+r2  GigabitEthernet2  up    1
+r4  GigabitEthernet1  down  0
+r4  GigabitEthernet1  up    0
+--  ----------------  ----  -
