@@ -11,7 +11,8 @@ logger = logging.getLogger(__name__)
 ###################################################################
 
 class common_setup(aetest.CommonSetup):
-    """ セットアップセクションです。
+    """
+    セットアップセクションです。
 
     デコレータ@aetest.subsectionを付与した関数を作成します。
     関数名は任意で構いません。
@@ -55,7 +56,8 @@ class tc_one(aetest.Testcase):
 
     @aetest.setup
     def prepare_testcase(self, section):
-        """テストケース１．セットアップセクション
+        """
+        テストケース１．セットアップセクション
         """
         # 引数sectionでセクション名を受け取ります。
         logger.info('TestCase1-Setup')
@@ -66,7 +68,8 @@ class tc_one(aetest.Testcase):
 
     @aetest.test
     def simple_test_1(self):
-        """テストケース１．テストセクション１．
+        """
+        テストケース１．テストセクション１．
         """
         logger.info('TestCase1-Test1')
 
@@ -77,7 +80,8 @@ class tc_one(aetest.Testcase):
 
     @aetest.test
     def simple_test_2(self):
-        """テストケース１．テストセクション２．
+        """
+        テストケース１．テストセクション２．
         """
         logger.info('TestCase1-Test2')
 
@@ -88,7 +92,8 @@ class tc_one(aetest.Testcase):
 
     @aetest.cleanup
     def clean_testcase(self):
-        """ テストケース１．クリンナップセクション
+        """
+        テストケース１．クリンナップセクション
         """
         logger.info('TestCase1-Cleanup')
         del self.value
@@ -98,7 +103,8 @@ class tc_one(aetest.Testcase):
 # テストケース２．
 #
 class tc_two(aetest.Testcase):
-    """ テストケース２．
+    """
+    テストケース２．
     """
 
     @aetest.test
@@ -116,7 +122,8 @@ class tc_two(aetest.Testcase):
 #
 @aetest.loop(a=[2, 3])
 class tc_three(aetest.Testcase):
-    """ テストケース３．
+    """
+    テストケース３．
     """
     @aetest.test
     @aetest.test.loop(b=[4, 5])
@@ -156,12 +163,14 @@ class tc_four(aetest.Testcase):
 #####################################################################
 
 class common_cleanup(aetest.CommonCleanup):
-    """クリンナップセクション
+    """
+    クリンナップセクション
     """
 
     @aetest.subsection
     def clean_everything(self):
-        """クリンナップセクション
+        """
+        クリンナップセクション
         """
         logger.info('aetest Common Cleanup')
 

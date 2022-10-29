@@ -34,30 +34,27 @@ pkl_dir = os.path.join(os.path.dirname(__file__), 'pkl')
 class CommonSetup(aetest.CommonSetup):
 
     @aetest.subsection
-    def load_testbed(self, testbed):
-        """
-        testbedの形式を変換
-        """
-        assert testbed, 'Testbed is not provided!'
-        logger.info('Converting pyATS testbed to Genie Testbed to support pyATS Library features')
-        testbed = load(testbed)
-
-        # 親クラスにtestbedを格納（上書き）
-        self.parent.parameters.update(testbed=testbed)
-
-    @aetest.subsection
     def create_directory(self):
-        # create pkl_dir
+        """
+        保存先のディレクトリ pkl_dir を作る
+        """
         os.makedirs(pkl_dir, exist_ok=True)
 
     @aetest.subsection
     def connect(self, testbed):
         """
-        r1, r2, r3, r4に接続する
-        """
-        routers = ['r1', 'r2', 'r3', 'r4']
-        devices = []
+        r1, r2, r3, r4に接続します。
 
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+        """
+
+        # testbedが正しくロードされているか確認する
+        assert testbed, 'Testbed is not provided!'
+
+        routers = ['r1', 'r2', 'r3', 'r4']
+
+        devices = []
         for router in routers:
             r = testbed.devices[router]
             try:
@@ -156,8 +153,13 @@ class down_up_test_class(aetest.Testcase):
     @aetest.setup
     def setup(self, testbed, devices):
         """
-        r1からr4に向けての経路がGig1を向いているか確認する
+        r1からr4に向けての経路がGig1を向いているか確認します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+            devices (list): セットアップで作成したデバイスのリストです
         """
+
         r1 = testbed.devices['r1']
         parsed = r1.parse('show ip route')
         next_hop = get_outgoing_interface(parsed, '192.168.255.4/32')
@@ -174,7 +176,12 @@ class down_up_test_class(aetest.Testcase):
     @aetest.test
     def test(self, steps, testbed, devices):
         """
-        r1のGig1をshutdownして経路の切り替わりを検証する
+        r1のGig1をshutdownして経路の切り替わりを検証します。
+
+        Args:
+            steps (_type_): ステップ
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+            devices (list): セットアップで作成したデバイスのリスト
         """
 
         r1 = testbed.devices['r1']
@@ -261,6 +268,7 @@ class down_up_test_class(aetest.Testcase):
                 except TimeoutError:
                     gig1_up_step.failed('route from r1 to r4 wrong.')
 
+
 #####################################################################
 ####                       COMMON CLEANUP SECTION                 ###
 #####################################################################
@@ -270,8 +278,14 @@ class CommonCleanup(aetest.CommonCleanup):
 
     @aetest.subsection
     def disconnect(self, testbed):
-        # testbedそのものから切断
+        """
+        テストベッド全体を切断します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+        """
         testbed.disconnect()
+
 
 #
 # スタンドアロンで実行する場合

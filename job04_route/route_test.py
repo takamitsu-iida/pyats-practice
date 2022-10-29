@@ -10,11 +10,8 @@ from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 
 logger = logging.getLogger(__name__)
 
-def here(path=''):
-  return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
-
 # pickle directory
-pkl_dir = os.path.join(here('.'), 'pkl')
+pkl_dir = os.path.join(os.path.dirname(__file__), 'pkl')
 
 ###################################################################
 ###                  COMMON SETUP SECTION                       ###
@@ -23,25 +20,22 @@ pkl_dir = os.path.join(here('.'), 'pkl')
 class CommonSetup(aetest.CommonSetup):
 
     @aetest.subsection
-    def load_testbed(self, testbed):
-        """
-        testbedの形式を変換
-        """
-        assert testbed, 'Testbed is not provided!'
-        logger.info('Converting pyATS testbed to Genie Testbed to support pyATS Library features')
-        testbed = load(testbed)
-        self.parent.parameters.update(testbed=testbed)
-
-    @aetest.subsection
     def connect(self, testbed):
         """
-        テストベッド内のすべてのCSR1000vに接続
+        テストベッド内のすべてのCSR1000vに接続します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
         """
+
+        # testbedが正しくロードされているか確認する
+        assert testbed, 'Testbed is not provided!'
+
+        # 全てのCSR1000vに接続
         for name, dev in testbed.devices.items():
             if dev.platform != 'CSR1000v':
                 continue
 
-            # connect
             try:
                 dev.connect(via='console')
             except (TimeoutError, StateMachineError, ConnectionError):
@@ -57,9 +51,14 @@ class routing_class(aetest.Testcase):
     @aetest.setup
     def setup(self, testbed):
         """
-        1. 事前に保存しておいたルーティング情報を一つの辞書型に格納する
-        2. テストベッド内のすべてのCSR1000vからルーティングテーブルを学習して一つの辞書型に格納する
+        比較対象となる２つのルーティングテーブルを採取します。
+            1. 事前にファイルに保存しておいたルーティング情報を一つの辞書型に格納する
+            2. テストベッド内のすべてのCSR1000vからルーティングテーブルを学習して一つの辞書型に格納する
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
         """
+
         self.before_routes = {}
         self.after_routes = {}
 
@@ -67,7 +66,7 @@ class routing_class(aetest.Testcase):
             if dev.platform != 'CSR1000v':
                 continue
 
-            # load learnt routing table
+            # ファイルからルーティングテーブルを読む
             log_path = os.path.join(pkl_dir, f'routing.{name}.pickle')
             with open(log_path, 'rb') as f:
                 loaded = pickle.load(f)
@@ -77,13 +76,17 @@ class routing_class(aetest.Testcase):
             if not dev.is_connected():
                 continue
 
-            # learn routing table
+            # ルーティングテーブルを学習する
             self.after_routes[name] = dev.learn('routing')
 
     @aetest.test
     def test(self, steps, testbed):
         """
-        ルーティングテーブルをbefore/afterで検証する
+        ルーティングテーブルをbeforeとafterで検証します。
+
+        Args:
+            steps (_type_): ステップ
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
         """
 
         for name, dev in testbed.devices.items():
@@ -118,8 +121,14 @@ class CommonCleanup(aetest.CommonCleanup):
 
     @aetest.subsection
     def disconnect(self, testbed):
-        # testbedそのものから切断
+        """
+        テストベッド全体を切断します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+        """
         testbed.disconnect()
+
 
 #
 # stand-alone test

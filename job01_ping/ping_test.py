@@ -13,18 +13,17 @@ logger = logging.getLogger(__name__)
 ###################################################################
 
 class CommonSetup(aetest.CommonSetup):
-    @aetest.subsection
-    def load_testbed(self, testbed):
-        # Convert pyATS testbed to Genie Testbed
-        logger.info('Converting pyATS testbed to Genie Testbed to support pyATS Library features')
-        testbed = load(testbed)
-        self.parent.parameters.update(testbed=testbed)
 
     @aetest.subsection
     def connect(self, testbed):
-        """connect to all testbed devices"""
+        """
+        全てのCSR1000vに接続します。
 
-        # make sure testbed is provided
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): テストベッド
+        """
+
+        # testbedが正しくロードされているか確認する
         assert testbed, 'Testbed is not provided!'
 
         # CommonSetup内で例外が発生するとテスト自体が停止してしまう
@@ -62,7 +61,13 @@ class ping_class(aetest.Testcase):
 
     @aetest.setup
     def setup(self, testbed, ping_list):
-        """ ルータに乗り込んでpingを実行して結果をクラス変数に保存する """
+        """_summary_
+        ルータに乗り込んでpingを実行して結果をクラス変数に保存します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): テストベッド
+            ping_list (list): スクリプト実行時に渡されるpingの宛先リスト
+        """
 
         self.ping_results = {}
 
@@ -104,17 +109,23 @@ class CommonCleanup(aetest.CommonCleanup):
 
     @aetest.subsection
     def disconnect(self, testbed):
-        # testbedそのものから切断
+        """
+        testbed全体を切断します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): テストベッド
+        """
         testbed.disconnect()
 
 #
-# stand-alone test
+# スタンドアロンで実行
+#
+# python ping_test.py --testbed ../lab.yml
 #
 if __name__ == "__main__":
 
-    # python ping_test.py --testbed ../lab.yml
-
     import argparse
+
     from pyats import topology
 
     ping_list = [

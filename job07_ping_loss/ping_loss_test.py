@@ -22,8 +22,10 @@ import logging
 import os
 
 from datetime import datetime
-from ping_loss_util import ping, get_ping_loss, shut, no_shut, verify_ospf_neighbor
 from pprint import pformat
+
+# 必要な関数をping_loss_util.pyから取り出す
+from ping_loss_util import ping, get_ping_loss, shut, no_shut, verify_ospf_neighbor
 
 try:
     from tabulate import tabulate
@@ -34,7 +36,7 @@ except ImportError:
 from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 from pyats import aetest
 from pyats.async_ import pcall
-from genie.testbed import load
+
 
 logger = logging.getLogger(__name__)
 
@@ -53,10 +55,10 @@ class CommonSetup(aetest.CommonSetup):
             pinger (dict): datafile.ymlを参照
             targets (dict): datafile.ymlを参照
         """
-        assert pinger, 'pinger not found'
+        assert pinger is not None, 'pinger not found in datafile'
         logger.info(pformat(pinger))
 
-        assert targets, 'targets not found'
+        assert targets is not None, 'targets not found in datafile'
         logger.info(pformat(targets))
 
 
@@ -66,10 +68,13 @@ class CommonSetup(aetest.CommonSetup):
         datafile.ymlで指定されたデバイスに接続する
 
         Args:
-            testbed (genie.libs.conf.testbed.Testbed): テストベッド
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
             pinger (dict): datafile.ymlを参照
             targets (dict): datafile.ymlを参照
         """
+
+        # testbedが正しくロードされているか確認する
+        assert testbed, 'Testbed is not provided!'
 
         # pingデバイスに接続
         ping_dev = testbed.devices[pinger['from']]
@@ -100,7 +105,7 @@ class ping_loss_test_class(aetest.Testcase):
 
         Args:
             steps (_type_): aetestのステップ
-            testbed (genie.libs.conf.testbed.Testbed): テストベッド
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
             pinger (dict): datafile.ymlで指定したping実行装置
             targets (dict): datafile.ymlで指定した操作対象装置
         """
@@ -220,9 +225,10 @@ class CommonCleanup(aetest.CommonCleanup):
     @aetest.subsection
     def disconnect(self, testbed):
         """
-        testbedから全て切断
+        testbedから全て切断します。
+
         Args:
-            testbed (genie.libs.conf.testbed.Testbed): テストベッド
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
         """
         testbed.disconnect()
 
