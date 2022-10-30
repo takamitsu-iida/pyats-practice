@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
-import datetime
 import logging
 import os
-import shutil
 
-from pprint import pformat, pprint
+from datetime import datetime
+from pprint import pformat
+
+# db_util.pyから関数を取り出す
+from db_util import insert_intf_info, get_intf_info_by_name
 
 try:
     from tabulate import tabulate
@@ -20,13 +22,10 @@ from genie.ops.utils import get_ops  # 機種にあったopsクラスを取得�
 
 logger = logging.getLogger(__name__)
 
-# 状態データを保存するディレクトリ
-# pickle形式で保存するので、ここでは'pkl'という名前にする
-pkl_dir = os.path.join(os.path.dirname(__file__), 'pkl')
-
-# pkl_dirの中に日付のディレクトリを作る
-log_dir_name = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-log_dir = os.path.join(pkl_dir, datetime.datetime.now().strftime('%Y%m%d_%H%M%S'))
+#
+# このテストを実行した時点の共通のタイムスタンプ
+#
+TIMESTAMP = datetime.now().timestamp()
 
 ###################################################################
 ###                  COMMON SETUP SECTION                       ###
@@ -35,34 +34,29 @@ log_dir = os.path.join(pkl_dir, datetime.datetime.now().strftime('%Y%m%d_%H%M%S'
 class CommonSetup(aetest.CommonSetup):
 
     @aetest.subsection
-    def create_directory(self):
-        """
-        保存先のディレクトリ pkl_dir log_dirを作る
-        """
-        os.makedirs(pkl_dir, exist_ok=True)
-        os.makedirs(log_dir, exist_ok=True)
-
-
-    @aetest.subsection
     def create_result_list(self):
         """
-        結果を格納するリストを作成する
+        結果を格納する**辞書型**を作成する
         """
-        results = []
+        results = {}
 
         # 親クラスに格納
         self.parent.parameters.update(results=results)
 
 
     @aetest.subsection
-    def assert_datafile(self, crc_threshold, targets):
+    def assert_datafile(self, max_history, crc_threshold, targets):
         """
         datafile.ymlが正しくロードされているか確認する
 
         Args:
+            max_history (int): datafile.ymlを参照
             crc_threshold (int): datafile.ymlを参照
             targets (dict): datafile.ymlを参照
         """
+        assert max_history is not None, 'max_history not found in datafile'
+        logger.info(f'max_history is {max_history}')
+
         assert crc_threshold is not None, 'crc_threshold not found in datafile'
         logger.info(f'crc_threshold is {crc_threshold}')
 
@@ -77,7 +71,7 @@ class CommonSetup(aetest.CommonSetup):
 
         Args:
             testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
-            targets (dict): 対象とする装置、datafile.yml参照
+            targets (dict): 対象装置、datafile.yml参照
         """
 
         # testbedが正しくロードされているか確認する
@@ -96,26 +90,17 @@ class CommonSetup(aetest.CommonSetup):
         connected = [d.name for d in testbed if d.is_connected()]
 
         # 接続できた装置に関して、テストケースをループ
-        aetest.loop.mark(crc_test_class, device_name = connected)
+        aetest.loop.mark(crc_test_class, device_name=connected)
 
 
 ###################################################################
 ###                     TESTCASES SECTION                       ###
 ###################################################################
 
-def save(learnt, path):
-    """
-    dev.learn()の結果をpathで示すファイルに保存する
-    """
-    if os.path.exists(path):
-        os.remove(path)
-    with open(path, 'wb') as f:
-        f.write(learnt.pickle(learnt))
-
 class crc_test_class(aetest.Testcase):
 
     @aetest.setup
-    def setup(self, testbed, device_name):
+    def setup(self, testbed, device_name, max_history):
         """
         インタフェース情報を学習します。
 
@@ -133,91 +118,96 @@ class crc_test_class(aetest.Testcase):
         Interface = get_ops('interface', device)
         intf = Interface(device=device)
 
-        if device.is_connected():
-            # 学習
-            intf.learn()
+        # 学習
+        intf.learn()
 
-            # 学習できたか確認
-            assert intf.info
+        # 学習できたことを確認
+        assert intf.info
 
-            # クラス変数に保存
-            self.interface_info = intf
-
-            # ファイルに保存
-            log_path = os.path.join(log_dir, f'{device_name}.pickle')
-            save(self.interface_info, log_path)
-        else:
-            self.failed(f'{device.name} is not connected')
+        # データベースにタイムスタンプとともに保存
+        insert_intf_info(device_name, intf.info, TIMESTAMP, max_history=max_history)
 
 
     @aetest.test
     def count_crc(self, steps, device_name, crc_threshold, results):
         """
-        学習した情報からCRCエラーの数を集計します。
+        データベースに保存されている情報からCRCエラーの数を集計します。
 
         Args:
+            steps: ステップ
             device_name (str): ループ指定で渡された装置の**名前**
             crc_threshold (int, optional): いくつまで許容するかの指定、datafile.yml参照
-            result_list (list): 結果を保存するリスト
+            results (dict): 結果を保存する辞書型、セットアップで作成したスクリプトレベルのパラメータ
         """
 
         # 集計結果
         table_data = []
 
-        # 学習した情報をループ
-        for intf, data in self.interface_info.info.items():
+        # device_nameのデータをデータベースから取得
+        # これは古い順に並んでいる
+        hist_list = get_intf_info_by_name(device_name)
+
+
+        # 一番古いデータのintf_infoを取り出して、インタフェース名でループを回す
+        for intf in hist_list[0]['intf_info'].keys():
 
             # 各インタフェースのステップ
             with steps.start(intf, continue_=True) as intf_step:
 
-                # 集計結果の行
+                # 集計結果の行を作成して追加
                 table_row = []
                 table_data.append(table_row)
 
-                # countersを取得
-                counters = data.get('counters', None)
-
-                # countersがなければテストはSkipped
-                if counters is None:
-                    table_row.append(device_name)
-                    table_row.append(intf)
-                    table_row.append('-')
-                    table_row.append('Skipped')
-                    intf_step.skipped(f'{intf} does not have counters')
-                    continue
-
-                # countersから'in_crc_errors'を取り出す
-                in_crc_errors = counters.get('in_crc_errors', None)
-
-                if in_crc_errors is None:
-                    table_row.append(device_name)
-                    table_row.append(intf)
-                    table_row.append('-')
-                    table_row.append('Skipped')
-                    intf_step.skipped(f'{intf} does not have in_crc_errors')
-                    continue
-
+                # 装置名を追加
                 table_row.append(device_name)
-                table_row.append(intf)
-                table_row.append(str(in_crc_errors))
 
-                if in_crc_errors > crc_threshold:
-                    table_row.append('Failed')
-                    intf_step.failed(f'{intf} in_crc_errors {in_crc_errors} > {crc_threshold}')
-                else:
+                # インタフェース名を追加
+                table_row.append(intf)
+
+                # countersを過去情報から取得
+                crc_errors = []
+                for hist_data in hist_list:
+                    # 'intf_info'キーを取り出す
+                    intf_info = hist_data['intf_info']
+
+                    # 'counters'キーを取り出す
+                    counters = intf_info[intf].get('counters', None)
+                    if counters is None:
+                        crc_errors.append('-')
+                        continue
+
+                    # countersから'in_crc_errors'を取り出す
+                    in_crc_errors = counters.get('in_crc_errors', None)
+                    if in_crc_errors is None:
+                        crc_errors.append('-')
+                        continue
+
+                    crc_errors.append(in_crc_errors)
+
+                table_row.extend(crc_errors)
+
+                if '-' in crc_errors:
+                    intf_step.skipped(f'{intf} does not have in_crc_errors counter')
                     table_row.append('Passed')
-                    # passed
+                else:
+                    min_crc = min(crc_errors)
+                    max_crc = max(crc_errors)
+                    if max_crc - min_crc > crc_threshold:
+                        intf_step.failed(f'{intf} in_crc_errors {in_crc_errors} > {crc_threshold}')
+                        table_row.append('Failed')
+                    else:
+                        table_row.append('Passed')
 
         # table_dataのインタフェースの並びがバラバラなのでソートする
         # インタフェースは2列目、つまりインデックスは1
         table_data = sorted(table_data, reverse=False, key=lambda col: col[1])
 
         # table_dataを格納する
-        results.extend(table_data)
+        results[device_name] = table_data
 
         # 表示して確認
         if HAS_TABULATE:
-            output = tabulate(table_data, headers=['Device', 'Interface', 'IN_CRC_ERRORS', 'Test'], tablefmt='orgtbl')
+            output = tabulate(table_data, tablefmt='orgtbl')
         else:
             output = pformat(table_data)
 
@@ -234,10 +224,14 @@ class result_class(aetest.Testcase):
         結果を表示します。
         """
 
-        if HAS_TABULATE:
-            output = tabulate(results, headers=['Device', 'Interface', 'IN_CRC_ERRORS', 'Test'], tablefmt='orgtbl')
-        else:
-            output = pformat(results)
+        output = ''
+        for table in results.values():
+            output += '\n'
+            if HAS_TABULATE:
+                output += tabulate(table, tablefmt='orgtbl')
+            else:
+                output += pformat(table)
+            output += '\n'
 
         if __name__ == '__main__':
             print(output)
@@ -260,18 +254,6 @@ class CommonCleanup(aetest.CommonCleanup):
             testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
         """
         testbed.disconnect()
-
-
-    @aetest.subsection
-    def archive(self):
-        """
-        ログファイルをzipで圧縮します。
-        """
-        # zipファイルアーカイブして
-        shutil.make_archive(os.path.join(pkl_dir, log_dir_name), format='zip', root_dir=log_dir)
-
-        # ディレクトリは削除
-        shutil.rmtree(log_dir)
 
 
 #
