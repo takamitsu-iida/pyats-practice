@@ -206,6 +206,8 @@ class ping_loss_test_class(aetest.Testcase):
         else:
             output = pformat(self.ping_loss_result)
 
+        if __name__ == '__main__':
+            print(output)
         logger.info(output)
 
         log_path = os.path.join(os.path.dirname(__file__), 'result.txt')

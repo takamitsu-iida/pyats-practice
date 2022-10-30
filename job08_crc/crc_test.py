@@ -5,7 +5,7 @@ import logging
 import os
 import shutil
 
-from pprint import pformat
+from pprint import pformat, pprint
 
 try:
     from tabulate import tabulate
@@ -16,6 +16,7 @@ except ImportError:
 from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 from pyats import aetest
 from pyats.log.utils import banner
+from genie.ops.utils import get_ops  # 機種にあったopsクラスを取得する
 
 logger = logging.getLogger(__name__)
 
@@ -129,14 +130,25 @@ class crc_test_class(aetest.Testcase):
         # テストベッドから装置を取り出す
         device = testbed.devices[device_name]
 
-        # learn('interface')で学習する
+        # このdeviceの機種にあったInterfaceクラスをロードする
+        Interface = get_ops('interface', device)
+        intf = Interface(device=device)
+
         if device.is_connected():
-            self.interface_info = device.learn('interface')
+            # 学習
+            intf.learn()
+
+            # 学習できたか確認
+            assert intf.info
+
+            # クラス変数に保存
+            self.interface_info = intf
+
+            # ファイルに保存
+            log_path = os.path.join(log_dir, f'{device_name}.pickle')
+            save(self.interface_info, log_path)
         else:
             self.failed(f'{device.name} is not connected')
-
-        log_path = os.path.join(log_dir, f'{device_name}.pickle')
-        save(self.interface_info, log_path)
 
 
     @aetest.test
@@ -197,6 +209,10 @@ class crc_test_class(aetest.Testcase):
                 else:
                     table_row.append('Passed')
                     # passed
+
+        # table_dataのインタフェースの並びがバラバラなのでソートする
+        # インタフェースは2列目、つまりインデックスは1
+        table_data = sorted(table_data, reverse=False, key=lambda col: col[1])
 
         # table_dataを格納する
         results.extend(table_data)

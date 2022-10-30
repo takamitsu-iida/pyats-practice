@@ -5,11 +5,20 @@
 #
 
 import argparse
+
 from pprint import pprint
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
 args, _ = parser.parse_known_args()
+
+#
+# tinydb
+#
+import datetime
+from tinydb import TinyDB, Query
+
+db = TinyDB('log/db.json')
 
 #
 # pyATS
@@ -24,6 +33,10 @@ uut = testbed.devices['uut']
 
 # connect
 uut.connect(via='console')
+
+
+learnt = uut.learn('interface')
+
 
 #parsed = uut.parse('show ip route')
 #outgoing_intf = parsed.q.contains('192.168.255.4/32').get_values('outgoing_interface')[0]
