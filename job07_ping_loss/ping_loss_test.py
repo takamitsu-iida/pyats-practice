@@ -61,6 +61,9 @@ class CommonSetup(aetest.CommonSetup):
         assert targets is not None, 'targets not found in datafile'
         logger.info(pformat(targets))
 
+        # pingを打ち込むデバイスと、インタフェースを閉塞するデバイスが同じ場合は、違うコネクションを使うような工夫が必要
+        assert pinger['from'] not in targets.keys(), 'pinger and target is same host'
+
 
     @aetest.subsection
     def connect(self, testbed, pinger, targets):
