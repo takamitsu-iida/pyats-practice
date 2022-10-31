@@ -147,6 +147,14 @@ class crc_test_class(aetest.Testcase):
         # これは古い順に並んでいる
         hist_list = get_intf_info_by_name(device_name)
 
+        # 取り出したデータのタイムスタンプのリスト
+        ts_list = [d['timestamp'] for d in hist_list]
+
+        # datetimeのリスト
+        datetime_list = [datetime.fromtimestamp(ts) for ts in ts_list]
+
+        # 分かりやすく日付の文字列に変換
+        date_list = [dt.strftime("%Y-%m-%d %H:%M:%S") for dt in datetime_list]
 
         # 一番古いデータのintf_infoを取り出して、インタフェース名でループを回す
         for intf in hist_list[0]['intf_info'].keys():
@@ -202,12 +210,18 @@ class crc_test_class(aetest.Testcase):
         # インタフェースは2列目、つまりインデックスは1
         table_data = sorted(table_data, reverse=False, key=lambda col: col[1])
 
-        # table_dataを格納する
-        results[device_name] = table_data
+        # ヘッダ
+        # | device | intf | 日付 | 日付 |... | test |
+        headers = ['device', 'intf']
+        headers.extend(date_list)
+        headers.append('test')
+
+        # resultsに格納する
+        results[device_name] = {'headers': headers, 'table': table_data}
 
         # 表示して確認
         if HAS_TABULATE:
-            output = tabulate(table_data, tablefmt='orgtbl')
+            output = tabulate(table_data, tablefmt='orgtbl', headers=headers)
         else:
             output = pformat(table_data)
 
@@ -221,16 +235,16 @@ class result_class(aetest.Testcase):
     @aetest.test
     def show_results(self, results):
         """
-        結果を表示します。
+        まとめて結果を表示します。
         """
 
         output = ''
-        for table in results.values():
+        for value in results.values():
             output += '\n'
             if HAS_TABULATE:
-                output += tabulate(table, tablefmt='orgtbl')
+                output += tabulate(value['table'], tablefmt='orgtbl', headers=value['headers'])
             else:
-                output += pformat(table)
+                output += pformat(value['table'])
             output += '\n'
 
         if __name__ == '__main__':
