@@ -1,5 +1,11 @@
 # 連続pingの欠損数を計測する
 
+> このスクリプトでは連続pingを一定時間経過後に停止します。
+> pingを停止してよい条件が分からない場合に使います。
+> multiprocessingを使った方が好ましいことが多いと思います。
+> 参照
+> https://github.com/takamitsu-iida/pyats-practice/tree/main/job07_ping_loss_multiprocessing
+
 インタフェースをダウンさせたときに連続pingが何個欠けるかを数えます。
 
 <br>

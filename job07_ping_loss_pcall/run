@@ -1,0 +1,13 @@
+#!/bin/bash
+
+JOB=ping_loss_job.py
+TESTBED=../lab.yml
+
+# RECORD
+# pyats run job $JOB --testbed-file $TESTBED --record record
+
+# REPLAY
+# pyats run job $JOB --testbed-file $TESTBED --replay record
+
+# REAL DEVICE
+pyats run job $JOB --testbed-file $TESTBED

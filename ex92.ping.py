@@ -167,7 +167,7 @@ if __name__ == '__main__':
     parent_conn, child_conn = Pipe()
 
     # pingを別プロセスで実行
-    p = multiprocessing.Process(name="ping", target=ping, args=(child_conn, pinger, ping_dest))
+    p = multiprocessing.Process(name='ping', target=ping, args=(child_conn, pinger, ping_dest))
     p.start()
 
     # 時間のかかる作業を模擬するために待機
