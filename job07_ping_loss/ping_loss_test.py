@@ -82,7 +82,7 @@ class CommonSetup(aetest.CommonSetup):
         # pingデバイスに接続
         ping_dev = testbed.devices[pinger['from']]
         try:
-            ping_dev.connect(via='console')
+            ping_dev.connect(via='console', log_stdout=False) # 画面に表示しない
         except (TimeoutError, StateMachineError, ConnectionError):
             logger.error(f'Unable to connect to {router}')
 

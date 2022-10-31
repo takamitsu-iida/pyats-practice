@@ -1,11 +1,18 @@
 #!/usr/bin/env python
 
 #
-# 連続pingを実行し、一定時間経過したらCtrl-Shift-6で停止します
+# multiprocessingを使ってpingを別プロセスで実行します。
+#   pingプロセスは、連続pingを実行します
+#   receive()で連続pingが終了するか、タイムアウトを待ちます
+#     タイムアウトした場合は、キューをチェックして停止命令が来ていればCtrl-Shift-6を送信して連続pingを止めます
+#   並行して動作するメインプロセスでは、別のデバイスに対して何か作業をして、終了したらキューに停止命令を発行します
 #
 
+import multiprocessing
 import pprint
 import re
+
+from multiprocessing import Process, Pipe
 
 #
 # pyATS
@@ -16,12 +23,14 @@ from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 from unicon.core.errors import SubCommandFailure
 
 
-def ping(dev, destination, source='', repeat=10000, duration=10):
+def ping(conn, dev, destination, source='', repeat=10000, duration=2):
     """
-    IOSデバイスの連続pingを実行します。
+    IOSデバイスの連続pingを実行します。pingが終了するまでブロッキングします。
 
     Parameters
     ----------
+    conn : multiprocessing.connection.Connection
+        Pipe()で作成したプロセス間通信用コネクション
     dev : genie.libs.conf.device.iosxe.device.Device
         テストベッドのデバイスです
     destination : str
@@ -30,19 +39,14 @@ def ping(dev, destination, source='', repeat=10000, duration=10):
         送信元アドレスもしくはインタフェース
     repeat : int, default 10000
         連続pingに指定する送信回数
-    duration : int, default 10
-        receive()に渡すタイムアウト値で、タイムアウトしたらCtrl-Shift-6を送信して停止
-
-    Returns
-    -------
-    output : str or None
-        失敗時はNoneを、成功時はreceive()で一致した部分を返却します
+    duration : int, default 2
+        pingの停止命令をチェックする間隔（秒）
     """
     if not dev.is_connected():
-        return None
+        return
 
     if dev.os not in ['ios', 'iosxe', 'iosxr', 'nxos']:
-        return None
+        return
 
     # 最後の1行とプロンプトを捕捉する場合
     pattern = r'Success +rate +is +(.*)(\r\n|\n|\r)({}#)$'.format(dev.hostname)
@@ -57,29 +61,26 @@ def ping(dev, destination, source='', repeat=10000, duration=10):
         cmd = f'ping {destination} repeat {repeat}'
 
     # pingコマンドを送信する
-    # 出力される応答は別途取得する
+    # sendline()は送信するだけのノンブロッキング処理
+    # 出力される応答は別途receive()で取得する
     try:
         dev.sendline(cmd)
     except SubCommandFailure:
-        return None
+        return
 
-    # 最後まで実施してSuccess rate...が出力されるか、もしくはtimeoutになるまで待機する
-    # receive() はタイムアウトしても例外を出さないので戻り値の真偽値で結果を判断する
-    finished = dev.receive(pattern, timeout=duration) #, search_size=0)
-    if finished:
-        output = dev.receive_buffer()
-        return output
-
-    # まだ連続pingは継続して実行中なのでCtrl-Shift-6を送信して停止する
-    dev.transmit("\036")
-
-    # 連続pingが停止するので、プロンプトの受信を待つ
-    finished = dev.receive(pattern, timeout=5) #, search_size=0)
-    if finished:
-        output = dev.receive_buffer()
-        return output
-
-    return None
+    # Success rate...が出力されるまで繰り返しreceive()を発行する
+    while True:
+        try:
+            finished = dev.receive(pattern, timeout=duration) #, search_size=0)
+        except SubCommandFailure:
+            break
+        if finished:
+            output = dev.receive_buffer()
+            conn.send(output)
+            break
+        if conn.poll():
+            # Ctrl-Shift-6を送信して実行中の処理を停止する
+            dev.transmit("\036")
 
 
 def parse_ping_output(output):
@@ -131,6 +132,7 @@ def parse_ping_output(output):
 if __name__ == '__main__':
 
     import argparse
+    import time
 
     #
     # script args
@@ -146,39 +148,47 @@ if __name__ == '__main__':
     # 出力結果を格納する辞書型
     outputs = {}
 
-    # 対象装置
-    target_routers = ['r1', 'r2']
+    # pingを打ち込む装置
+    pinger = 'r1'
+    pinger = testbed.devices[pinger]
 
-    for name in target_routers:
-        dev = testbed.devices[name]
+    # 操作対象装置
+    target = 'r2'
+    target = testbed.devices[target]
 
-        # 接続
-        try:
-            dev.connect(via='console', log_stdout=False)
-        except (TimeoutError, StateMachineError, ConnectionError) as e:
-            print(e)
-            continue
+    # 接続
+    pinger.connect(via='console', log_stdout=False) # pingの応答を画面に表示しない
+    target.connect(via='console')
 
-        # 連続pingを10実行して完了
-        output = ping(dev, '192.168.255.4', source='loopback0', repeat=10, duration=5)
+    # pingの宛先
+    ping_dest = '192.168.255.4'
 
-        # 結果を保存
-        outputs[name + '-repeat-10'] = output
+    # プロセス間通信用のコネクションを作成
+    parent_conn, child_conn = Pipe()
 
-        # 連続pingを実行して5秒後に強制停止
-        output = ping(dev, '192.168.255.4', source='loopback0', repeat=100000, duration=5)
+    # pingを別プロセスで実行
+    p = multiprocessing.Process(name="ping", target=ping, args=(child_conn, pinger, ping_dest))
+    p.start()
 
-        # 結果を保存
-        outputs[name + '-ctrl-shift-6'] = output
+    # 時間のかかる作業を模擬するために待機
+    time.sleep(5)
 
-        # 切断
-        dev.disconnect()
+    # 同時並行してターゲット装置で作業する
+    target.execute('show version')
 
-    # 結果を表示
-    for name, output in outputs.items():
-        if output is not None:
-            print(name)
-            print(output)
-            parsed = parse_ping_output(output)
-            pprint.pprint(parsed)
-        print('\n')
+    # 作業が完了したらpingプロセスに停止命令を出す
+    # 中身は読まないので、送信する内容はなんでもよい
+    parent_conn.send('CTRL-SHIFT-6')
+
+    # pingプロセスの終了を待つ
+    p.join()
+
+    # 切断
+    pinger.disconnect()
+    target.disconnect()
+
+    # pingの出力を取り出す
+    if parent_conn.poll():
+        output = parent_conn.recv()
+        parsed = parse_ping_output(output)
+        pprint.pprint(parsed)
