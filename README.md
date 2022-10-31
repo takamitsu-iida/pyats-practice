@@ -2458,4 +2458,23 @@ OSPFのネイバー状態が設計上の期待値通りになっているかを�
 
 こちらを参照。
 
-[job07_ping_loss](https://github.com/takamitsu-iida/pyats-practice/tree/main/job07_ping_loss)
+[job07_ping_loss_multiprocessing](https://github.com/takamitsu-iida/pyats-practice/tree/main/job07_ping_loss_multiprocessing)
+
+<br>
+
+## インタフェースを学習してCRCエラーの有無を確認するテスト
+
+インタフェースを学習させて、in_crc_errorsカウンタがしきい値を超えていたらfailにするテストです。
+
+学習した内容は、後々のためにファイルに保存します。
+
+[job08_crc](https://github.com/takamitsu-iida/pyats-practice/tree/main/job08_crc)
+
+<br>
+
+## インタフェースのCRCエラーを過去の情報と比較するテスト
+
+インタフェースの学習結果をデータベース(tinydb)に保存します。
+過去の情報と比較して、in_crc_errorsカウンタの増分がしきい値を超えていたらfailにするテストです。
+
+[job09_crc_history](https://github.com/takamitsu-iida/pyats-practice/tree/main/job09_crc_history)
