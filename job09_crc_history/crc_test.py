@@ -196,7 +196,7 @@ class crc_test_class(aetest.Testcase):
 
                 if '-' in crc_errors:
                     intf_step.skipped(f'{intf} does not have in_crc_errors counter')
-                    table_row.append('Passed')
+                    table_row.append('Skipped')
                 else:
                     min_crc = min(crc_errors)
                     max_crc = max(crc_errors)
