@@ -27,7 +27,7 @@ class CommonSetup(aetest.CommonSetup):
         assert testbed, 'Testbed is not provided!'
 
         # CommonSetup内で例外が発生するとテスト自体が停止してしまう
-        # 単純にtestbed.connect()してもよいが、ここではCSR1000vルータにだけ接続する
+        # testbed.connect()は関心のない装置にまで接続してしまうので、ここではCSR1000vルータに限定して接続する
         for _, dev in testbed.devices.items():
             if dev.platform == 'CSR1000v':
                 try:
@@ -69,15 +69,21 @@ class ping_class(aetest.Testcase):
             ping_list (list): スクリプト実行時に渡されるpingの宛先リスト
         """
 
+        # 結果を格納する入れ物をクラス変数に作成
         self.ping_results = {}
 
         for name, dev in testbed.devices.items():
-            # CSR1000vルータにのみ接続してある
+            # CSR1000vルータに限定
             if dev.platform != 'CSR1000v':
                 continue
 
-            logger.info(f'{name} connected status: {dev.connected}')
+            # 接続済みの装置に限定
+            if not dev.is_connected():
+                continue
+
+            # この装置の実行結果を保存する入れ物を作成
             self.ping_results[name] = {}
+
             for ip in ping_list:
                 logger.info(f'Pinging {ip} from {name}')
                 try:
@@ -89,15 +95,21 @@ class ping_class(aetest.Testcase):
 
     @aetest.test
     def test(self, steps):
-        """ ping実行結果を検証する """
+        """
+        ping実行結果を検証する
+        """
         for device_name, ips in self.ping_results.items():
+            # 装置に関してのステップ
             with steps.start(f'Looking for ping failures {device_name}', continue_=True) as device_step:
                 for ip in ips:
+                    # 宛先IPに関してのステップ
                     with device_step.start(f'Checking Ping from {device_name} to {ip}', continue_=True):
                         reason = f'Device {device_name} had {ips[ip]}% success pinging {ip}'
                         if ips[ip] == 100:
+                            # 応答が100%ならpass
                             device_step.passed(reason)
                         else:
+                            # それ以外はfail
                             device_step.failed(reason)
 
 #####################################################################
