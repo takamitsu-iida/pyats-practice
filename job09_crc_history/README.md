@@ -135,3 +135,5 @@ datafile.ymlで指定されたtargetsに順番に接続してlearn('interface')�
 | sw4      | Ethernet0/2 |                     0 |                     0 |                     0 | Passed |
 | sw4      | Ethernet0/3 |                     0 |                     0 |                     0 | Passed |
 ```
+
+![実行例](https://takamitsu-iida.github.io/pyats-practice/job09_crc_history/img/fig1.PNG "実行例")
