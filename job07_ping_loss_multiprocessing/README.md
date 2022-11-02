@@ -252,3 +252,5 @@ pingの欠けは高々1個で冗長経路に切り替わっていることがわ
 
 この試験では欠けたpingの数を集計するのが目的でしたので、異常な状態にならない限り試験はFAILEDになりません。
 pingの欠けがしきい値を超えたらエラーにする、というロジックをいれてもいいかもしれません。
+
+![実行例](https://takamitsu-iida.github.io/pyats-practice/job07_ping_loss_multiprocessing/img/fig1.PNG "実行例")
