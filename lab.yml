@@ -17,6 +17,9 @@
 # 機種に対応したプラグインを判定する優先順位はこのようになっています
 # chassis_type > os > platform > model
 
+# Unicon Supported Platforms
+# https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/supported_platforms.html
+
 testbed:
   name: iida-pyats on eve-ng
 
