@@ -1,4 +1,4 @@
-pyats[full] == 22.9
+pyats[full] == 22.10
 
 rest.connector
 yang.connector
