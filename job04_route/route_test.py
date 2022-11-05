@@ -33,7 +33,7 @@ class CommonSetup(aetest.CommonSetup):
 
         # 全てのCSR1000vに接続
         for name, dev in testbed.devices.items():
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
 
             try:
@@ -63,7 +63,7 @@ class routing_class(aetest.Testcase):
         self.after_routes = {}
 
         for name, dev in testbed.devices.items():
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
 
             # ファイルからルーティングテーブルを読む
@@ -90,7 +90,7 @@ class routing_class(aetest.Testcase):
         """
 
         for name, dev in testbed.devices.items():
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
 
             # 装置に関してのステップ

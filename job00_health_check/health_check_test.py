@@ -26,7 +26,7 @@ class CommonSetup(aetest.CommonSetup):
         テストベッド内のすべてのCSR1000vに接続
         """
         for name, dev in testbed.devices.items():
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
 
             try:
@@ -47,7 +47,7 @@ class collect_all(aetest.Testcase):
         すべてのCSR1000vを訪問する
         """
         for name, dev in testbed.devices.items():
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
 
             with steps.start(f'Learn all about {name}', continue_=True) as dev_step:

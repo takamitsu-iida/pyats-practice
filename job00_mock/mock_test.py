@@ -40,7 +40,7 @@ class CommonSetup(aetest.CommonSetup):
         テストベッド内のすべてのCSR1000vに接続
         """
         for name, dev in testbed.devices.items():
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
 
             # connect
@@ -69,7 +69,7 @@ class collect_all(aetest.Testcase):
         1. すべてのCSR1000vでlearn(all)
         """
         for name, dev in testbed.devices.items():
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
 
             # 装置に関してステップ

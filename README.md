@@ -228,7 +228,7 @@ devices:
     os: iosxe
 
     # 任意
-    platform: CSR1000v
+    platform: csr1000v
     type: iosxe
 
     # スタックしている場合はchassis_typeを指定
@@ -276,7 +276,7 @@ devices:
 
   r2:
     os: iosxe
-    platform: CSR1000v
+    platform: csr1000v
     type: iosxe
     connections:
       console:
@@ -294,7 +294,7 @@ devices:
 
   r3:
     os: iosxe
-    platform: CSR1000v
+    platform: csr1000v
     type: iosxe
     connections:
       console:
@@ -312,7 +312,7 @@ devices:
 
   r4:
     os: iosxe
-    platform: CSR1000v
+    platform: csr1000v
     type: iosxe
     connections:
       console:
@@ -491,7 +491,7 @@ devices:
   r1:
     alias: 'uut'
     os: iosxe
-    platform: CSR1000v
+    platform: csr1000v
     type: router
     connections:
       defaults:
@@ -609,7 +609,7 @@ dev.disconnect()
 ```yml
   r1:
     os: iosxe
-    platform: CSR1000v
+    platform: csr1000v
     type: iosxe
     connections:
       console:

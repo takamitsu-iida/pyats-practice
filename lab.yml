@@ -57,7 +57,7 @@ devices:
     os: iosxe
 
     # optional
-    platform: CSR1000v
+    platform: csr1000v
     type: router
 
     # in case of stacked device
@@ -121,7 +121,7 @@ devices:
 
   r2:
     os: iosxe
-    platform: CSR1000v
+    platform: csr1000v
     type: router
     connections:
       defaults:
@@ -142,7 +142,7 @@ devices:
 
   r3:
     os: iosxe
-    platform: CSR1000v
+    platform: csr1000v
     type: router
     connections:
       defaults:
@@ -163,7 +163,7 @@ devices:
 
   r4:
     os: iosxe
-    platform: CSR1000v
+    platform: csr1000v
     type: router
     connections:
       defaults:

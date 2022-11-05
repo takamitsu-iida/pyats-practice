@@ -24,7 +24,7 @@ testbed = load('../lab.yml')
 
 for name, dev in testbed.devices.items():
     # テストベッド内のすべてのCSR1000vを対象に
-    if dev.platform != 'CSR1000v':
+    if dev.platform != 'csr1000v':
         continue
 
     # 保存ファイル名 routing.{name}.pickle

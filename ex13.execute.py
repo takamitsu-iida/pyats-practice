@@ -52,7 +52,7 @@ testbed = load(args.testbed)
 
 for name, dev in testbed.devices.items():
     # テストベッド内のすべてのCSR1000vを対象に
-    if dev.platform == 'CSR1000v':
+    if dev.platform == 'csr1000v':
         # ファイルをオープンしてログ取り開始
         log_path = os.path.join(log_dir, f'ex13_{name}.log')
         with open(log_path, 'w') as f:

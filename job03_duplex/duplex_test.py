@@ -28,7 +28,7 @@ class CommonSetup(aetest.CommonSetup):
 
         # 全てのCSR1000vに接続します
         for _, dev in testbed.devices.items():
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
             try:
                 dev.connect(via='console')
@@ -55,7 +55,7 @@ class interface_duplex(aetest.Testcase):
 
         # learn('interface')でインタフェース情報を学習する
         for name, dev in testbed.devices.items():
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
             if dev.is_connected() is False:
                 logger.info(f'{name} connected status: {dev.connected}')

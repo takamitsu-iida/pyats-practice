@@ -29,7 +29,7 @@ class CommonSetup(aetest.CommonSetup):
         # CommonSetup内で例外が発生するとテスト自体が停止してしまう
         # testbed.connect()は関心のない装置にまで接続してしまうので、ここではCSR1000vルータに限定して接続する
         for _, dev in testbed.devices.items():
-            if dev.platform == 'CSR1000v':
+            if dev.platform == 'csr1000v':
                 try:
                     dev.connect(via='console')
                 except (TimeoutError, StateMachineError, ConnectionError):
@@ -74,7 +74,7 @@ class ping_class(aetest.Testcase):
 
         for name, dev in testbed.devices.items():
             # CSR1000vルータに限定
-            if dev.platform != 'CSR1000v':
+            if dev.platform != 'csr1000v':
                 continue
 
             # 接続済みの装置に限定
