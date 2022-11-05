@@ -21,17 +21,6 @@ def here(path=''):
 class CommonSetup(aetest.CommonSetup):
 
     @aetest.subsection
-    def load_testbed(self, testbed):
-        """
-        testbedの形式を変換
-        """
-        assert testbed, 'Testbed is not provided!'
-        logger.info('Converting pyATS testbed to Genie Testbed to support pyATS Library features')
-        testbed = load(testbed)
-        self.parent.parameters.update(testbed=testbed)
-
-
-    @aetest.subsection
     def load_telnetlib(self):
         """
         改変したtelnetlibをロードする

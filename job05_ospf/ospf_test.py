@@ -17,21 +17,17 @@ logger = logging.getLogger(__name__)
 class CommonSetup(aetest.CommonSetup):
 
     @aetest.subsection
-    def load_testbed(self, testbed):
-        """
-        testbedの形式を変換
-        """
-        assert testbed, 'Testbed is not provided!'
-        logger.info('Converting pyATS testbed to Genie Testbed to support pyATS Library features')
-        testbed = load(testbed)
-        self.parent.parameters.update(testbed=testbed)
-
-
-    @aetest.subsection
     def connect(self, testbed):
         """
-        r1とr4に接続する
+        r1とr4に接続します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
         """
+
+        # testbedが正しくロードされているか確認する
+        assert testbed, 'Testbed is not provided!'
+
         routers = ('r1', 'r4')
 
         for router in routers:
@@ -51,7 +47,10 @@ class ospf_class(aetest.Testcase):
     @aetest.setup
     def setup(self, testbed):
         """
-        r1とr4に関してparse('show ip ospf neighbor')する
+        r1とr4に関してparse('show ip ospf neighbor')します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
         """
         routers = ('r1', 'r4')
 
@@ -62,7 +61,7 @@ class ospf_class(aetest.Testcase):
 
 
     @aetest.test
-    def test(self, steps, testbed):
+    def test(self, steps):
         """
         ネイバー状態が期待通りか検証する
         """
@@ -151,6 +150,7 @@ class ospf_class(aetest.Testcase):
                 else:
                     gig2_step.failed('expected neighbor 192.168.255.2 not found.')
 
+
 #####################################################################
 ####                       COMMON CLEANUP SECTION                 ###
 #####################################################################
@@ -160,21 +160,27 @@ class CommonCleanup(aetest.CommonCleanup):
 
     @aetest.subsection
     def disconnect(self, testbed):
-        # testbedそのものから切断
+        """
+        テストベッド全体を切断します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+        """
         testbed.disconnect()
 
+
 #
-# stand-alone test
+# スタンドアロンで実行
+#
+# python ospf_test.py --testbed ../lab.yml
 #
 if __name__ == "__main__":
 
-    # python ospf_test.py --testbed ../lab.yml
-
     import argparse
+
     from pyats import topology
 
     parser = argparse.ArgumentParser()
-
     parser.add_argument(
         '--testbed',
         dest='testbed',
@@ -182,8 +188,6 @@ if __name__ == "__main__":
         type=topology.loader.load,
         default=None,
     )
-
-    # parse command line arguments only we know
     args, _ = parser.parse_known_args()
 
     aetest.main(testbed=args.testbed)

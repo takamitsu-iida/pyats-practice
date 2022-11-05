@@ -67,12 +67,17 @@ intf.learn()
 if uut.is_connected():
     uut.disconnect()
 
-# learnt correctly?
+# 学習した結果の辞書型はinfoキーで入手する
+# pprint(intf.info)
+# {'GigabitEthernet1': {},
+#  'GigabitEthernet2': {},
+#  'GigabitEthernet3': {},
+
+# 学習できているか確認
 assert intf.info
 
-# intf object should be like this
-# {'info': {'interface_name': {
-
+# インタフェース名の一覧はkeys()で入手できる
+# この一覧はソートされていないので、必要ならソートする
 intf_list = intf.info.keys()
 
 if intf_list:

@@ -1,7 +1,8 @@
-pyats[full]
+pyats[full] == 22.9
 
 rest.connector
 yang.connector
 
 jinja2
 tabulate
+tinydb

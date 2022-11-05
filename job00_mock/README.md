@@ -70,74 +70,135 @@ Connected to mock_device.
 Escape character is '^]'.
 
 r1#
-r1#
-r1#
-r1#show version
-Cisco IOS XE Software, Version 17.03.04a
-Cisco IOS Software [Amsterdam], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.4a, RELEASE SOFTWARE (fc3)
-Technical Support: http://www.cisco.com/techsupport
-Copyright (c) 1986-2021 by Cisco Systems, Inc.
-Compiled Tue 20-Jul-21 04:59 by mcpre
-
-
-Cisco IOS-XE software, Copyright (c) 2005-2021 by cisco Systems, Inc.
-All rights reserved.  Certain components of Cisco IOS-XE software are
-licensed under the GNU General Public License ("GPL") Version 2.0.  The
-software code licensed under GPL Version 2.0 is free software that comes
-with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
-GPL code under the terms of GPL Version 2.0.  For more details, see the
-documentation or "License Notice" file accompanying the IOS-XE software,
-or the applicable URL provided on the flyer accompanying the IOS-XE
-software.
-
-
-ROM: IOS-XE ROMMON
-
-r1 uptime is 1 week, 2 days, 5 hours, 15 minutes
-Uptime for this control processor is 1 week, 2 days, 5 hours, 17 minutes
-System returned to ROM by reload
-System image file is "bootflash:packages.conf"
-Last reload reason: reload
-
-
-
-This product contains cryptographic features and is subject to United
-States and local country laws governing import, export, transfer and
-use. Delivery of Cisco cryptographic products does not imply
-third-party authority to import, export, distribute or use encryption.
-Importers, exporters, distributors and users are responsible for
-compliance with U.S. and local country laws. By using this product you
-agree to comply with applicable laws and regulations. If you are unable
-to comply with U.S. and local laws, return this product immediately.
-
-A summary of U.S. laws governing Cisco cryptographic products may be found at:
-http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
-
-If you require further assistance please contact us by sending email to
-export@cisco.com.
-
-License Level: ax
-License Type: N/A(Smart License Enabled)
-Next reload license Level: ax
-
-The current throughput level is 1000 kbps
-
-
-Smart Licensing Status: UNREGISTERED/No Licenses in Use
-
-cisco CSR1000V (VXE) processor (revision VXE) with 1105173K/3075K bytes of memory.
-Processor board ID 934T7HPFN7R
-Router operating mode: Autonomous
-4 Gigabit Ethernet interfaces
-32768K bytes of non-volatile configuration memory.
-3012228K bytes of physical memory.
-6188032K bytes of virtual hard disk at bootflash:.
-
-Configuration register is 0x2102
+r1#?
+% Invalid command '?'
+Valid commands:
+ config term
+ config-transaction
+ dir
+ show access-lists
+ show bgp all
+ show bgp all cluster-ids
+ show bgp all detail
+ show bgp all neighbors
+ show bgp all summary
+ show bootvar
+ show cdp neighbors detail
+ show dot1x all count
+ show dot1x all details
+ show dot1x all statistics
+ show dot1x all summary
+ show env all
+ show errdisable recovery
+ show etherchannel summary
+ show interfaces
+ show interfaces accounting
+ show inventory
+ show inventory raw
+ show ip arp
+ show ip arp summary
+ show ip bgp all dampening parameters
+ show ip bgp template peer-policy
+ show ip bgp template peer-session
+ show ip eigrp neighbors detail
+ show ip igmp groups detail
+ show ip igmp interface
+ show ip interface
+ show ip mroute
+ show ip mroute static
+ show ip msdp peer
+ show ip msdp sa-cache
+ show ip multicast
+ show ip ospf
+ show ip ospf database external
+ show ip ospf database network
+ show ip ospf database opaque-area
+ show ip ospf database router
+ show ip ospf database summary
+ show ip ospf interface
+ show ip ospf interface GigabitEthernet1
+ show ip ospf interface GigabitEthernet2
+ show ip ospf mpls ldp interface
+ show ip ospf mpls traffic-eng link
+ show ip ospf neighbor detail
+ show ip ospf sham-links
+ show ip ospf virtual-links
+ show ip pim bsr-router
+ show ip pim interface
+ show ip pim interface detail
+ show ip pim interface df
+ show ip pim neighbor
+ show ip pim rp mapping
+ show ip prefix-list detail
+ show ip protocols
+ show ip protocols | sec rip
+ show ip rip database
+ show ip route
+ show ip static route
+ show ip traffic
+ show ipv6 eigrp neighbors detail
+ show ipv6 interface
+ show ipv6 mroute
+ show ipv6 neighbors
+ show ipv6 pim bsr candidate-rp
+ show ipv6 pim bsr election
+ show ipv6 pim interface
+ show ipv6 pim neighbor detail
+ show ipv6 prefix-list detail
+ show ipv6 protocols | sec rip
+ show ipv6 route
+ show ipv6 static detail
+ show issu rollback-timer
+ show issu state detail
+ show lacp counters
+ show lacp neighbor
+ show lacp sys-id
+ show lisp service ethernet
+ show lisp service ethernet summary
+ show lisp service ipv4
+ show lisp service ipv4 summary
+ show lisp service ipv6
+ show lisp service ipv6 summary
+ show lldp
+ show lldp entry *
+ show lldp interface
+ show lldp neighbors detail
+ show lldp traffic
+ show mac address-table
+ show mac address-table aging-time
+ show mac address-table learning
+ show ntp associations
+ show ntp config
+ show ntp status
+ show nve vni
+ show pagp counters
+ show pagp internal
+ show pagp neighbor
+ show platform
+ show power inline
+ show redundancy
+ show route-map all
+ show run | sec isis
+ show running-config
+ show running-config | section router ospf 1
+ show spanning-tree
+ show spanning-tree detail
+ show spanning-tree mst configuration
+ show spanning-tree mst detail
+ show spanning-tree summary
+ show standby all
+ show standby delay
+ show version
+ show vlan
+ show vrf
+ show vrf detail
+ show vrf detail | inc \(VRF
+ term length 0
+ term width 0
 r1#
 ```
 
-testbedはこのように記載する。
+モックを対象に何かテストを行いたいときには、testbedにこのように記載する。
 
 init_exec_commandsとinit_config_commandsはモックを作成したときと同じ指定にしておかないとエラーになる。
 

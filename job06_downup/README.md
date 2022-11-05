@@ -324,7 +324,7 @@ class CommonCleanup(aetest.CommonCleanup):
 #
 if __name__ == "__main__":
 
-    # python ospf_test.py --testbed ../lab.yml
+    # python downup_test.py --testbed ../lab.yml
 
     import argparse
     from pyats import topology

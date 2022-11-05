@@ -1,0 +1,29 @@
+---
+
+#
+# 参考
+# https://pubhub.devnetcloud.com/media/pyats/docs/aetest/datafile.html
+#
+
+# モジュールレベルのパラメータ
+# これらはグローバル変数として利用できる
+# module_var_a: some string value
+# module_var_b: 99999
+
+# スクリプトパラメータ
+# これらは関数の引数として受け取ることができる
+parameters:
+
+  max_history: 3
+
+  crc_threshold: 0
+
+  targets:
+    r1:
+    r2:
+    r3:
+    r4:
+    sw1:
+    sw2:
+    sw3:
+    sw4:

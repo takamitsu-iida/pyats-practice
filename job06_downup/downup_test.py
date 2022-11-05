@@ -7,15 +7,14 @@
 # r1-+-(gig1)-r2-r4
 #    +-(gig2)-r3-r4
 #
-# r1からr4への到達経路は2個
-# gig1が優先。gig1をダウンさせて経路がgig2経由でr4に到達できることを確認する
-#
+# r1からr4への到達経路は2経路
+# gig1経由が優先。
+# 1. gig1をダウンさせて経路がgig2経由でr4に到達できることを確認する
+# 2. gig2をダウンさせて経路がgig2経由でr4に到達できることを確認する
 
 import logging
 import os
 import time
-
-from pprint import pformat
 
 from pyats import aetest
 from genie.testbed import load
@@ -24,11 +23,9 @@ from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 
 logger = logging.getLogger(__name__)
 
-def here(path=''):
-  return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
-
-# pickle directory
-pkl_dir = os.path.join(here('.'), 'pkl')
+# 状態データを保存するディレクトリ
+# pickle形式で保存するので、ここでは'pkl'という名前にする
+pkl_dir = os.path.join(os.path.dirname(__file__), 'pkl')
 
 ###################################################################
 ###                  COMMON SETUP SECTION                       ###
@@ -37,30 +34,27 @@ pkl_dir = os.path.join(here('.'), 'pkl')
 class CommonSetup(aetest.CommonSetup):
 
     @aetest.subsection
-    def load_testbed(self, testbed):
-        """
-        testbedの形式を変換
-        """
-        assert testbed, 'Testbed is not provided!'
-        logger.info('Converting pyATS testbed to Genie Testbed to support pyATS Library features')
-        testbed = load(testbed)
-
-        # 親クラスにtestbedを格納（上書き）
-        self.parent.parameters.update(testbed=testbed)
-
-    @aetest.subsection
     def create_directory(self):
-        # create pkl_dir
+        """
+        保存先のディレクトリ pkl_dir を作る
+        """
         os.makedirs(pkl_dir, exist_ok=True)
 
     @aetest.subsection
     def connect(self, testbed):
         """
-        r1, r2, r3, r4に接続する
-        """
-        routers = ['r1', 'r2', 'r3', 'r4']
-        devices = []
+        r1, r2, r3, r4に接続します。
 
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+        """
+
+        # testbedが正しくロードされているか確認する
+        assert testbed, 'Testbed is not provided!'
+
+        routers = ['r1', 'r2', 'r3', 'r4']
+
+        devices = []
         for router in routers:
             r = testbed.devices[router]
             try:
@@ -159,8 +153,13 @@ class down_up_test_class(aetest.Testcase):
     @aetest.setup
     def setup(self, testbed, devices):
         """
-        r1からr4に向けての経路がGig1を向いているか確認する
+        r1からr4に向けての経路がGig1を向いているか確認します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+            devices (list): セットアップで作成したデバイスのリストです
         """
+
         r1 = testbed.devices['r1']
         parsed = r1.parse('show ip route')
         next_hop = get_outgoing_interface(parsed, '192.168.255.4/32')
@@ -177,7 +176,12 @@ class down_up_test_class(aetest.Testcase):
     @aetest.test
     def test(self, steps, testbed, devices):
         """
-        r1のGig1をshutdownして経路の切り替わりを検証する
+        r1のGig1をshutdownして経路の切り替わりを検証します。
+
+        Args:
+            steps (_type_): ステップ
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+            devices (list): セットアップで作成したデバイスのリスト
         """
 
         r1 = testbed.devices['r1']
@@ -264,6 +268,7 @@ class down_up_test_class(aetest.Testcase):
                 except TimeoutError:
                     gig1_up_step.failed('route from r1 to r4 wrong.')
 
+
 #####################################################################
 ####                       COMMON CLEANUP SECTION                 ###
 #####################################################################
@@ -273,21 +278,27 @@ class CommonCleanup(aetest.CommonCleanup):
 
     @aetest.subsection
     def disconnect(self, testbed):
-        # testbedそのものから切断
+        """
+        テストベッド全体を切断します。
+
+        Args:
+            testbed (genie.libs.conf.testbed.Testbed): スクリプト実行時に渡されるテストベッド
+        """
         testbed.disconnect()
 
-#
-# stand-alone test
-#
-if __name__ == "__main__":
 
-    # python ospf_test.py --testbed ../lab.yml
+#
+# スタンドアロンで実行する場合
+#
+# python downup_test.py --testbed ../lab.yml
+#
+if __name__ == '__main__':
 
     import argparse
+
     from pyats import topology
 
     parser = argparse.ArgumentParser()
-
     parser.add_argument(
         '--testbed',
         dest='testbed',
@@ -295,8 +306,6 @@ if __name__ == "__main__":
         type=topology.loader.load,
         default=None,
     )
-
-    # parse command line arguments only we know
     args, _ = parser.parse_known_args()
 
     aetest.main(testbed=args.testbed)

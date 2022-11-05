@@ -1,0 +1,9 @@
+#!/bin/bash
+
+JOB=health_check_job.py
+
+TESTBED=../lab.yml
+
+pyats run job $JOB --testbed-file $TESTBED --health-checks cpu memory logging core
+
+# --health-remote-device name:myserver_in_testbed path:/tmp/ protocol:http --health-mgmt-vrf iosxe:None

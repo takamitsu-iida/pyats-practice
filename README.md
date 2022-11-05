@@ -9,6 +9,18 @@ pyATS = python Automated Test System
 
 <br>
 
+<!--
+これから試すこと
+
+組み込みサーバ機能 https://pubhub.devnetcloud.com/media/pyats/docs/utilities/file_transfer_server.html
+    - ファイルサーバとして動作する
+        - Genieからそのサーバに転送できる
+        - シスコ機器のバージョンアップ時にTFTP/FTPサーバとして動作
+
+ファイル転送ユーティリティ
+    - TFTP/FTP/SCP/SFTPクライアントとして動作する
+-->
+
 ### 最初に試すべきこと
 
 <a href="https://developer.cisco.com/pyats/" target="_blank">DevNetのサイト</a>にある<a href="https://developer.cisco.com/learning/labs/intro-to-pyats/stepping-into-the-realm-of-total-network-automation-with-pyats/" target="_blank">Introduction to pyATS</a>が秀逸です。
@@ -1197,6 +1209,49 @@ $ ./ex22.parse_html.py --testbed ex22/lab.yml
 
 <br><br>
 
+### ex23.parse.py
+
+<p>
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex23.parse.py" target="_blank">source</a>]　
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/output/ex23.log" target="_blank">log</a>]　
+</p>
+
+過去に採取したshowコマンドの出力をパースします。
+
+```python
+#!/usr/bin/env python
+
+from pprint import pprint
+
+# import Genie
+from genie.conf.base import Device
+
+# 'show version' on iosxe
+OUTPUT = '''
+Cisco IOS XE Software, Version 17.03.04a
+Cisco IOS Software [Amsterdam], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.4a, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2021 by Cisco Systems, Inc.
+Compiled Tue 20-Jul-21 04:59 by mcpre
+（省略）
+'''
+
+dev = Device(name='r1', os='iosxe')
+dev.custom.setdefault('abstraction', {'order': ['os']})
+parsed = dev.parse('show version', output=OUTPUT)
+pprint(parsed)
+```
+
+当然ですが、テストベッドファイルは不要です。
+
+```bash
+$ ./ex23.parse.py
+```
+
+実際に活用するには、打ち込んだコマンドと出力を１対１に対応させた外部ファイルを準備した方がいいのですが、その作業をするならモックデータを作った方がいいような気もします。
+
+<br><br>
+
 ### ex30.learn.py
 
 <p>
@@ -2147,6 +2202,28 @@ $ ./ex70.save.py --testbed ex70/lab.yml
 
 <br><br>
 
+### ex91.ping.py
+
+<p>
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/ex91.ping.py" target="_blank">source</a>]　
+[<a href="https://github.com/takamitsu-iida/pyats-practice/blob/main/output/ex91.log" target="_blank">log</a>]
+</p>
+
+連続pingを実行して、一定時間後にCtrl-Shift-6を送信して強制停止します。
+
+動作の仕組み。
+
+1. sendline('ping x.x.x.x repeat 10000')でpingコマンドを送り込みます
+1. これは連続pingなので!!!!が流れ続け、いつ終わるかわかりません
+1. receive('Success rate...', timeout=10)でSuccess rateが出力されるか、10秒経過するまで待機します
+1. タイムアウトした場合はtransmit("\036")でCtrl-Shift-6と同じコードを送り込みます
+1. 連続pingが停止するので再びreceive('Success rate...')でping終了時の出力を待ちます
+1. 出力をパースします
+
+検証作業時に連続pingが何個ロスしたか調べたいときはこれを使うとよいでしょう。
+
+<br><br>
+
 # testとjob
 
 検証作業では、OKなのかNGなのか、判定する場面が多々あります。
@@ -2191,7 +2268,6 @@ pingして100%応答があればOKと判定する例です。
 作業によって経路情報が変化することが期待値である場合は、もうちょっと複雑な判定が必要になります。
 経路情報単位にその存在確認やネクストホップの妥当性を判断する必要があります。
 
-
 <br>
 
 ## OSPFのネイバー状態をテスト
@@ -2201,3 +2277,44 @@ OSPFのネイバー状態が設計上の期待値通りになっているかを�
 こちらを参照。
 
 [job05_ospf](https://github.com/takamitsu-iida/pyats-practice/tree/main/job05_ospf)
+
+
+<br>
+
+## インタフェースをダウンさせたときのルーティングテーブルをテスト
+
+インタフェースをダウンさせて、期待通りのルーティングテーブルになるかを検証します。
+
+こちらを参照。
+
+[job06_downup](https://github.com/takamitsu-iida/pyats-practice/tree/main/job06_downup)
+
+
+<br>
+
+## インタフェースを閉塞して経路を迂回させたときにpingの欠けた数をカウントするテスト
+
+インタフェースをダウン・アップさせて、連続pingが何個欠損するかを集計するテストです。
+
+こちらを参照。
+
+[job07_ping_loss_multiprocessing](https://github.com/takamitsu-iida/pyats-practice/tree/main/job07_ping_loss_multiprocessing)
+
+<br>
+
+## インタフェースを学習してCRCエラーの有無を確認するテスト
+
+インタフェースを学習させて、in_crc_errorsカウンタがしきい値を超えていたらfailにするテストです。
+
+学習した内容は、後々のためにファイルに保存します。
+
+[job08_crc](https://github.com/takamitsu-iida/pyats-practice/tree/main/job08_crc)
+
+<br>
+
+## インタフェースのCRCエラーを過去の情報と比較するテスト
+
+インタフェースの学習結果をデータベース(tinydb)に保存します。
+過去の情報と比較して、in_crc_errorsカウンタの増分がしきい値を超えていたらfailにするテストです。
+
+[job09_crc_history](https://github.com/takamitsu-iida/pyats-practice/tree/main/job09_crc_history)
