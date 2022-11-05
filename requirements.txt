@@ -2,8 +2,6 @@ pyats[full]
 
 rest.connector
 yang.connector
-cryptography
 
 jinja2
-
 tabulate
