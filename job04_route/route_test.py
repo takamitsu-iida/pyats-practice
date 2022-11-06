@@ -138,10 +138,13 @@ if __name__ == '__main__':
     # python route_test.py --testbed ../lab.yml
 
     import argparse
+
     from pyats import topology
 
-    parser = argparse.ArgumentParser()
+    # set logger level
+    logger.setLevel(logging.INFO)
 
+    parser = argparse.ArgumentParser()
     parser.add_argument(
         '--testbed',
         dest='testbed',
@@ -149,8 +152,6 @@ if __name__ == '__main__':
         type=topology.loader.load,
         default=None,
     )
-
-    # parse command line arguments only we know
     args, _ = parser.parse_known_args()
 
     aetest.main(testbed=args.testbed)

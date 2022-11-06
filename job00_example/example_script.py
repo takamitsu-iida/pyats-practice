@@ -177,5 +177,7 @@ class common_cleanup(aetest.CommonCleanup):
 
 if __name__ == '__main__':
 
+    logging.basicConfig(level=logging.INFO)
+
     result = aetest.main()
     aetest.exit_cli_code(result)

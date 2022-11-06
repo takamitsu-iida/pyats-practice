@@ -209,8 +209,6 @@ class ping_loss_test_class(aetest.Testcase):
         else:
             output = pformat(self.ping_loss_result)
 
-        if __name__ == '__main__':
-            print(output)
         logger.info(output)
 
         log_path = os.path.join(os.path.dirname(__file__), 'result.txt')
@@ -250,11 +248,13 @@ if __name__ == '__main__':
 
     from pyats import topology
 
+    # set logger level
+    logger.setLevel(logging.INFO)
+
     DATAFILE = 'datafile.yml'
     SCRIPT_DIR = os.path.dirname(__file__)
     DATAFILE_PATH = os.path.join(SCRIPT_DIR, DATAFILE)
 
-    # スクリプト実行時に受け取る引数
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--testbed',

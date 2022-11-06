@@ -221,8 +221,6 @@ class crc_test_class(aetest.Testcase):
         else:
             output = pformat(table_data)
 
-        if __name__ == '__main__':
-            print(output)
         logger.info(output)
 
 
@@ -239,8 +237,6 @@ class result_class(aetest.Testcase):
         else:
             output = pformat(results)
 
-        if __name__ == '__main__':
-            print(output)
         logger.info(output)
 
 
@@ -285,6 +281,9 @@ if __name__ == '__main__':
     import os
 
     from pyats import topology
+
+    # set logger level
+    logger.setLevel(logging.INFO)
 
     DATAFILE = 'datafile.yml'
     SCRIPT_DIR = os.path.dirname(__file__)

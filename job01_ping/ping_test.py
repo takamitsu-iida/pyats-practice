@@ -140,13 +140,15 @@ if __name__ == '__main__':
 
     from pyats import topology
 
+    # set logger level
+    logger.setLevel(logging.INFO)
+
     ping_list = [
         '192.168.255.1',
         '192.168.255.2'
     ]
 
     parser = argparse.ArgumentParser()
-
     parser.add_argument(
         '--testbed',
         dest='testbed',
@@ -154,8 +156,6 @@ if __name__ == '__main__':
         type=topology.loader.load,
         default=None,
     )
-
-    # parse command line arguments only we know
     args, _ = parser.parse_known_args()
 
     aetest.main(testbed=args.testbed, ping_list=ping_list)

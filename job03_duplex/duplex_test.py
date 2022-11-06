@@ -124,6 +124,9 @@ if __name__ == '__main__':
 
     from pyats import topology
 
+    # set logger level
+    logger.setLevel(logging.INFO)
+
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--testbed',
