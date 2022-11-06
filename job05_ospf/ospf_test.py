@@ -174,7 +174,7 @@ class CommonCleanup(aetest.CommonCleanup):
 #
 # python ospf_test.py --testbed ../lab.yml
 #
-if __name__ == "__main__":
+if __name__ == '__main__':
 
     import argparse
 

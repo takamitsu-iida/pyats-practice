@@ -10,7 +10,7 @@ import argparse
 from genie.testbed import load
 from genie.libs.conf.static_routing.static_routing import StaticRouting
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
 

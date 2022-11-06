@@ -66,7 +66,7 @@ class CommonCleanup(aetest.CommonCleanup):
         testbed.disconnect()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
     import argparse
     from pyats import topology
