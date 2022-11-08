@@ -45,7 +45,7 @@ testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 
-uut.connect(via='console')
+uut.connect()
 
 # learn configuration
 pre_conf = uut.learn('config')

@@ -51,10 +51,10 @@ class CommonSetup(aetest.CommonSetup):
             ios2 (_type_): check_topology()で取り出した２つ目の装置
         """
         with steps.start(f'Connecting to {ios1.name}'):
-            ios1.connect(via='console')
+            ios1.connect()
 
         with steps.start(f'Connecting to {ios2.name}'):
-            ios2.connect(via='console')
+            ios2.connect()
 
 ###################################################################
 ###                     TESTCASES SECTION                       ###

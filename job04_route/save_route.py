@@ -36,7 +36,7 @@ for name, dev in testbed.devices.items():
 
     try:
         # connect
-        dev.connect(via='console')
+        dev.connect()
 
         # learn routing table
         routing = dev.learn('routing')

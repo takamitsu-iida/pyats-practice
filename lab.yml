@@ -70,6 +70,7 @@ devices:
     connections:
       defaults:
         class: 'unicon.Unicon'
+        via: console
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -130,6 +131,7 @@ devices:
     connections:
       defaults:
         class: 'unicon.Unicon'
+        via: console
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -151,6 +153,7 @@ devices:
     connections:
       defaults:
         class: 'unicon.Unicon'
+        via: console
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -172,6 +175,7 @@ devices:
     connections:
       defaults:
         class: 'unicon.Unicon'
+        via: console
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -193,6 +197,7 @@ devices:
     connections:
       defaults:
         class: 'unicon.Unicon'
+        via: console
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -214,6 +219,7 @@ devices:
     connections:
       defaults:
         class: 'unicon.Unicon'
+        via: console
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -235,6 +241,7 @@ devices:
     connections:
       defaults:
         class: 'unicon.Unicon'
+        via: console
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
@@ -256,6 +263,7 @@ devices:
     connections:
       defaults:
         class: 'unicon.Unicon'
+        via: console
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"

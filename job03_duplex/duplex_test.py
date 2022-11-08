@@ -31,7 +31,7 @@ class CommonSetup(aetest.CommonSetup):
             if dev.platform != 'csr1000v':
                 continue
             try:
-                dev.connect(via='console')
+                dev.connect()
             except (TimeoutError, StateMachineError, ConnectionError):
                 logger.error('Unable to connect to all devices')
 

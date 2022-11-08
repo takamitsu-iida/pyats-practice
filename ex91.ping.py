@@ -154,7 +154,7 @@ if __name__ == '__main__':
 
         # 接続
         try:
-            dev.connect(via='console', log_stdout=False)
+            dev.connect(log_stdout=False)
         except (TimeoutError, StateMachineError, ConnectionError) as e:
             print(e)
             continue

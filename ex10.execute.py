@@ -28,10 +28,10 @@ testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 
-# connect to the uut
-uut.connect(via='console')
+# connect to the uut(unit under test)
+uut.connect()
 
-# execute command
+# execute
 output = uut.execute('show version')
 
 # print output

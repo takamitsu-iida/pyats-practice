@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     uut = testbed.devices['uut']
 
-    uut.connect(via='console')
+    uut.connect()
 
     static_routing = StaticRouting()
 

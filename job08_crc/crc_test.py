@@ -88,7 +88,7 @@ class CommonSetup(aetest.CommonSetup):
             if dev.os not in ('ios', 'iosxe', 'iosxr', 'nxos'):
                 continue
             try:
-                testbed.devices[name].connect(via='console')
+                testbed.devices[name].connect()
             except (TimeoutError, StateMachineError, ConnectionError):
                 logger.error(f'Unable to connect to {name}')
 

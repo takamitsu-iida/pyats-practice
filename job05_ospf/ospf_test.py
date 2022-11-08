@@ -33,7 +33,7 @@ class CommonSetup(aetest.CommonSetup):
         for router in routers:
             r = testbed.devices[router]
             try:
-                r.connect(via='console')
+                r.connect()
             except (TimeoutError, StateMachineError, ConnectionError):
                 logger.error(f'Unable to connect to {router}')
 

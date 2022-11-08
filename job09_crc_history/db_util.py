@@ -158,7 +158,7 @@ if __name__ == '__main__':
         uut = testbed.devices['uut']
 
         # connect
-        uut.connect(via='console')
+        uut.connect()
 
         # learn all interfaces
         Interface = get_ops('interface', uut)

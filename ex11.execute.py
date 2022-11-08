@@ -33,7 +33,7 @@ uut = testbed.devices['uut']
 
 # connect to the uut
 try:
-    uut.connect(via='console')
+    uut.connect()
 except (TimeoutError, StateMachineError, ConnectionError) as e:
     print(e)
     sys.exit(1)

@@ -58,7 +58,7 @@ for name, dev in testbed.devices.items():
         with open(log_path, 'w') as f:
             # connect
             try:
-                dev.connect(via='console')
+                dev.connect()
             except (TimeoutError, ConnectionError, SubCommandFailure) as e:
                 f.write(str(e))
                 continue

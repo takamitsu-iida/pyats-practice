@@ -157,8 +157,8 @@ if __name__ == '__main__':
     target = testbed.devices[target]
 
     # 接続
-    pinger.connect(via='console', log_stdout=False) # pingの応答を画面に表示しない
-    target.connect(via='console')
+    pinger.connect(log_stdout=False) # pingの応答を画面に表示しない
+    target.connect()
 
     # pingの宛先
     ping_dest = '192.168.255.4'

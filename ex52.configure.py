@@ -33,7 +33,7 @@ testbed = load(args.testbed)
 uut = testbed.devices['uut']
 
 # connect to the uut
-uut.connect(via='console')
+uut.connect()
 
 from genie.libs.conf.static_routing.static_routing import StaticRouting
 

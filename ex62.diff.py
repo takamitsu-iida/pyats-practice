@@ -44,7 +44,7 @@ testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 
-uut.connect(via='console')
+uut.connect()
 
 # learn routing table
 pre_routing = uut.learn('routing')

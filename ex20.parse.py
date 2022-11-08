@@ -28,7 +28,7 @@ testbed = load(args.testbed)
 uut = testbed.devices['uut']
 
 # connect
-uut.connect(via='console')
+uut.connect()
 
 # parse "show version"
 output = uut.parse('show version')

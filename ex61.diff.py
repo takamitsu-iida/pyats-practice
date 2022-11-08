@@ -44,7 +44,7 @@ testbed = load(args.testbed)
 
 uut = testbed.devices['uut']
 
-uut.connect(via='console')
+uut.connect()
 
 # learn ospf state
 pre_ospf = uut.learn('ospf')

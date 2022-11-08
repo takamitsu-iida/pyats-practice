@@ -43,7 +43,7 @@ for name, dev in testbed.devices.items():
         continue
 
     # connect
-    dev.connect(via='console')
+    dev.connect()
 
     # parse
     parsed[name] = dev.parse('show interfaces status')

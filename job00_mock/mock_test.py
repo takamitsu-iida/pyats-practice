@@ -45,7 +45,7 @@ class CommonSetup(aetest.CommonSetup):
 
             # connect
             try:
-                dev.connect(via='console')
+                dev.connect()
             except (TimeoutError, StateMachineError, ConnectionError):
                 logger.error(f'Unable to connect to {name}')
 

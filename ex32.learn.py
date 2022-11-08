@@ -34,7 +34,7 @@ for name, dev in testbed.devices.items():
     if dev.type == 'switch':
         try:
             # connect
-            dev.connect(via='console')
+            dev.connect()
 
             # learn
             learnt[name] = dev.learn('stp')

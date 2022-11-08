@@ -32,11 +32,10 @@ testbed = load(args.testbed)
 uut = testbed.devices['uut']
 
 # connect
-uut.connect(via='console')
-
+# uut.connect(via='console')
+uut.connect()
 
 learnt = uut.learn('interface')
-
 
 #parsed = uut.parse('show ip route')
 #outgoing_intf = parsed.q.contains('192.168.255.4/32').get_values('outgoing_interface')[0]

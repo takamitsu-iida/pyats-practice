@@ -30,7 +30,7 @@ testbed = load(args.testbed)
 uut = testbed.devices['uut']
 
 # connect
-uut.connect(via='console')
+uut.connect()
 
 # 機種固有のInterfaceをインポートする場合
 # from genie.libs.ops.interface.ios.interface import Interface

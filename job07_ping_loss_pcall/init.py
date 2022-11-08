@@ -25,7 +25,7 @@ for router in ['r2', 'r3']:
     uut = testbed.devices[router]
 
     # connect to the uut
-    uut.connect(via='console')
+    uut.connect()
 
     for intf in ['GigabitEthernet1', 'GigabitEthernet2']:
         gig = Interface(device=uut, name=intf)
