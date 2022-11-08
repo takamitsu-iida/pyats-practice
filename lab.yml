@@ -4,20 +4,24 @@
 # testbed file for lab
 #
 
-# to validate the testbed file
-#   pyats validate testbed [file]
+## validate the testbed file
+# pyats validate testbed [file]
+
+## encode password
+# pyats secret encode --string MySecretPassword
+
+## decode encoded password
+# pyats secret decode ...
 
 # NOTE
 # hostname 装置のhostname設定と一致させないといけません
-# alias 任意の名前で構いませんがuutがよいでしょう UUT = Unit Under Test
+# alias 任意の別名をつけられます uut = unit under test
+
+# NOTE
 # os: 必須です。プラグインの識別に使いますので ios iosxe iosxr nxos、等から選びます
 # platform: 任意です。装置のプラットフォーム名、cat3850、cat9300、等を指定します
 # type: 任意です。router もしくは switch を指定します
-
-# 機種に対応したプラグインを判定する優先順位はこのようになっています
-# chassis_type > os > platform > model
-
-# Unicon Supported Platforms
+#
 # https://pubhub.devnetcloud.com/media/unicon/docs/user_guide/supported_platforms.html
 
 testbed:
