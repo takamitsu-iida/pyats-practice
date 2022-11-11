@@ -58,28 +58,15 @@ pyats diff working_snapshot broken_snapshot --output diff_snapshot
 git clone https://github.com/takamitsu-iida/pyats-practice.git
 ```
 
-ディレクトリを移動すると
-
-```bash
-$ cd pyats-practice
-direnv: error /home/iida/git/pyats-practice/.envrc is blocked. Run `direnv allow` to approve its content
-```
+venvでpythonの仮想環境を作ります。
 
 ```bash
 $ python3 -m venv .venv
 ```
 
-direnvをインストール済みの場合。
+direnvをインストール済みの場合、既に.envrcがありますので `direnv allow` コマンドで有効にしてください。
 
-```bash
-direnv allow
-```
-
-direnvをインストールしていないなら
-
-```bash
-source .venv/bin/activate
-```
+direnvをインストールしていない場合は、`source .venv/bin/activate` コマンドでvenvの環境を有効にしてください。
 
 pyATSおよび関連するpythonのモジュールをインストールします。
 
@@ -88,7 +75,7 @@ pip install -r requirements.txt
 ```
 
 ex??ディレクトリはモックデバイスです。
-これらを指定してスクリプトを実行すれば、リアル機器がなくてもスクリプトは動作します。
+これらを指定してスクリプトを実行すれば、リアルな機器がなくてもスクリプトは動作します。
 
 たとえば、このように実行します。
 
