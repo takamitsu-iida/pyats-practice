@@ -16,23 +16,21 @@ import argparse
 
 from pprint import pprint
 
-# script args
+# このスクリプトを実行するときに --testbed を指定することで読み込むテストベッドファイルを切り替えます
 parser = argparse.ArgumentParser()
 parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
 args, _ = parser.parse_known_args()
 
-#
-# pyATS
-#
-
-# import Genie
+# Genieライブラリからテストベッドをロードする関数をインポートします
 from genie.testbed import load
 
+# テストベッドをロードします
 testbed = load(args.testbed)
 
+# 名前（もしくはエイリアス）が'uut'になっている装置を取り出します（uut = unit under test）
 uut = testbed.devices['uut']
 
-# connect to the uut
+# そのデバイスに接続します
 uut.connect()
 
 from genie.libs.conf.vrf import Vrf
@@ -62,13 +60,13 @@ cfgs = ospf1.build_config(apply=False)
 # cfgs = {r1: {...}}
 pprint(str(cfgs[uut.name]))
 
-# apply
+# 装置に適用します
 ospf1.build_config(apply=True)
 
 # 注意！
 # 引数なしでunconfigするとospfの設定がまるごと消える
 # ospf1.build_unconfig(apply=True)
 
-# disconnect
+# そのデバイスとの接続を切ります
 if uut.is_connected():
     uut.disconnect()

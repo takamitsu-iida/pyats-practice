@@ -16,7 +16,7 @@ import os
 import sys
 
 #
-# overwrite standard telnetlib
+# python標準のtelnetlibではなく、バッファを大きくしたtelnetlibを先に読み込みます
 #
 def here(path=''):
   return os.path.abspath(os.path.join(os.path.dirname(__file__), path))
@@ -28,22 +28,21 @@ import telnetlib
 if telnetlib.MODIFIED_BY:
     print('modified telnetlib is loaded.')
 
-# script args
+# このスクリプトを実行するときに --testbed を指定することで読み込むテストベッドファイルを切り替えます
 parser = argparse.ArgumentParser()
 parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
 args, _ = parser.parse_known_args()
 
-#
-# pyATS
-#
-
-# import Genie
+# Genieライブラリからテストベッドをロードする関数をインポートします
 from genie.testbed import load
 
+# テストベッドをロードします
 testbed = load(args.testbed)
 
+# 名前（もしくはエイリアス）が'uut'になっている装置を取り出します（uut = unit under test）
 uut = testbed.devices['uut']
 
+# そのデバイスに接続します
 uut.connect()
 
 # learn routing table
@@ -62,7 +61,7 @@ uut.configure('''
 no ip route 192.168.100.0 255.255.255.0 null 0
 ''')
 
-# disconnect
+# そのデバイスとの接続を切ります
 if uut.is_connected():
     uut.disconnect()
 

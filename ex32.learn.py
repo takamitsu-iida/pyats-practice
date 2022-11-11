@@ -14,32 +14,29 @@ import argparse
 
 from pprint import pprint
 
-# script args
+# このスクリプトを実行するときに --testbed を指定することで読み込むテストベッドファイルを切り替えます
 parser = argparse.ArgumentParser()
 parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
 args, _ = parser.parse_known_args()
 
-#
-# pyATS
-#
-
-# import Genie
+# Genieライブラリからテストベッドをロードする関数をインポートします
 from genie.testbed import load
 from unicon.core.errors import TimeoutError, ConnectionError, SubCommandFailure
 
+# テストベッドをロードします
 testbed = load(args.testbed)
 
 learnt = {}
 for name, dev in testbed.devices.items():
     if dev.type == 'switch':
         try:
-            # connect
+            # そのデバイスに接続します
             dev.connect()
 
-            # learn
+            # stpを学習します
             learnt[name] = dev.learn('stp')
 
-            # disconnect
+            # そのデバイスとの接続を切ります
             dev.disconnect()
 
         except (TimeoutError, ConnectionError, SubCommandFailure) as e:

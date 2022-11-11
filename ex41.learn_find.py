@@ -13,23 +13,21 @@
 
 import argparse
 
-# script args
+# このスクリプトを実行するときに --testbed を指定することで読み込むテストベッドファイルを切り替えます
 parser = argparse.ArgumentParser()
 parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
 args, _ = parser.parse_known_args()
 
-#
-# pyATS
-#
-
-# import Genie
+# Genieライブラリからテストベッドをロードする関数をインポートします
 from genie.testbed import load
 
+# テストベッドをロードします
 testbed = load(args.testbed)
 
+# 名前（もしくはエイリアス）が'uut'になっている装置を取り出します（uut = unit under test）
 uut = testbed.devices['uut']
 
-# connect
+# そのデバイスに接続します
 uut.connect()
 
 # 機種固有のInterfaceをインポートする場合
@@ -42,19 +40,20 @@ from genie.ops.utils import get_ops
 Interface = get_ops('interface', uut)
 intf = Interface(device=uut)
 
-# learn
+# インタフェースを学習します
 intf.learn()
 
-# disconnect
+# そのデバイスとの接続を切ります
 if uut.is_connected():
     uut.disconnect()
 
+# 画面に表示します
 from pprint import pprint
 pprint(intf.info)
 
 from pyats.utils.objects import R, find
 
-# from
+# このキー階層の値を採取したい
 # {'info': {'interface name': {'oper_status': 'up'
 
 # Rに渡す配列は、辞書型のキーの順番で、最後の要素だけは一致させる値になる

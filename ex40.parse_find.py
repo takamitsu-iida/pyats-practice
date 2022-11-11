@@ -14,37 +14,35 @@ import argparse
 
 from pprint import pprint
 
-# script args
+# このスクリプトを実行するときに --testbed を指定することで読み込むテストベッドファイルを切り替えます
 parser = argparse.ArgumentParser()
 parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
 args, _ = parser.parse_known_args()
 
-#
-# pyATS
-#
-
-# import Genie
+# Genieライブラリからテストベッドをロードする関数をインポートします
 from genie.testbed import load
 
+# テストベッドをロードします
 testbed = load(args.testbed)
 
+# 名前（もしくはエイリアス）が'uut'になっている装置を取り出します（uut = unit under test）
 uut = testbed.devices['uut']
 
-# connect
+# そのデバイスに接続します
 uut.connect()
 
 # parse
 parsed = uut.parse('show interfaces')
 
-# disconnect
+# そのデバイスとの接続を切ります
 if uut.is_connected():
     uut.disconnect()
 
-# display parsed data
+# パース結果を表示します
 for name, data in parsed.items():
     pprint(data)
 
-# find 力技で見つける
+# 力技で見つける方法
 for name, data in parsed.items():
     if 'counters' in data:
        if 'out_pkts' in data['counters']:
@@ -52,12 +50,12 @@ for name, data in parsed.items():
                 print(f"{name} is not used.")
                 # uut.configure('int {}\n shutdown'.format(name))
 
-# pyats find
+# pyATSのfindを使って見つける方法
 # https://pubhub.devnetcloud.com/media/pyats/docs/utilities/helper_functions.html
 
 from pyats.utils.objects import R, find
 
-# from
+# このキー階層の値を採取したい
 # {interface_name: {'counters': {'out_pkts': 0
 
 req = R(['(.*)', 'counters', 'out_pkts', 0])

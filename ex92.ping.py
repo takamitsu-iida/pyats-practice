@@ -14,11 +14,10 @@ import re
 
 from multiprocessing import Process, Pipe
 
-#
-# pyATS
-#
-
+# Genieライブラリからテストベッドをロードする関数をインポートします
 from genie.testbed import load
+
+# 例外クラスをインポートします
 from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 from unicon.core.errors import SubCommandFailure
 
@@ -134,9 +133,7 @@ if __name__ == '__main__':
     import argparse
     import time
 
-    #
-    # script args
-    #
+    # このスクリプトを実行するときに --testbed を指定することで読み込むテストベッドファイルを切り替えます
     parser = argparse.ArgumentParser()
     parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
     args, _ = parser.parse_known_args()
@@ -156,7 +153,7 @@ if __name__ == '__main__':
     target = 'r2'
     target = testbed.devices[target]
 
-    # 接続
+    # pingを打ち込む装置に接続
     pinger.connect(log_stdout=False) # pingの応答を画面に表示しない
     target.connect()
 

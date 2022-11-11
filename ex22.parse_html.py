@@ -16,7 +16,7 @@ import os
 from pprint import pformat
 from jinja2 import Environment, FileSystemLoader
 
-# script args
+# このスクリプトを実行するときに --testbed を指定することで読み込むテストベッドファイルを切り替えます
 parser = argparse.ArgumentParser()
 parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
 args, _ = parser.parse_known_args()
@@ -27,13 +27,10 @@ def here(path=''):
 log_dir = here('./log')
 templates_dir = here('./templates')
 
-#
-# pyATS
-#
-
-# import Genie
+# Genieライブラリからテストベッドをロードする関数をインポートします
 from genie.testbed import load
 
+# テストベッドをロードします
 testbed = load(args.testbed)
 
 parsed = {}
@@ -42,16 +39,16 @@ for name, dev in testbed.devices.items():
     if dev.type != 'switch':
         continue
 
-    # connect
+    # そのデバイスに接続します
     dev.connect()
 
-    # parse
+    # パースします
     parsed[name] = dev.parse('show interfaces status')
 
-    # disconnect
+    # そのデバイスとの接続を切ります
     dev.disconnect()
 
-# 辞書型を画面表示して内容を確認
+# 辞書型を画面表示して内容を確認します
 parsed_output = pformat(parsed)
 print(parsed_output)
 

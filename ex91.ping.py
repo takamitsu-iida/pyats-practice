@@ -7,11 +7,10 @@
 import pprint
 import re
 
-#
-# pyATS
-#
-
+# Genieライブラリからテストベッドをロードする関数をインポートします
 from genie.testbed import load
+
+# 例外クラスをインポートします
 from unicon.core.errors import TimeoutError, StateMachineError, ConnectionError
 from unicon.core.errors import SubCommandFailure
 
@@ -132,9 +131,7 @@ if __name__ == '__main__':
 
     import argparse
 
-    #
-    # script args
-    #
+    # このスクリプトを実行するときに --testbed を指定することで読み込むテストベッドファイルを切り替えます
     parser = argparse.ArgumentParser()
     parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
     args, _ = parser.parse_known_args()
@@ -152,8 +149,8 @@ if __name__ == '__main__':
     for name in target_routers:
         dev = testbed.devices[name]
 
-        # 接続
         try:
+            # そのデバイスに接続します
             dev.connect(log_stdout=False)
         except (TimeoutError, StateMachineError, ConnectionError) as e:
             print(e)

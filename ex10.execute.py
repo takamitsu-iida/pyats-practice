@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 #
-# connect to the uut and execute commnad
+# テストベッドファイルからデバイスを取り出します。
+# そのデバイスに接続します。
+# コマンドを打ち込んで結果を画面に表示します。
 #
 
 # usage: ex10.execute.py [-h] [--testbed TESTBED]
@@ -12,28 +14,27 @@
 
 import argparse
 
-# script args
+# このスクリプトを実行するときに --testbed を指定することで読み込むテストベッドファイルを切り替えます
 parser = argparse.ArgumentParser()
 parser.add_argument('--testbed', dest='testbed', help='testbed YAML file', type=str, default='lab.yml')
 args, _ = parser.parse_known_args()
 
-#
-# pyATS
-#
-
-# import Genie
+# Genieライブラリからテストベッドをロードする関数をインポートします
 from genie.testbed import load
 
+# テストベッドをロードします
 testbed = load(args.testbed)
 
+# 名前（もしくはエイリアス）が'uut'になっている装置を取り出します（uut = unit under test）
 uut = testbed.devices['uut']
 
-# connect to the uut(unit under test)
+# そのデバイスに接続します
 uut.connect()
 
-# execute
+# execute()でコマンドを投げ込みます
+# outputにはその応答が格納されます
 output = uut.execute('show version')
 
-# print output
+# 画面に応答を表示します
 from pprint import pprint
 pprint(output)
