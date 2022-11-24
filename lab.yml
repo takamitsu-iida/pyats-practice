@@ -74,7 +74,7 @@ devices:
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
-        port: 38905
+        port: 53863
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1     # default 10
           POST_DISCONNECT_WAIT_SEC: 1         # default 10
@@ -135,7 +135,7 @@ devices:
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
-        port: 42503
+        port: 46993
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
           POST_DISCONNECT_WAIT_SEC: 1
@@ -157,7 +157,7 @@ devices:
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
-        port: 48927
+        port: 38995
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
           POST_DISCONNECT_WAIT_SEC: 1
@@ -179,7 +179,7 @@ devices:
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
-        port: 41539
+        port: 53739
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
           POST_DISCONNECT_WAIT_SEC: 1
@@ -201,7 +201,7 @@ devices:
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
-        port: 42961
+        port: 39809
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
           POST_DISCONNECT_WAIT_SEC: 1
@@ -223,7 +223,7 @@ devices:
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
-        port: 45895
+        port: 56285
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
           POST_DISCONNECT_WAIT_SEC: 1
@@ -245,7 +245,7 @@ devices:
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
-        port: 48429
+        port: 53395
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
           POST_DISCONNECT_WAIT_SEC: 1
@@ -267,7 +267,7 @@ devices:
       console:
         protocol: telnet
         ip: "%ENC{gAAAAABjTmMl7WqODelgN_ZmcibKiTetdkTuYC3Qpt-rsT6TP1Ps2WcFKHYIRiJwhW5kJXzzY07oU3iaUnMa3NzCQyq-zJJtb_nwJF5lxofO-ftStaDcknc=}"
-        port: 34521
+        port: 35571
         settings:
           GRACEFUL_DISCONNECT_WAIT_SEC: 1
           POST_DISCONNECT_WAIT_SEC: 1
