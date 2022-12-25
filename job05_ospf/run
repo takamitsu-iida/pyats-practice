@@ -1,7 +1,8 @@
 #!/bin/bash
 
-JOB=ospf_job.py
-TESTBED=../lab.yml
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+JOB=$SCRIPT_DIR/ospf_job.py
+TESTBED=$SCRIPT_DIR/../lab.yml
 
 # RECORD
 # pyats run job $JOB --testbed-file $TESTBED --record record

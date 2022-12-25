@@ -1,5 +1,6 @@
 #!/bin/bash
 
-JOB=example_job.py
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+JOB=$SCRIPT_DIR/example_job.py
 
 pyats run job $JOB

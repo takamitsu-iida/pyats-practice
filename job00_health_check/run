@@ -1,8 +1,8 @@
 #!/bin/bash
 
-JOB=health_check_job.py
-
-TESTBED=../lab.yml
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+JOB=$SCRIPT_DIR/health_check_job.py
+TESTBED=$SCRIPT_DIR/../lab.yml
 
 pyats run job $JOB --testbed-file $TESTBED --health-checks cpu memory logging core
 

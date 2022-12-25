@@ -1,7 +1,8 @@
 #!/bin/bash
 
-JOB=mock_job.py
-TESTBED=../lab.yml
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+JOB=$SCRIPT_DIR/mock_job.py
+TESTBED=$SCRIPT_DIR/../lab.yml
 
 # WITHOUT RECORD
 # pyats run job $JOB --testbed-file $TESTBED
