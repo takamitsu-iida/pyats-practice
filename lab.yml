@@ -101,6 +101,10 @@ devices:
           # init_config_commandsに空のリストを渡せば設定変更を抑止できる
           init_config_commands: []
 
+          # デフォルトで/tmp/にログ・ファイルが作られるのを抑止
+          log_buffer: true
+
+
       # SSHで踏み台を経由する場合
       vty:
         proxy: fumidai
@@ -118,6 +122,7 @@ devices:
             - term length 0
             - term width 0
           init_config_commands: []
+          log_buffer: true
 
       # モックを使う場合（モックデバイスの作り方はjob05_mockを参照）
       a:
@@ -145,6 +150,7 @@ devices:
             - term length 0
             - term width 0
           init_config_commands: []
+          log_buffer: true
 
   r3:
     os: iosxe
@@ -167,6 +173,7 @@ devices:
             - term length 0
             - term width 0
           init_config_commands: []
+          log_buffer: true
 
   r4:
     os: iosxe
@@ -189,6 +196,7 @@ devices:
             - term length 0
             - term width 0
           init_config_commands: []
+          log_buffer: true
 
   sw1:
     os: ios
@@ -211,6 +219,7 @@ devices:
             - term length 0
             - term width 0
           init_config_commands: []
+          log_buffer: true
 
   sw2:
     os: ios
@@ -233,6 +242,7 @@ devices:
             - term length 0
             - term width 0
           init_config_commands: []
+          log_buffer: true
 
   sw3:
     os: ios
@@ -255,6 +265,7 @@ devices:
             - term length 0
             - term width 0
           init_config_commands: []
+          log_buffer: true
 
   sw4:
     os: ios
@@ -277,6 +288,7 @@ devices:
             - term length 0
             - term width 0
           init_config_commands: []
+          log_buffer: true
 
 #topology:
 #
